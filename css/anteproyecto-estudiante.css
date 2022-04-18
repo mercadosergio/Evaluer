@@ -1,0 +1,630 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+body {
+    font-family: "Maven Pro", sans-serif;
+    background-color: whitesmoke;
+    padding-top: 110px;
+    padding-left: 20px;
+}
+
+:root {
+    --background-primario: #0269ad;
+    --hover: #0477c4;
+    --color-detalle: #fee700;
+    --color-detalle-hover: #e4d103;
+}
+
+.full-screen {
+    padding: 8rem 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    font-weight: normal;
+    text-decoration: none !important;
+    transition: all 0.4s ease;
+}
+
+
+/* a:hover {
+    color: #ffffff !important;
+} */
+
+p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #5b5b5b;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+h1 {
+    color: #212121;
+    font-size: 2.8em;
+    margin: 24px 0;
+}
+
+h2 {
+    color: #353535;
+    font-size: 2.4em;
+    font-weight: bold;
+}
+
+.navbar h3 {
+    color: #fff;
+}
+
+h3,
+b,
+strong {
+    font-weight: bold;
+}
+
+.animated {
+    position: relative;
+}
+
+.animated-info {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    min-width: 260px;
+    position: relative;
+}
+
+.animated-item {
+    color: #ffc200;
+}
+
+.animated-item {
+    font-size: 38px;
+    line-height: inherit;
+    display: block;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    animation: BottomTotop 6s linear infinite 0s;
+}
+
+.animated-item:nth-child(2n+2) {
+    animation-delay: 2s;
+}
+
+.animated-item:nth-child(3n+3) {
+    animation-delay: 4s;
+}
+
+@keyframes BottomTotop {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999999;
+    will-change: transform;
+    transition: transform 200ms linear;
+    background: var(--background-primario);
+    color: white;
+    border-bottom: var(--color-detalle) 5px solid;
+    height: 120px;
+}
+
+.navbar-brand:hover {
+    color: #fff;
+}
+
+.nav-item {
+    color: white;
+}
+
+.log .navbar-brand {
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    /* nuevo ajuste......................... */
+}
+
+.navbar-expand-sm .navbar-nav .nav-link {
+    padding: 0 0;
+}
+
+.nav-link {
+    width: auto;
+    font-weight: bold;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.nav-link span {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.nav-link span:before {
+    position: absolute;
+    top: 100%;
+    content: attr(data-hover);
+    transform: translate3d(0, 0, 0);
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #fff;
+    font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link:focus span,
+.navbar-light .navbar-nav .nav-link:hover span {
+    transform: translateY(-100%);
+}
+
+.navbar-light .navbar-toggler-icon {
+    background: none;
+}
+
+.navbar-toggler {
+    border: 0;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    outline: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:first-child {
+    transform: rotate(45deg);
+    top: 6px;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-child(2) {
+    display: none;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:last-child {
+    transform: rotate(-45deg);
+    bottom: 1px;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background: #212121;
+    display: block;
+    width: 100%;
+    height: 2px;
+    margin: 5px 0;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.copyright-text {
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+}
+
+.division {
+    height: 100%;
+    background: white;
+    display: flex;
+}
+
+.navbar-nav li {
+    margin-right: 20px;
+    border-top: var(--background-primario) 3px solid;
+    border-bottom: var(--background-primario) 3px solid;
+}
+
+.nav-link span {
+    color: white;
+    font-size: 20px;
+    width: auto;
+}
+
+.principal {
+    width: auto;
+    /* border-bottom: var(--color-detalle) 3px solid; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fecha {
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.principal a,
+.fecha {
+    width: auto;
+    font-weight: bold;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+
+/* Logos e imagenes */
+
+.aunar_logo {
+    height: 80px;
+    margin-right: 20px;
+}
+
+.logo {
+    height: 80px;
+    border-radius: 10px;
+}
+
+
+/* MENU DESPLEGABLE DE USUARIO */
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.log {
+    margin-right: 25px;
+    color: #fff;
+}
+
+.log i {
+    width: 150px;
+}
+
+ul {
+    list-style: none;
+}
+
+.log li a {
+    padding: 10px;
+    display: block;
+    color: #fff;
+}
+
+.log>li {
+    float: left;
+}
+
+.log li ul {
+    background: var(--background-primario);
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    border: 1px solid #000;
+}
+
+.log li:hover>ul {
+    display: block;
+}
+
+.log li ul li:hover {
+    background: var(--hover);
+}
+
+.log li ul li .out {
+    text-decoration: none;
+    color: white;
+}
+
+
+/* END MENU DESPLEGABLE.......................................... */
+
+form {
+    position: relative;
+}
+
+
+/* :root {
+    --width: 300px;
+    --padding: 10px;
+    --bgcolor: #21acac;
+    --hovercolor: #0d7575;
+    --width-collapsed: 50px;
+    --texto: white;
+} */
+
+.seccion-anteproyecto {
+    margin-top: 10px;
+    width: 70%;
+    height: 250px;
+    background: var(--background-primario);
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.seccion-anteproyecto .archivo {
+    padding: 15px;
+    display: block;
+    width: 35%;
+    text-align: center;
+}
+
+.seccion-anteproyecto .archivo .btn-enviar {
+    font-family: 'Maven', sans-serif;
+    padding: 5px;
+    width: 205px;
+    font-size: 20px;
+    color: var(--background-primario);
+    background: var(--color-detalle);
+    border-radius: 10px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+/* Propiedades input tipo file.............................. */
+
+
+/**********File Inputs**********/
+
+.container-input {
+    text-align: center;
+    position: relative;
+    padding: none;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.inputfile+label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.inputfile+label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+    font-size: 22px;
+    font-weight: normal;
+    font-family: "Maven Pro", sans-serif;
+}
+
+.inputfile-5+label {
+    color: white;
+}
+
+.inputfile-5+label figure {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
+    display: block;
+    padding: 20px;
+    margin: 0 auto 10px;
+}
+
+.inputfile-5+label svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+}
+
+.seccion-anteproyecto .comentario {
+    padding: 15px;
+    display: block;
+    width: 65%;
+}
+
+.seccion-anteproyecto .comentario label {
+    font-size: 19px;
+}
+
+.seccion-anteproyecto .comentario .marco-textarea {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background: #c4c4c4;
+    border-radius: 5px;
+}
+
+.seccion-anteproyecto .comentario .marco-textarea img {
+    width: 50px;
+    height: 50px;
+    margin-right: 4px;
+}
+
+.seccion-anteproyecto .comentario .marco-textarea textarea {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+    resize: none;
+    height: 80px;
+    padding: 5px;
+}
+
+.seccion-entregas {
+    width: 60%;
+}
+
+form h3 {
+    background: #c4c4c4;
+    border-radius: 10px;
+    color: black;
+    padding: 5px;
+    margin-top: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+textarea {
+    outline: none;
+    background: none;
+    border: none;
+}
+
+
+/* Entregas de la fecha */
+
+.cont-entregas {
+    width: 80%;
+}
+
+.cont-entregas .detalle_entrega {
+    padding: 20px;
+    padding-left: 10px;
+    background: #fff;
+    display: flex;
+    width: 90%;
+    margin-bottom: 10px;
+    border: var(--background-primario) 1px solid;
+}
+
+.detalle_entrega i {
+    color: var(--hover);
+    font-size: 60px;
+}
+
+.detalle_entrega>.datos {
+    margin-left: 10px;
+    margin-right: 20px;
+    display: block;
+    width: 40%;
+}
+
+.datos label {
+    display: flex;
+}
+
+.detalle_entrega .datos a {
+    text-decoration: none;
+}
+
+.detalle_entrega .datos label {
+    margin-top: 7px;
+}
+
+.detalle_entrega .evaluacion label {
+    display: block;
+}
+
+.datos,
+.evaluacion {
+    font-size: 18px;
+}
+
+.evaluacion {
+    margin-right: 20px;
+}
+
+form {
+    padding-bottom: 50px;
+}
+
+textarea {
+    resize: none;
+}
+
+
+/* Navegación guia */
+
+.guia_arbol {
+    margin-top: 20px;
+    top: 110px;
+    right: 0;
+    background: linear-gradient(to bottom, #fff, #fff, transparent);
+    border: 1px var(--background-primario) solid;
+    border-bottom: none;
+    position: absolute;
+    width: 300px;
+    height: 60%;
+    padding: 10px;
+}
+
+.guia_arbol>ul {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.guia_arbol ul li>ul {
+    font-size: 17px;
+    margin: 5px;
+    margin-left: 15px;
+}
+
+.guia_arbol ul li>ul>li {
+    margin: 5px;
+    margin-left: 0;
+}
+
+.guia_arbol a {
+    text-decoration: none;
+    color: #000;
+}
+
+.guia_arbol i {
+    color: #0269ad;
+}
+
+.guia_arbol a:hover {
+    color: rgb(17, 101, 255);
+}
