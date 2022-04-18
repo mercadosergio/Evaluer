@@ -52,7 +52,7 @@ include("../controller/nombre.php");
                         <a href="main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                     </li>
                     <li class="fecha">
-                        
+
                     </li>
                 </ul>
                 <ul class="log">

@@ -19,7 +19,7 @@
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
-    
+
 </head>
 <?php
 include("controller/controlador-login.php");
@@ -101,7 +101,7 @@ include("controller/controlador-login.php");
                             <img src="img/foto-sergio.jpeg" alt="">
                             <label>Desarrollador y diseñador</label>
                         </div>
-                        
+
                         <div class="programer">
                             <label>Dager Lopez</label>
                             <img src="img/foto-dager.png" alt="">
