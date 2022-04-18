@@ -58,31 +58,31 @@ include("controller/controlador-login.php");
         </div>
     </nav>
 
-    <div class="fondo">
-        <div class="container-title">
-            <h1>Bienvenido!</h1>
 
-            <!-- <p class="subtitulo">Campus de seguimiento e investigación.</p><br> -->
-            <p style="text-align: left; font-size: 28px; color: white;">Campus de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
-        </div>
+    <div class="container-title">
+        <h1>Bienvenido!</h1>
 
-        <form method="POST">
-            <div class="login">
-
-                <h3 class="titulo-i" style="text-align: center;">Ingresa a tu cuenta</h3>
-                <label>Usuario</label>
-                <i class="fa fa-user"></i>
-                <input class="user" type="text" require placeholder="Ingrese su usuario" name="user">
-                <label>Contraseña</label>
-                <input class="pass" type="password" require placeholder="Ingrese su contraseña" name="pass">
-
-                <input class="boton" type="submit" value="Iniciar Sesión" name="login">
-
-                <p style="text-align: justify; font-size: 15px;">Una vez registrado, su usuario y contraseña será su documento de identidad.</p>
-
-            </div>
-        </form>
+        <!-- <p class="subtitulo">Campus de seguimiento e investigación.</p><br> -->
+        <p style="text-align: left; font-size: 28px; color: white;">Campus de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
     </div>
+
+    <form method="POST">
+        <div class="login">
+
+            <h3 class="titulo-i" style="text-align: center;">Ingresa a tu cuenta</h3>
+            <label>Usuario</label>
+            <i class="fa fa-user"></i>
+            <input class="user" type="text" require placeholder="Ingrese su usuario" name="user">
+            <label>Contraseña</label>
+            <input class="pass" type="password" require placeholder="Ingrese su contraseña" name="pass">
+
+            <input class="boton" type="submit" value="Iniciar Sesión" name="login">
+
+            <p style="text-align: justify; font-size: 15px;">Una vez registrado, su usuario y contraseña será su documento de identidad.</p>
+
+        </div>
+    </form>
+
 
     <!-- FOOTER -->
     <footer class="footer py-5">
@@ -90,22 +90,26 @@ include("controller/controlador-login.php");
             <div class="row">
 
                 <div class="col-lg-12 col-12">
-                    <p class="des">Equipo de trabajo</p>
+
                     <div class="team">
                         <div>
                             <label style="font-weight: bold;" for="">Sobre nosotros:</label>
                             <p style="text-align: justify;">Evaluer es una plataforma que permite establecer los pasos específicos para el buen manejo y administración de los recursos digitales que se hacen con la entrega de estos, para la Gestión de Proyectos de Grado en la Corporacion Universitaria Autonoma de Nariño, esto con el fin de promover una interacción entre el estudiante y el docente.</p>
                         </div>
-                        <div class="programer">
-                            <label>Sergio Mercado</label>
-                            <img src="img/foto-sergio.jpeg" alt="">
-                            <label>Desarrollador y diseñador</label>
-                        </div>
 
-                        <div class="programer">
-                            <label>Dager Lopez</label>
-                            <img src="img/foto-dager.png" alt="">
-                            <label>Diseñador</label>
+                        <div class="develop">
+                            <p style="display: block;" class="des">Equipo de trabajo</p>
+                            <div class="programer1">
+                                <label>Sergio Mercado</label>
+                                <img src="img/foto-sergio.jpeg" alt="">
+                                <label>Desarrollador y diseñador</label>
+                            </div>
+
+                            <div class="programer2">
+                                <label>Dager Lopez</label>
+                                <img src="img/foto-dager.png" alt="">
+                                <label>Diseñador</label>
+                            </div>
                         </div>
                     </div>
                     <p class="copyright-text text-center">Copyright &copy; 2021 Evaluer. All rights reserved
