@@ -99,7 +99,7 @@ include_once  '../controller/nombre.php';
                     <div>
                         <h3>Proyectos de grado</h3>
                         <div>
-                        <i class="fas fa-user-tie"></i>
+                            <i class="fas fa-user-tie"></i>
                         </div>
                     </div>
                 </div>

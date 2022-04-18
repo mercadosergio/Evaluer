@@ -2,6 +2,8 @@
 body {
     font-family: "Maven Pro", sans-serif;
     background: url("../img/fondo-modulo1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
     /* background: whitesmoke; */
 }
 
@@ -422,10 +424,6 @@ img {
 
 .docente-profile a::after {
     opacity: 1;
-}
-
-.docente-profile a:hover .seleccion img {
-    /* transform: scale(1.5, 1.5); */
 }
 
 .docente-profile a:hover .seleccion {
