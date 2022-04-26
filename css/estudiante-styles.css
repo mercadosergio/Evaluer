@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: url("../img/fondo-modulo1.png");
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -416,11 +417,10 @@ ul {
 
 .student-profile {
     position: relative;
-    /* background: url("../img/background-o.png"); */
     width: 100%;
     height: 100%;
     padding: 20px;
-    margin-top: 120px;
+    padding-top: 160px;
 }
 
 .student-profile h3 {
@@ -489,7 +489,7 @@ ul {
 
 .guia_arbol {
     margin-top: 20px;
-    top: 0;
+    top: 15%;
     right: 0;
     /* background: #fff; */
     background: linear-gradient(to bottom, #fff, #fff, transparent);
