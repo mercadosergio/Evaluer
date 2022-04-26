@@ -92,13 +92,13 @@ include("controller/controlador-login.php");
                 <div class="col-lg-12 col-12">
 
                     <div class="team">
-                        <div>
-                            <label style="font-weight: bold;" for="">Sobre nosotros:</label>
+                        <div class="info">
+                            <label style="font-weight: bold;" for="">Sobre nosotros:</label><br><br>
                             <p style="text-align: justify;">Evaluer es una plataforma que permite establecer los pasos específicos para el buen manejo y administración de los recursos digitales que se hacen con la entrega de estos, para la Gestión de Proyectos de Grado en la Corporacion Universitaria Autonoma de Nariño, esto con el fin de promover una interacción entre el estudiante y el docente.</p>
                         </div>
 
                         <div class="develop">
-                            <p style="display: block;" class="des">Equipo de trabajo</p>
+                            <p style="display: block;" class="des">Equipo Desarrollador</p>
                             <div class="programer1">
                                 <label>Sergio Mercado</label>
                                 <img src="img/foto-sergio.jpeg" alt="">

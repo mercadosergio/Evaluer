@@ -589,7 +589,7 @@ textarea {
 
 .guia_arbol {
     margin-top: 20px;
-    top: 110px;
+    top: 15px;
     right: 0;
     background: linear-gradient(to bottom, #fff, #fff, transparent);
     border: 1px var(--background-primario) solid;

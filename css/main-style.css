@@ -757,8 +757,8 @@ input:focus {
 }
 
 footer {
-    /* background: #fff36f; */
-    background: #e9c140;
+    /* background: #e9c140; */
+    background: #067cca;
 }
 
 .des {
@@ -769,7 +769,7 @@ footer {
 }
 
 .team {
-    color: #000;
+    color: #fff;
     margin: auto;
     /* background: chartreuse; */
     width: 1040px;
@@ -795,7 +795,7 @@ footer {
 }
 
 footer p {
-    color: #000;
+    color: #fff;
 }
 
 .develop {
@@ -813,4 +813,9 @@ footer p {
 
 .programer2 {
     grid-area: programer2;
+}
+
+.info {
+    padding: 45px;
+    padding-top: 0;
 }

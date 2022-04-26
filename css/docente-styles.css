@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: url("../img/fondo-modulo1.png");
+    /* background: url("../img/campus-aunar-2.png"); */
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
     background-repeat: no-repeat;
     background-size: cover;
-    /* background: whitesmoke; */
+    /* background: rgb(245, 245, 245); */
+    height: 100vh;
 }
 
 :root {
@@ -470,4 +472,8 @@ img {
 .seleccion i {
     color: var(--background-primario);
     font-size: 65px;
+}
+
+html {
+    padding: 0;
 }
