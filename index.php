@@ -63,7 +63,7 @@ include("controller/controlador-login.php");
         <h1>Bienvenido!</h1>
 
         <!-- <p class="subtitulo">Campus de seguimiento e investigación.</p><br> -->
-        <p style="text-align: left; font-size: 28px; color: white;">Campus de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
+        <p style="text-align: justify; font-size: 28px; color: white;">Campus de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
     </div>
 
     <form method="POST">
@@ -82,6 +82,18 @@ include("controller/controlador-login.php");
 
         </div>
     </form>
+    <div class="contenedor-campus">
+        <h3 class="titulo-aunar">CAMPUS UNVERSITARIO AUNAR</h3>
+    </div>
+
+    <div class="second-section">
+        <div class="info-aunar">
+            <div>
+                AUNAR Cartagena
+            </div>
+        </div>
+    </div>
+
 
 
     <!-- FOOTER -->

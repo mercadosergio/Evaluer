@@ -132,7 +132,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             <div class="item">
                 <a href="">
                     <div class="title">
-                    <i class="fas fa-search"></i>
+                        <i class="fas fa-search"></i>
                         <label>Buscar usuario</label>
                     </div>
                 </a>
