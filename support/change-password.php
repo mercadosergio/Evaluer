@@ -8,7 +8,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
-include("../controller/nombre.php");
+// include("../controller/nombre.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +20,7 @@ include("../controller/nombre.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Estudiante</title>
+    <title>Cambiar contraseña</title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/unicons.css">
@@ -48,13 +48,14 @@ include("../controller/nombre.php");
                 <h3>CAMBIAR CONTRASEÑA</h3>
 
                 <ul class="navbar-nav mx-auto">
-                    
+
                 </ul>
                 <ul class="log">
                     <li>
                         <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                            <label><?php echo $nombre_usuario;
-                                    ?>
+                            <label>
+                                <?php echo $_SESSION['usuario'];
+                                ?>
                             </label>
                         </a>
                         <ul>

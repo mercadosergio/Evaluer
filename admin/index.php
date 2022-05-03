@@ -63,7 +63,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <ul class="log">
                     <li>
                         <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                            <label><?php echo $_SESSION['usuario'];
+                            <label>
+                                <?php echo $_SESSION['usuario'];
                                     ?>
                             </label>
                         </a>

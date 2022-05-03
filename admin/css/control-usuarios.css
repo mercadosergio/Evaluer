@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    padding-top: 70px;
     background: whitesmoke;
     padding-top: 110px;
+    height: 100vh;
 }
 
 :root {
@@ -382,6 +382,78 @@ ul {
 
 /* END MENU DESPLEGABLE */
 
+.search-user {
+    width: auto;
+    display: flex;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.search-user label {
+    font-size: 19px;
+    font-family: "Maven Pro", sans-serif;
+}
+
+.search-user .contenedor {
+    overflow: hidden;
+    white-space: nowrap;
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+    /* position: relative;
+    left: 73%; */
+}
+
+.search-user .contenedor input#search {
+    outline: none;
+    width: 300px;
+    height: 50px;
+    background: #fff;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #000;
+    padding-left: 15px;
+    -webkit-border-radius: 5px 0 0 5px;
+    -moz-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid var(--background-primario);
+}
+
+.search-user .contenedor button.icon {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    background: var(--background-primario);
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    font-size: 10pt;
+    -webkit-transition: all .55s ease;
+    -moz-transition: all .55s ease;
+    -ms-transition: all .55s ease;
+    -o-transition: all .55s ease;
+    transition: all .55s ease;
+}
+
+.container input#search::-webkit-input-placeholder {
+    color: #65737e;
+}
+
+.container input#search:-moz-placeholder {
+    color: #65737e;
+}
+
+.container input#search::-moz-placeholder {
+    color: #65737e;
+}
+
+.container input#search:-ms-input-placeholder {
+    color: #65737e;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -399,7 +471,7 @@ a {
 
 .tabs-container {
     width: 100%;
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 25px;
 }
 
