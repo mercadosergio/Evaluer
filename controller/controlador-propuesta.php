@@ -33,6 +33,7 @@ if (isset($_POST['send'])) {
         if (time() > $tiempo['0']) {
             $time_propuesta = strtotime("+365 days, 12:00am", time());
             $json = json_encode($programa_id, true);
+           
             for ($i = 0; $i < count($programa_id); $i++) {
                 $conexion->query("INSERT INTO propuesta(titulo,linea,integrantes,tutor,lider,semestre,descripcion,grupo,fecha,remitente)
                 VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$semestre','$descripcion','$grupo','$fecha'," . $_SESSION['usuario'] . ")");

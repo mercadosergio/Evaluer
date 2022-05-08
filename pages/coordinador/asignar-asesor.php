@@ -71,8 +71,9 @@ include("../../controller/nombre.php");
     <table class="tabla_asesor">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Título</th>
-                <th>No. integrantes</th>
+                <th>Documento</th>
                 <th>Programa</th>
                 <th>Semestre</th>
                 <th>Fecha y hora</th>
@@ -81,36 +82,40 @@ include("../../controller/nombre.php");
             </tr>
         </thead>
         <?php
-        include("../../controller/asignar-doc.php");
+        include("../../controller/asignar-docente.php");
         ?>
         <form method="POST">
             <?php
-            $sql = "SELECT * from propuesta";
+            $sql = "SELECT * from proyecto_grado";
             $result = mysqli_query($conexion, $sql);
+
+
             while ($mostrar = mysqli_fetch_array($result)) {
             ?>
                 <tr>
+                    <td><?php echo $mostrar['0'] ?></td>
                     <td style="max-width: 600px;"><?php echo $mostrar['titulo'] ?></td>
-                    <td style="text-align:center;"><?php echo $mostrar['integrantes'] ?></td>
+                    <td><a href="<?php echo $mostrar['documento']; ?>"><?php echo $mostrar['nombre']; ?></a></td>
                     <td><?php echo $mostrar['programa'] ?></td>
                     <td style="text-align:center;"><?php echo $mostrar['semestre'] ?></td>
                     <td><?php echo $mostrar['fecha'] ?></td>
 
                     <td>
                         <select name="asesor[]">
-                            <option selected value="<?php echo $mostrar['4']; ?>"><?php echo $mostrar['4']; ?></option>
+                            <option selected value="<?php echo $mostrar['asesor_user']; ?>"><?php echo $mostrar['nombre_asesor']; ?></option>
                             <option value="1">Seleccione...</option>
                             <?php
                             $buscar_docente = "SELECT * FROM docente";
                             $resultado = mysqli_query($conexion, $buscar_docente);
+
                             while ($filas = mysqli_fetch_array($resultado)) {
-                                echo '<option value="' . $filas['nombres'] . '">' . $filas['nombres'] . '</option>';
+                                echo '<option value="' . $filas['usuario'] . '">' . $filas['nombres'] . '</option>';
                             }
                             ?>
                         </select>
                     </td>
                     <td>
-                        <input type="text" hidden name="id_propuesta" value="<?php echo $mostrar['0'] ?>">
+                        <input type="text" hidden name="id_proyecto" value="<?php echo $mostrar['0'] ?>">
                         <input class="asignar" name="asignar_d" value="Guardar" type="submit">
                     </td>
                 </tr>

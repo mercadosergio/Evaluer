@@ -2,7 +2,7 @@
 body {
     font-family: "Maven Pro", sans-serif;
     /* padding-top: 70px; */
-    background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/main-img.jpg");
+    background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;

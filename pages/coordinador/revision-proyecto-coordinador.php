@@ -68,53 +68,53 @@ include("../../controller/nombre.php");
         </div>
     </nav>
     <h3 class="title">Historial de proyectos de grado</h3>
-        <div class="contenedor-titulo">
-            <table id="tabla" class="ent">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Título</th>
-                        <th>Archivo</th>
-                        <th>Programa</th>
-                        <th>Fecha</th>
-                        <th>Estado</th>
-                        <th hidden>Acción</th>
-                    </tr>
-                </thead>
+    <div class="contenedor-titulo">
+        <table id="tabla" class="ent">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Archivo</th>
+                    <th>Programa</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th hidden>Acción</th>
+                </tr>
+            </thead>
 
-                <?php
-                $mostrar_by_fecha = "SELECT * FROM proyecto_grado ORDER BY fecha";
-                $result = mysqli_query($conexion, $mostrar_by_fecha);
+            <?php
+            $mostrar_by_fecha = "SELECT * FROM proyecto_grado ORDER BY fecha";
+            $result = mysqli_query($conexion, $mostrar_by_fecha);
 
-                while ($filas = mysqli_fetch_array($result)) {
-                    $id_registro = $filas['0'];
-                ?>
-                    <tr>
-                        <form action="../../controller/calificar-proyecto.php" method="POST">
-                            <td><?php echo $filas['0']; ?></td>
-                            <td><?php echo $filas['titulo']; ?></td>
-                            <td><a href="<?php echo $filas['documento']; ?>" target="_blank"><?php echo $filas['nombre']; ?></a></td>
-                            <td><?php echo $filas['programa']; ?></td>
-                            <td><?php echo $filas['fecha']; ?></td>
-                            <td><input type="text" name="estado" readonly value="<?php echo $filas['estado'] ?>" style="text-transform:uppercase;"></td>
-                            
-                            <td hidden>
-                                <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
-                                <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+            while ($filas = mysqli_fetch_array($result)) {
+                $id_registro = $filas['0'];
+            ?>
+                <tr>
+                    <form action="../../controller/calificar-proyecto.php" method="POST">
+                        <td><?php echo $filas['0']; ?></td>
+                        <td><?php echo $filas['titulo']; ?></td>
+                        <td><a href="<?php echo $filas['documento']; ?>" target="_blank"><?php echo $filas['nombre']; ?></a></td>
+                        <td><?php echo $filas['programa']; ?></td>
+                        <td><?php echo $filas['fecha']; ?></td>
+                        <td><input type="text" name="estado" readonly value="<?php echo $filas['estado'] ?>" style="text-transform:uppercase;"></td>
 
-                                <script>
-                                    // $("#tabla").click(function() {
-                                    //     $("#resultados").submit();
-                                    // });
-                                </script>
-                            </td>
-                        </form>
-                    </tr>
-                <?php
-                }
-                ?>
-            </table>
-        </div>
+                        <td hidden>
+                            <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
+                            <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+
+                            <script>
+                                // $("#tabla").click(function() {
+                                //     $("#resultados").submit();
+                                // });
+                            </script>
+                        </td>
+                    </form>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    </div>
 
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
