@@ -3,7 +3,7 @@ body {
     font-family: "Maven Pro", sans-serif;
     padding: 40px;
     padding-top: 110px;
-    background: whitesmoke;
+    background: #fff;
     /* background: linear-gradient(to right, rgba(2, 105, 173, 0.281), rgba(0, 0, 0, 0.164), rgba(254, 233, 0, 0.151)); */
 }
 
@@ -366,8 +366,7 @@ ul {
 }
 
 .grid-view .seccion-inscripcion {
-    /* background: linear-gradient(to right, rgba(248, 247, 247, 0.877), rgba(248, 247, 247, 0.877), rgba(248, 247, 247, 0.877)), url("../img/fondo-2.png"); */
-    background: #fff;
+    background: whitesmoke;
     margin-bottom: 30px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-repeat: no-repeat;
@@ -402,6 +401,7 @@ ul {
     outline: none;
     width: 100%;
     resize: none;
+    padding-left: 40px;
 }
 
 .grid-form {
@@ -476,7 +476,7 @@ ul {
 
 .semestre {
     grid-area: semestre;
-    width: 30%;
+    width: 100%;
 }
 
 .descripcion {
@@ -507,10 +507,50 @@ ul {
     margin-bottom: 30px;
     outline: none;
     font-size: 16px;
-    padding: 2px;
-    padding-left: 4px;
+    padding: 5px;
     border: 1px #0477c4 solid;
     border-radius: 5px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+.grid-form input:not(input[type="number"]) {
+    width: 100%;
+}
+
+.grid-form input:not(input[type="text"]) {
+    width: 40%;
+}
+
+.grid-form input:focus {
+    border-color: dodgerblue;
+    box-shadow: 0 0 8px 0 dodgerblue;
+}
+
+#contenedorInput {
+    position: relative;
+}
+
+.grid-form #contenedorInput input {
+    padding-left: 40px;
+}
+
+#contenedorInput input:focus+i,
+#contenedorInput select:focus+i {
+    color: dodgerblue;
+}
+
+.descripcion textarea:focus+i {
+    color: dodgerblue;
+}
+
+#contenedorInput i {
+    font-size: 22px;
+    color: #aaa;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    padding: 3px 8px;
 }
 
 .grid-form select {
@@ -519,9 +559,11 @@ ul {
     outline: none;
     margin-bottom: 20px;
     font-size: 16px;
-    padding: 5px;
+    padding: 6px;
     border: 1px #0477c4 solid;
     border-radius: 5px;
+    width: 100%;
+    padding-left: 40px;
 }
 
 .grid-form select option {
@@ -532,6 +574,19 @@ ul {
 
 .grid-form select option:hover {
     background-color: var(--hover);
+}
+
+.descripcion {
+    position: relative;
+}
+
+.descripcion i {
+    font-size: 22px;
+    color: #aaa;
+    position: absolute;
+    left: 0;
+    top: 45%;
+    padding: 3px 8px;
 }
 
 .contenedor-btn {

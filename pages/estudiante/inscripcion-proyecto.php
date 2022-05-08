@@ -30,6 +30,13 @@ include("../../controller/nombre.php");
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/inscripcion-styles.css">
     <link rel="stylesheet" href="../../css/scrollbar.css">
+    <link rel="stylesheet" href="../../font/fontawesome-free-6.1.1-web/css/all.css">
+
+    <script src="../../font/fontawesome-free-6.0.0-web/js/solid.js"></script>
+    <script src="../../font/fontawesome-free-6.0.0-web/js/solid.min.js"></script>
+    <script src="../../font/fontawesome-free-6.0.0-web/js/brands.js"></script>
+    <script src="../../font/fontawesome-free-6.0.0-web/js/brands.min.js"></script>
+    <script src="../../font/9390efa2c5.js"></script>
 
 </head>
 
@@ -96,39 +103,65 @@ include("../../controller/nombre.php");
                     <p class="info">
                         Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos para evaluar un anteproyecto.
                     </p>
-                    <label class="lbl-titulo">Título del proyecto:</label>
-                    <input class="titulo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
-                    <label class="lbl-linea">Linea de investigación:</label>
-                    <input class="linea" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="linea">
-                    <label class="lbl-integrantes">Número de integrantes:</label>
-                    <input class="integrantes" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="number" max="3" min="1" class="camponumero" name="integrantes">
-                    <label class="lbl-asesor">Nombre del asesor:</label>
-                    <input class="asesor" disabled <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
-                    <label class="lbl-lider">Nombre del lider:</label>
-                    <input class="lider" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
 
+                    <label class="lbl-titulo">Título del proyecto:</label>
+                    <div class="titulo" id="contenedorInput">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
+                        <i class="fa-solid fa-font"></i>
+                    </div>
+
+                    <label class="lbl-linea">Linea de investigación:</label>
+                    <div class="linea" id="contenedorInput">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="linea">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+
+                    <label class="lbl-integrantes">Número de integrantes:</label>
+                    <div class="integrantes" id="contenedorInput">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="number" max="3" min="1" class="camponumero" name="integrantes">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <label class="lbl-asesor">Nombre del asesor:</label>
+                    <div class="asesor" id="contenedorInput">
+                        <input class="" disabled <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+
+                    <label class="lbl-lider">Nombre del lider:</label>
+                    <div class="lider" id="contenedorInput">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </div>
 
                     <label class="lbl-programa">Programa:</label>
-                    <select class="programa" name="id_programa[]">
-                        <?php
-                        $buscar_programa = "SELECT programa,programa_id,semestre FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
-                        $resultado = mysqli_query($conexion, $buscar_programa);
+                    <div class="programa" id="contenedorInput">
+                        <select class="" name="id_programa[]">
+                            <?php
+                            $buscar_programa = "SELECT programa,programa_id,semestre FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
+                            $resultado = mysqli_query($conexion, $buscar_programa);
 
-                        $filas = mysqli_fetch_array($resultado);
-                        echo '<option selected value="' . $filas['identificador'] . '">' . $filas['programa'] . '</option>';
-                        ?>
-                    </select>
-
+                            $filas = mysqli_fetch_array($resultado);
+                            echo '<option selected value="' . $filas['identificador'] . '">' . $filas['programa'] . '</option>';
+                            ?>
+                        </select>
+                        <i class="fa-solid fa-list-ol"></i>
+                    </div>
                     <label class="lbl-semsetre">Semestre:</label>
-                    <input class="semestre" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $filas['semestre']; ?>">
-
+                    <div class="semestre" id="contenedorInput">
+                        <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $filas['semestre']; ?>">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
                     <div class="descripcion">
                         <label>Descripción:</label>
                         <textarea <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
+                        <i class="fa-solid fa-rectangle-list"></i>
                     </div>
 
                     <label class="lbl-equipo">Nombres de los integrantes:</label>
-                    <input class="equipo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> placeholder="Separar por ','" type="text" class="campotexto" id="campo_integrantes" name="grupo">
+                    <div class="equipo" id="contenedorInput">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> placeholder="Separar por ','" type="text" class="campotexto" id="campo_integrantes" name="grupo">
+                        <i class="fa-solid fa-people-group"></i>
+                    </div>
                 </div>
                 <div class="contenedor-btn">
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
@@ -159,7 +192,8 @@ include("../../controller/nombre.php");
             </div>
         </form>
     </div>
-    <script src="../../font/9390efa2c5.js"></script>
+
+
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
