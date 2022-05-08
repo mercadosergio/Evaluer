@@ -22,7 +22,7 @@ if (isset($_POST['asignar_d'])) {
     }
 ?>
     <p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
-    text-align: center; width: 20%; background: #abff96; color: #1e9700; border: 1px #1e9700 solid;" id="success">Asesor asignado <?php echo $id_p; ?></p>
+    text-align: center; width: 20%; background: #abff96; color: #1e9700; border: 1px #1e9700 solid;" id="success">Asesor asignado</p>
     <script>
         setTimeout(function() {
             $('#success').fadeOut('fast');

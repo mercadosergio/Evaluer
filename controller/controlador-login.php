@@ -30,7 +30,7 @@ if (isset($_POST['login'])) {
             header("index.php");
             ?>
 
-            <h1 style="position: absolute;width: 360px;
+            <h1 style="position: absolute; width: 360px;
 left: 85%; background: red; color: lawngreen;" class="error-alerta">ERROR DE AUTENTICACIÓN</h1>
         <?php
         }
@@ -40,8 +40,8 @@ left: 85%; background: red; color: lawngreen;" class="error-alerta">ERROR DE AUT
         include_once 'index.php';
         $mensaje = "Datos incorrectos, el usuario y contraseña no coinciden";
         ?>
-        <p style="position: absolute;width: 357px;
-left: 74%; top: 77%; background: rgb(255, 162, 162); color: rgb(230, 3, 3); border-radius: 10px; padding: 5px;" id="alerta" class="error-alerta">Datos incorrectos, el usuario y contraseña no coinciden</p>
+        <p style="position: absolute; width: 360px;
+left: 75%; top: 77%; background: rgb(255, 162, 162); color: rgb(230, 3, 3); border-radius: 4px; padding: 5px;" id="alerta" class="error-alerta">Datos incorrectos, el usuario y contraseña no coinciden</p>
         <script>
             setTimeout(function() {
                 $('#alerta').fadeOut('fast');

@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
 
+    <script src="https://kit.fontawesome.com/d029bf1c92.js" crossorigin="anonymous"></script>
+
 </head>
 <?php
 include("controller/controlador-login.php");
@@ -71,11 +73,17 @@ include("controller/controlador-login.php");
 
             <h3 class="titulo-i" style="text-align: center;">Ingresa a tu cuenta</h3>
             <label>Usuario</label>
-            <i class="fa fa-user"></i>
-            <input class="user" type="text" require placeholder="Ingrese su usuario" name="user">
-            <label>Contraseña</label>
-            <input class="pass" type="password" require placeholder="Ingrese su contraseña" name="pass">
 
+            <div class="cont-input">
+                <input class="user" type="text" require placeholder="Ingrese su usuario" name="user">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+            <label>Contraseña</label>
+            <div class="cont-input">
+                <input class="pass" type="password" require placeholder="Ingrese su contraseña" name="pass">
+                <i class="fa-solid fa-unlock-keyhole"></i>
+            </div>
             <input class="boton" type="submit" value="Iniciar Sesión" name="login">
 
             <p style="text-align: justify; font-size: 15px;">Una vez registrado, su usuario y contraseña será su documento de identidad.</p>
