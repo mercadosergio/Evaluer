@@ -21,7 +21,7 @@ include_once  '../../controller/nombre.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Anteproyectos</title>
+    <title>Proyectos de grado</title>
 
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/unicons.css">
@@ -68,8 +68,15 @@ include_once  '../../controller/nombre.php';
             </div>
         </div>
     </nav>
-    <section class="anteproyecto">
+    <div class="anteproyecto">
         <h3>Historial de proyectos de grado</h3>
+        <label>Filtro de registros:</label>
+        <div class="search-registro">
+            <div class="contenedor">
+                <input type="search" id="search" placeholder="Search..." />
+                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
         <div class="contenedor-titulo">
             <table id="tabla" class="ent">
                 <thead>
@@ -85,58 +92,72 @@ include_once  '../../controller/nombre.php';
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <?php
-                $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
-                $dato = mysqli_query($conexion, $buscar);
-                $registro = mysqli_fetch_array($dato);
-                ?>
-                <?php
-                $mostrar_by_fecha = "SELECT * FROM proyecto_grado WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
-                $result = mysqli_query($conexion, $mostrar_by_fecha);
+                <tbody id="info">
+                    <?php
+                    $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
+                    $dato = mysqli_query($conexion, $buscar);
+                    $registro = mysqli_fetch_array($dato);
+                    ?>
+                    <?php
+                    $mostrar_by_fecha = "SELECT * FROM proyecto_grado WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
+                    $result = mysqli_query($conexion, $mostrar_by_fecha);
 
-                while ($filas = mysqli_fetch_array($result)) {
-                    $id_registro = $filas['0'];
-                ?>
-                    <tr>
-                        <form action="../../controller/calificar-proyecto.php" method="POST">
-                            <td><?php echo $filas['0']; ?></td>
-                            <td><?php echo $filas['titulo']; ?></td>
-                            <td><a href="<?php echo $filas['documento']; ?>"><?php echo $filas['nombre']; ?></a></td>
-                            <td hidden><?php echo $filas['programa']; ?></td>
-                            <td><?php echo $filas['fecha']; ?></td>
-                            <td><input type="text" name="estado" value="<?php echo $filas['estado'] ?>" style="text-transform:uppercase;"></td>
-                            <td><input type="text" name="nota" value="<?php echo $filas['calificacion'] ?>"></td>
-                            <td>
-                            <ul class="o" style="color: black; background: white;">
-                                    <li>
-                                        <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
+                    while ($filas = mysqli_fetch_array($result)) {
+                        $id_registro = $filas['0'];
+                    ?>
+                        <tr>
+                            <form action="../../controller/calificar-proyecto.php" method="POST">
+                                <td><?php echo $filas['0']; ?></td>
+                                <td><?php echo $filas['titulo']; ?></td>
+                                <td><a href="<?php echo $filas['documento']; ?>"><?php echo $filas['nombre']; ?></a></td>
+                                <td hidden><?php echo $filas['programa']; ?></td>
+                                <td><?php echo $filas['fecha']; ?></td>
+                                <td><input type="text" name="estado" value="<?php echo $filas['estado'] ?>" style="text-transform:uppercase;"></td>
+                                <td><input type="text" name="nota" value="<?php echo $filas['calificacion'] ?>"></td>
+                                <td>
+                                    <ul class="o" style="color: black; background: white;">
+                                        <li>
+                                            <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
 white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
-                                        <input id="radio_d" type="radio">
-                                        <ul class="texto_o">
-                                            <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $filas['observaciones']; ?></textarea></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
-                                <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+                                            <input id="radio_d" type="radio">
+                                            <ul class="texto_o">
+                                                <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $filas['observaciones']; ?></textarea></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
+                                    <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
 
-                                <script>
-                                    // $("#tabla").click(function() {
-                                    //     $("#resultados").submit();
-                                    // });
-                                </script>
-                            </td>
-                        </form>
-                    </tr>
-                <?php
-                }
-                ?>
+                                    <script>
+                                        // $("#tabla").click(function() {
+                                        //     $("#resultados").submit();
+                                        // });
+                                    </script>
+                                </td>
+                            </form>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
-    </section>
+    </div>
 
+    <script>
+        $(document).ready(function() {
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#info tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>

@@ -69,10 +69,14 @@ include_once  '../../controller/nombre.php';
             </div>
         </div>
     </nav>
-    <section class="lista-propuestas">
+    <div class="lista-propuestas">
         <h3>Propuestas de grado</h3>
-        <div class="filtro">
-
+        <label>Filtro de registros:</label>
+        <div class="search-registro">
+            <div class="contenedor">
+                <input type="search" id="search" placeholder="Search..." />
+                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
+            </div>
         </div>
         <div class="contenedor-titulo">
             <table class="">
@@ -92,55 +96,57 @@ include_once  '../../controller/nombre.php';
                         <th hidden>Programa_id</th>
                     </tr>
                 </thead>
-                <?php
-                $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
-                $dato = mysqli_query($conexion, $buscar);
-                $registro = mysqli_fetch_array($dato);
-                ?>
+                <tbody id="contenido_tabla">
+                    <?php
+                    $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
+                    $dato = mysqli_query($conexion, $buscar);
+                    $registro = mysqli_fetch_array($dato);
+                    ?>
 
-                <?php
-                $mostrar_by_fecha = "SELECT * FROM propuesta WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
-                $result = mysqli_query($conexion, $mostrar_by_fecha);
+                    <?php
+                    $mostrar_by_fecha = "SELECT * FROM propuesta WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
+                    $result = mysqli_query($conexion, $mostrar_by_fecha);
 
-                while ($filas = mysqli_fetch_array($result)) {
-                    $id_registro = $filas['id'];
-                ?>
-                    <tr>
-                        <td style="max-width: 600px;"><?php echo $filas['titulo'] ?></td>
-                        <td hidden><?php echo $filas['linea'] ?></td>
-                        <td style="text-align: center;"><?php echo $filas['integrantes'] ?></td>
-                        <td hidden><?php echo $filas['tutor'] ?></td>
-                        <td hidden><?php echo $filas['lider'] ?></td>
-                        <td><?php echo $filas['programa'] ?></td>
-                        <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
-                        <td hidden><?php echo $filas['descripcion'] ?></td>
-                        <td hidden><?php echo $filas['grupo'] ?></td>
-                        <td><?php echo $filas['fecha'] ?></td>
-                        <form action="../../controller/calificar-propuesta.php" method="POST">
-                            <td id="celdaCalif">
-                                <input type="text" name="getIdPropuesta" hidden value="<?php echo $filas['id'] ?>">
-                                <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $filas['estado'] ?>">
-                            </td>
-                            <td>
-                                <input name="id_p" type="text" hidden value="<?php echo $filas['id'] ?>">
+                    while ($filas = mysqli_fetch_array($result)) {
+                        $id_registro = $filas['id'];
+                    ?>
+                        <tr>
+                            <td style="max-width: 600px;"><?php echo $filas['titulo'] ?></td>
+                            <td hidden><?php echo $filas['linea'] ?></td>
+                            <td style="text-align: center;"><?php echo $filas['integrantes'] ?></td>
+                            <td hidden><?php echo $filas['tutor'] ?></td>
+                            <td hidden><?php echo $filas['lider'] ?></td>
+                            <td><?php echo $filas['programa'] ?></td>
+                            <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
+                            <td hidden><?php echo $filas['descripcion'] ?></td>
+                            <td hidden><?php echo $filas['grupo'] ?></td>
+                            <td><?php echo $filas['fecha'] ?></td>
+                            <form action="../../controller/calificar-propuesta.php" method="POST">
+                                <td id="celdaCalif">
+                                    <input type="text" name="getIdPropuesta" hidden value="<?php echo $filas['id'] ?>">
+                                    <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $filas['estado'] ?>">
+                                </td>
+                                <td>
+                                    <input name="id_p" type="text" hidden value="<?php echo $filas['id'] ?>">
 
-                                <button class="editbtn" type="button" data-target="#panel-propuesta">
-                                    <label for="btn-panel" class="lbl-panel">
-                                        Ver
-                                    </label>
-                                </button>
-                                |
-                                <input type="submit" name="calificar" value="Calificar" class="btn-estado" id="calificarN">
-                            </td>
-                        </form>
-                        <td hidden><?php echo $filas['programa_id'] ?></td>
-                    </tr>
-                <?php
-                }
-                ?>
+                                    <button class="editbtn" type="button" data-target="#panel-propuesta">
+                                        <label for="btn-panel" class="lbl-panel">
+                                            Ver
+                                        </label>
+                                    </button>
+                                    |
+                                    <input type="submit" name="calificar" value="Calificar" class="btn-estado" id="calificarN">
+                                </td>
+                            </form>
+                            <td hidden><?php echo $filas['programa_id'] ?></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
-    </section>
+    </div>
     <input type="checkbox" id="btn-panel">
     <!-- Panel de vistas de propuestas -->
     <div class="modal">
@@ -191,20 +197,18 @@ include_once  '../../controller/nombre.php';
             </div>
         </div>
     </div>
+
     <script>
-        // var nota = document.getElementById('estadoI');
-        // if (nota.disabled = true) {
-        //     document.getElementById('celdaCalif').addEventListener('click', function(e) {
-        //         console.log('Vamos a habilitar el input text');
-        //         nota.disabled = false;
-        //     });
-        // } else if (nota.disabled = false) {
-        //     document.getElementById('calificarN').addEventListener('click', function(e) {
-        //         console.log('Vamos a deshabilitar el input text');
-        //         nota.disabled = true;
-        //     });
-        // }
+        $(document).ready(function() {
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#contenido_tabla tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
+    
     <script>
         $('.editbtn').on('click', function() {
             $tr = $(this).closest('tr');
@@ -224,6 +228,8 @@ include_once  '../../controller/nombre.php';
 
         });
     </script>
+    <script src="../../font/9390efa2c5.js"></script>
+
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
