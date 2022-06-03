@@ -131,7 +131,6 @@ white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
                                 <td>
                                     <input name="getIdAnteproyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
                                     <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
-
                                     <script>
                                         // $("#tabla").click(function() {
                                         //     $("#resultados").submit();
