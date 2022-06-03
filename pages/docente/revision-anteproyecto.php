@@ -70,7 +70,7 @@ include_once  '../../controller/nombre.php';
     </nav>
     <section class="anteproyecto">
         <h3>Historial de anteproyectos</h3>
-        <label>Filtro de registros:</label>
+        <label>Filtro de busqueda:</label>
         <div class="search-registro">
             <div class="contenedor">
                 <input type="search" id="search" placeholder="Search..." />

@@ -71,7 +71,7 @@ include_once  '../../controller/nombre.php';
     </nav>
     <div class="lista-propuestas">
         <h3>Propuestas de grado</h3>
-        <label>Filtro de registros:</label>
+        <label>Filtro de busqueda:</label>
         <div class="search-registro">
             <div class="contenedor">
                 <input type="search" id="search" placeholder="Search..." />
@@ -208,7 +208,7 @@ include_once  '../../controller/nombre.php';
             });
         });
     </script>
-    
+
     <script>
         $('.editbtn').on('click', function() {
             $tr = $(this).closest('tr');

@@ -5,6 +5,7 @@ body {
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
 }
 
 :root {
@@ -393,9 +394,9 @@ ul {
     padding-top: 10px;
     background-color: #fff;
     width: 200px;
-    border-radius: 10px;
+    border-radius: 7px;
     height: 150px;
-    top: 200px;
+    top: 114px;
     left: 180px;
     text-align: center;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -403,9 +404,10 @@ ul {
 
 .estado_propuesta h3 {
     width: 100%;
-    padding: 3px;
+    padding: 5px;
     background: var(--background-primario);
     color: #fff;
+    font-size: 20px;
 }
 
 .estado_propuesta label {
@@ -430,7 +432,7 @@ ul {
 }
 
 .student-profile .container {
-    width: 50%;
+    width: 37%;
     padding: none;
     margin: none;
 }

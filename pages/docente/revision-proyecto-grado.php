@@ -70,7 +70,7 @@ include_once  '../../controller/nombre.php';
     </nav>
     <div class="anteproyecto">
         <h3>Historial de proyectos de grado</h3>
-        <label>Filtro de registros:</label>
+        <label>Filtro de busqueda:</label>
         <div class="search-registro">
             <div class="contenedor">
                 <input type="search" id="search" placeholder="Search..." />
@@ -99,7 +99,7 @@ include_once  '../../controller/nombre.php';
                     $registro = mysqli_fetch_array($dato);
                     ?>
                     <?php
-                    $mostrar_by_fecha = "SELECT * FROM proyecto_grado WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
+                    $mostrar_by_fecha = "SELECT * FROM proyecto_grado WHERE asesor_user=" . $registro['usuario'] . " ORDER BY fecha";
                     $result = mysqli_query($conexion, $mostrar_by_fecha);
 
                     while ($filas = mysqli_fetch_array($result)) {

@@ -33,10 +33,10 @@ if (isset($_POST['send'])) {
         if (time() > $tiempo['0']) {
             $time_propuesta = strtotime("+365 days, 12:00am", time());
             $json = json_encode($programa_id, true);
-           
+
             for ($i = 0; $i < count($programa_id); $i++) {
-                $conexion->query("INSERT INTO propuesta(titulo,linea,integrantes,tutor,lider,semestre,descripcion,grupo,fecha,remitente)
-                VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$semestre','$descripcion','$grupo','$fecha'," . $_SESSION['usuario'] . ")");
+                $conexion->query("INSERT INTO propuesta(titulo,linea,integrantes,tutor,lider,programa_id,semestre,descripcion,grupo,fecha,remitente)
+                VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$programa_id[$i]','$semestre','$descripcion','$grupo','$fecha'," . $_SESSION['usuario'] . ")");
 
                 $conexion->query("UPDATE propuesta a
                 JOIN estudiante es ON a.remitente = es.usuario
@@ -44,6 +44,7 @@ if (isset($_POST['send'])) {
                 SET a.programa_id = es.programa_id, a.programa = p.nombre, a.id_estudiante = es.id");
 
                 $conexion->query("UPDATE estudiante SET time_propuesta = '$time_propuesta' WHERE usuario =" . $_SESSION['usuario']);
+                echo $programa_id[$i];
             }
 
         ?>
@@ -55,6 +56,7 @@ if (isset($_POST['send'])) {
                 }, 2000); // <-- time in milliseconds
             </script>
 <?php
+
             include("../pages/main-estudiante.php");
             mysqli_close($conexion);
             // include("../pages/estudiante/inscripcion-proyecto.php");

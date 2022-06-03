@@ -72,6 +72,13 @@ include("../../controller/nombre.php");
 
     <div class="main_section">
         <h3 class="title">Asignar asesor</h3>
+
+        <div class="search-registro">
+            <div class="contenedor">
+                <input type="search" id="search" placeholder="Search..." />
+                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
         <table class="tabla_asesor">
             <thead>
                 <tr>
@@ -84,51 +91,63 @@ include("../../controller/nombre.php");
                     <th>Asesor de proyecto</th>
                 </tr>
             </thead>
-            <?php
-            // include("../../controller/asignar-docente.php");
-            ?>
-            <form id="form" action="../../controller/asignar-docente.php" name="sub" method="POST">
+            <tbody id="search">
                 <?php
-                $sql = "SELECT * from proyecto_grado";
-                $result = mysqli_query($conexion, $sql);
-
-
-                while ($mostrar = mysqli_fetch_array($result)) {
+                // include("../../controller/asignar-docente.php");
                 ?>
-                    <tr>
-                        <td><?php echo $mostrar['0'] ?></td>
-                        <td style="max-width: 600px;"><?php echo $mostrar['titulo'] ?></td>
-                        <td><a href="<?php echo $mostrar['documento']; ?>"><?php echo $mostrar['nombre']; ?></a></td>
-                        <td><?php echo $mostrar['programa'] ?></td>
-                        <td style="text-align:center;"><?php echo $mostrar['semestre'] ?></td>
-                        <td><?php echo $mostrar['fecha'] ?></td>
+                <form id="form" action="../../controller/asignar-docente.php" name="sub" method="POST">
+                    <?php
+                    $sql = "SELECT * from proyecto_grado";
+                    $result = mysqli_query($conexion, $sql);
 
-                        <td>
-                            <select name="asesor[]" id="asesor" onchange="seleccionarDocente()">
-                                <option selected value="<?php echo $mostrar['asesor_user']; ?>"><?php echo $mostrar['nombre_asesor']; ?></option>
-                                <option value="1">Seleccione...</option>
-                                <?php
-                                $buscar_docente = "SELECT * FROM docente";
-                                $resultado = mysqli_query($conexion, $buscar_docente);
 
-                                while ($filas = mysqli_fetch_array($resultado)) {
-                                    echo '<option value="' . $filas['usuario'] . '">' . $filas['nombres'] . " " . $filas['p_apellido']  . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </td>
-                        <td hidden>
-                            <input type="text" hidden id="id_proyecto" name="id_proyecto" value="<?php echo $mostrar['0'] ?>">
-                            <input class="asignar" name="asignar_d" value="Guardar" type="submit">
-                        </td>
-                    </tr>
+                    while ($mostrar = mysqli_fetch_array($result)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $mostrar['0'] ?></td>
+                            <td style="max-width: 600px;"><?php echo $mostrar['titulo'] ?></td>
+                            <td><a href="<?php echo $mostrar['documento']; ?>"><?php echo $mostrar['nombre']; ?></a></td>
+                            <td><?php echo $mostrar['programa'] ?></td>
+                            <td style="text-align:center;"><?php echo $mostrar['semestre'] ?></td>
+                            <td><?php echo $mostrar['fecha'] ?></td>
 
-                <?php
-                }
-                ?>
-            </form>
+                            <td>
+                                <select name="asesor[]" id="asesor" onchange="seleccionarDocente()">
+                                    <option selected value="<?php echo $mostrar['asesor_user']; ?>"><?php echo $mostrar['nombre_asesor']; ?></option>
+                                    <option value="1">Seleccione...</option>
+                                    <?php
+                                    $buscar_docente = "SELECT * FROM docente";
+                                    $resultado = mysqli_query($conexion, $buscar_docente);
+
+                                    while ($filas = mysqli_fetch_array($resultado)) {
+                                        echo '<option value="' . $filas['usuario'] . '">' . $filas['nombres'] . " " . $filas['p_apellido']  . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                            <td hidden>
+                                <input type="text" hidden id="id_proyecto" name="id_proyecto" value="<?php echo $mostrar['0'] ?>">
+                                <input class="asignar" name="asignar_d" value="Guardar" type="submit">
+                            </td>
+                        </tr>
+
+                    <?php
+                    }
+                    ?>
+                </form>
+            </tbody>
         </table>
     </div>
+    <script>
+        $(document).ready(function() {
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#info tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 
     <script type="text/javascript">
         function seleccionarDocente() {
@@ -178,6 +197,7 @@ include("../../controller/nombre.php");
         //     console.log(cod)
         // }
     </script>
+    <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>

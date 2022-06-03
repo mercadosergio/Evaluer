@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
 
-    <script src="https://kit.fontawesome.com/d029bf1c92.js" crossorigin="anonymous"></script>
+    <script src="font/d029bf1c92.js" crossorigin="anonymous"></script>
 
 </head>
 <?php

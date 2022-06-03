@@ -74,7 +74,7 @@ include("../controller/nombre.php");
         </div>
     </nav>
 
-    <section class="student-profile">
+    <div class="student-profile">
         <h3>Módulos académicos</h3>
         <div class="container">
             <a href="estudiante/inscripcion-proyecto.php">
@@ -124,7 +124,7 @@ include("../controller/nombre.php");
                 </li>
             </ul>
         </div>
-    </section>
+    </div>
     <?php
     $buscar = "SELECT * FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
     $dato = mysqli_query($conexion, $buscar);
@@ -132,7 +132,7 @@ include("../controller/nombre.php");
     ?>
 
     <div class="estado_propuesta">
-        <h3>Estado</h3>
+        <h3>Estado de su proyecto</h3>
         <label>
             <?php
             $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
