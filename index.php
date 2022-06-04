@@ -65,7 +65,7 @@ include("controller/controlador-login.php");
         <h1>Bienvenido!</h1>
 
         <!-- <p class="subtitulo">Campus de seguimiento e investigación.</p><br> -->
-        <p style="text-align: justify; font-size: 28px; color: white;">Campus de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
+        <p style="text-align: justify; font-size: 28px; color: white;">Éste es el campus virtual de seguimiento e investigación. Interactua con entregas de proyectos de grado, evaluaciones, comentarios y notas.</p><br>
     </div>
 
     <form method="POST">
@@ -91,13 +91,14 @@ include("controller/controlador-login.php");
         </div>
     </form>
     <div class="contenedor-campus">
-        <h3 class="titulo-aunar">CAMPUS UNVERSITARIO AUNAR</h3>
+        <h3 class="titulo-aunar">CAMPUS EDUCATIVO AUNAR</h3>
     </div>
 
     <div class="second-section">
         <div class="info-aunar">
             <div>
-                AUNAR Cartagena
+                <p>La Corporación Universitaria Autónoma de Nariño Extensión Cartagena fomenta el desarrollo académico y administrativo de los programas, es una Institución de Educación Superior comprometida con la Cultura, la Investigación, el Emprendimiento y el Bilingüismo, que forman profesionales íntegros y Líderes en el Desarrollo Social. A través de nuestras herramientas fortalecemos y promovemos una experiencia que posibilite la excelencia académica de toda la comunidad, para contribuir al desarrollo integral y sostenible; en el campus Aunar Cartagena te encontrarás con diversas actividades organizadas por el equipo estudiante que mejoran el bienestar educativo.
+                </p>
             </div>
         </div>
     </div>
@@ -118,7 +119,7 @@ include("controller/controlador-login.php");
                         </div>
 
                         <div class="develop">
-                            <p style="display: block;" class="des">Equipo Desarrollador</p>
+                            <p style="display: block;" class="des">Equipo</p>
                             <div class="programer1">
                                 <label>Sergio Mercado</label>
                                 <img src="img/foto-sergio.jpeg" alt="">

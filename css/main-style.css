@@ -544,6 +544,13 @@ input:focus {
     background: #013658;
     height: 100%;
     color: #fff;
+    align-items: center;
+}
+
+.info-aunar div p {
+    color: #fff;
+    text-align: justify;
+    margin: auto 60px;
 }
 
 
