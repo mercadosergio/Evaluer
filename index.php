@@ -31,17 +31,11 @@ include("controller/controlador-login.php");
 
     <!-- MENU DE NAVEGACIÓN-->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <!-- <div class="division"> -->
+
         <img src="img/aunar2.png" class="aunar_logo">
         <a class="navbar-brand" href="index.php"><img class="logo" src="img/logo-transparente.png"></a>
-        <!-- </div> -->
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
+        <div class="container">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="inicio">
@@ -69,6 +63,7 @@ include("controller/controlador-login.php");
     </div>
 
     <form method="POST">
+        
         <div class="login">
 
             <h3 class="titulo-i" style="text-align: center;">Ingresa a tu cuenta</h3>
