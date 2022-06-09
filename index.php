@@ -19,7 +19,7 @@
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/main-style.css">
     <link rel="stylesheet" href="css/scrollbar.css">
-
+    <link rel="stylesheet" href="utilities/loading/carga.css">
     <script src="font/d029bf1c92.js" crossorigin="anonymous"></script>
 
 </head>
@@ -54,7 +54,9 @@ include("controller/controlador-login.php");
         </div>
     </nav>
 
-
+    <div id="contenedor_carga">
+        <div id="carga"></div>
+    </div>
     <div class="container-title">
         <h1>Bienvenido!</h1>
 
@@ -63,7 +65,7 @@ include("controller/controlador-login.php");
     </div>
 
     <form method="POST">
-        
+
         <div class="login">
 
             <h3 class="titulo-i" style="text-align: center;">Ingresa a tu cuenta</h3>
@@ -79,6 +81,7 @@ include("controller/controlador-login.php");
                 <input class="pass" type="password" require placeholder="Ingrese su contraseña" name="pass">
                 <i class="fa-solid fa-unlock-keyhole"></i>
             </div>
+
             <input class="boton" type="submit" value="Iniciar Sesión" name="login">
 
             <p style="text-align: justify; font-size: 15px;">Una vez registrado, su usuario y contraseña será su documento de identidad.</p>
@@ -136,6 +139,7 @@ include("controller/controlador-login.php");
         </div>
     </footer>
 
+    <script src="utilities/loading/load.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

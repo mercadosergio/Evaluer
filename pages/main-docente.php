@@ -30,6 +30,8 @@ include_once  '../controller/nombre.php';
     <link rel="stylesheet" href="../css/unicons.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../utilities/loading/carga.css">
+
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../css/docente-styles.css">
@@ -37,6 +39,10 @@ include_once  '../controller/nombre.php';
 </head>
 
 <body>
+     <!-- Pantalla de carga -->
+     <div id="contenedor_carga">
+        <div id="carga"></div>
+    </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
@@ -107,6 +113,7 @@ include_once  '../controller/nombre.php';
         </div>
     </div>
     <script src="../font/9390efa2c5.js"></script>
+    <script src="../utilities/loading/load.js"></script>
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.min.js"></script>

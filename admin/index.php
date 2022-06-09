@@ -29,6 +29,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link rel="stylesheet" href="../css/unicons.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/admin.css">
@@ -41,6 +42,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
 </style>
 
 <body>
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
+        <div id="carga"></div>
+    </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
@@ -65,7 +70,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         <a class="navbar-brand" href=""><i class='uil uil-user'></i>
                             <label>
                                 <?php echo $_SESSION['usuario'];
-                                    ?>
+                                ?>
                             </label>
                         </a>
                         <ul>
@@ -190,7 +195,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
         </div>
     </section>
-
+    <script src="../utilities/loading/load.js"></script>
     <script src="../font/9390efa2c5.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/popper.min.js"></script>
