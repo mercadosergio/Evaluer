@@ -25,34 +25,30 @@ if (isset($_POST['login'])) {
         } else if ($arreglo['id_rol'] == 4) { //Docente
             header("location: pages/main-docente.php");
         } else {
-?>
-            <?php
-            header("index.php");
-            ?>
 
+            header("index.php");
+?>
             <h1 style="position: absolute; width: 360px;
 left: 85%; background: red; color: lawngreen;" class="error-alerta">ERROR DE AUTENTICACIÓN</h1>
         <?php
         }
-    } else { ?>
-
-        <?php
+    } else {
         include_once 'index.php';
         $mensaje = "Datos incorrectos, el usuario y contraseña no coinciden";
         ?>
-        <p style="position: absolute; width: 360px;
-left: 75%; top: 77%; background: rgb(255, 162, 162); color: rgb(230, 3, 3); border-radius: 4px; padding: 5px;" id="alerta" class="error-alerta">Datos incorrectos, el usuario y contraseña no coinciden</p>
+        <div id="alerta" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+  left: 50%;
+  transform: translate(-50%, 0%);">
+            Datos incorrectos, el usuario y contraseña no coinciden
+        </div>
         <script>
             setTimeout(function() {
                 $('#alerta').fadeOut('fast');
             }, 4000); // <-- time in milliseconds
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <?php
     }
     mysqli_free_result($sesion);
     mysqli_close($conexion);
 }
-
-
 ?>

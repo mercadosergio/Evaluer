@@ -73,71 +73,6 @@ strong {
     font-weight: bold;
 }
 
-.animated {
-    position: relative;
-}
-
-.animated-info {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 5px;
-    min-width: 260px;
-    position: relative;
-}
-
-.animated-item {
-    color: #ffc200;
-}
-
-.animated-item {
-    font-size: 38px;
-    line-height: inherit;
-    display: block;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    animation: BottomTotop 6s linear infinite 0s;
-}
-
-.animated-item:nth-child(2n+2) {
-    animation-delay: 2s;
-}
-
-.animated-item:nth-child(3n+3) {
-    animation-delay: 4s;
-}
-
-@keyframes BottomTotop {
-    0% {
-        opacity: 0;
-    }
-    5% {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    10% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    25% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    30% {
-        opacity: 0;
-        transform: translateY(5px);
-    }
-    80% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
 .navbar {
     position: fixed;
     top: 0;
@@ -252,31 +187,6 @@ strong {
     font-size: 16px;
     font-weight: normal;
     display: block;
-}
-
-.color-mode {
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.color-mode-icon {
-    position: relative;
-    right: 6px;
-}
-
-.color-mode-icon:after {
-    font-family: 'unicons';
-    content: '\ea9f';
-    font-size: 30px;
-    font-weight: 300;
-    font-style: normal;
-}
-
-.color-mode-icon.active:after {
-    font-family: 'unicons';
-    content: '\eb65';
-    font-size: 30px;
-    color: #ffffff;
 }
 
 .division {
@@ -438,6 +348,7 @@ ul {
 }
 
 .student-profile .seleccion {
+    transform: skew(-7deg);
     overflow: hidden;
     padding: 10px;
     padding-left: 5px;

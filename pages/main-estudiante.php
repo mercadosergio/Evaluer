@@ -36,7 +36,7 @@ include("../controller/nombre.php");
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
+        <a class="navbar-brand" href="../pages/main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@ include("../controller/nombre.php");
 
                 <ul class="navbar-nav mx-auto">
                     <li class="principal">
-                        <a href="main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                        <a href="../pages/main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                     </li>
                     <li class="fecha">
 
@@ -77,7 +77,7 @@ include("../controller/nombre.php");
     <div class="student-profile">
         <h3>Módulos académicos</h3>
         <div class="container">
-            <a href="estudiante/inscripcion-proyecto.php">
+            <a href="../pages/estudiante/inscripcion-proyecto.php">
                 <div class="seleccion">
                     <img src="../img/propuesta-e.png" alt="">
                     <p>Propuesta de grado</p>
@@ -85,7 +85,7 @@ include("../controller/nombre.php");
             </a>
         </div>
         <div class="container">
-            <a href="estudiante/anteproyecto-estudiante.php">
+            <a href="../pages/estudiante/anteproyecto-estudiante.php">
                 <div class="seleccion">
                     <img src="../img/anteproyecto.png" alt="">
                     <p>Anteproyecto</p>
@@ -93,7 +93,7 @@ include("../controller/nombre.php");
             </a>
         </div>
         <div class="container">
-            <a href="estudiante/proyecto-final-estudiante.php">
+            <a href="../pages/estudiante/proyecto-final-estudiante.php">
                 <div class="seleccion">
                     <img src="../img/proyectof.png" alt="">
                     <p>Proyecto de grado</p>

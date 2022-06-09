@@ -26,7 +26,7 @@ if (isset($_POST['enviar'])) {
 	} else {
 		if (time() > $tiempo['0']) {
 			$time_antepoyecto = strtotime("+15 days, 12:00am", time());
-			
+
 			if (move_uploaded_file($guardado, '../files/anteproyectos/' . $nombre_final)) {
 				// Se inserta la dirección y detalles del archivo enviado
 				$conexion->query("INSERT INTO anteproyecto(nombre,documento,comentarios,remitente,fecha) VALUES('$nombre','$ruta','$comentario','" . $_SESSION['usuario'] . "','$fecha')");
@@ -46,8 +46,12 @@ if (isset($_POST['enviar'])) {
 				$conexion->query("UPDATE estudiante SET time_anteproyecto = '$time_antepoyecto' WHERE usuario =" . $_SESSION['usuario']);
 
 ?>
-				<p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
-			text-align: center; width: 20%; background: #abff96; color: #1e9700; border: 1px #1e9700 solid;" id="success">Archivo enviado con éxito</p>
+				<div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+  				left: 50%;
+  				transform: translate(-50%, 0%);">
+					Documento enviado con éxito
+				</div>
+
 				<script>
 					setTimeout(function() {
 						$('#success').fadeOut('fast');
@@ -57,8 +61,11 @@ if (isset($_POST['enviar'])) {
 				include_once("../pages/main-estudiante.php");
 			} else {
 			?>
-				<p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
-			text-align: center; width: 14%; background: rgb(255, 133, 133); color: rgb(184, 0, 0); border: 1px #1e9700 solid;" id="fail">No se envió el archivo</p>
+				<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+  				left: 50%;
+  				transform: translate(-50%, 0%);">
+					No se envió la entrega del documento
+				</div>
 				<script>
 					setTimeout(function() {
 						$('#fail').fadeOut('fast');
@@ -68,8 +75,11 @@ if (isset($_POST['enviar'])) {
 			}
 		} else {
 			?>
-			<p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
-			text-align: center; width: 14%; background: rgb(255, 133, 133); color: rgb(184, 0, 0); border: 1px #1e9700 solid;" id="fail">No puedes enviar archivos hasta la proxima fecha</p>
+			<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+  				left: 50%;
+  				transform: translate(-50%, 0%);">
+				No puedes realizar otra entrega hasta la proxima fecha
+			</div>
 			<script>
 				setTimeout(function() {
 					$('#fail').fadeOut('fast');

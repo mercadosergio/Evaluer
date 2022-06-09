@@ -85,10 +85,7 @@ include("../../controller/nombre.php");
 
     <div class="grid-view">
         <div class="seccion-inscripcion">
-            <?php
-            include("../../controller/controlador-propuesta.php");
-            ?>
-            <form method="POST" id="envio">
+            <form action="../../controller/controlador-propuesta.php" method="POST" id="envio">
                 <div class="grid-form">
                     <?php
                     $fecha = date("Y-m-d H:i:s");
@@ -123,7 +120,7 @@ include("../../controller/nombre.php");
                     </div>
                     <label class="lbl-asesor">Nombre del asesor:</label>
                     <div class="asesor" id="contenedorInput">
-                        <input class="" disabled <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
+                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
 
