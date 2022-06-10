@@ -27,7 +27,8 @@ include("../controller/nombre.php");
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../utilities/loading/carga.css">
-
+    <link rel="stylesheet" href="../utilities/hamburger.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../css/estudiante-styles.css">
@@ -39,8 +40,29 @@ include("../controller/nombre.php");
     <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
+
+    <!-- Side menu -->
+    <div id="menu-side" class="menu-side">
+        <button onclick="cerrar()" class="close_menu">
+            <i class="bi bi-x"></i>
+        </button>
+        <div class="usuario">
+            <label class="cl">
+                <?php echo $nombre_usuario;
+                ?>
+            </label>
+        </div>
+        <ul class="menu-opciones">
+            <li><a href=""><i class="bi bi-person-circle"></i>  Perfil</a></li>
+            <li><a href="../support/change-password.php"><i class="bi bi-key-fill"></i>  Cambiar contraseña</a></li>
+            <li><a href="../controller/logout.php"><i class="bi bi-box-arrow-left"></i>  Cerrar sesión</a></li>
+        </ul>
+    </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
+        <button onclick="activar()" class="hamburger">
+            <i class="bi bi-list"></i>
+        </button>
         <img src="../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../pages/main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
         <div class="container">
@@ -149,6 +171,17 @@ include("../controller/nombre.php");
         </label>
     </div>
 
+    <script>
+        function activar() {
+            // document.getElementById("menu-side").style.width = "50%";
+            // document.getElementById("menu-side").style.transform = "translate-x(-0%)";
+            document.getElementById("menu-side").style.left = "60%";
+        }
+
+        function cerrar() {
+            document.getElementById("menu-side").style.left = "0%";
+        }
+    </script>
 
     <script src="../utilities/loading/load.js"></script>
 

@@ -229,19 +229,6 @@ strong {
 }
 
 
-/* Logos e imagenes */
-
-.aunar_logo {
-    height: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    height: 80px;
-    border-radius: 10px;
-}
-
-
 /* MENU DESPLEGABLE DE USUARIO */
 
 * {
@@ -441,4 +428,92 @@ ul {
 
 .guia_arbol a:hover {
     color: rgb(17, 101, 255);
+}
+
+@media screen and (min-width: 67em) {
+    .menu-side {
+        display: none;
+    }
+    .hamburger {
+        display: none;
+    }
+    /* Logos  */
+    .aunar_logo {
+        width: 80px;
+        margin-right: 20px;
+    }
+    .logo {
+        width: 200px;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-width: 67em) {
+    /* Logos  */
+    .aunar_logo {
+        width: 90px;
+        margin-right: 20px;
+    }
+    .logo {
+        width: 180px;
+        border-radius: 10px;
+    }
+    .hamburger {
+        border: 0;
+        background: transparent;
+        outline: none;
+        text-decoration: none;
+    }
+    .hamburger i {
+        font-size: 40px;
+        color: white;
+    }
+    .menu-side {
+        width: 60%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100000000000;
+        transform: translateX(-100%);
+        background-color: var(--background-primario);
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: all ease-out .5s;
+    }
+    .menu-side button {
+        text-decoration: none;
+        position: relative;
+        border: none;
+        background: transparent;
+        float: right;
+        margin-right: 10px;
+    }
+    .menu-side button i {
+        color: white;
+        font-weight: bold;
+        font-size: 40px;
+    }
+    .usuario {
+        color: #fff;
+        padding: 20px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    .menu-opciones {
+        margin-top: 70px;
+        color: #ffffff;
+        display: block;
+    }
+    .menu-opciones li {
+        padding: 20px;
+    }
+    .menu-opciones a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .menu-opciones i {
+        font-size: 20px;
+    }
 }

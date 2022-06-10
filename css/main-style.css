@@ -1,12 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-    min-height: 100%;
-    height: 100vh;
     position: relative;
 }
 
@@ -227,24 +221,11 @@ strong {
     overflow: hidden;
 }
 
-.aunar_logo {
-    margin-left: 50px;
-    height: 90px;
-    margin-right: 20px;
-}
-
-.logo {
-    height: 90px;
-    border-radius: 10px;
-}
-
 .container-title {
     text-align: left;
     padding: 20px;
     padding-top: 120px;
     padding-left: 70px;
-    /* background-color: rgba(254, 233, 0, 0.404); */
-    /* background: linear-gradient(to right, rgba(13, 19, 31, 0.7), rgba(13, 19, 31, 0.7), rgba(13, 19, 31, 0.7)), url("../img/panel.png"); */
     background-repeat: no-repeat;
     width: 45%;
     height: 100%;
@@ -276,7 +257,14 @@ strong {
 
 /* Contanier Login ...................................................................................*/
 
-.login {
+.desktop {
+    height: 100vh;
+    background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.desktop .login {
     width: 360px;
     height: 430px;
     background-color: rgba(247, 243, 243, 0.74);
@@ -434,8 +422,6 @@ input:focus {
 
 .info-aunar {
     width: 100%;
-    height: 500px;
-    background: linear-gradient(to right, rgba(1, 54, 88, 0.4), rgba(1, 54, 88, 0.4), rgba(1, 55, 88, 0.4)), url("../img/panoramic-view.png");
     background-repeat: no-repeat;
     background-position-x: right;
 }
@@ -461,79 +447,95 @@ input:focus {
 
 /* Footer Begin................................................................................................... */
 
-footer {
-    /* background: #e9c140; */
-    background: #0269ad;
-}
-
-.des {
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.team {
-    color: #fff;
-    margin: auto;
-    /* background: chartreuse; */
-    width: 1040px;
-    display: flex;
-}
-
-.team .develop>div {
-    /* background: coral; */
-    margin: 10px;
-    align-items: center;
-    display: block;
-}
-
-.team .develop label {
-    display: block;
-    text-align: center;
-}
-
-.team img {
-    border: var(--background-primario) 1px solid;
-    text-align: center;
-    width: 140px;
-}
-
-footer p {
-    color: #fff;
-}
-
-.develop {
-    display: grid;
-    grid-template-areas: "des des" "programer1 programer2";
-}
-
-.des {
-    grid-area: des;
-}
-
-.programer1 {
-    grid-area: programer1;
-}
-
-.programer2 {
-    grid-area: programer2;
-}
-
-.info {
-    padding: 45px;
-    padding-top: 0;
+@media screen and (min-width: 67em) {
+    .mobile {
+        display: none;
+    }
+    .desktop {
+        display: block;
+    }
+    .aunar_logo {
+        margin-left: 50px;
+        width: 200px;
+        margin-right: 20px;
+    }
+    .logo {
+        width: 200px;
+        border-radius: 10px;
+    }
+    .info-aunar {
+        height: 500px;
+        background: linear-gradient(to right, rgba(1, 54, 88, 0.4), rgba(1, 54, 88, 0.4), rgba(1, 55, 88, 0.4)), url("../img/panoramic-view.png");
+    }
+    footer {
+        /* background: #e9c140; */
+        background: #0269ad;
+    }
+    .des {
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .team {
+        color: #fff;
+        margin: auto;
+        /* background: chartreuse; */
+        width: 1040px;
+        display: flex;
+    }
+    .team .develop>div {
+        /* background: coral; */
+        margin: 10px;
+        align-items: center;
+        display: block;
+    }
+    .team .develop label {
+        display: block;
+        text-align: center;
+    }
+    .team img {
+        border: var(--background-primario) 1px solid;
+        text-align: center;
+        width: 140px;
+    }
+    footer p {
+        color: #fff;
+    }
+    .develop {
+        display: grid;
+        grid-template-areas: "des des" "programer1 programer2";
+    }
+    .des {
+        grid-area: des;
+    }
+    .programer1 {
+        grid-area: programer1;
+    }
+    .programer2 {
+        grid-area: programer2;
+    }
+    .info {
+        padding: 45px;
+        padding-top: 0;
+    }
 }
 
 @media screen and (max-width: 67em) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+        height: 100vh;
+    }
     body {
         background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
-        min-height: 100%;
         height: 100vh;
-        position: relative;
+        padding-top: 0;
     }
     .navbar {
         width: 100%;
@@ -541,10 +543,10 @@ footer p {
         display: flex;
     }
     .aunar_logo {
-        height: 200px;
+        width: 150px;
     }
     .logo {
-        height: 200px;
+        width: 140px;
         border-radius: 10px;
     }
     .container-title {
@@ -552,19 +554,82 @@ footer p {
         width: 100%;
     }
     .login {
-        margin-top: 500px;
-        width: 100%;
-        background: rgba(206, 27, 27, 0.74);
+        width: 80%;
+        background-color: rgba(247, 243, 243, 0.74);
         box-sizing: border-box;
-        padding: 40px 30px;
+        padding: 20px 30px;
         color: black;
-        margin-right: auto;
-        margin-left: auto;
+        margin: auto;
+        margin-top: 150px;
+        margin-bottom: 80px;
+    }
+    .login h3 {
+        font-size: 25px;
     }
     .contenedor-campus {
-        width: 100%;
+        display: block;
     }
-    .second-section {
+    .contenedor-campus h3 {
+        padding: 1rem;
         width: 100%;
+        text-align: center;
+        color: #013658;
+        font-size: 27px;
+    }
+    .info-aunar>div {
+        padding: 20px 0;
+        display: block;
+        width: 100%;
+        background: #013658;
+        color: #fff;
+        align-items: center;
+    }
+    .info-aunar div p {
+        font-size: 15px;
+        margin: auto 20px;
+    }
+    .contenedor-campus img {
+        width: 100%;
+        background: rgba(1, 54, 88, 0.4);
+    }
+    footer {
+        background: #0269ad;
+    }
+    .des {
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .team {
+        color: #fff;
+        margin: auto;
+        /* background: chartreuse; */
+    }
+    .team .develop>div {
+        /* background: coral; */
+        margin: 10px;
+        align-items: center;
+        display: block;
+    }
+    .team .develop label {
+        display: block;
+        text-align: center;
+    }
+    .team img {
+        border: var(--background-primario) 1px solid;
+        text-align: center;
+        width: 100px;
+    }
+    footer p {
+        color: #fff;
+    }
+    .develop {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .info {
+        padding: 20px;
+        padding-top: 0;
     }
 }
