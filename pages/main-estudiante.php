@@ -36,141 +36,142 @@ include("../controller/nombre.php");
 
 
 <body>
-    <!-- Pantalla de carga -->
-    <div id="contenedor_carga">
-        <div id="carga"></div>
-    </div>
-
-    <!-- Side menu -->
-    <div id="menu-side" class="menu-side">
-        <button onclick="cerrar()" class="close_menu">
-            <i class="bi bi-x"></i>
-        </button>
-        <div class="usuario">
-            <label class="cl">
-                <?php echo $nombre_usuario;
-                ?>
-            </label>
+    <div class="fondo">
+        <!-- Pantalla de carga -->
+        <div id="contenedor_carga">
+            <div id="carga"></div>
         </div>
-        <ul class="menu-opciones">
-            <li><a href=""><i class="bi bi-person-circle"></i>  Perfil</a></li>
-            <li><a href="../support/change-password.php"><i class="bi bi-key-fill"></i>  Cambiar contraseña</a></li>
-            <li><a href="../controller/logout.php"><i class="bi bi-box-arrow-left"></i>  Cerrar sesión</a></li>
-        </ul>
-    </div>
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-sm navbar-light">
-        <button onclick="activar()" class="hamburger">
-            <i class="bi bi-list"></i>
-        </button>
-        <img src="../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../pages/main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
+
+        <!-- Side menu -->
+        <div id="menu-side" class="menu-side">
+            <button onclick="cerrar()" class="close_menu">
+                <i class="bi bi-x"></i>
             </button>
+            <div class="usuario">
+                <label class="cl">
+                    <?php echo $nombre_usuario;
+                    ?>
+                </label>
+            </div>
+            <ul class="menu-opciones">
+                <li><a href=""><i class="bi bi-person-circle"></i> Perfil</a></li>
+                <li><a href="../support/change-password.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                <li><a href="../controller/logout.php"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a></li>
+            </ul>
+        </div>
+        <!-- MENU -->
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <button onclick="activar()" class="hamburger">
+                <i class="bi bi-list"></i>
+            </button>
+            <img src="../img/aunar.png" class="aunar_logo">
+            <a class="navbar-brand" href="../pages/main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ESTUDIANTE</h3>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <h3>ESTUDIANTE</h3>
 
-                <ul class="navbar-nav mx-auto">
-                    <li class="principal">
-                        <a href="../pages/main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
-                    </li>
-                    <li class="fecha">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="principal">
+                            <a href="../pages/main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                        </li>
+                        <li class="fecha">
 
-                    </li>
-                </ul>
-                <ul class="log">
+                        </li>
+                    </ul>
+                    <ul class="log">
+                        <li>
+                            <a class="navbar-brand" href=""><i class='uil uil-user'></i>
+                                <label class="cl">
+                                    <?php echo $nombre_usuario;
+                                    ?>
+                                </label>
+                            </a>
+                            <ul>
+                                <li><a class="out" href="">Perfil</a></li>
+                                <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
+                                <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="student-profile">
+            <h3>Módulos académicos</h3>
+            <div class="container">
+                <a href="../pages/estudiante/inscripcion-proyecto.php">
+                    <div class="seleccion">
+                        <img src="../img/propuesta-e.png" alt="">
+                        <p>Propuesta de grado</p>
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+                <a href="../pages/estudiante/anteproyecto-estudiante.php">
+                    <div class="seleccion">
+                        <img src="../img/anteproyecto.png" alt="">
+                        <p>Anteproyecto</p>
+                    </div>
+                </a>
+            </div>
+            <div class="container">
+                <a href="../pages/estudiante/proyecto-final-estudiante.php">
+                    <div class="seleccion">
+                        <img src="../img/proyectof.png" alt="">
+                        <p>Proyecto de grado</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="guia_arbol">
+                <ul>
                     <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                            <label class="cl">
-                                <?php echo $nombre_usuario;
-                                ?>
-                            </label>
-                        </a>
+                        <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
                         <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                            <li>
+                                <!-- <iframe src="../guide/guia_ing.docx" frameborder="0"> -->
+                                <i class="fas fa-file-alt"></i>
+                                <a href="">Propuesta de grado</a>
+                                <!-- </iframe> -->
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="">Anteproyecto</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+        <?php
+        $buscar = "SELECT * FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
+        $dato = mysqli_query($conexion, $buscar);
+        $registro = mysqli_fetch_array($dato);
+        ?>
 
-    <div class="student-profile">
-        <h3>Módulos académicos</h3>
-        <div class="container">
-            <a href="../pages/estudiante/inscripcion-proyecto.php">
-                <div class="seleccion">
-                    <img src="../img/propuesta-e.png" alt="">
-                    <p>Propuesta de grado</p>
-                </div>
-            </a>
-        </div>
-        <div class="container">
-            <a href="../pages/estudiante/anteproyecto-estudiante.php">
-                <div class="seleccion">
-                    <img src="../img/anteproyecto.png" alt="">
-                    <p>Anteproyecto</p>
-                </div>
-            </a>
-        </div>
-        <div class="container">
-            <a href="../pages/estudiante/proyecto-final-estudiante.php">
-                <div class="seleccion">
-                    <img src="../img/proyectof.png" alt="">
-                    <p>Proyecto de grado</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="guia_arbol">
-            <ul>
-                <li>
-                    <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
-                    <ul>
-                        <li>
-                            <!-- <iframe src="../guide/guia_ing.docx" frameborder="0"> -->
-                            <i class="fas fa-file-alt"></i>
-                            <a href="">Propuesta de grado</a>
-                            <!-- </iframe> -->
-                        </li>
-                        <li>
-                            <i class="fas fa-file-alt"></i>
-                            <a href="">Anteproyecto</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-file-alt"></i>
-                            <a href="../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="estado_propuesta">
+            <h3>Estado de su proyecto</h3>
+            <label>
+                <?php
+                $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
+                $dato2 = mysqli_query($conexion, $estado);
+                $r = mysqli_fetch_array($dato2);
+                echo $r['0'];
+                ?>
+            </label>
         </div>
     </div>
-    <?php
-    $buscar = "SELECT * FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
-    $dato = mysqli_query($conexion, $buscar);
-    $registro = mysqli_fetch_array($dato);
-    ?>
-
-    <div class="estado_propuesta">
-        <h3>Estado de su proyecto</h3>
-        <label>
-            <?php
-            $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
-            $dato2 = mysqli_query($conexion, $estado);
-            $r = mysqli_fetch_array($dato2);
-            echo $r['0'];
-            ?>
-        </label>
-    </div>
-
     <script>
         function activar() {
             // document.getElementById("menu-side").style.width = "50%";

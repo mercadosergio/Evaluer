@@ -1,11 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
     position: relative;
+    height: 100%;
 }
 
 :root {
@@ -85,6 +82,8 @@ strong {
     color: white;
     border-bottom: var(--color-detalle) 5px solid;
     height: 120px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-brand label {
@@ -286,34 +285,6 @@ ul {
 
 /* END MENU DESPLEGABLE.......................................... */
 
-.estado_propuesta {
-    position: absolute;
-    padding-top: 10px;
-    background-color: #fff;
-    width: 200px;
-    border-radius: 7px;
-    height: 150px;
-    top: 114px;
-    left: 180px;
-    text-align: center;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.estado_propuesta h3 {
-    width: 100%;
-    padding: 5px;
-    background: var(--background-primario);
-    color: #fff;
-    font-size: 20px;
-}
-
-.estado_propuesta label {
-    margin: auto;
-    margin-top: 17px;
-    font-weight: bold;
-    font-size: 25px;
-}
-
 .student-profile {
     position: relative;
     width: 100%;
@@ -322,63 +293,9 @@ ul {
     padding-top: 160px;
 }
 
-.student-profile h3 {
-    text-align: center;
-    position: relative;
-    font-size: 35px;
-}
-
-.student-profile .container {
-    width: 37%;
-    padding: none;
-    margin: none;
-}
-
-.student-profile .seleccion {
-    transform: skew(-7deg);
-    overflow: hidden;
-    padding: 10px;
-    padding-left: 5px;
-    background-color: var(--color-detalle);
-    margin: 20px;
-    width: 100%;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 150px;
-    /* list-style: 150px; */
-    line-height: 150px;
-    padding-left: 40px;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-right: 0;
-    /* border: var(--background-primario) 2px solid; */
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
-}
-
 .student-profile .seleccion div {
     margin-left: auto;
     display: flex;
-}
-
-.student-profile .seleccion p {
-    font-size: 35px;
-    cursor: pointer;
-    font-family: "Maven Pro", sans-serif;
-    margin-right: 20px;
-    background: var(--background-primario);
-    color: var(--color-detalle);
-    margin-right: auto;
-    font-weight: bold;
-    width: 100%;
-    padding-left: 10px;
-}
-
-.student-profile .seleccion img {
-    margin-right: 20px;
-    margin-left: 5px;
 }
 
 
@@ -386,20 +303,6 @@ ul {
     background-color: #615a42;
     cursor: pointer;
 } */
-
-.guia_arbol {
-    margin-top: 20px;
-    top: 15%;
-    right: 0;
-    /* background: #fff; */
-    background: linear-gradient(to bottom, #fff, #fff, transparent);
-    border: var(--background-primario) 1px solid;
-    border-bottom: none;
-    position: absolute;
-    width: 280px;
-    height: 60%;
-    padding: 10px;
-}
 
 .guia_arbol>ul {
     font-size: 18px;
@@ -431,6 +334,12 @@ ul {
 }
 
 @media screen and (min-width: 67em) {
+    body>.fondo {
+        background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .menu-side {
         display: none;
     }
@@ -446,12 +355,110 @@ ul {
         width: 200px;
         border-radius: 10px;
     }
+    .estado_propuesta {
+        position: absolute;
+        padding-top: 10px;
+        background-color: #fff;
+        width: 200px;
+        border-radius: 7px;
+        height: 150px;
+        top: 114px;
+        left: 180px;
+        text-align: center;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .estado_propuesta h3 {
+        width: 100%;
+        padding: 5px;
+        background: var(--background-primario);
+        color: #fff;
+        font-size: 20px;
+    }
+    .estado_propuesta label {
+        margin: auto;
+        margin-top: 17px;
+        font-weight: bold;
+        font-size: 25px;
+    }
+    .student-profile h3 {
+        text-align: center;
+        position: relative;
+        font-size: 35px;
+    }
+    .student-profile .container {
+        width: 37%;
+        padding: none;
+        margin: none;
+    }
+    .student-profile .seleccion {
+        transform: skew(-7deg);
+        overflow: hidden;
+        padding: 10px;
+        padding-left: 5px;
+        background-color: var(--color-detalle);
+        margin: 20px;
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 150px;
+        line-height: 150px;
+        padding-left: 40px;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 0;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+    }
+    .student-profile .seleccion p {
+        font-size: 30px;
+        cursor: pointer;
+        font-family: "Maven Pro", sans-serif;
+        margin-right: 20px;
+        background: var(--background-primario);
+        color: var(--color-detalle);
+        margin-right: auto;
+        font-weight: bold;
+        width: 100%;
+        padding-left: 10px;
+    }
+    .student-profile .seleccion img {
+        margin-right: 20px;
+        margin-left: 5px;
+    }
+    .guia_arbol {
+        margin-top: 20px;
+        top: 15%;
+        right: 0;
+        /* background: #fff; */
+        background: linear-gradient(to bottom, #fff, #fff, transparent);
+        border: var(--background-primario) 1px solid;
+        border-bottom: none;
+        position: absolute;
+        width: 280px;
+        height: 60%;
+        padding: 10px;
+    }
 }
 
 @media screen and (max-width: 67em) {
+    body>div {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        /* background-attachment: fixed; */
+        background-position: center;
+        width: 100vw;
+    }
+    .navbar {
+        max-height: 100px;
+    }
     /* Logos  */
     .aunar_logo {
-        width: 90px;
+        width: 80px;
         margin-right: 20px;
     }
     .logo {
@@ -502,12 +509,12 @@ ul {
         font-size: 18px;
     }
     .menu-opciones {
-        margin-top: 70px;
+        margin-top: 50px;
         color: #ffffff;
         display: block;
     }
     .menu-opciones li {
-        padding: 20px;
+        padding: 15px;
     }
     .menu-opciones a {
         color: #fff;
@@ -515,5 +522,49 @@ ul {
     }
     .menu-opciones i {
         font-size: 20px;
+    }
+    .student-profile h3 {
+        text-align: center;
+        position: relative;
+        font-size: 24px;
+    }
+    .student-profile .container {
+        width: 85%;
+        padding: none;
+        margin: none;
+    }
+    .student-profile .seleccion {
+        margin: auto;
+        margin-top: 20px;
+        overflow: hidden;
+        background-color: var(--color-detalle);
+        width: 100%;
+        border-radius: 6px;
+        align-items: center;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+    }
+    .student-profile .seleccion img {
+        display: block;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .student-profile .seleccion p {
+        font-size: 20px;
+        font-family: "Maven Pro", sans-serif;
+        background: var(--background-primario);
+        color: var(--color-detalle);
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .guia_arbol {
+        margin: auto;
+        width: 80%;
+        margin-top: 20px;
+        background: #fff;
+        border: var(--background-primario) 1px solid;
+        padding: 10px;
     }
 }

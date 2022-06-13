@@ -35,8 +35,8 @@ include("../../controller/nombre.php");
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -59,7 +59,7 @@ include("../../controller/nombre.php");
                         <a href="../main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                     </li>
                     <li class="fecha">
-                        
+
                     </li>
                 </ul>
 
@@ -79,11 +79,8 @@ include("../../controller/nombre.php");
             </div>
         </div>
     </nav>
-    <?php
-    include("../../controller/upload.php");
-    ?>
 
-    <form name="envio_archivo" method="POST" enctype="multipart/form-data">
+    <form action="../../controller/upload_anteproyecto.php" name="envio_archivo" method="POST" enctype="multipart/form-data">
 
         <h3>Subir anteproyecto</h3>
         <section class="seccion-anteproyecto">
@@ -222,8 +219,11 @@ include("../../controller/nombre.php");
     <?php
     if (time() < $tiempo['0']) {
     ?>
-        <p style="z-index: 9999999; position: absolute; padding: 10px; top: 16%; left: 330px; opacity: 1;
-			text-align: center; width: 40%%; background: rgb(255, 163, 163);border-radius: 5px; color: rgb(184, 0, 0); border: 1px #1e9700 solid;" id="fail">No puedes enviar archivos hasta la proxima fecha, en 15 días<?php  ?></p>
+        <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+  				left: 50%;
+  				transform: translate(-50%, 0%);">
+            No puedes enviar archivos hasta la proxima fecha, en 15 días
+        </div>
         <script>
             setTimeout(function() {
                 $('#fail').fadeOut('fast');
@@ -232,7 +232,7 @@ include("../../controller/nombre.php");
     <?php
     }
     ?>
-     <script src="../../utilities/loading/load.js"></script>
+    <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>

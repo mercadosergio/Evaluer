@@ -118,7 +118,7 @@ if (isset($_POST['modificar-coordinador'])) {
 
     if (!$update_c) {
     ?>
-    
+
         <p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
     text-align: center; width: 14%; background: rgb(255, 133, 133); color: rgb(184, 0, 0); border: 1px #1e9700 solid;" id="fail">No se guardaron los cambios</p>
         <script>
