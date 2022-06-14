@@ -44,8 +44,13 @@ if ($descripcion == null || $descripcion == '') {
 
             $conexion->query("UPDATE propuesta a
                 JOIN estudiante es ON a.remitente = es.usuario
-                JOIN programas p ON a.programa_id = p.identificador
-                SET a.programa_id = es.programa_id, a.programa = p.nombre, a.id_estudiante = es.id");
+                                    SET a.programa_id = es.programa_id");
+
+
+            $conexion->query("UPDATE propuesta a
+            JOIN estudiante es ON a.remitente = es.usuario
+            JOIN programas p ON a.programa_id = p.identificador
+            SET a.programa = p.nombre, a.id_estudiante = es.id");
 
             $conexion->query("UPDATE estudiante SET time_propuesta = '$time_propuesta' WHERE usuario =" . $_SESSION['usuario']);
             echo $programa_id[$i];
