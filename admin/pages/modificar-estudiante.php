@@ -2,7 +2,6 @@
 session_start();
 error_reporting(0);
 include("../../model/conexion.php");
-// include_once("../../controller/controlador-login.php");
 $id = $_GET['id'];
 $nombre = $_GET['nombre'];
 $p_apellido = $_GET['p_apellido'];

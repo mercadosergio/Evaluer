@@ -73,7 +73,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
         </div>
     </nav>
-    <form action="../../controller/controlador-admin.php" method="POST">
+    <form action="../../controller/admin-add-user.php" method="POST">
         <div class="form-add-student">
             <div class="cont-title">
                 <i class="fas fa-user"></i>

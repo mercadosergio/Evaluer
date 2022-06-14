@@ -1,3 +1,9 @@
+<?php
+include 'model/db.php';
+include 'model/UserModel.php';
+include 'controller/UserController.php';
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -23,9 +29,6 @@
     <script src="font/d029bf1c92.js" crossorigin="anonymous"></script>
 
 </head>
-<?php
-include("controller/controlador-login.php");
-?>
 
 <body>
     <div id="contenedor_carga">
@@ -229,7 +232,11 @@ include("controller/controlador-login.php");
             </div>
         </footer>
     </div>
-
+    <script>
+        setTimeout(function() {
+            $('#alerta').fadeOut('fast');
+        }, 4000); // <-- time in milliseconds
+    </script>
     <script src="utilities/loading/load.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>

@@ -126,7 +126,7 @@ include_once  '../../controller/nombre.php';
                             <td hidden><?php echo $filas['descripcion'] ?></td>
                             <td hidden><?php echo $filas['grupo'] ?></td>
                             <td><?php echo $filas['fecha'] ?></td>
-                            <form action="../../controller/calificar-propuesta.php" method="POST">
+                            <form action="../../controller/evaluate-propuesta.php" method="POST">
                                 <td id="celdaCalif">
                                     <input type="text" name="getIdPropuesta" hidden value="<?php echo $filas['id'] ?>">
                                     <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $filas['estado'] ?>">

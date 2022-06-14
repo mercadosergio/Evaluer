@@ -36,6 +36,7 @@ include("../controller/nombre.php");
 
 
 <body>
+
     <div class="fondo">
         <!-- Pantalla de carga -->
         <div id="contenedor_carga">

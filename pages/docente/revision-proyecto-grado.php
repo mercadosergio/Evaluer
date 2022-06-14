@@ -111,7 +111,7 @@ include_once  '../../controller/nombre.php';
                         $id_registro = $filas['0'];
                     ?>
                         <tr>
-                            <form action="../../controller/calificar-proyecto.php" method="POST">
+                            <form action="../../controller/evaluate-proyecto.php" method="POST">
                                 <td><?php echo $filas['0']; ?></td>
                                 <td><?php echo $filas['titulo']; ?></td>
                                 <td><a href="<?php echo $filas['documento']; ?>"><?php echo $filas['nombre']; ?></a></td>

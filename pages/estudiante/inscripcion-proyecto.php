@@ -89,7 +89,7 @@ include("../../controller/nombre.php");
 
     <div class="grid-view">
         <div class="seccion-inscripcion">
-            <form action="../../controller/controlador-propuesta.php" method="POST" id="envio">
+            <form action="../../controller/send-propuesta.php" method="POST" id="envio">
                 <div class="grid-form">
                     <?php
                     $fecha = date("Y-m-d H:i:s");
