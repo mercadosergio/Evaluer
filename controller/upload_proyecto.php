@@ -19,7 +19,7 @@ if (!file_exists('../files/proyectos_de_grado')) {
     if (file_exists('../files/proyectos_de_grado')) {
         if (move_uploaded_file($guardado, '../files/proyectos_de_grado/' . $nombre_final)) {
 
-            include("../pages/main-estudiante.php");
+            include("../pages/estudiante/index.php");
         } else {
             echo "Archivo no se pudo guardar";
         }
@@ -39,7 +39,7 @@ if (!file_exists('../files/proyectos_de_grado')) {
 
             $conexion->query("UPDATE estudiante SET time_proyecto = '$time_proyecto' WHERE usuario =" . $_SESSION['usuario']);
 
-            include("../pages/main-estudiante.php");
+            include("../pages/estudiante/index.php");
 ?>
             <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
   				left: 50%;

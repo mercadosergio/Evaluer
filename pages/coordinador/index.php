@@ -1,21 +1,21 @@
 <?php
-include("../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../index.php");
+    header("location: ../../index.php");
     die();
 }
-include("../controller/nombre.php");
+include("../../controller/nombre.php");
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../evaluer.ico">
+    <link rel="shortcut icon" href="../../evaluer.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,26 +23,26 @@ include("../controller/nombre.php");
 
     <title>Coordinador</title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/unicons.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../utilities/loading/carga.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/unicons.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../utilities/loading/carga.css">
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../css/coordinador-style.css">
+    <link rel="stylesheet" href="../../css/coordinador-style.css">
 
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <img src="../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="main-coordinador.php"><img class="logo" src="../img/logo_p.png"></a>
+        <img src="../../img/aunar.png" class="aunar_logo">
+        <a class="navbar-brand" href="index.php"><img class="logo" src="../../img/logo_p.png"></a>
         <div class="container">
 
 
@@ -60,11 +60,11 @@ include("../controller/nombre.php");
                 <ul class="log">
                     <li>
                         <a class="navbar-brand" href=""><i class='uil uil-user'></i><label for=""><?php echo $nombre_usuario ?></label></a>
-                        
+
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -76,29 +76,29 @@ include("../controller/nombre.php");
         <h3>Módulos de coordinación académica</h3>
 
         <div class="opciones_coordinador">
-            <a href="coordinador/asignar-asesor.php">
+            <a href="modulos/asignar-asesor.php">
                 <div>
                     <h3>Asignar asesor</h3>
-                    <img src="../img/asignar.png" alt="">
+                    <img src="../../img/asignar.png" alt="">
                 </div>
             </a>
-            <a href="coordinador/revision-proyecto-coordinador.php">
+            <a href="modulos/revision-proyecto-coordinador.php">
                 <div>
                     <h3>Proyectos de grado</h3>
-                    <img src="../img/proyecto-coordinador.png" alt="">
+                    <img src="../../img/proyecto-coordinador.png" alt="">
                 </div>
             </a>
         </div>
     </div>
-    <script src="../utilities/loading/load.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Headroom.js"></script>
-    <script src="../js/jQuery.headroom.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="../../utilities/loading/load.js"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/Headroom.js"></script>
+    <script src="../../js/jQuery.headroom.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/smoothscroll.js"></script>
+    <script src="../../js/custom.js"></script>
 
 </body>
 

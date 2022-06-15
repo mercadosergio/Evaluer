@@ -1,5 +1,5 @@
 <?php
-include("../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
@@ -8,13 +8,13 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
-include("../controller/nombre.php");
+include("../../controller/nombre.php");
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../evaluer.ico">
+    <link rel="shortcut icon" href="../../evaluer.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,16 +22,15 @@ include("../controller/nombre.php");
 
     <title>Estudiante</title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/unicons.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../utilities/loading/carga.css">
-    <link rel="stylesheet" href="../utilities/hamburger.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/unicons.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../utilities/loading/carga.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../css/estudiante-styles.css">
+    <link rel="stylesheet" href="../../css/estudiante-styles.css">
 </head>
 
 
@@ -56,8 +55,8 @@ include("../controller/nombre.php");
             </div>
             <ul class="menu-opciones">
                 <li><a href=""><i class="bi bi-person-circle"></i> Perfil</a></li>
-                <li><a href="../support/change-password.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
-                <li><a href="../controller/logout.php"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a></li>
+                <li><a href="../../support/change-password.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a></li>
+                <li><a href="../../controller/logout.php"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a></li>
             </ul>
         </div>
         <!-- MENU -->
@@ -65,8 +64,8 @@ include("../controller/nombre.php");
             <button onclick="activar()" class="hamburger">
                 <i class="bi bi-list"></i>
             </button>
-            <img src="../img/aunar.png" class="aunar_logo">
-            <a class="navbar-brand" href="../pages/main-estudiante.php"><img class="logo" src="../img/logo_p.png"></a>
+            <img src="../../img/aunar.png" class="aunar_logo">
+            <a class="navbar-brand" href="../../pages/estudiante/index.php"><img class="logo" src="../../img/logo_p.png"></a>
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -79,7 +78,7 @@ include("../controller/nombre.php");
 
                     <ul class="navbar-nav mx-auto">
                         <li class="principal">
-                            <a href="../pages/main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                            <a href="../../pages/estudiante/index.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                         </li>
                         <li class="fecha">
 
@@ -95,8 +94,8 @@ include("../controller/nombre.php");
                             </a>
                             <ul>
                                 <li><a class="out" href="">Perfil</a></li>
-                                <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
-                                <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                                <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
+                                <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -107,25 +106,25 @@ include("../controller/nombre.php");
         <div class="student-profile">
             <h3>Módulos académicos</h3>
             <div class="container">
-                <a href="../pages/estudiante/inscripcion-proyecto.php">
+                <a href="../../pages/estudiante/modulos/inscripcion-proyecto.php">
                     <div class="seleccion">
-                        <img src="../img/propuesta-e.png" alt="">
+                        <img src="../../img/propuesta-e.png" alt="">
                         <p>Propuesta de grado</p>
                     </div>
                 </a>
             </div>
             <div class="container">
-                <a href="../pages/estudiante/anteproyecto-estudiante.php">
+                <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php">
                     <div class="seleccion">
-                        <img src="../img/anteproyecto.png" alt="">
+                        <img src="../../img/anteproyecto.png" alt="">
                         <p>Anteproyecto</p>
                     </div>
                 </a>
             </div>
             <div class="container">
-                <a href="../pages/estudiante/proyecto-final-estudiante.php">
+                <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php">
                     <div class="seleccion">
-                        <img src="../img/proyectof.png" alt="">
+                        <img src="../../img/proyectof.png" alt="">
                         <p>Proyecto de grado</p>
                     </div>
                 </a>
@@ -148,7 +147,7 @@ include("../controller/nombre.php");
                             </li>
                             <li>
                                 <i class="fas fa-file-alt"></i>
-                                <a href="../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                                <a href="../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
                             </li>
                         </ul>
                     </li>
@@ -185,17 +184,17 @@ include("../controller/nombre.php");
         }
     </script>
 
-    <script src="../utilities/loading/load.js"></script>
+    <script src="../../utilities/loading/load.js"></script>
 
-    <script src="../font/9390efa2c5.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Headroom.js"></script>
-    <script src="../js/jQuery.headroom.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="../../font/9390efa2c5.js"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/Headroom.js"></script>
+    <script src="../../js/jQuery.headroom.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/smoothscroll.js"></script>
+    <script src="../../js/custom.js"></script>
 
 </body>
 

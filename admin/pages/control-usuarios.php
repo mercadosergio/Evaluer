@@ -129,7 +129,9 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
                                     <td class="botones_tabla">
                                         <a href="modificar-estudiante.php?id=<?php echo $filas['0'] ?>&nombre=<?php echo $filas['1'] ?>&p_apellido=<?php echo $filas['2'] ?> &s_apellido=<?php echo $filas['3'] ?> &cedula=<?php echo $filas['4'] ?> &programa=<?php echo $filas['5'] ?> &semestre=<?php echo $filas['6'] ?>
-                                        " name="modificarEstudiante" class="btn-editar"><i class="bi bi-pencil-fill"></i></a>
+                                        " name="modificarEstudiante" class="btn-editar">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
                                             <input hidden type="text" name="user" readonly value="<?php echo $filas['usuario'] ?>">
                                             <input hidden type="text" name="getIdU" readonly value="<?php echo $filas['id'] ?>">
@@ -177,11 +179,12 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                         <a href="modificar-docente.php?id=<?php echo $fila_docente['0'] ?>&nombres=<?php echo $fila_docente['1'] ?>
                                                 &p_apellido=<?php echo $fila_docente['p_apellido'] ?> &s_apellido=<?php echo $fila_docente['3'] ?> &cedula=<?php echo $fila_docente['4'] ?> 
                                                 &programa=<?php echo $fila_docente['5'] ?>
-                                        " name="modificarDocente" class="btn-editar">Modificar</a>
+                                        " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
+                                        </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
                                             <input type="text" name="user" hidden readonly value="<?php echo $fila_docente['usuario'] ?>">
                                             <input type="text" name="getIdU" hidden readonly value="<?php echo $fila_docente['id'] ?>">
-                                            <input type="submit" value="Eliminar" name="eliminar_docente" class="btn-eliminar">
+                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -222,11 +225,12 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td class="botones_tabla">
                                         <a href="modificar-coordinador.php?id=<?php echo $fila_coo['0'] ?>&nombres=<?php echo $fila_coo['1'] ?>
                                                 &p_apellido=<?php echo $fila_coo['p_apellido'] ?> &s_apellido=<?php echo $fila_coo['3'] ?> &cedula=<?php echo $fila_coo['4'] ?>
-                                                " name="modificarDocente" class="btn-editar">Modificar</a>
+                                                " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
+                                        </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
                                             <input type="text" name="user" hidden readonly value="<?php echo $fila_coo['usuario'] ?>">
                                             <input type="text" name="getIdU" hidden readonly value="<?php echo $fila_coo['id'] ?>">
-                                            <input type="submit" value="Eliminar" name="eliminar_docente" class="btn-eliminar">
+                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
                                 </tr>

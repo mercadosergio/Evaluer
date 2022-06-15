@@ -18,7 +18,7 @@ if (!file_exists('../files/anteproyectos')) {
 	mkdir('../files/anteproyectos', 0777, true);
 	if (file_exists('../files/anteproyectos')) {
 		if (move_uploaded_file($guardado, '../files/anteproyectos/' . $nombre_final)) {
-			include_once("../pages/main-estudiante.php");
+			include_once("../pages/estudiante/index.php");
 		} else {
 			echo "Archivo no se pudo guardar";
 		}
@@ -55,7 +55,7 @@ if (!file_exists('../files/anteproyectos')) {
 				}, 2000); // <-- time in milliseconds
 			</script>
 		<?php
-			include_once("../pages/main-estudiante.php");
+			include_once("../pages/estudiante/index.php");
 		} else {
 		?>
 			<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;

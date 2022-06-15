@@ -37,11 +37,11 @@ if (isset($_POST['cambiar'])) {
             if ($tupla['id_rol'] == 1) {
                 header("location: ../admin/index.php");
             } else if ($tupla['id_rol'] == 2) {
-                header("location: ../pages/main-coordinador.php");
+                header("location: ../pages/coordinador/index.php");
             } else if ($tupla['id_rol'] == 3) {
-                header("location: ../pages/main-estudiante.php");
+                header("location: ../pages/estudiante/index.php");
             } else if ($tupla['id_rol'] == 4) {
-                header("location: ../pages/main-docente.php");
+                header("location: ../pages/docente/index.php");
             }
             mysqli_close($conexion);
         } else {

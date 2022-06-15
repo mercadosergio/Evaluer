@@ -1,5 +1,5 @@
 <?php
-include("../../model/conexion.php");
+include("../../../model/conexion.php");
 
 session_start();
 error_reporting(0);
@@ -7,30 +7,31 @@ $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
     // echo "NO TIENE AUTORIZACIÓN";
-    header("location: ../../index.php");
+    header("location: ../../../index.php");
     die();
 }
-include("../../controller/nombre.php");
+include("../../../controller/nombre.php");
+
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../../evaluer.ico">
+    <link rel="shortcut icon" href="../../../evaluer.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Subir Anteproyecto</title>
+    <title>Subir Proyecto de Grado</title>
 
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../utilities/loading/carga.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/unicons.css">
+    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../css/anteproyecto-estudiante.css">
+    <link rel="stylesheet" href="../../../css/proyecto-estudiante.css">
 
 </head>
 
@@ -41,8 +42,8 @@ include("../../controller/nombre.php");
     </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <img src="../../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../main-estudiante.php"><img class="logo" src="../../img/logo_p.png"></a>
+        <img src="../../../img/aunar.png" class="aunar_logo">
+        <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="container">
 
 
@@ -56,7 +57,7 @@ include("../../controller/nombre.php");
                 <h3>ESTUDIANTE</h3>
                 <ul class="navbar-nav mx-auto">
                     <li class="principal">
-                        <a href="../main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                        <a href="../index.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                     </li>
                     <li class="fecha">
 
@@ -71,8 +72,8 @@ include("../../controller/nombre.php");
                             </label></a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="out" href="../../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -80,21 +81,27 @@ include("../../controller/nombre.php");
         </div>
     </nav>
 
-    <form action="../../controller/upload_anteproyecto.php" name="envio_archivo" method="POST" enctype="multipart/form-data">
-
-        <h3>Subir anteproyecto</h3>
-        <section class="seccion-anteproyecto">
+    <form action="../../../controller/upload_proyecto.php" method="POST" enctype="multipart/form-data">
+        <div class="cont-titulo">
+            <h3 class="titulo1">Subir proyecto de grado</h3>
+        </div>
+        <section class="seccion-proyecto">
             <?php
             $fecha = date("Y-m-d H:i:s");
-
             ?>
+            <div class="detalles">
+                <div style="display: flex;">
+                    <i class="activity fas fa-chalkboard-teacher"></i>
+                    <p>Adjuntar la entrega del proyecto de grado en este espacio.</p>
+                </div>
+                <label for="">Descripción:</label>
+                <label for="">Fecha de entrega:</label>
+            </div>
             <div class="archivo">
                 <div class="container-input">
                     <?php
-                    $time_antepoyecto = $conexion->query("SELECT time_anteproyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
-                    $tiempo = mysqli_fetch_array($time_antepoyecto);
-
-
+                    $time_proyecto = $conexion->query("SELECT time_proyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
+                    $tiempo = mysqli_fetch_array($time_proyecto);
                     ?>
                     <input type="file" name="archivo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
                     <label for="file-5">
@@ -105,25 +112,17 @@ include("../../controller/nombre.php");
                         </figure>
                         <span class="iborrainputfile">Seleccionar archivo</span>
                     </label>
-
                 </div>
                 <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" id="enviar" name="enviar" class="btn-enviar">
-            </div>
-
-            <div class="comentario">
-                <label for="">Comentarios:</label>
-                <div class="marco-textarea">
-                    <!-- <span class="glyphicon glyphicon-align-left"></span> -->
-                    <img src="../../font/comentario.png" alt="">
-                    <textarea style="background: #fff;" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> name="coment" id="" cols="30" rows="10"></textarea>
-                </div>
+                <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
             </div>
         </section>
-        <h3>Entregas</h3>
+        <div class="cont-titulo">
+            <h3 class="titulo2">Entregas</h3>
+        </div>
         <?php
 
-        $listar = "SELECT * FROM anteproyecto WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+        $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
         $q = mysqli_query($conexion, $listar);
         while ($contenido = mysqli_fetch_array($q)) {
 
@@ -138,12 +137,6 @@ include("../../controller/nombre.php");
                     <div class="evaluacion">
                         <label for="">Estado: <?php echo $contenido['estado'] ?></label>
                         <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
-                    </div>
-                    <div class="items">
-                        <label for="" style="position: relative; top: 0;">Observaciones:</label><br>
-                        <textarea style="padding-left: 0;" readonly name="" id="" cols="30" rows="5">
-                            <?php echo $contenido['observaciones']; ?>
-                        </textarea>
                     </div>
                 </div>
             </div>
@@ -168,14 +161,13 @@ include("../../controller/nombre.php");
                         </li>
                         <li>
                             <i class="fas fa-file-alt"></i>
-                            <a href="../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                            <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
     </form>
-
     <script>
         'use strict';
 
@@ -201,21 +193,6 @@ include("../../controller/nombre.php");
             });
         }(document, window, 0));
     </script>
-    <script>
-        function confirmEnviar() {
-            envio.archivo.disabled = true;
-            envio.archivo.value = "Enviando...";
-            setTimeout(function() {
-                envio.archivo.disabled = false;
-                envio.archivo.value = "Enviar";
-            }, 10000);
-            return false;
-        }
-        envio.enviar.addEventListener("click", function() {
-            return confirmEnviar();
-        }, false);
-    </script>
-
     <?php
     if (time() < $tiempo['0']) {
     ?>
@@ -232,16 +209,16 @@ include("../../controller/nombre.php");
     <?php
     }
     ?>
-    <script src="../../utilities/loading/load.js"></script>
-    <script src="../../font/9390efa2c5.js"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/Headroom.js"></script>
-    <script src="../../js/jQuery.headroom.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/smoothscroll.js"></script>
-    <script src="../../js/custom.js"></script>
+    <script src="../../../utilities/loading/load.js"></script>
+    <script src="../../../font/9390efa2c5.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/popper.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/Headroom.js"></script>
+    <script src="../../../js/jQuery.headroom.js"></script>
+    <script src="../../../js/owl.carousel.min.js"></script>
+    <script src="../../../js/smoothscroll.js"></script>
+    <script src="../../../js/custom.js"></script>
 
 </body>
 

@@ -31,6 +31,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/admin.css">
     <!-- <script src="../js/action/tab.js" defer></script> -->
@@ -42,6 +43,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
 </style>
 
 <body>
+
     <!-- Pantalla de carga -->
     <div id="contenedor_carga">
         <div id="carga"></div>
@@ -195,6 +197,12 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
         </div>
     </section>
+    <div class="mobile_alert">
+        <div><i class="bi bi-exclamation-octagon-fill"></i>
+            <img src="../img/logo_p.png" alt="">
+            <p>Lo sentimos, esta sección es sólo para uso de escritorio</p>
+        </div>
+    </div>
     <script src="../utilities/loading/load.js"></script>
     <script src="../font/9390efa2c5.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>

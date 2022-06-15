@@ -26,10 +26,9 @@ for ($i = 0; $i < count($asesor); $i++) {
     }, 2000); // <-- time in milliseconds
 </script>
 <script>
-    window.location = "../pages/coordinador/asignar-asesor.php";
+    window.location = "../pages/coordinador/modulos/asignar-asesor.php";
 </script>
 <?php
-// header("location: ../pages/coordinador/asignar-asesor.php");
-// include("../pages/coordinador/asignar-asesor.php");
+
 mysqli_close($conexion);
 ?>

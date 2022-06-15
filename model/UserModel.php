@@ -2,6 +2,7 @@
 
 class User extends DataBase
 {
+    //Obtener usuario para inicio de sesión
     public function getUser($username, $password)
     {
         $sql = "SELECT * FROM usuarios WHERE usuario = '$username' AND contraseña = '$password'";
@@ -15,11 +16,11 @@ class User extends DataBase
                 if ($array['id_rol'] == 1) { //Administrador
                     header("location: admin/index.php");
                 } else if ($array['id_rol'] == 2) { //Coordinador
-                    header("location: pages/main-coordinador.php");
+                    header("location: pages/coordinador/index.php");
                 } else if ($array['id_rol'] == 3) { //Estudiante
-                    header("location: pages/main-estudiante.php");
+                    header("location: pages/estudiante/index.php");
                 } else if ($array['id_rol'] == 4) { //Docente
-                    header("location: pages/main-docente.php");
+                    header("location: pages/docente/index.php");
                 } else {
                     header("index.php");
                 }
@@ -34,6 +35,11 @@ class User extends DataBase
         } else {
             return false;
         }
+    }
+
+    //
+    public function deleteUser()
+    {
     }
 }
 ?>

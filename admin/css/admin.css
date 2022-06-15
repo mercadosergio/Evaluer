@@ -480,3 +480,47 @@ ul {
     color: var(--color-detalle);
     margin: auto;
 }
+
+@media screen and (min-width: 67em) {
+    .mobile_alert {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 67em) {
+    .navbar {
+        display: none;
+    }
+    .menu-collapsed {
+        display: none;
+    }
+    .admin-profile-usuario {
+        display: none;
+    }
+    .mobile_alert {
+        background: #fff;
+        z-index: 100000000;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .mobile_alert>div {
+        display: block;
+    }
+    .mobile_alert i {
+        font-size: 100px;
+        color: #f71a1a;
+    }
+    .mobile_alert img {
+        width: 100%;
+    }
+    .mobile_alert p {
+        color: #000;
+        margin: 20px;
+    }
+}

@@ -1,5 +1,5 @@
 <?php
-include("../../model/conexion.php");
+include("../../../model/conexion.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
@@ -8,14 +8,14 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
-include("../../controller/nombre.php");
+include("../../../controller/nombre.php");
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../../evaluer.ico">
+    <link rel="shortcut icon" href="../../../evaluer.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -23,30 +23,30 @@ include("../../controller/nombre.php");
 
     <title>Asignar asesor</title>
 
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../utilities/loading/carga.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/unicons.css">
+    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../css/asignar-asesor.css">
+    <link rel="stylesheet" href="../../../css/asignar-asesor.css">
 
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <img src="../../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../main-coordinador.php"><img class="logo" src="../../img/logo_p.png"></a>
+        <img src="../../../img/aunar.png" class="aunar_logo">
+        <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="container">
 
 
@@ -66,8 +66,8 @@ include("../../controller/nombre.php");
                         <a class="navbar-brand" href=""><i class='uil uil-user'></i><label for=""><?php echo $nombre_usuario ?></label></a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="out" href="../../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -98,9 +98,9 @@ include("../../controller/nombre.php");
             </thead>
             <tbody id="search">
                 <?php
-                // include("../../controller/asignar-docente.php");
+                // include("../../../controller/asignar-docente.php");
                 ?>
-                <form id="form" action="../../controller/asignar-docente.php" name="sub" method="POST">
+                <form id="form" action="../../../controller/asignar-docente.php" name="sub" method="POST">
                     <?php
                     $sql = "SELECT * from proyecto_grado";
                     $result = mysqli_query($conexion, $sql);
@@ -168,7 +168,7 @@ include("../../controller/nombre.php");
                 e.preventDefault();
                 const request = new XMLHttpRequest();
 
-                request.open("post", "../../controller/asignar-docente.php");
+                request.open("post", "../../../controller/asignar-docente.php");
                 request.onload = function() {
                     console.log(request.responseText);
                 }
@@ -202,16 +202,16 @@ include("../../controller/nombre.php");
         //     console.log(cod)
         // }
     </script>
-    <script src="../../utilities/loading/load.js"></script>
-    <script src="../../font/9390efa2c5.js"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/Headroom.js"></script>
-    <script src="../../js/jQuery.headroom.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/smoothscroll.js"></script>
-    <script src="../../js/custom.js"></script>
+    <script src="../../../utilities/loading/load.js"></script>
+    <script src="../../../font/9390efa2c5.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/popper.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/Headroom.js"></script>
+    <script src="../../../js/jQuery.headroom.js"></script>
+    <script src="../../../js/owl.carousel.min.js"></script>
+    <script src="../../../js/smoothscroll.js"></script>
+    <script src="../../../js/custom.js"></script>
 
 </body>
 

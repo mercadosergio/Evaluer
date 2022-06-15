@@ -1,23 +1,23 @@
 <?php
-include("../model/conexion.php");
+include("../../model/conexion.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
     // echo "NO TIENE AUTORIZACIÓN";
-    header("location: ../index.php");
+    header("location: ../../index.php");
     die();
 }
 
-include_once  '../controller/nombre.php';
+include_once  '../../controller/nombre.php';
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../evaluer.ico">
+    <link rel="shortcut icon" href="../../evaluer.ico">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,27 +26,27 @@ include_once  '../controller/nombre.php';
 
     <title>Docente</title>
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/unicons.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../utilities/loading/carga.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/unicons.css">
+    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../utilities/loading/carga.css">
 
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../css/docente-styles.css">
+    <link rel="stylesheet" href="../../css/docente-styles.css">
 
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <img src="../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="main-docente.php"><img class="logo" src="../img/logo_p.png"></a>
+        <img src="../../img/aunar.png" class="aunar_logo">
+        <a class="navbar-brand" href="index.php"><img class="logo" src="../../img/logo_p.png"></a>
         <div class="container">
 
 
@@ -67,8 +67,8 @@ include_once  '../controller/nombre.php';
                                                                                     ?></a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -79,7 +79,7 @@ include_once  '../controller/nombre.php';
     <div class="docente-profile">
         <h3>Modulos de revisión y evaluación</h3>
         <div class="horizontal">
-            <a href="docente/revision-propuesta.php">
+            <a href="../docente/modulos/revision-propuesta.php">
                 <div class="seleccion">
                     <div>
                         <h3>Propuestas</h3>
@@ -90,7 +90,7 @@ include_once  '../controller/nombre.php';
                     </div>
                 </div>
             </a>
-            <a href="docente/revision-anteproyecto.php">
+            <a href="../docente/modulos/revision-anteproyecto.php">
                 <div class="seleccion">
                     <div>
                         <h3>Anteproyectos</h3>
@@ -100,7 +100,7 @@ include_once  '../controller/nombre.php';
                     </div>
                 </div>
             </a>
-            <a href="docente/revision-proyecto-grado.php">
+            <a href="../docente/modulos/revision-proyecto-grado.php">
                 <div class="seleccion">
                     <div>
                         <h3>Proyectos de grado</h3>
@@ -112,17 +112,17 @@ include_once  '../controller/nombre.php';
             </a>
         </div>
     </div>
-    <script src="../font/9390efa2c5.js"></script>
-    <script src="../utilities/loading/load.js"></script>
+    <script src="../../font/9390efa2c5.js"></script>
+    <script src="../../utilities/loading/load.js"></script>
 
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Headroom.js"></script>
-    <script src="../js/jQuery.headroom.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/Headroom.js"></script>
+    <script src="../../js/jQuery.headroom.js"></script>
+    <script src="../../js/owl.carousel.min.js"></script>
+    <script src="../../js/smoothscroll.js"></script>
+    <script src="../../js/custom.js"></script>
 
 </body>
 

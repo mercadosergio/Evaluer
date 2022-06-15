@@ -9,8 +9,7 @@ $integrantes = $_POST['integrantes'];
 $tutor = $_POST['tutor'];
 $lider = $_POST['lider'];
 $semestre = $_POST['semestre'];
-// TEXTAREA
-$descripcion = $_POST['description'];
+$descripcion = $_POST['description']; // TEXTAREA
 $grupo = $_POST['grupo'];
 $fecha = $_POST['fecha'];
 
@@ -55,8 +54,7 @@ if ($descripcion == null || $descripcion == '') {
             $conexion->query("UPDATE estudiante SET time_propuesta = '$time_propuesta' WHERE usuario =" . $_SESSION['usuario']);
             echo $programa_id[$i];
         }
-        include("../pages/main-estudiante.php");
-        // header('Location: ../main-estudiante.php');
+        include("../pages/estudiante/index.php");
 
     ?>
         <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
@@ -71,9 +69,6 @@ if ($descripcion == null || $descripcion == '') {
         </script>
 <?php
 
-        // include("../pages/main-estudiante.php");
         mysqli_close($conexion);
-        // include("../pages/estudiante/inscripcion-proyecto.php");
-        // header("location: ../estudiante/inscripcion-proyecto.php");
     }
 }

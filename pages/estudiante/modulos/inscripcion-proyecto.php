@@ -1,20 +1,20 @@
 <?php
-include("../../model/conexion.php");
+include("../../../model/conexion.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../../index.php");
+    header("location: ../../../index.php");
     die();
 }
-include("../../controller/nombre.php");
+include("../../../controller/nombre.php");
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-    <link rel="shortcut icon" href="../../evaluer.ico">
+    <link rel="shortcut icon" href="../../../evaluer.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,21 +22,21 @@ include("../../controller/nombre.php");
 
     <title>Propuesta de grado</title>
 
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../utilities/loading/carga.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/unicons.css">
+    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../css/inscripcion-styles.css">
-    <link rel="stylesheet" href="../../css/scrollbar.css">
-    <link rel="stylesheet" href="../../font/fontawesome-free-6.1.1-web/css/all.css">
+    <link rel="stylesheet" href="../../../css/inscripcion-styles.css">
+    <link rel="stylesheet" href="../../../css/scrollbar.css">
+    <link rel="stylesheet" href="../../../font/fontawesome-free-6.1.1-web/css/all.css">
 
-    <script src="../../font/fontawesome-free-6.0.0-web/js/solid.js"></script>
-    <script src="../../font/fontawesome-free-6.0.0-web/js/solid.min.js"></script>
-    <script src="../../font/fontawesome-free-6.0.0-web/js/brands.js"></script>
-    <script src="../../font/fontawesome-free-6.0.0-web/js/brands.min.js"></script>
-    <script src="../../font/9390efa2c5.js"></script>
+    <script src="../../../font/fontawesome-free-6.0.0-web/js/solid.js"></script>
+    <script src="../../../font/fontawesome-free-6.0.0-web/js/solid.min.js"></script>
+    <script src="../../../font/fontawesome-free-6.0.0-web/js/brands.js"></script>
+    <script src="../../../font/fontawesome-free-6.0.0-web/js/brands.min.js"></script>
+    <script src="../../../font/9390efa2c5.js"></script>
 
 </head>
 
@@ -47,8 +47,8 @@ include("../../controller/nombre.php");
     </div>
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
-        <img src="../../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../main-estudiante.php"><img class="logo" src="../../img/logo_p.png"></a>
+        <img src="../../../img/aunar.png" class="aunar_logo">
+        <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="container">
 
 
@@ -62,7 +62,7 @@ include("../../controller/nombre.php");
                 <h3>ESTUDIANTE</h3>
                 <ul class="navbar-nav mx-auto">
                     <li class="principal">
-                        <a href="../main-estudiante.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                        <a href="../index.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
                     </li>
 
                     </li>
@@ -78,8 +78,8 @@ include("../../controller/nombre.php");
                         </a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="out" href="../../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -89,7 +89,7 @@ include("../../controller/nombre.php");
 
     <div class="grid-view">
         <div class="seccion-inscripcion">
-            <form action="../../controller/send-propuesta.php" method="POST" id="envio">
+            <form action="../../../controller/send-propuesta.php" method="POST" id="envio">
                 <div class="grid-form">
                     <?php
                     $fecha = date("Y-m-d H:i:s");
@@ -184,7 +184,7 @@ include("../../controller/nombre.php");
                         <input hidden type="text" name="remitente" value="<?php echo $contenido['remitente']; ?>">
                         <label><?php echo $contenido['titulo'] ?></label>
                         <a href=""><i class="edit fas fa-edit"></i></a>
-                        <a href="../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
+                        <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
                     </div>
 
                 <?php
@@ -194,15 +194,15 @@ include("../../controller/nombre.php");
         </form>
     </div>
 
-    <script src="../../utilities/loading/load.js"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/Headroom.js"></script>
-    <script src="../../js/jQuery.headroom.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/smoothscroll.js"></script>
-    <script src="../../js/custom.js"></script>
+    <script src="../../../utilities/loading/load.js"></script>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/popper.min.js"></script>
+    <script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/Headroom.js"></script>
+    <script src="../../../js/jQuery.headroom.js"></script>
+    <script src="../../../js/owl.carousel.min.js"></script>
+    <script src="../../../js/smoothscroll.js"></script>
+    <script src="../../../js/custom.js"></script>
 </body>
 
 </html>
