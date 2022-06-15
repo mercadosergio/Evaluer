@@ -32,10 +32,13 @@ if (!file_exists('../files/anteproyectos')) {
 			$conexion->query("INSERT INTO anteproyecto(nombre,documento,comentarios,remitente,fecha) VALUES('$nombre','$ruta','$comentario','" . $_SESSION['usuario'] . "','$fecha')");
 
 			$conexion->query("UPDATE anteproyecto a
-				JOIN estudiante es ON a.remitente = es.usuario 
+			JOIN estudiante es ON a.remitente = es.usuario
+			SET a.programa_id = es.programa_id");
+
+			$conexion->query("UPDATE anteproyecto a
 				JOIN estudiante e ON a.programa_id = e.programa_id 
 				JOIN propuesta p ON a.remitente = p.remitente
-				SET a.programa_id = es.programa_id, a.programa = e.programa, a.titulo = p.titulo");
+				SET a.programa = e.programa, a.titulo = p.titulo");
 
 			$conexion->query("UPDATE estudiante SET time_anteproyecto = '$time_antepoyecto' WHERE usuario =" . $_SESSION['usuario']);
 

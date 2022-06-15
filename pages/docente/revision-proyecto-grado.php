@@ -37,8 +37,8 @@ include_once  '../../controller/nombre.php';
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -161,7 +161,7 @@ white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
             });
         });
     </script>
- <script src="../../utilities/loading/load.js"></script>
+    <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>

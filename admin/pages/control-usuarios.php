@@ -34,11 +34,12 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link rel="stylesheet" href="../css/control-usuarios.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -112,7 +113,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                             <?php
                             // $mostrar = "SELECT * FROM estudiante";
                             // $mostrar = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre FROM estudiante ORDER BY id desc";
-                            $mostrar_by_id = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre FROM estudiante ORDER BY id";
+                            $mostrar_by_id = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre,usuario FROM estudiante ORDER BY id";
                             $result = mysqli_query($conexion, $mostrar_by_id);
 
                             while ($filas = mysqli_fetch_array($result)) {
@@ -128,11 +129,11 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
                                     <td class="botones_tabla">
                                         <a href="modificar-estudiante.php?id=<?php echo $filas['0'] ?>&nombre=<?php echo $filas['1'] ?>&p_apellido=<?php echo $filas['2'] ?> &s_apellido=<?php echo $filas['3'] ?> &cedula=<?php echo $filas['4'] ?> &programa=<?php echo $filas['5'] ?> &semestre=<?php echo $filas['6'] ?>
-                                        " name="modificarEstudiante" class="btn-editar">Modificar</a>
+                                        " name="modificarEstudiante" class="btn-editar"><i class="bi bi-pencil-fill"></i></a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $filas['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $filas['id'] ?>">
-                                            <input type="submit" value="Eliminar" name="eliminar" class="btn-eliminar">
+                                            <input hidden type="text" name="user" readonly value="<?php echo $filas['usuario'] ?>">
+                                            <input hidden type="text" name="getIdU" readonly value="<?php echo $filas['id'] ?>">
+                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -268,7 +269,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
             });
         }
     </script>
- <script src="../../utilities/loading/load.js"></script>
+    <script>
+
+    </script>
+    <script src="../../utilities/loading/load.js"></script>
     <script src="../../js/controlador-usuarios.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>

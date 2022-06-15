@@ -32,8 +32,6 @@ include_once  '../../controller/nombre.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/revision-propuesta.css">
@@ -50,7 +48,6 @@ include_once  '../../controller/nombre.php';
         <img src="../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../main-docente.php"><img class="logo" src="../../img/logo_p.png"></a>
         <div class="container">
-
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -148,33 +145,32 @@ include_once  '../../controller/nombre.php';
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x"></i></button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <input class="titulo" type="text" readonly id="titulo_id">
                                                         <div class="linea">
                                                             <label class="lbl-linea">Linea de investigación:</label>
-                                                            <input readonly id="linea" type="text" value="">
+                                                            <p id="linea"></p>
                                                         </div>
                                                         <div class="programa">
                                                             <label class="lbl-programa">Programa:</label>
-                                                            <input readonly id="program" type="text">
+                                                            <p id="program"></p>
                                                         </div>
                                                         <div class="semestre">
                                                             <label class="lbl-semestre">Semestre:</label>
-                                                            <input readonly id="semestre" type="text">
+                                                            <p id="semestre"></p>
                                                         </div>
                                                         <div class="integrantes">
                                                             <label class="lbl-integrantes">Número de integrantes:</label>
-                                                            <input readonly id="num" class="texto-numero" type="text">
+                                                            <p id="num"></p>
                                                         </div>
                                                         <div class="tutor">
                                                             <label class="lbl-tutor">Nombre del asesor:</label>
-                                                            <input readonly id="tutor" type="text">
+                                                            <p id="tutor"></p>
                                                         </div>
                                                         <div class="lider">
                                                             <label class="lbl-lider">Nombre del lider:</label>
-                                                            <input readonly id="lid" type="text">
+                                                            <p id="lid"></p>
                                                         </div>
                                                         <div class="descripcion">
                                                             <label>Descripción:</label>
@@ -182,16 +178,15 @@ include_once  '../../controller/nombre.php';
                                                         </div>
                                                         <div class="equipo">
                                                             <label class="lbl-equipo">Nombre de los integrantes:</label>
-                                                            <input style="width: 700px;" readonly id="n_integrantes" type="text">
+                                                            <p id="n_integrantes"></p>
                                                         </div>
                                                         <div class="dat">
                                                             <label class="lbl-fecha">Fecha y hora:</label>
-                                                            <input type="text" id="time">
+                                                            <p id="time"></p>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -211,21 +206,6 @@ include_once  '../../controller/nombre.php';
         </div>
     </div>
 
-    <input type="checkbox" id="btn-panel">
-
-    <!-- Panel de vistas de propuestas -->
-    <div class="modal">
-        <div id="panel-propuesta" class="contenido_propuesta">
-            <div class="header">
-
-            </div>
-            <label class="cerrar" for="btn-panel"><img src="https://img.icons8.com/color/50/000000/close-window.png" /></label>
-            <div class="contenido">
-
-
-            </div>
-        </div>
-    </div>
     <script>
         const myModal = document.getElementById('myModal');
         const myInput = document.getElementById('myInput');
@@ -234,6 +214,7 @@ include_once  '../../controller/nombre.php';
             myInput.focus();
         });
     </script>
+
     <script>
         $(document).ready(function() {
             $("#search").on("keyup", function() {
@@ -244,28 +225,31 @@ include_once  '../../controller/nombre.php';
             });
         });
     </script>
-    
+
     <script>
         $('.editbtn').on('click', function() {
             $tr = $(this).closest('tr');
             var datos = $tr.children("td").map(function() {
                 return $(this).text();
             });
-            $('#titulo_id').val(datos[0]);
-            $('#linea').val(datos[1]);
-            $('#num').val(datos[2]);
-            $('#tutor').val(datos[3]);
-            $('#lid').val(datos[4]);
-            $('#program').val(datos[5]);
-            $('#semestre').val(datos[6]);
-            $('#descrip').val(datos[7]);
-            $('#n_integrantes').val(datos[8]);
-            $('#time').val(datos[9]);
+            $('#exampleModalLabel').html(datos[0]);
+            $('#linea').html(datos[1]);
+            $('#num').html(datos[2]);
+            $('#tutor').html(datos[3]);
+            $('#lid').html(datos[4]);
+            $('#program').html(datos[5]);
+            $('#semestre').html(datos[6]);
+            $('#descrip').html(datos[7]);
+            $('#n_integrantes').html(datos[8]);
+            $('#time').html(datos[9]);
 
         });
     </script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>

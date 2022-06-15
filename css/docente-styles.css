@@ -256,12 +256,12 @@ strong {
 /* Logos e imagenes */
 
 .aunar_logo {
-    height: 80px;
+    width: 80px;
     margin-right: 20px;
 }
 
 .logo {
-    height: 80px;
+    width: 200px;
     border-radius: 10px;
 }
 

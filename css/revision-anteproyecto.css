@@ -1,13 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    padding-top: 110px;
     background: rgb(245, 245, 245);
-    height: 100vh;
-    padding-left: 40px;
-    padding-right: 40px;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 :root {
@@ -232,12 +226,12 @@ strong {
 /* Logos e imagenes */
 
 .aunar_logo {
-    height: 80px;
+    width: 80px;
     margin-right: 20px;
 }
 
 .logo {
-    height: 80px;
+    width: 200px;
     border-radius: 10px;
 }
 
@@ -296,7 +290,10 @@ ul {
 /* ........................................ */
 
 .anteproyecto {
+    margin-top: 110px;
     padding-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .anteproyecto h3 {
@@ -429,21 +426,14 @@ ul {
     text-decoration: none;
 }
 
-.ant tr td input {
+.ant tr td>input {
     background: none;
     outline: none;
     border: none;
 }
 
-.ant tr td input:focus {
+.ant tr td>input:focus {
     background: #b3b1ff;
-}
-
-.ant tr td .btn-nota {
-    background: none;
-    color: #1188d8;
-    margin-right: 10px;
-    cursor: pointer;
 }
 
 .o {
@@ -482,10 +472,23 @@ ul {
 .o textarea {
     outline: none;
     padding: 3px;
+    background: repeating-linear-gradient(-180deg, whitesmoke 0px, rgb(221, 220, 220) 25px);
 }
 
 .texto_o {
     display: none;
+}
+
+.texto_o li {
+    display: block;
+}
+
+.btn-nota {
+    outline: none;
+    background: #1188d8;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
 }
 
 #radio_d {

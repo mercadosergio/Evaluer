@@ -254,12 +254,12 @@ strong {
 }
 
 .aunar_logo {
-    height: 70px;
+    width: 80px;
     margin-right: 20px;
 }
 
 .logo {
-    height: 70px;
+    width: 200px;
     border-radius: 10px;
 }
 
