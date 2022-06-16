@@ -440,27 +440,26 @@ ul {
 .admin-profile-usuario {
     padding: 10px;
     padding-top: 30px;
-    margin-left: 13%;
-    width: 84%;
-}
-
-.opciones_admin {
-    width: 70%;
-    display: flex;
-    margin: auto;
+    margin-left: 18%;
+    width: 82%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
 }
 
 .opciones_admin .separation {
     height: 220px;
-    width: 230px;
-    margin: 15px;
-    margin-right: 40px;
+    /* width: 230px; */
+}
+
+.separation a {
+    width: 100%;
 }
 
 .option_ad {
     padding: 10px;
     height: 230px;
-    width: 230px;
+    /* width: 230px; */
     background: var(--background-primario);
     align-items: center;
 }

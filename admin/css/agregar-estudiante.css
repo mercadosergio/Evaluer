@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: whitesmoke;
+    background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
     padding-top: 170px;
 }
 
@@ -316,10 +316,27 @@ ul {
 
 /* END MENU DESPLEGABLE */
 
-.form-add-student {
+.content {
+    background: whitesmoke;
+    width: 80%;
+    margin: auto;
+}
+
+.roles {
+    margin: auto;
+    width: 90%;
+    padding: 15px;
+}
+
+
+/* .roles select {
+    padding: 7px;
+} */
+
+.form-add-user {
     display: grid;
     margin: auto;
-    width: 70%;
+    width: 90%;
     grid-template-areas: "titulo     titulo" "nombre             primer-apellido" "segundo-apellido   cedula" "programa           semestre" "email              email" "registrar       registrar";
 }
 
@@ -354,6 +371,14 @@ ul {
     width: 40%;
 }
 
+.cammpo-semestre.disable {
+    display: none;
+}
+
+.cammpo-semestre.enable {
+    display: flex;
+}
+
 .campo-email {
     grid-area: email;
     width: 70%;
@@ -372,7 +397,7 @@ ul {
     color: #000;
 }
 
-.form-add-student input:not(input[type="submit"]) {
+.form-add-user input:not(input[type="submit"]) {
     margin: 15px;
     border: none;
     outline: none;
@@ -381,18 +406,18 @@ ul {
     border-bottom: 2px solid #000;
 }
 
-.form-add-student .programa {
+.form-add-user .programa {
     display: flex;
     margin: 15px;
 }
 
-.form-add-student .programa select {
+.form-add-user .programa select {
     outline: none;
     padding: 5px;
     border: 1px solid #000;
 }
 
-.form-add-student .btn-agregar {
+.form-add-user .btn-agregar {
     margin: 15px;
     background: var(--background-primario);
     font-family: "Maven Pro", sans-serif;

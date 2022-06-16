@@ -108,35 +108,15 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <a href="">
                     <div class="title">
                         <i class="fas fa-user-plus"></i>
-                        <label>Registro de estudiante</label>
+                        <label>Registro de usuario</label>
                     </div>
                 </a>
             </div>
             <div class="separator">
 
             </div>
-            <div class="item">
-                <a href="">
-                    <div class="title">
-                        <i class="fas fa-user-plus"></i>
-                        <label>Registro de asesor</label>
-                    </div>
-                </a>
-            </div>
-            <div class="separator">
 
-            </div>
-            <div class="item">
-                <a href="">
-                    <div class="title">
-                        <i class="fas fa-user-plus"></i>
-                        <label>Registro de coordinador</label>
-                    </div>
-                </a>
-            </div>
-            <div class="separator">
 
-            </div>
             <div class="item">
                 <a href="">
                     <div class="title">
@@ -149,54 +129,35 @@ if ($variable_sesion == null || $variable_sesion = '') {
     </div>
 
 
-    <section class="admin-profile-usuario">
-        <div class="opciones_admin">
-            <div class="separation">
-                <a href="pages/agregar-estudiante.php">
-                    <div class="option_ad">
-                        <h2>Registro de estudiante</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
-                    </div>
-                </a>
-            </div>
+    <div class="admin-profile-usuario">
 
-            <div class="separation">
-                <a href="pages/agregar-docente.php">
-                    <div class="option_ad">
-                        <h2>Registro de asesor</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
-                    </div>
-                </a>
-            </div>
+        <div class="separation">
+            <a href="pages/agregar-estudiante.php">
+                <div class="option_ad">
+                    <h2>Registro de usuario</h2>
+                    <center><i class="fas fa-user-plus"></i></center>
+                </div>
+            </a>
+        </div>
 
-            <div class="separation">
-                <a href="pages/agregar-coordinador.php">
-                    <div class="option_ad">
-                        <h2>Asignar coordinador</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
-                    </div>
-                </a>
-            </div>
+        <div class="separation">
+            <a href="pages/control-usuarios.php">
+                <div class="option_ad">
+                    <h2>Buscar usuario</h2>
+                    <center><i class="fas fa-search"></i></center>
+                </div>
+            </a>
         </div>
-        <div class="opciones_admin">
-            <div class="separation">
-                <a href="pages/control-usuarios.php">
-                    <div class="option_ad">
-                        <h2>Buscar usuario</h2>
-                        <center><i class="fas fa-search"></i></center>
-                    </div>
-                </a>
-            </div>
-            <div class="separation">
-                <a href="">
-                    <div class="option_ad">
-                        <h2>Asignar coordinador</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
-                    </div>
-                </a>
-            </div>
+        <div class="separation">
+            <a href="">
+                <div class="option_ad">
+                    <h2>Asignar coordinador</h2>
+                    <center><i class="fas fa-user-plus"></i></center>
+                </div>
+            </a>
         </div>
-    </section>
+
+    </div>
     <div class="mobile_alert">
         <div><i class="bi bi-exclamation-octagon-fill"></i>
             <img src="../img/logo_p.png" alt="">

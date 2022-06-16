@@ -16,7 +16,6 @@ if (isset($_POST['login'])) {
     } else {
         $user = new User;
         if ($user->getUser($usuario, $contraseña)) {
-            // echo '<h1>' . $numrows['id_rol'] . '</h1>';
             session_start();
             $_SESSION['usuario'] = $usuario;
         } else {
