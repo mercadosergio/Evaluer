@@ -47,13 +47,6 @@ include_once  '../../../controller/nombre.php';
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="container">
 
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <h3>DOCENTE</h3>
                 <ul class="navbar-nav mx-auto">

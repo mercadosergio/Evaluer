@@ -11,20 +11,6 @@ body {
     --color-detalle: #fee700;
 }
 
-body::-webkit-scrollbar {
-    width: 12px;
-    background: #b3b1ff;
-}
-
-body::-webkit-scrollbar-thumb {
-    background: #0165a8d3;
-    border-radius: 5px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-    background: #014674;
-}
-
 .full-screen {
     padding: 8rem 0;
 }
@@ -151,49 +137,6 @@ strong {
 .navbar-light .navbar-nav .nav-link:focus span,
 .navbar-light .navbar-nav .nav-link:hover span {
     transform: translateY(-100%);
-}
-
-.navbar-light .navbar-toggler-icon {
-    background: none;
-}
-
-.navbar-toggler {
-    border: 0;
-    padding: 0;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    outline: none;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-.navbar-toggler:focus {
-    outline: none;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:first-child {
-    transform: rotate(45deg);
-    top: 6px;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:nth-child(2) {
-    display: none;
-}
-
-.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:last-child {
-    transform: rotate(-45deg);
-    bottom: 1px;
-}
-
-.navbar-toggler .navbar-toggler-icon {
-    background: #212121;
-    display: block;
-    width: 100%;
-    height: 2px;
-    margin: 5px 0;
-    transition: all 0.4s ease;
-    position: relative;
 }
 
 .copyright-text {
@@ -337,7 +280,9 @@ ul {
     display: grid;
     margin: auto;
     width: 90%;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-areas: "titulo     titulo" "nombre             primer-apellido" "segundo-apellido   cedula" "programa           semestre" "email              email" "registrar       registrar";
+    gap: 20px;
 }
 
 .cont-title {
@@ -367,6 +312,7 @@ ul {
 }
 
 .cammpo-semestre {
+    margin-top: 15px;
     grid-area: semestre;
     width: 40%;
 }
@@ -381,7 +327,7 @@ ul {
 
 .campo-email {
     grid-area: email;
-    width: 70%;
+    width: 50%;
 }
 
 .btn-agregar {
@@ -397,25 +343,28 @@ ul {
     color: #000;
 }
 
-.form-add-user input:not(input[type="submit"]) {
+
+/* .form-add-user input:not(input[type="submit"]) {
     margin: 15px;
     border: none;
     outline: none;
     background: none;
     padding: 3px;
     border-bottom: 2px solid #000;
-}
+} */
 
 .form-add-user .programa {
     display: flex;
-    margin: 15px;
+    align-items: center;
+    padding: 15px;
 }
 
-.form-add-user .programa select {
+
+/* .form-add-user .programa select {
     outline: none;
     padding: 5px;
     border: 1px solid #000;
-}
+} */
 
 .form-add-user .btn-agregar {
     margin: 15px;

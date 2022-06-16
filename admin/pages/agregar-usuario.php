@@ -51,13 +51,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../img/logo_p.png"></a>
         <div class="container">
 
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <h3>ADMINISTRADOR</h3>
                 <ul class="navbar-nav mx-auto">
@@ -95,10 +88,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
                     <h3 class="title" id="stitle">Información del usuario</h3>
                 </div>
 
-                <input type="text" name="nombre" class="campo-nombre" placeholder="Nombres">
-                <input type="text" name="p_apellido" class="campo-primer-apellido" placeholder="Primer apellido">
-                <input type="text" name="s_apellido" class="campo-segundo-apellido" placeholder="Segundo apellido">
-                <input type="text" name="cedula" class="campo-cedula" placeholder="No. documento de identidad">
+                <input type="text" name="nombre" class="campo-nombre form-control" placeholder="Nombres">
+                <input type="text" name="p_apellido" class="campo-primer-apellido form-control" placeholder="Primer apellido">
+                <input type="text" name="s_apellido" class="campo-segundo-apellido form-control" placeholder="Segundo apellido">
+                <input type="text" name="cedula" class="campo-cedula form-control" placeholder="No. documento de identidad">
 
                 <div class="programa">
                     <label>Programa:</label>
@@ -110,9 +103,9 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         ?>
                     </select>
                 </div>
-                <input type="number" min="6" max="9" name="semestre" class="cammpo-semestre" placeholder="Semestre" id="semestre">
-                <input type="text" name="email" class="campo-email" placeholder="Email">
-                <input type="submit" name="agregar" class="btn-agregar" value="Registrar">
+                <input type="number" min="6" max="9" name="semestre" class="cammpo-semestre form-control" placeholder="Semestre" id="semestre">
+                <input type="text" name="email" class="campo-email form-control" placeholder="Email">
+                <input type="submit" name="agregar" class="btn-agregar form-control" value="Registrar">
 
             </div>
         </div>
