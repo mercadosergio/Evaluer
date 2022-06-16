@@ -2,6 +2,8 @@
 session_start();
 error_reporting(0);
 include("../../model/conexion.php");
+include '../../model/Entidad.php';
+
 $id = $_GET['id'];
 $nombre = $_GET['nombres'];
 $p_apellido = $_GET['p_apellido'];
@@ -35,8 +37,8 @@ $programa = $_GET['programa'];
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -96,12 +98,8 @@ $programa = $_GET['programa'];
                         ?>
                         <option value="1">Seleccione...</option>
                         <?php
-                        $buscar_programa = "SELECT * FROM programas";
-                        $resultado = mysqli_query($conexion, $buscar_programa);
-
-                        while ($filas = mysqli_fetch_array($resultado)) {
-                            echo '<option value="' . $filas['identificador'] . '">' . $filas['nombre'] . '</option>';
-                        }
+                        $entidad = new Entidad;
+                        $entidad->getPrograma();
                         ?>
                     </select>
 

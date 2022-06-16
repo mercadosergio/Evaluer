@@ -2,6 +2,8 @@
 session_start();
 error_reporting(0);
 include("../../model/conexion.php");
+include '../../model/Entidad.php';
+
 $id = $_GET['id'];
 $nombre = $_GET['nombres'];
 $p_apellido = $_GET['p_apellido'];
@@ -35,8 +37,8 @@ $id_n = $_GET['cedula'];
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->

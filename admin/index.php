@@ -132,7 +132,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <div class="admin-profile-usuario">
 
         <div class="separation">
-            <a href="pages/agregar-estudiante.php">
+            <a href="pages/agregar-usuario.php">
                 <div class="option_ad">
                     <h2>Registro de usuario</h2>
                     <center><i class="fas fa-user-plus"></i></center>

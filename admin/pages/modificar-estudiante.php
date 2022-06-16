@@ -2,6 +2,9 @@
 session_start();
 error_reporting(0);
 include("../../model/conexion.php");
+include '../../model/Entidad.php';
+
+
 $id = $_GET['id'];
 $nombre = $_GET['nombre'];
 $p_apellido = $_GET['p_apellido'];
@@ -38,8 +41,8 @@ $semestre = $_GET['semestre'];
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -78,7 +81,7 @@ $semestre = $_GET['semestre'];
 
     <!-- <div class="imagen_fondo"> -->
     <section class="alfa">
-    <?php include("../../controller/modificar.php") ?>
+        <?php include("../../controller/modificar.php") ?>
         <form method="POST">
             <div class="formulario-edit-user">
                 <h3>Modificar usuario</h3>
@@ -98,12 +101,8 @@ $semestre = $_GET['semestre'];
                         ?>
                         <option value="1">Seleccione...</option>
                         <?php
-                        $buscar_programa = "SELECT * FROM programas";
-                        $resultado = mysqli_query($conexion, $buscar_programa);
-
-                        while ($filas = mysqli_fetch_array($resultado)) {
-                            echo '<option value="' . $filas['identificador'] . '">' . $filas['nombre'] . '</option>';
-                        }
+                        $entidad = new Entidad;
+                        $entidad->getPrograma();
                         ?>
                     </select>
                     <label class="lbl-semestre">Semestre:</label><input type="number" max="9" min="6" class="semestre" name="semestre" value="<?= $semestre ?>">

@@ -37,7 +37,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../css/agregar-estudiante.css">
+    <link rel="stylesheet" href="../css/agregar-usuario.css">
 </head>
 
 <body>
