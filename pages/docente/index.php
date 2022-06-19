@@ -1,5 +1,7 @@
 <?php
 include("../../model/conexion.php");
+include("../../model/Entidad.php");
+$profile = new Entidad;
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
@@ -56,8 +58,12 @@ include_once  '../../controller/nombre.php';
                 </ul>
                 <ul class="log">
                     <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i><?php echo $nombre_usuario;
-                                                                                    ?></a>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                            ?>" alt="">
+
+                        <?php
+                        $profile->getProfileUser();
+                        ?>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>

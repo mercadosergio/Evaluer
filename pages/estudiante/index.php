@@ -85,9 +85,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
                     </ul>
                     <ul class="log">
                         <li>
-                            <i class='uil uil-user'></i>
+                            <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
+
                             <?php
-                            $profile = new Entidad;
                             $profile->getProfileUser();
                             ?>
                             <ul>

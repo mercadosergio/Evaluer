@@ -1,5 +1,6 @@
 <?php
 include("../../../model/conexion.php");
+include("../../../model/Entidad.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
@@ -8,7 +9,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-include("../../../controller/nombre.php");
+$profile = new Entidad;
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,8 +42,8 @@ include("../../../controller/nombre.php");
 </head>
 
 <body>
-     <!-- Pantalla de carga -->
-     <div id="contenedor_carga">
+    <!-- Pantalla de carga -->
+    <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
     <!-- MENU -->
@@ -63,12 +64,13 @@ include("../../../controller/nombre.php");
 
                 <ul class="log">
                     <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                            <label>
-                                <?php echo $nombre_usuario;
-                                ?>
-                            </label>
-                        </a>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
+
+                        <?php
+
+                        $profile->getProfileUser();
+                        ?>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>

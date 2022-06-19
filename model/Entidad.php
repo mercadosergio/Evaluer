@@ -17,10 +17,22 @@ class Entidad extends DataBase
 
     public function getProfileUser()
     {
-        $consulta  = "SELECT * FROM usuarioS WHERE usuario = " . $_SESSION['usuario'];
+        $consulta  = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
         $result = $this->connect()->query($consulta);
         $filas = mysqli_fetch_array($result);
-        echo '<img src="../files/photos' . $filas['foto'] . '">';
         echo '<label class="cl">' . $filas['nombre'] . '</label>';
+    }
+    public function getProfilePhoto()
+    {
+        $consulta  = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
+        $result = $this->connect()->query($consulta);
+        $filas = mysqli_fetch_array($result);
+
+        if ($filas['foto'] == null || $filas['foto'] == null) {
+            echo 'default.png';
+        } else {
+
+            echo $filas['foto'];
+        }
     }
 }

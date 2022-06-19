@@ -250,6 +250,10 @@ ul {
     color: white;
 }
 
+.cl {
+    font-size: 20px;
+}
+
 
 /* END MENU DESPLEGABLE.......................................... */
 
@@ -257,25 +261,30 @@ form {
     position: relative;
 }
 
+.cont-titulo {
+    width: 80%;
+    margin-top: 20px;
+    border: #bebebe 1px solid;
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
 
-/* :root {
-    --width: 300px;
-    --padding: 10px;
-    --bgcolor: #21acac;
-    --hovercolor: #0d7575;
-    --width-collapsed: 50px;
-    --texto: white;
-} */
+.cont-titulo h3 {
+    font-size: 20px;
+    color: black;
+}
 
 .seccion-anteproyecto {
     margin-top: 10px;
-    width: 70%;
-    height: 250px;
-    background: var(--background-primario);
-    color: white;
+    width: 80%;
+    border: #bebebe 1px solid;
+    background: #fff;
     display: flex;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .seccion-anteproyecto .archivo {
@@ -290,8 +299,8 @@ form {
     padding: 5px;
     width: 205px;
     font-size: 20px;
-    color: var(--background-primario);
-    background: var(--color-detalle);
+    color: #fff;
+    background: var(--background-primario);
     border-radius: 10px;
     border: none;
     margin-left: auto;
@@ -341,7 +350,7 @@ form {
 }
 
 .inputfile-5+label {
-    color: white;
+    color: #000;
 }
 
 .inputfile-5+label figure {
@@ -378,9 +387,8 @@ form {
     border-radius: 5px;
 }
 
-.seccion-anteproyecto .comentario .marco-textarea img {
-    width: 50px;
-    height: 50px;
+.seccion-anteproyecto .comentario .marco-textarea i {
+    font-size: 50px;
     margin-right: 4px;
 }
 
@@ -394,20 +402,6 @@ form {
     padding: 5px;
 }
 
-.seccion-entregas {
-    width: 60%;
-}
-
-form h3 {
-    background: #c4c4c4;
-    border-radius: 10px;
-    color: black;
-    padding: 5px;
-    margin-top: 20px;
-    text-align: center;
-    width: 300px;
-}
-
 textarea {
     outline: none;
     background: none;
@@ -417,17 +411,27 @@ textarea {
 
 /* Entregas de la fecha */
 
-.cont-entregas {
+.historial {
+    margin: 10px 0;
+    padding: 10px;
     width: 80%;
+    background: #fff;
+    border: #bebebe 1px solid;
+    border-radius: 5px;
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; */
+    display: flex;
+    flex-direction: column;
 }
 
 .cont-entregas .detalle_entrega {
+    width: 80%;
+    margin: 10px 0;
     padding: 20px;
     padding-left: 10px;
     background: #fff;
     display: flex;
-    width: 90%;
-    margin-bottom: 10px;
     border: var(--background-primario) 1px solid;
 }
 
@@ -438,19 +442,27 @@ textarea {
 
 .detalle_entrega>.datos {
     margin-left: 10px;
-    margin-right: 20px;
-    display: block;
-    width: 40%;
-}
-
-.datos label {
-    display: flex;
+    width: 100%;
+    /* height: 100px; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
+    /* gap: 15px; */
+    /* overflow: auto; */
 }
 
 .detalle_entrega .datos a {
     text-decoration: none;
 }
 
+
+/* 
+.datos label {
+    display: flex;
+} */
+
+
+/* 
 .detalle_entrega .datos label {
     margin-top: 7px;
 }
@@ -470,7 +482,7 @@ textarea {
 
 form {
     padding-bottom: 50px;
-}
+} */
 
 textarea {
     resize: none;

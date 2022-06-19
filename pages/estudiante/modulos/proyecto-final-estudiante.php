@@ -1,5 +1,6 @@
 <?php
 include("../../../model/conexion.php");
+include("../../../model/Entidad.php");
 
 session_start();
 error_reporting(0);
@@ -10,8 +11,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-include("../../../controller/nombre.php");
 
+$profile = new Entidad;
 ?>
 <!doctype html>
 <html lang="en">
@@ -59,10 +60,13 @@ include("../../../controller/nombre.php");
 
                 <ul class="log">
                     <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i></i>
-                            <label><?php echo $nombre_usuario;
-                                    ?>
-                            </label></a>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
+
+                        <?php
+
+                        $profile->getProfileUser();
+                        ?>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
@@ -78,7 +82,7 @@ include("../../../controller/nombre.php");
         <div class="cont-titulo">
             <h3 class="titulo1">Subir proyecto de grado</h3>
         </div>
-        <section class="seccion-proyecto">
+        <div class="seccion-proyecto">
             <?php
             $fecha = date("Y-m-d H:i:s");
             ?>
@@ -109,44 +113,43 @@ include("../../../controller/nombre.php");
                 <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
                 <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
             </div>
-        </section>
+        </div>
         <div class="cont-titulo">
             <h3 class="titulo2">Entregas</h3>
         </div>
-        <?php
+        <div class="historial">
+            <?php
 
-        $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
-        $q = mysqli_query($conexion, $listar);
-        while ($contenido = mysqli_fetch_array($q)) {
+            $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+            $q = mysqli_query($conexion, $listar);
+            while ($contenido = mysqli_fetch_array($q)) {
 
-        ?>
-            <div class="cont-entregas">
-                <div class="detalle_entrega">
-                    <i class="fas fa-file-alt"></i>
-                    <div class="datos">
-                        <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
-                        <label>Fecha: <?php echo $contenido['fecha'] ?></label>
-                    </div>
-                    <div class="evaluacion">
-                        <label for="">Estado: <?php echo $contenido['estado'] ?></label>
-                        <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+            ?>
+                <div class="cont-entregas">
+                    <div class="detalle_entrega">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="datos">
+                            <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
+                            <label>Fecha: <?php echo $contenido['fecha'] ?></label>
+                        </div>
+                        <div class="evaluacion">
+                            <label for="">Estado: <?php echo $contenido['estado'] ?></label>
+                            <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
-
+            <?php
+            }
+            ?>
+        </div>
         <div class="guia_arbol">
             <ul>
                 <li>
                     <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
                     <ul>
                         <li>
-                            <!-- <iframe src="../guide/guia_ing.docx" frameborder="0"> -->
                             <i class="fas fa-file-alt"></i>
                             <a href="">Propuesta de grado</a>
-                            <!-- </iframe> -->
                         </li>
                         <li>
                             <i class="fas fa-file-alt"></i>

@@ -1,5 +1,6 @@
 <?php
 include("../../../model/conexion.php");
+include("../../../model/Entidad.php");
 
 session_start();
 error_reporting(0);
@@ -10,7 +11,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-include("../../../controller/nombre.php");
+
+$profile = new Entidad;
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,6 +31,7 @@ include("../../../controller/nombre.php");
     <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/anteproyecto-estudiante.css">
 
@@ -58,10 +61,12 @@ include("../../../controller/nombre.php");
 
                 <ul class="log">
                     <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i></i>
-                            <label><?php echo $nombre_usuario;
-                                    ?>
-                            </label></a>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
+
+                        <?php
+                        $profile->getProfileUser();
+                        ?>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
@@ -74,9 +79,10 @@ include("../../../controller/nombre.php");
     </nav>
 
     <form action="../../../controller/upload_anteproyecto.php" name="envio_archivo" method="POST" enctype="multipart/form-data">
-
-        <h3>Subir anteproyecto</h3>
-        <section class="seccion-anteproyecto">
+        <div class="cont-titulo">
+            <h3>Subir anteproyecto</h3>
+        </div>
+        <div class="seccion-anteproyecto">
             <?php
             $fecha = date("Y-m-d H:i:s");
 
@@ -108,42 +114,43 @@ include("../../../controller/nombre.php");
                 <label for="">Comentarios:</label>
                 <div class="marco-textarea">
                     <!-- <span class="glyphicon glyphicon-align-left"></span> -->
-                    <img src="../../../font/comentario.png" alt="">
+                    <i class="bi bi-chat-left-dots"></i>
                     <textarea style="background: #fff;" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> name="coment" id="" cols="30" rows="10"></textarea>
                 </div>
             </div>
-        </section>
-        <h3>Entregas</h3>
-        <?php
+        </div>
+        <div class="cont-titulo">
+            <h3>Entregas</h3>
+        </div>
 
-        $listar = "SELECT * FROM anteproyecto WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
-        $q = mysqli_query($conexion, $listar);
-        while ($contenido = mysqli_fetch_array($q)) {
+        <div class="historial">
+            <?php
 
-        ?>
-            <div class="cont-entregas">
-                <div class="detalle_entrega">
-                    <i class="fas fa-file-alt"></i>
-                    <div class="datos">
-                        <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
-                        <label>Fecha: <?php echo $contenido['fecha'] ?></label>
-                    </div>
-                    <div class="evaluacion">
-                        <label for="">Estado: <?php echo $contenido['estado'] ?></label>
-                        <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
-                    </div>
-                    <div class="items">
-                        <label for="" style="position: relative; top: 0;">Observaciones:</label><br>
-                        <textarea style="padding-left: 0;" readonly name="" id="" cols="30" rows="5">
-                            <?php echo $contenido['observaciones']; ?>
-                        </textarea>
+            $listar = "SELECT * FROM anteproyecto WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+            $q = mysqli_query($conexion, $listar);
+            while ($contenido = mysqli_fetch_array($q)) {
+
+            ?>
+                <div class="cont-entregas">
+                    <div class="detalle_entrega">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="datos">
+                            <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
+                            <label for="">Estado: <?php echo $contenido['estado'] ?></label>
+                            <label for="">Observaciones:</label>
+
+                            <label>Fecha: <?php echo $contenido['fecha'] ?></label>
+                            <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+                            <div style="overflow:auto;" name="" id="">
+                                <?php echo $contenido['observaciones']; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        <?php
-        }
-        ?>
-
+            <?php
+            }
+            ?>
+        </div>
         <div class="guia_arbol">
             <ul>
                 <li>
