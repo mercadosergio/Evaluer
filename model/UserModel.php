@@ -1,4 +1,5 @@
 <?php
+// include '../model/db.php';
 class User extends DataBase
 {
 
@@ -67,8 +68,8 @@ class User extends DataBase
     public function createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre, $usuario)
     {
 
-        $new_student = "INSERT INTO estudiante(nombre,p_apellido,s_apellido,cedula,programa_id,semestre,usuario) 
-            VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario')";
+        $new_student = "INSERT INTO estudiante(nombre,p_apellido,s_apellido,cedula,programa_id,semestre,usuario,time_propuesta, time_anteproyecto, time_proyecto) 
+            VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario','100000000','100000000','100000000')";
         $this->connect()->query($new_student);
 
 
@@ -83,8 +84,9 @@ class User extends DataBase
         return true;
     }
     /*
-    
-    
+     Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y 
+     datos que le permiten interactuar con el rol docente o asesor de seguimiento para el cumplimiento de las
+     metas realizadas.
     */
     public function createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
     {
@@ -125,6 +127,11 @@ class User extends DataBase
         return true;
     }
 
+
+    public function establecerLimitePropuesta($programa_id)
+    {
+        $this->connect()->query("UPDATE estudiante SET time_propuesta = 0 WHERE programa_id ='$programa_id'");
+    }
 
     public function deleteUser()
     {

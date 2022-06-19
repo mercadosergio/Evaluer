@@ -1,16 +1,20 @@
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+div::-webkit-scrollbar {
     width: 10px;
     /* background: rgba(255, 255, 255, 0.5); */
 }
 
-body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
     background: #0165a8d3;
 }
 
-body::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover,
+div::-webkit-scrollbar-thumb:hover {
     background: #014674;
 }
 
-body::-webkit-scrollbar-track {
+body::-webkit-scrollbar-track,
+div::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.185);
 }

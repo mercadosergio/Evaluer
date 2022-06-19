@@ -219,7 +219,6 @@ ul {
     display: none;
     position: absolute;
     min-width: 140px;
-    border: 1px solid #000;
 }
 
 .log li:hover>ul {
@@ -235,6 +234,10 @@ ul {
     color: white;
 }
 
+.cl {
+    font-size: 20px;
+}
+
 .cl:hover {
     color: #ffffff;
 }
@@ -242,7 +245,7 @@ ul {
 
 /* END MENU DESPLEGABLE.......................................... */
 
-.student-profile {
+.student-module {
     position: relative;
     width: 100%;
     height: 100%;
@@ -250,13 +253,13 @@ ul {
     padding-top: 160px;
 }
 
-.student-profile .seleccion div {
+.student-module .seleccion div {
     margin-left: auto;
     display: flex;
 }
 
 
-/* .student-profile .seleccion div {
+/* .student-module .seleccion div {
     background-color: #615a42;
     cursor: pointer;
 } */
@@ -292,10 +295,11 @@ ul {
 
 @media screen and (min-width: 67em) {
     body>.fondo {
-        background: linear-gradient(to right, rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8), rgba(245, 245, 245, 0.8)), url("../img/campus-aunar-2.png");
+        background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
         height: 100vh;
         background-repeat: no-repeat;
         background-size: cover;
+        display: flex;
     }
     .menu-side {
         display: none;
@@ -313,6 +317,7 @@ ul {
         border-radius: 10px;
     }
     .estado_propuesta {
+        display: none;
         position: absolute;
         padding-top: 10px;
         background-color: #fff;
@@ -337,17 +342,40 @@ ul {
         font-weight: bold;
         font-size: 25px;
     }
-    .student-profile h3 {
+    .anouncement_card {
+        display: block;
+        overflow: auto;
+        max-height: 100%;
+        margin-top: 120px;
+        width: 45%;
+        background: #f5f5f5;
+    }
+    .anouncement_card div span {
+        font-size: 18px;
+    }
+    .anouncement_card>div {
+        border: #bebebe 1px solid;
+        text-align: justify;
+        background: #fff;
+        border-radius: 5px;
+        margin: 15px;
+        padding: 20px;
+    }
+    .student-module {
+        margin-right: 300px;
+    }
+    .student-module h3 {
         text-align: center;
         position: relative;
-        font-size: 35px;
+        font-size: 30px;
+        margin-bottom: 40px;
     }
-    .student-profile .container {
-        width: 37%;
+    .student-module .container {
+        width: 60%;
         padding: none;
         margin: none;
     }
-    .student-profile .seleccion {
+    .student-module .seleccion {
         transform: skew(-7deg);
         overflow: hidden;
         padding: 10px;
@@ -355,7 +383,7 @@ ul {
         background-color: var(--color-detalle);
         margin: 20px;
         width: 100%;
-        border-radius: 10px;
+        /* border-radius: 7px; */
         cursor: pointer;
         height: 150px;
         line-height: 150px;
@@ -368,8 +396,8 @@ ul {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s;
     }
-    .student-profile .seleccion p {
-        font-size: 30px;
+    .student-module .seleccion p {
+        font-size: 27px;
         cursor: pointer;
         font-family: "Maven Pro", sans-serif;
         margin-right: 20px;
@@ -380,17 +408,17 @@ ul {
         width: 100%;
         padding-left: 10px;
     }
-    .student-profile .seleccion img {
+    .student-module .seleccion img {
         margin-right: 20px;
         margin-left: 5px;
     }
     .guia_arbol {
         margin-top: 20px;
-        top: 15%;
+        top: 12%;
         right: 0;
         /* background: #fff; */
         background: linear-gradient(to bottom, #fff, #fff, transparent);
-        border: var(--background-primario) 1px solid;
+        border: #bebebe 1px solid;
         border-bottom: none;
         position: absolute;
         width: 280px;
@@ -480,17 +508,17 @@ ul {
     .menu-opciones i {
         font-size: 20px;
     }
-    .student-profile h3 {
+    .student-module h3 {
         text-align: center;
         position: relative;
         font-size: 24px;
     }
-    .student-profile .container {
+    .student-module .container {
         width: 85%;
         padding: none;
         margin: none;
     }
-    .student-profile .seleccion {
+    .student-module .seleccion {
         margin: auto;
         margin-top: 20px;
         overflow: hidden;
@@ -501,13 +529,13 @@ ul {
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s;
     }
-    .student-profile .seleccion img {
+    .student-module .seleccion img {
         display: block;
         margin: auto;
         margin-top: 15px;
         margin-bottom: 15px;
     }
-    .student-profile .seleccion p {
+    .student-module .seleccion p {
         font-size: 20px;
         font-family: "Maven Pro", sans-serif;
         background: var(--background-primario);

@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 class Entidad extends DataBase
 {
 
@@ -12,5 +13,14 @@ class Entidad extends DataBase
         while ($filas = mysqli_fetch_array($result)) {
             echo '<option value="' . $filas['identificador'] . '">' . $filas['nombre'] . '</option>';
         }
+    }
+
+    public function getProfileUser()
+    {
+        $consulta  = "SELECT * FROM usuarioS WHERE usuario = " . $_SESSION['usuario'];
+        $result = $this->connect()->query($consulta);
+        $filas = mysqli_fetch_array($result);
+        echo '<img src="../files/photos' . $filas['foto'] . '">';
+        echo '<label class="cl">' . $filas['nombre'] . '</label>';
     }
 }

@@ -60,7 +60,7 @@ include_once  '../../controller/nombre.php';
                                                                                     ?></a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
                             <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -75,7 +75,7 @@ include_once  '../../controller/nombre.php';
             <a href="../docente/modulos/revision-propuesta.php">
                 <div class="seleccion">
                     <div>
-                        <h3>Propuestas</h3>
+                        <h3>Propuesta de grado</h3>
                         <div>
                             <i class="icono fas fa-search"></i>
                         </div>

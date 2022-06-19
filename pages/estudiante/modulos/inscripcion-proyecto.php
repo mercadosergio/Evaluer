@@ -71,7 +71,7 @@ include("../../../controller/nombre.php");
                         </a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
                             <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>

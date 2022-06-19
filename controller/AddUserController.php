@@ -40,6 +40,7 @@ if (isset($_POST['agregar'])) {
                 }
             }
         }
+        include("../admin/pages/agregar-usuario.php");
     ?>
         <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
             Usuario registrado con éxito

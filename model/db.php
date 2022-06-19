@@ -1,6 +1,7 @@
 <?php
 
-class DataBase{
+class DataBase
+{
     private $server;
     private $user;
     private $password;
@@ -8,14 +9,15 @@ class DataBase{
 
     public function __construct()
     {
-        $this->server= 'localhost';
-        $this->user= 'root';
-        $this->password= '';
-        $this->db= 'evaluer';
+        $this->server = 'localhost';
+        $this->user = 'root';
+        $this->password = '';
+        $this->db = 'evaluer';
     }
 
-    public function connect (){
-        $conexion = new mysqli($this->server,$this->user,$this->password,$this->db);
+    public function connect()
+    {
+        $conexion = new mysqli($this->server, $this->user, $this->password, $this->db);
         return $conexion;
     }
 }

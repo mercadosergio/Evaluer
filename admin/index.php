@@ -36,11 +36,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link rel="stylesheet" href="css/admin.css">
     <!-- <script src="../js/action/tab.js" defer></script> -->
 </head>
-<style>
-    .resaltar {
-        background-color: yellow;
-    }
-</style>
+
 
 <body>
 
@@ -70,7 +66,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         </a>
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/change-password.php">Cambiar contraseña</a></li>
+                            <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
                             <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
@@ -114,7 +110,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <a href="">
                     <div class="title">
                         <i class="fas fa-search"></i>
-                        <label>Buscar usuario</label>
+                        <label>Gestión de usuarios</label>
                     </div>
                 </a>
             </div>
@@ -136,7 +132,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
         <div class="separation">
             <a href="pages/control-usuarios.php">
                 <div class="option_ad">
-                    <h2>Buscar usuario</h2>
+                    <h2>Gestión de usuarios</h2>
                     <center><i class="fas fa-search"></i></center>
                 </div>
             </a>
