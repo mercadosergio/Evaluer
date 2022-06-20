@@ -59,8 +59,8 @@ include_once  '../../../controller/nombre.php';
                 </ul>
                 <ul class="log">
                     <li>
-                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                            ?>" alt="">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
 
                         <?php
                         $profile->getProfileUser();
@@ -76,13 +76,12 @@ include_once  '../../../controller/nombre.php';
         </div>
     </nav>
     <div class="anteproyecto">
-        <h3>Historial de anteproyectos</h3>
-        <label>Filtro de busqueda:</label>
-        <div class="search-registro">
-            <div class="contenedor">
-                <input type="search" id="search" placeholder="Search..." />
-                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
-            </div>
+        <div class="cont-titulo">
+            <h3>Historial de anteproyectos</h3>
+        </div>
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
             <table id="tabla" class="ant">

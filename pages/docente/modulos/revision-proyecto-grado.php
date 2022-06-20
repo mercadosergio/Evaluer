@@ -73,16 +73,15 @@ include_once  '../../../controller/nombre.php';
         </div>
     </nav>
     <div class="anteproyecto">
-        <h3>Historial de proyectos de grado</h3>
-        <label>Filtro de busqueda:</label>
-        <div class="search-registro">
-            <div class="contenedor">
-                <input type="search" id="search" placeholder="Search..." />
-                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
-            </div>
+        <div class="cont-titulo">
+            <h3>Historial de proyectos de grado</h3>
+        </div>
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
-            <table id="tabla" class="ent">
+            <table id="tabla" class="ent shadow p-3 mb-5 rounded">
                 <thead>
                     <tr>
                         <th>#</th>

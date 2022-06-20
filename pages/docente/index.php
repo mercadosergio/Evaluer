@@ -27,7 +27,8 @@ include_once  '../../controller/nombre.php';
     <meta name="author" content="">
 
     <title>Docente</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/unicons.css">
     <link rel="stylesheet" href="../../css/owl.carousel.min.css">
@@ -37,7 +38,12 @@ include_once  '../../controller/nombre.php';
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/docente-styles.css">
-
+    <link rel="stylesheet" href="../../css/scrollbar.css">
+    <script>
+        $(document).ready(function() {
+            $('txt-content').Editor();
+        });
+    </script>
 </head>
 
 <body>
@@ -110,10 +116,53 @@ include_once  '../../controller/nombre.php';
                 </div>
             </a>
         </div>
+        <div class="cont-titulo">
+            <h3>Publicar un anuncio en el curso</h3>
+        </div>
+        <div class="publicar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <form action="" method="POST">
+                            <div class="form-group">
+                                <textarea name="txt-content" id="txt-content"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btn_publicar">Publicar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <textarea name="" id="" cols="30" rows="9"></textarea> -->
+        </div>
+
+
+    </div>
+    <div class="seccion_anuncios">
+        <div class="cont-titulo">
+            <h3>Anuncios</h3>
+        </div>
+
+        <div class="grid">
+            <div class="e1"><img src="../../img/foto-sergio.jpeg" alt=""></div>
+            <div class="e2">Sergio</div>
+            <div class="e3">
+                <p>12/05/2012</p>
+            </div>
+            <div class="e4">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore accusantium tenetur natus quam autem
+                    odit expedita minus esse. Labore iure enim officia sed vitae. Molestiae incidunt soluta sed odit.
+                    Voluptatibus perspiciatis voluptate velit sequi ducimus provident, distinctio, ipsam aut laudantium
+                    impedit neque, laborum inventore dolorem veniam? Ducimus dolore praesentium sapiente?</p>
+            </div>
+        </div>
+
     </div>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../utilities/loading/load.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+    </script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
@@ -122,6 +171,7 @@ include_once  '../../controller/nombre.php';
     <script src="../../js/owl.carousel.min.js"></script>
     <script src="../../js/smoothscroll.js"></script>
     <script src="../../js/custom.js"></script>
+    <script src="../../js/editor.js"></script>
 
 </body>
 

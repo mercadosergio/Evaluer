@@ -446,43 +446,12 @@ textarea {
     /* height: 100px; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* grid-template-rows: repeat(2, 1fr); */
-    /* gap: 15px; */
     /* overflow: auto; */
 }
 
 .detalle_entrega .datos a {
     text-decoration: none;
 }
-
-
-/* 
-.datos label {
-    display: flex;
-} */
-
-
-/* 
-.detalle_entrega .datos label {
-    margin-top: 7px;
-}
-
-.detalle_entrega .evaluacion label {
-    display: block;
-}
-
-.datos,
-.evaluacion {
-    font-size: 18px;
-}
-
-.evaluacion {
-    margin-right: 20px;
-}
-
-form {
-    padding-bottom: 50px;
-} */
 
 textarea {
     resize: none;

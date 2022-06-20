@@ -125,11 +125,9 @@ $profile = new Entidad;
 
         <div class="historial">
             <?php
-
             $listar = "SELECT * FROM anteproyecto WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
             $q = mysqli_query($conexion, $listar);
             while ($contenido = mysqli_fetch_array($q)) {
-
             ?>
                 <div class="cont-entregas">
                     <div class="detalle_entrega">
@@ -157,10 +155,8 @@ $profile = new Entidad;
                     <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
                     <ul>
                         <li>
-                            <!-- <iframe src="../guide/guia_ing.docx" frameborder="0"> -->
                             <i class="fas fa-file-alt"></i>
                             <a href="">Propuesta de grado</a>
-                            <!-- </iframe> -->
                         </li>
                         <li>
                             <i class="fas fa-file-alt"></i>
@@ -177,9 +173,7 @@ $profile = new Entidad;
     </form>
 
     <script>
-        'use strict';
-
-        ;
+        'use strict';;
         (function(document, window, index) {
             var inputs = document.querySelectorAll('.inputfile');
             Array.prototype.forEach.call(inputs, function(input) {

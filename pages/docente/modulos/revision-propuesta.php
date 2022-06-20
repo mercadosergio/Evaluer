@@ -55,8 +55,8 @@ include_once  '../../../controller/nombre.php';
                 </ul>
                 <ul class="log">
                     <li>
-                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                            ?>" alt="">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                                ?>" alt="">
 
                         <?php
                         $profile->getProfileUser();
@@ -73,7 +73,9 @@ include_once  '../../../controller/nombre.php';
     </nav>
     <div class="general_content">
         <fieldset class="acciones">
-            <legend>Acciones</legend>
+            <div class="cont-titulo">
+                <h3>Acciones</h3>
+            </div>
             <form action="" method="POST">
                 <?php
                 include '../../../controller/HabilitarPropuesta.php';
@@ -83,15 +85,17 @@ include_once  '../../../controller/nombre.php';
             </form>
         </fieldset>
         <div class="lista-propuestas">
-            <h3>Propuestas de grado</h3>
-            <label>Filtro de busqueda:</label>
-            <div class="search-registro">
-                <div class="contenedor">
-                    <input type="search" id="search" placeholder="Search..." />
-                    <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
-                </div>
+            <div class="cont-titulo">
+                <h3>Propuestas de grado</h3>
             </div>
-            <div class="contenedor-titulo">
+            <!-- <label>Filtro de busqueda:</label> -->
+            <div class="box">
+                <i class="fa fa-search"></i>
+                <input type="search" id="search" placeholder="Search..." />
+            </div>
+
+
+            <div class="contenedor-tabla">
                 <table class="">
                     <thead>
                         <tr>
