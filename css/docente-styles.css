@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
+    background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 100vh; */
 }
 
 :root {
@@ -28,11 +32,6 @@ a {
     text-decoration: none !important;
     transition: all 0.4s ease;
 }
-
-
-/* a:hover {
-    color: #ffffff !important;
-} */
 
 p {
     font-size: 18px;
@@ -270,11 +269,6 @@ ul {
 /* END MENU DESPLEGABLE.......................................... */
 
 .docente-profile {
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    /* background: url("../img/background-o.png"); */
     padding-top: 160px;
     width: 100%;
 }
@@ -373,15 +367,15 @@ img {
     border-radius: 5px;
 }
 
+.form-group {
+    width: 100%;
+}
 
-/* 
 .publicar textarea {
-    border-radius: 5px;
     width: 100%;
     outline: none;
-    padding: 7px;
     resize: none;
-} */
+}
 
 .seccion_anuncios {
     background: repeating-linear-gradient(-10deg, rgb(226, 224, 224), whitesmoke 50%);

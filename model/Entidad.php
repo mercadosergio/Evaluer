@@ -35,4 +35,12 @@ class Entidad extends DataBase
             echo $filas['foto'];
         }
     }
+
+    public function publicarAnuncio(){
+        $this->connect()->query("INSERT INTO anuncios()");
+    }
+
+    public function getAnuncios(){
+        $sql = $this->connect()->query("SELECT * FROM anuncios WHERE programa_id =");
+    }
 }

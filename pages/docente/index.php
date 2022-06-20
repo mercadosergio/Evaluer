@@ -33,16 +33,23 @@ include_once  '../../controller/nombre.php';
     <link rel="stylesheet" href="../../css/unicons.css">
     <link rel="stylesheet" href="../../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../css/editor.css">
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
 
-
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script> -->
+    <script type="text/javascript" src="../../js/ckeditor/ckeditor.js"></script>
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/docente-styles.css">
     <link rel="stylesheet" href="../../css/scrollbar.css">
     <script>
-        $(document).ready(function() {
-            $('txt-content').Editor();
-        });
+        // $(document).ready(function() {
+        //     $('txt-content').Editor();
+        //     $('guardar').click(function(e) {
+        //         e.preventDefault();
+        //         var texto = $('txt-content').Editor('getText');
+
+        //     });
+        // });
     </script>
 </head>
 
@@ -120,18 +127,12 @@ include_once  '../../controller/nombre.php';
             <h3>Publicar un anuncio en el curso</h3>
         </div>
         <div class="publicar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <form action="" method="POST">
-                            <div class="form-group">
-                                <textarea name="txt-content" id="txt-content"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" id="btn_publicar">Publicar</button>
-                        </form>
-                    </div>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <textarea name="txt-content" class="ckeditor" id="ckeditor"></textarea>
                 </div>
-            </div>
+                <button type="submit" class="guardar btn btn-primary" id="btn_publicar">Publicar</button>
+            </form>
             <!-- <textarea name="" id="" cols="30" rows="9"></textarea> -->
         </div>
 
@@ -157,13 +158,25 @@ include_once  '../../controller/nombre.php';
         </div>
 
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#txt-content'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
     </script>
+
+
     <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../js/jquery-1.11.0.js"></script>
+    <script src="../../js/jquery-1.12.0.jss"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/Headroom.js"></script>
@@ -172,6 +185,7 @@ include_once  '../../controller/nombre.php';
     <script src="../../js/smoothscroll.js"></script>
     <script src="../../js/custom.js"></script>
     <script src="../../js/editor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 </body>
 
