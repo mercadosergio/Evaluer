@@ -10,7 +10,7 @@ class DataBase
     public function __construct()
     {
         $this->server = 'localhost';
-        $this->user = 'root';
+        $this->user = 'root'; 
         $this->password = '';
         $this->db = 'evaluer';
     }

@@ -31,6 +31,8 @@ include("../../controller/nombre.php");
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/coordinador-style.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scrollbar.css">
 
 </head>
 

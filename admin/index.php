@@ -9,7 +9,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
-// include_once  '../controller/nombre.php';
 ?>
 
 <!doctype html>

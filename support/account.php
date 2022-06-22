@@ -31,6 +31,8 @@ $profile = new Entidad;
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../css/change-password.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
 </head>
 
 

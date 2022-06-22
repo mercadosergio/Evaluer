@@ -31,6 +31,8 @@ $profile = new Entidad;
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/inscripcion-styles.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
+    <link rel="stylesheet" href="../../../css/header.css">
+    <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../font/fontawesome-free-6.1.1-web/css/all.css">
 
     <script src="../../../font/fontawesome-free-6.0.0-web/js/solid.js"></script>
@@ -50,13 +52,11 @@ $profile = new Entidad;
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-        <div class="container">
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <h3>ESTUDIANTE</h3>
                 <ul class="navbar-nav mx-auto">
                     <li class="principal">
-                        <a href="../index.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
+                        <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
                     </li>
 
                     </li>
@@ -79,7 +79,7 @@ $profile = new Entidad;
                     </li>
                 </ul>
             </div>
-        </div>
+       
     </nav>
 
     <div class="grid-view">

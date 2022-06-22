@@ -34,7 +34,8 @@ $profile = new Entidad;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/anteproyecto-estudiante.css">
-
+    <link rel="stylesheet" href="../../../css/header.css">
+    <link rel="stylesheet" href="../../../css/scrollbar.css">
 </head>
 
 <body>
@@ -46,35 +47,32 @@ $profile = new Entidad;
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-        <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ESTUDIANTE</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="principal">
+                    <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
+                </li>
+                <li class="fecha">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ESTUDIANTE</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="principal">
-                        <a href="../index.php" class="nav-link"><span data-hover="Principal">Principal</span></a>
-                    </li>
-                    <li class="fecha">
+                </li>
+            </ul>
 
-                    </li>
-                </ul>
+            <ul class="log">
+                <li>
+                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                            ?>" alt="">
 
-                <ul class="log">
-                    <li>
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                                ?>" alt="">
-
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                    <?php
+                    $profile->getProfileUser();
+                    ?>
+                    <ul>
+                        <li><a class="out" href="">Perfil</a></li>
+                        <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 

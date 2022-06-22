@@ -1,5 +1,4 @@
 <?php
-include("../../model/conexion.php");
 include("../../model/Entidad.php");
 $profile = new Entidad;
 session_start();
@@ -12,7 +11,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     die();
 }
 
-include_once  '../../controller/nombre.php';
 ?>
 
 <!doctype html>
@@ -40,7 +38,9 @@ include_once  '../../controller/nombre.php';
     <script type="text/javascript" src="../../js/ckeditor/ckeditor.js"></script>
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/docente-styles.css">
+    <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/scrollbar.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script>
         // $(document).ready(function() {
         //     $('txt-content').Editor();
@@ -127,13 +127,19 @@ include_once  '../../controller/nombre.php';
             <h3>Publicar un anuncio en el curso</h3>
         </div>
         <div class="publicar">
-            <form action="" method="POST">
+            <form action="../../controller/PublicarAnuncio.php" method="POST">
                 <div class="form-group">
-                    <textarea name="txt-content" class="ckeditor" id="ckeditor"></textarea>
+                    <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
                 </div>
+                <input hidden type="text" name="nombre" value="<?php $profile->getProfileName() ?>">
+
+                <input hidden type="text" name="programa_id" value="<?php $profile->getProfileProgram() ?>">
+                <input hidden type="datetime" name="datetime" value="<?php
+                                                                        date_default_timezone_set('America/Bogota');
+                                                                        $fecha = date("Y-m-d H:i:s");
+                                                                        echo $fecha; ?>">
                 <button type="submit" class="guardar btn btn-primary" id="btn_publicar">Publicar</button>
             </form>
-            <!-- <textarea name="" id="" cols="30" rows="9"></textarea> -->
         </div>
 
 
@@ -142,20 +148,13 @@ include_once  '../../controller/nombre.php';
         <div class="cont-titulo">
             <h3>Anuncios</h3>
         </div>
+        <form action="../../controller/EliminarAnuncio.php" method="POST">
+            <?php
+            $data = new Entidad;
+            $data->getAnuncios();
+            ?>
 
-        <div class="grid">
-            <div class="e1"><img src="../../img/foto-sergio.jpeg" alt=""></div>
-            <div class="e2">Sergio</div>
-            <div class="e3">
-                <p>12/05/2012</p>
-            </div>
-            <div class="e4">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore accusantium tenetur natus quam autem
-                    odit expedita minus esse. Labore iure enim officia sed vitae. Molestiae incidunt soluta sed odit.
-                    Voluptatibus perspiciatis voluptate velit sequi ducimus provident, distinctio, ipsam aut laudantium
-                    impedit neque, laborum inventore dolorem veniam? Ducimus dolore praesentium sapiente?</p>
-            </div>
-        </div>
+        </form>
 
     </div>
     <script>
@@ -185,7 +184,8 @@ include_once  '../../controller/nombre.php';
     <script src="../../js/smoothscroll.js"></script>
     <script src="../../js/custom.js"></script>
     <script src="../../js/editor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 
 </body>
 

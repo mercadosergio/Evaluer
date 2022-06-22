@@ -2,13 +2,13 @@
 include("../../model/conexion.php");
 session_start();
 error_reporting(0);
-
 $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
+// $profile = new Entidad;
 ?>
 
 <!doctype html>
@@ -57,7 +57,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
                 <ul class="log">
                     <li class="">
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i><?php echo $_SESSION['usuario'] ?></a>
+
                         <ul>
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>

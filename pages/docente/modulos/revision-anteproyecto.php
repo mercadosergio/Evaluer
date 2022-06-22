@@ -38,7 +38,8 @@ include_once  '../../../controller/nombre.php';
     </script>
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/revision-anteproyecto.css">
-
+    <link rel="stylesheet" href="../../../css/header.css">
+    <link rel="stylesheet" href="../../../css/scrollbar.css">
 </head>
 
 <body>

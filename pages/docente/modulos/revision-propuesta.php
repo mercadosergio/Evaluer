@@ -34,7 +34,8 @@ include_once  '../../../controller/nombre.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/revision-propuesta.css">
-
+    <link rel="stylesheet" href="../../../css/header.css">
+    <link rel="stylesheet" href="../../../css/scrollbar.css">
 </head>
 
 <body>
