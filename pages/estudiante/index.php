@@ -84,14 +84,14 @@ if ($variable_sesion == null || $variable_sesion = '') {
                     </li>
                 </ul>
                 <ul class="log">
-                    <li>
+                    <li id="desplegar">
                         <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto();
                                                                                                             ?>" alt="">
 
                         <?php
                         $profile->getProfileUser();
                         ?>
-                        <ul>
+                        <ul id="menuB">
                             <li><a class="out" href="">Perfil</a></li>
                             <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
                             <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
@@ -102,7 +102,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
         </nav>
 
-        <div class="secciones">
+        <div class="secciones" id="body">
             <div class="anouncement_card">
                 <div>
                     <span><i class="bi bi-info-circle-fill"></i> Anuncios del curso</span>
@@ -227,6 +227,14 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </label>
         </div>
     </div>
+    <script>
+        document.getElementById('desplegar').addEventListener('click', function(e) {
+            document.getElementById("menuB").style.display = "block";
+        });
+        document.getElementById('body').addEventListener('click', function(e) {
+            document.getElementById("menuB").style.display = "none";
+        });
+    </script>
     <script>
         function activar() {
             // document.getElementById("menu-side").style.width = "50%";

@@ -1,6 +1,6 @@
 <?php
 
-include '../model/UserModel.php';
+include '../model/User.php';
 
 
 class ControladorEstudiante
@@ -9,7 +9,13 @@ class ControladorEstudiante
 
     public function __construct()
     {
-        $this->estudiante = new User;
+        $this->estudiante = new Usuario();
+    }
+
+    public function index()
+    {
+        $resultado = $this->estudiante->listar();
+        return $resultado;
     }
 
     public function crear($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre, $usuario)
@@ -22,7 +28,24 @@ class ControladorEstudiante
         $this->estudiante->set("semestre", $semestre);
         $this->estudiante->set("usuario", $usuario);
 
-        $resultado = $this->estudiante->crearEstudiante();
+        $resultado = $this->estudiante->crear();
         return $resultado;
+    }
+
+    public function eliminar($id)
+    {
+        $this->estudiante->set("id", $id);
+        $this->estudiante->eliminar();
+    }
+    public function ver($id)
+    {
+        $this->estudiante->set("id", $id);
+        $this->estudiante->eliminar();
+    }
+    public function editar($id)
+    {
+        $this->estudiante->set("id", $id);
+        $this->estudiante->ver();
+        $this->estudiante->editar();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-// include '../model/db.php';
+
 class User extends DataBase
 {
     //Atributos
@@ -14,20 +14,6 @@ class User extends DataBase
     private $usuario;
 
     private $con;
-
-    // public function __construct()
-    // {
-    //     $this->con = new DataBase;
-    // }
-
-    // public function set($atributo, $contenido)
-    // {
-    //     $this->$atributo = $contenido;
-    // }
-    // public function get($atributo)
-    // {
-    //     return $this->$atributo;
-    // }
 
     //Obtener usuario para inicio de sesión
     public function getUser($username, $password)

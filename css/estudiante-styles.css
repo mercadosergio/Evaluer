@@ -110,62 +110,6 @@
         font-size: 16px;
         overflow: hidden;
     }
-    /* MENU DESPLEGABLE DE USUARIO */
-    
-    * {
-        padding: 0px;
-        margin: 0px;
-    }
-    
-    .log {
-        margin-right: 25px;
-        color: #fff;
-    }
-    
-    .log i {
-        width: 150px;
-    }
-    
-    ul {
-        list-style: none;
-    }
-    
-    .log li a {
-        padding: 10px;
-        display: block;
-    }
-    
-    .log>li {
-        float: left;
-    }
-    
-    .log li ul {
-        background: var(--background-primario);
-        display: none;
-        position: absolute;
-        min-width: 140px;
-    }
-    
-    .log li:hover>ul {
-        display: block;
-    }
-    
-    .log li ul li:hover {
-        background: var(--hover);
-    }
-    
-    .log li ul li .out {
-        text-decoration: none;
-        color: white;
-    }
-    
-    .cl {
-        font-size: 18px;
-    }
-    
-    .cl:hover {
-        color: #ffffff;
-    }
     /* END MENU DESPLEGABLE.......................................... */
     
     .student-module .seleccion div {
@@ -261,11 +205,12 @@
             font-weight: bold;
             font-size: 25px;
         }
+        /* Seccion 1 */
         .anouncement_card {
             display: block;
             overflow: auto;
             max-height: 100%;
-            width: 45%;
+            width: 30%;
             background: #f5f5f5;
         }
         .anouncement_card div span {
@@ -279,14 +224,12 @@
             margin: 15px;
             padding: 20px;
         }
+        /* Seccion 2 */
         .student-module {
             position: relative;
-            width: 100%;
+            width: 60%;
             height: 100%;
             padding: 20px;
-        }
-        .student-module {
-            margin-right: 300px;
         }
         .student-module h3 {
             text-align: center;
@@ -338,14 +281,15 @@
         }
         .guia_arbol {
             margin-top: 20px;
-            top: 12%;
-            right: 0;
+            /* top: 12%;
+            right: 0; */
             /* background: #fff; */
             background: linear-gradient(to bottom, #fff, #fff, transparent);
             border: #bebebe 1px solid;
             border-bottom: none;
-            position: absolute;
-            width: 280px;
+            /* position: absolute; */
+            /* width: 280px; */
+            width: 15%;
             height: 60%;
             padding: 10px;
         }
@@ -364,6 +308,9 @@
         }
         .student-module .seleccion p {
             font-size: 24px;
+        }
+        .guia_arbol {
+            width: 20%;
         }
     }
     

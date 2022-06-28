@@ -41,37 +41,37 @@ $profile = new Entidad;
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../pages/estudiante/index.php"><img class="logo" src="../img/logo_p.png"></a>
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>CAMBIAR CONTRASEÑA</h3>
 
-                <ul class="navbar-nav mx-auto">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>CAMBIAR CONTRASEÑA</h3>
 
-                </ul>
-                <ul class="log">
-                    <li>
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                            ?>" alt="">
+            <ul class="navbar-nav mx-auto">
 
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            </ul>
+            <ul class="log">
+                <li>
+                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../files/photos/<?php $profile->getProfilePhoto();
+                                                                                                        ?>" alt="">
+
+                    <?php
+                    $profile->getProfileUser();
+                    ?>
+                    <ul>
+                        <li><a class="out" href="">Perfil</a></li>
+                        <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+
     </nav>
     <?php
     include("../controller/cambiar-clave.php");
     ?>
     <div class="inf">
     </div>
-    <div class="contenedor-soporte">
+    <div class="contenedor-soporte shadow mb-5 bg-body rounded">
         <h3>Cambiar foto de perfil</h3>
         <form action="../controller/change-photo.php" name="envio_archivo" method="POST" enctype="multipart/form-data">
             <div class="settings">

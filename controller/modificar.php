@@ -10,8 +10,6 @@ if (isset($_POST['modificar-estudiante'])) {
     $programa_id = $_POST['programa_id'];
     $semestre = $_POST['semestre'];
 
-    $json = json_encode($programa_id, true);
-
     for ($i = 0; $i < count($programa_id); $i++) {
         $update_e = $conexion->query("UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$id_n',
         programa_id='$programa_id[$i]',semestre='$semestre',usuario='$id_n' WHERE id = '$id'");

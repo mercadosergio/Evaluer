@@ -126,6 +126,7 @@
 }
 
 .log {
+    cursor: pointer;
     margin-right: 25px;
     color: #fff;
 }
@@ -167,6 +168,10 @@ ul {
     color: white;
 }
 
+.cl {
+    cursor: pointer;
+}
+
 .cl:hover {
     color: #ffffff;
 }
@@ -190,6 +195,7 @@ ul {
         border-radius: 10px;
     }
     .principal a span label {
+        cursor: pointer;
         font-size: 20px;
     }
     .cl {

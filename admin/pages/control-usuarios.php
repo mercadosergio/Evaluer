@@ -1,5 +1,6 @@
 <?php
 include("../../model/conexion.php");
+include("../../model/Metodos.php");
 session_start();
 error_reporting(0);
 $variable_sesion = $_SESSION['usuario'];
@@ -9,6 +10,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     die();
 }
 // $profile = new Entidad;
+
 ?>
 
 <!doctype html>
@@ -104,13 +106,14 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         </thead>
                         <tbody id="userInfo">
                             <?php
-                            // $mostrar = "SELECT * FROM estudiante";
-                            // $mostrar = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre FROM estudiante ORDER BY id desc";
+                            $obj = new Metodos();
+                            $tabla = "SELECT * FROM estudiantes";
+                            // $datos = $obj->listar($tabla);
+
                             $mostrar_by_id = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre,usuario FROM estudiante ORDER BY id";
                             $result = mysqli_query($conexion, $mostrar_by_id);
 
                             while ($filas = mysqli_fetch_array($result)) {
-                                $id_registro = $filas['id'];
                             ?>
                                 <tr class="valores">
                                     <td><?php echo $filas['id'] ?></td>
