@@ -23,6 +23,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <meta name="author" content="">
 
     <title>Administración de usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/unicons.css">
@@ -32,8 +33,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../css/control-usuarios.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../css/header.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
@@ -46,27 +47,27 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../img/logo_p.png"></a>
-        <div class="container">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ADMINISTRADOR</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                    </li>
-                </ul>
 
-                <ul class="log">
-                    <li class="">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ADMINISTRADOR</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                </li>
+            </ul>
 
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <ul class="log">
+                <li class="">
+
+                    <ul>
+                        <li><a class="out" href="">Perfil</a></li>
+                        <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+
     </nav>
 
     <div>
@@ -117,6 +118,31 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td><?php echo $key['programa'] ?></td>
                                     <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
                                     <td class="botones_tabla">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Launch demo modal
+                                        </button>
+                                        <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <label class="lbl-nombre">Nombre:</label><input type="text" class="nombre" name="nombre" value="<?= $nombre ?>">
+                                                        <label class="lbl-p-apellido">Primer apellido:</label><input type="text" class="p-apellido" name="p_apellido" value="<?= $p_apellido ?>">
+                                                        <label class="lbl-s-apellido">Segundo apellido:</label><input type="text" class="s-apellido" name="s_apellido" value="<?= $s_apellido ?>">
+                                                        <label class="lbl-cedula">Documento de identidad:</label><input type="text" class="cedula" name="cedula" value="<?= $id_n ?>">
+                                                        <label class="lbl-programa">Programa:</label>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a href="modificar-estudiante.php?id=<?php echo $key['id'] ?>&nombre=<?php echo $key['nombre'] ?>&p_apellido=<?php echo $key['p_apellido'] ?> &s_apellido=<?php echo $key['s_apellido'] ?> &cedula=<?php echo $key['cedula'] ?> &programa=<?php echo $key['programa'] ?> &semestre=<?php echo $key['semestre'] ?>
                                         " name="modificarEstudiante" class="btn-editar">
                                             <i class="bi bi-pencil-fill"></i>
@@ -133,6 +159,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                             ?>
                         </tbody>
                     </table>
+
                 </div>
                 <div class="tabs-panel" data-index="1">
                     <table class="tabla-est">
@@ -228,6 +255,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
         </div>
     </div>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#search").on("keyup", function() {
@@ -263,7 +291,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
     </script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

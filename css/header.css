@@ -3,7 +3,6 @@
     top: 0;
     right: 0;
     left: 0;
-    z-index: 999999;
     will-change: transform;
     transition: transform 200ms linear;
     background: var(--background-primario);

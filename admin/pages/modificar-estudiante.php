@@ -85,7 +85,6 @@ $semestre = $_GET['semestre'];
                     <label class="lbl-cedula">Documento de identidad:</label><input type="text" class="cedula" name="cedula" value="<?= $id_n ?>">
                     <label class="lbl-programa">Programa:</label>
                     <select name="programa_id[]" class="programa">
-
                         <?php
                         $buscar_programa_seleccionado = "SELECT programa FROM estudiante WHERE cedula = '$id_n'";
                         $result = mysqli_query($conexion, $buscar_programa_seleccionado);
