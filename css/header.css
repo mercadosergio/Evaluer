@@ -17,18 +17,8 @@
     color: #ffffff;
 }
 
-.log label {
-    color: #ffffff;
-}
-
 .nav-item {
     color: white;
-}
-
-.log .navbar-brand {
-    font-weight: bold;
-    font-size: 20px;
-    color: #fff;
 }
 
 .navbar-expand-sm .navbar-nav .nav-link {
@@ -117,63 +107,14 @@
     padding: 0;
 }
 
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
-.log {
-    cursor: pointer;
-    margin-right: 25px;
+.dropdown>a {
+    font-weight: normal !important;
     color: #fff;
+    cursor: pointer !important;
 }
 
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--background-primario);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
-.cl {
-    cursor: pointer;
-}
-
-.cl:hover {
-    color: #ffffff;
+.dropdown img {
+    border: 2px solid var(--color-detalle);
 }
 
 

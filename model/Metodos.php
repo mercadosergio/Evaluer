@@ -1,6 +1,6 @@
 <?php
 
-// include 'db.php';
+include 'db.php';
 
 class Metodos
 {
@@ -9,7 +9,6 @@ class Metodos
         $c = new DataBase();
         $conexion = $c->connect();
 
-        // $consulta = "SELECT * FROM estudiantes";
         $result = mysqli_query($conexion, $sql);
 
         return mysqli_fetch_all($result, MYSQLI_ASSOC);

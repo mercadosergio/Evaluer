@@ -158,49 +158,6 @@ strong {
     margin: 0px;
 }
 
-.log {
-    margin-right: 25px;
-    color: #fff;
-}
-
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--background-primario);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-    border: 1px solid #000;
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
 
 /* END MENU DESPLEGABLE.......................................... */
 
@@ -306,6 +263,21 @@ img {
 .form-group {
     width: 100%;
 }
+
+.publicar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.publicar button {
+    margin: 10px auto;
+}
+
+
+/* .publicar form {
+    display: none;
+} */
 
 .publicar textarea {
     width: 100%;

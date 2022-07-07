@@ -28,8 +28,6 @@ include_once  '../../../controller/nombre.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
@@ -47,29 +45,29 @@ include_once  '../../../controller/nombre.php';
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-        <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>DOCENTE</h3>
+            <ul class="navbar-nav mx-auto">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>DOCENTE</h3>
-                <ul class="navbar-nav mx-auto">
-
-                </ul>
-                <ul class="log">
-                    <li>
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                                ?>" alt="">
-
+            </ul>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
                         <?php
                         $profile->getProfileUser();
                         ?>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="general_content">
@@ -82,7 +80,8 @@ include_once  '../../../controller/nombre.php';
                 include '../../../controller/HabilitarPropuesta.php';
                 ?>
                 <input type="text" hidden value="<?php echo $_SESSION['usuario']; ?>" name="userr">
-                <button name="begin" type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i>Iniciar entrega</button>
+                <button name="begin" type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i>Iniciar
+                    entrega</button>
             </form>
         </fieldset>
         <div class="lista-propuestas">
@@ -173,7 +172,8 @@ include_once  '../../../controller/nombre.php';
                                                                 <p id="semestre"></p>
                                                             </div>
                                                             <div class="integrantes">
-                                                                <label class="lbl-integrantes">Número de integrantes:</label>
+                                                                <label class="lbl-integrantes">Número de
+                                                                    integrantes:</label>
                                                                 <p id="num"></p>
                                                             </div>
                                                             <div class="tutor">
@@ -218,14 +218,9 @@ include_once  '../../../controller/nombre.php';
             </div>
         </div>
     </div>
-    <script>
-        const myModal = document.getElementById('myModal');
-        const myInput = document.getElementById('myInput');
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-        myModal.addEventListener('shown.bs.modal', () => {
-            myInput.focus();
-        });
-    </script>
+
 
     <script>
         $(document).ready(function() {
@@ -260,22 +255,19 @@ include_once  '../../../controller/nombre.php';
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+    </script>
 
     <script src="../../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../../js/popper.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/Headroom.js"></script>
-    <script src="../../../js/jQuery.headroom.js"></script>
-    <script src="../../../js/owl.carousel.min.js"></script>
-    <script src="../../../js/smoothscroll.js"></script>
-    <script src="../../../js/custom.js"></script>
-
 </body>
 
 </html>

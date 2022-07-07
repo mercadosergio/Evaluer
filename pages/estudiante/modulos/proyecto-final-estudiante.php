@@ -46,36 +46,39 @@ $profile = new Entidad;
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-        
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ESTUDIANTE</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="principal">
-                        <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
-                    </li>
-                    <li class="fecha">
 
-                    </li>
-                </ul>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ESTUDIANTE</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="principal">
+                    <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
+                </li>
+                <li class="fecha">
 
-                <ul class="log">
-                    <li>
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                                ?>" alt="">
+                </li>
+            </ul>
+
+            <ul class="log">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
 
                         <?php
-
                         $profile->getProfileUser();
                         ?>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-       
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
     </nav>
 
     <form action="../../../controller/upload_proyecto.php" method="POST" enctype="multipart/form-data">
@@ -208,14 +211,6 @@ $profile = new Entidad;
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../../js/popper.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/Headroom.js"></script>
-    <script src="../../../js/jQuery.headroom.js"></script>
-    <script src="../../../js/owl.carousel.min.js"></script>
-    <script src="../../../js/smoothscroll.js"></script>
-    <script src="../../../js/custom.js"></script>
-
 </body>
 
 </html>

@@ -29,7 +29,7 @@ $profile = new Entidad;
     <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../../css/inscripcion-styles.css">
+    <link rel="stylesheet" href="../../../css/propuesta.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../css/header.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
@@ -52,34 +52,37 @@ $profile = new Entidad;
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ESTUDIANTE</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="principal">
-                        <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
-                    </li>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ESTUDIANTE</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="principal">
+                    <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
+                </li>
 
-                    </li>
-                </ul>
+                </li>
+            </ul>
 
-                <ul class="log">
-                    <li>
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                                ?>" alt="">
+            <ul class="log">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
 
                         <?php
-
                         $profile->getProfileUser();
                         ?>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-       
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
     </nav>
 
     <div class="grid-view">
@@ -181,7 +184,6 @@ $profile = new Entidad;
                         <a href=""><i class="edit fas fa-edit"></i></a>
                         <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
                     </div>
-
                 <?php
                 }
                 ?>
@@ -191,13 +193,7 @@ $profile = new Entidad;
 
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../../js/popper.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/Headroom.js"></script>
-    <script src="../../../js/jQuery.headroom.js"></script>
-    <script src="../../../js/owl.carousel.min.js"></script>
-    <script src="../../../js/smoothscroll.js"></script>
-    <script src="../../../js/custom.js"></script>
+
 </body>
 
 </html>

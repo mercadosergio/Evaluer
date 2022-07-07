@@ -1,5 +1,5 @@
 <?php
-
+require_once("autoload.php");
 // include_once 'db.php';
 class Usuario extends DataBase
 {
@@ -30,6 +30,24 @@ class Usuario extends DataBase
     {
         return $this->$atributo;
     }
+
+
+    public function insertUser($nombre, $email, $usuario, $contraseña, $id_rol)
+    {
+        $this->nombre = $nombre;
+        $this->email = $email;
+        $this->usuario = $usuario;
+        $this->contraseña = $contraseña;
+        $this->id_rol = $id_rol;
+
+        $sql = "INSERT INTO usuarios(nombre,email,usuario,contraseña,id_rol)
+        VALUES ('$nombre','$email','$usuario','$contraseña','$id_rol')";
+        $this->connect()->query($sql);
+
+        mysqli_close($this->connect());
+        return true;
+    }
+
 
     public function crear()
     {

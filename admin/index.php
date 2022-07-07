@@ -31,9 +31,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link rel="stylesheet" href="../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/admin.css">
-    <!-- <script src="../js/action/tab.js" defer></script> -->
+    <link rel="stylesheet" href="../css/header.css">
 </head>
 
 
@@ -47,30 +48,29 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="index.php"><img class="logo" src="../img/logo_p.png"></a>
-        <div class="container">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ADMINISTRADOR</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                    </li>
-                </ul>
-                <ul class="log">
-                    <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                            <label>
-                                <?php echo $_SESSION['usuario'];
-                                ?>
-                            </label>
-                        </a>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ADMINISTRADOR</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                </li>
+            </ul>
+            <ul class="log">
+                <li>
+                    <a class="navbar-brand" href=""><i class='uil uil-user'></i>
+                        <label>
+                            <?php echo $_SESSION['usuario'];
+                            ?>
+                        </label>
+                    </a>
+                    <ul>
+                        <li><a class="out" href="">Perfil</a></li>
+                        <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -155,14 +155,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <script src="../utilities/loading/load.js"></script>
     <script src="../font/9390efa2c5.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Headroom.js"></script>
-    <script src="../js/jQuery.headroom.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/custom.js"></script>
-
 </body>
 
 </html>

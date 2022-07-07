@@ -1,16 +1,13 @@
 <?php
-include("../../model/db.php");
-include("../../model/UserModel.php");
-include '../../model/Entidad.php';
-include("../../controller/AddUserController.php");
-
+include_once '../../model/Metodos.php';
+$data = new Metodos();
 session_start();
 error_reporting(0);
 
 $variable_sesion = $_SESSION['usuario'];
 
 if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../index.php");
+    header("location: ../../index.php");
     die();
 }
 ?>
@@ -38,6 +35,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../css/agregar-usuario.css">
+    <link rel="stylesheet" href="../../css/header.css">
 </head>
 
 <body>
@@ -49,26 +47,23 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../img/logo_p.png"></a>
-        <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>ADMINISTRADOR</h3>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                </li>
+            </ul>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>ADMINISTRADOR</h3>
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                    </li>
-                </ul>
-
-                <ul class="log">
-                    <li class="">
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i><?php echo $_SESSION['usuario'] ?></a>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <ul class="log">
+                <li class="">
+                    <a class="navbar-brand" href=""><i class='uil uil-user'></i><?php echo $_SESSION['usuario'] ?></a>
+                    <ul>
+                        <li><a class="out" href="">Perfil</a></li>
+                        <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
     <form action="" method="POST">
@@ -98,8 +93,11 @@ if ($variable_sesion == null || $variable_sesion = '') {
                     <select name="programa_id[]" class="programa-s form-select">
                         <option selected value="1">Seleccione...</option>
                         <?php
-                        $entidad = new Entidad;
-                        $entidad->getPrograma();
+                        $sql = "SELECT * FROM programas";
+                        $datos = $data->listar($sql);
+                        foreach ($datos as $key) {
+                            echo '<option value="' . $key['identificador'] . '">' . $key['nombre'] . '</option>';
+                        }
                         ?>
                     </select>
                 </div>
@@ -141,14 +139,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/Headroom.js"></script>
-    <script src="../../js/jQuery.headroom.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/smoothscroll.js"></script>
-    <script src="../../js/custom.js"></script>
-
 </body>
 
 </html>

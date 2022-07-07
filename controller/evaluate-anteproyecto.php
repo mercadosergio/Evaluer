@@ -20,5 +20,5 @@ if (isset($_POST['evaluar'])) {
         }, 2000); // <-- time in milliseconds
     </script>
 <?php
-    header("location: ../pages/docente/revision-anteproyecto.php");
+    header("location: ../pages/docente/modulos/revision-anteproyecto.php");
 }

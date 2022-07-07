@@ -59,17 +59,21 @@ $profile = new Entidad;
             </ul>
 
             <ul class="log">
-                <li>
-                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                            ?>" alt="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
 
-                    <?php
-                    $profile->getProfileUser();
-                    ?>
-                    <ul>
-                        <li><a class="out" href="">Perfil</a></li>
-                        <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                        <li><a class="out" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                        <?php
+                        $profile->getProfileUser();
+                        ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -194,18 +198,18 @@ $profile = new Entidad;
         }(document, window, 0));
     </script>
     <script>
-        function confirmEnviar() {
-            envio.archivo.disabled = true;
-            envio.archivo.value = "Enviando...";
-            setTimeout(function() {
-                envio.archivo.disabled = false;
-                envio.archivo.value = "Enviar";
-            }, 10000);
-            return false;
-        }
-        envio.enviar.addEventListener("click", function() {
-            return confirmEnviar();
-        }, false);
+        // function confirmEnviar() {
+        //     envio.archivo.disabled = true;
+        //     envio.archivo.value = "Enviando...";
+        //     setTimeout(function() {
+        //         envio.archivo.disabled = false;
+        //         envio.archivo.value = "Enviar";
+        //     }, 10000);
+        //     return false;
+        // }
+        // envio.enviar.addEventListener("click", function() {
+        //     return confirmEnviar();
+        // }, false);
     </script>
 
     <?php
@@ -227,13 +231,6 @@ $profile = new Entidad;
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../../js/popper.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
-    <script src="../../../js/Headroom.js"></script>
-    <script src="../../../js/jQuery.headroom.js"></script>
-    <script src="../../../js/owl.carousel.min.js"></script>
-    <script src="../../../js/smoothscroll.js"></script>
-    <script src="../../../js/custom.js"></script>
 
 </body>
 

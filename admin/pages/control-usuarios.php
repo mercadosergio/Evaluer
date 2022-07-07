@@ -1,5 +1,5 @@
 <?php
-include("../../model/conexion.php");
+
 include("../../model/Metodos.php");
 session_start();
 error_reporting(0);
@@ -9,8 +9,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     header("location: ../index.php");
     die();
 }
-// $profile = new Entidad;
-
 ?>
 
 <!doctype html>
@@ -73,12 +71,9 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
     <div>
         <div class="tabs-container">
-            <label>Filtrar usuario:</label>
-            <div class="search-user">
-                <div class="contenedor">
-                    <input type="search" id="search" placeholder="Search..." />
-                    <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
-                </div>
+            <div class="box">
+                <i class="fa fa-search"></i>
+                <input type="search" id="search" placeholder="Search..." />
             </div>
             <ul class="tabs">
                 <li class="active">
@@ -106,31 +101,29 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         </thead>
                         <tbody id="userInfo">
                             <?php
+
                             $obj = new Metodos();
-                            $tabla = "SELECT * FROM estudiantes";
-                            // $datos = $obj->listar($tabla);
+                            $sql = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre,usuario FROM estudiante ORDER BY id";
+                            $datos = $obj->listar($sql);
 
-                            $mostrar_by_id = "SELECT id,nombre,p_apellido,s_apellido,cedula,programa,semestre,usuario FROM estudiante ORDER BY id";
-                            $result = mysqli_query($conexion, $mostrar_by_id);
-
-                            while ($filas = mysqli_fetch_array($result)) {
+                            foreach ($datos as $key) {
                             ?>
                                 <tr class="valores">
-                                    <td><?php echo $filas['id'] ?></td>
-                                    <td><?php echo $filas['nombre'] ?></td>
-                                    <td><?php echo $filas['p_apellido'] ?></td>
-                                    <td><?php echo $filas['s_apellido'] ?></td>
-                                    <td><?php echo $filas['cedula'] ?></td>
-                                    <td><?php echo $filas['programa'] ?></td>
-                                    <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
+                                    <td><?php echo $key['id'] ?></td>
+                                    <td><?php echo $key['nombre'] ?></td>
+                                    <td><?php echo $key['p_apellido'] ?></td>
+                                    <td><?php echo $key['s_apellido'] ?></td>
+                                    <td><?php echo $key['cedula'] ?></td>
+                                    <td><?php echo $key['programa'] ?></td>
+                                    <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
                                     <td class="botones_tabla">
-                                        <a href="modificar-estudiante.php?id=<?php echo $filas['0'] ?>&nombre=<?php echo $filas['1'] ?>&p_apellido=<?php echo $filas['2'] ?> &s_apellido=<?php echo $filas['3'] ?> &cedula=<?php echo $filas['4'] ?> &programa=<?php echo $filas['5'] ?> &semestre=<?php echo $filas['6'] ?>
+                                        <a href="modificar-estudiante.php?id=<?php echo $key['id'] ?>&nombre=<?php echo $key['nombre'] ?>&p_apellido=<?php echo $key['p_apellido'] ?> &s_apellido=<?php echo $key['s_apellido'] ?> &cedula=<?php echo $key['cedula'] ?> &programa=<?php echo $key['programa'] ?> &semestre=<?php echo $key['semestre'] ?>
                                         " name="modificarEstudiante" class="btn-editar">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input hidden type="text" name="user" readonly value="<?php echo $filas['usuario'] ?>">
-                                            <input hidden type="text" name="getIdU" readonly value="<?php echo $filas['id'] ?>">
+                                            <input hidden type="text" name="user" readonly value="<?php echo $key['usuario'] ?>">
+                                            <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
@@ -144,7 +137,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <div class="tabs-panel" data-index="1">
                     <table class="tabla-est">
                         <thead>
-                            <!-- Encabezado de tabla -->
                             <tr>
                                 <th>#</th>
                                 <th>Nombres</th>
@@ -157,29 +149,28 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         </thead>
                         <tbody id="userInfo">
                             <?php
-                            $mostrar_docente_by_id = "SELECT id,nombres,p_apellido,s_apellido,cedula,programa FROM docente ORDER BY id";
-                            $result = mysqli_query($conexion, $mostrar_docente_by_id);
+                            $sql2 = "SELECT * FROM docente ORDER BY id";
+                            $datos_docente = $obj->listar($sql2);
 
-                            while ($fila_docente = mysqli_fetch_array($result)) {
-                                $id_registro_d = $fila_docente['id'];
+                            foreach ($datos_docente as $key_d) {
+                                $id_registro_d = $key_d['id'];
                             ?>
-                                <!-- Valores de la tabla -->
                                 <tr>
-                                    <td><?php echo $fila_docente['id'] ?></td>
-                                    <td><?php echo $fila_docente['nombres'] ?></td>
-                                    <td><?php echo $fila_docente['p_apellido'] ?></td>
-                                    <td><?php echo $fila_docente['s_apellido'] ?></td>
-                                    <td><?php echo $fila_docente['cedula'] ?></td>
-                                    <td><?php echo $fila_docente['programa'] ?></td>
+                                    <td><?php echo $key_d['id'] ?></td>
+                                    <td><?php echo $key_d['nombres'] ?></td>
+                                    <td><?php echo $key_d['p_apellido'] ?></td>
+                                    <td><?php echo $key_d['s_apellido'] ?></td>
+                                    <td><?php echo $key_d['cedula'] ?></td>
+                                    <td><?php echo $key_d['programa'] ?></td>
                                     <td class="botones_tabla">
-                                        <a href="modificar-docente.php?id=<?php echo $fila_docente['0'] ?>&nombres=<?php echo $fila_docente['1'] ?>
-                                                &p_apellido=<?php echo $fila_docente['p_apellido'] ?> &s_apellido=<?php echo $fila_docente['3'] ?> &cedula=<?php echo $fila_docente['4'] ?> 
-                                                &programa=<?php echo $fila_docente['5'] ?>
+                                        <a href="modificar-docente.php?id=<?php echo $key_d['id'] ?>&nombres=<?php echo $key_d['nombres'] ?>
+                                                &p_apellido=<?php echo $key_d['p_apellido'] ?> &s_apellido=<?php echo $key_d['s_apellido'] ?> &cedula=<?php echo $key_d['cedula'] ?> 
+                                                &programa=<?php echo $key_d['programa'] ?>
                                         " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
                                         </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $fila_docente['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $fila_docente['id'] ?>">
+                                            <input type="text" name="user" hidden readonly value="<?php echo $key_d['usuario'] ?>">
+                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $key_d['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
@@ -193,7 +184,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <div class="tabs-panel" data-index="2">
                     <table class="tabla-est">
                         <thead>
-                            <!-- Encabezado de tabla -->
                             <tr>
                                 <th>#</th>
                                 <th>Nombres</th>
@@ -205,27 +195,26 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         </thead>
                         <tbody id="userInfo">
                             <?php
-                            $mostrar_coo_by_id = "SELECT * FROM coordinador ORDER BY id";
-                            $resultd = mysqli_query($conexion, $mostrar_coo_by_id);
+                            $sql3 = "SELECT * FROM coordinador ORDER BY id";
+                            $datos_c = $obj->listar($sql3);
 
-                            while ($fila_coo = mysqli_fetch_array($resultd)) {
-                                $id_registro_d = $fila_coo['id'];
+                            foreach ($datos_c as $key_c) {
+                                $id_registro_d = $key_c['id'];
                             ?>
-                                <!-- Valores de la tabla -->
                                 <tr>
-                                    <td><?php echo $fila_coo['id'] ?></td>
-                                    <td><?php echo $fila_coo['nombres'] ?></td>
-                                    <td><?php echo $fila_coo['p_apellido'] ?></td>
-                                    <td><?php echo $fila_coo['s_apellido'] ?></td>
-                                    <td><?php echo $fila_coo['cedula'] ?></td>
+                                    <td><?php echo $key_c['id'] ?></td>
+                                    <td><?php echo $key_c['nombres'] ?></td>
+                                    <td><?php echo $key_c['p_apellido'] ?></td>
+                                    <td><?php echo $key_c['s_apellido'] ?></td>
+                                    <td><?php echo $key_c['cedula'] ?></td>
                                     <td class="botones_tabla">
-                                        <a href="modificar-coordinador.php?id=<?php echo $fila_coo['0'] ?>&nombres=<?php echo $fila_coo['1'] ?>
-                                                &p_apellido=<?php echo $fila_coo['p_apellido'] ?> &s_apellido=<?php echo $fila_coo['3'] ?> &cedula=<?php echo $fila_coo['4'] ?>
+                                        <a href="modificar-coordinador.php?id=<?php echo $key_c['id'] ?>&nombres=<?php echo $key_c['nombres'] ?>
+                                                &p_apellido=<?php echo $key_c['p_apellido'] ?> &s_apellido=<?php echo $key_c['s_apellido'] ?> &cedula=<?php echo $key_c['cedula'] ?>
                                                 " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
                                         </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $fila_coo['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $fila_coo['id'] ?>">
+                                            <input type="text" name="user" hidden readonly value="<?php echo $key_c['usuario'] ?>">
+                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $key_c['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
@@ -273,17 +262,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
     </script>
     <script src="../../utilities/loading/load.js"></script>
-    <script src="../../js/controlador-usuarios.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/Headroom.js"></script>
-    <script src="../../js/jQuery.headroom.js"></script>
-    <script src="../../js/owl.carousel.min.js"></script>
-    <script src="../../js/smoothscroll.js"></script>
-    <script src="../../js/custom.js"></script>
-
 </body>
 
 </html>

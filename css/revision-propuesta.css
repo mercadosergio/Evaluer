@@ -124,60 +124,6 @@ strong {
     border-radius: 10px;
 }
 
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
-.log {
-    margin-right: 25px;
-    color: #fff;
-}
-
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--background-primario);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-    border: 1px solid #000;
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
-
-/* END MENU DESPLEGABLE.......................................... */
-
 .cont-titulo {
     width: 100%;
     border: #bebebe 1px solid;
@@ -346,4 +292,8 @@ ul {
     border: none;
     outline: none;
     resize: none;
+}
+
+.modal {
+    z-index: 9999999999999999;
 }

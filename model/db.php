@@ -20,4 +20,5 @@ class DataBase
         $conexion = new mysqli($this->server, $this->user, $this->password, $this->db);
         return $conexion;
     }
+
 }
