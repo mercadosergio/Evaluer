@@ -6,7 +6,7 @@
     transition: all time 1s ease;
     -o-transition: all time 1s ease;
     -webkit-transition: all time 1s ease;
-    z-index: 10000000000;
+    z-index: 9999999999;
 }
 
 #carga {

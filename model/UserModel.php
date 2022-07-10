@@ -13,17 +13,16 @@ class User extends DataBase
     private $email;
     private $usuario;
 
-    private $con;
-
     //Obtener usuario para inicio de sesión
     public function getUser($username, $password)
     {
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$username' AND contraseña = '$password'";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$username'";
         $result = $this->connect()->query($sql);
         $numrows = $result->num_rows;
 
-        if ($numrows == 1) {
-            $array = mysqli_fetch_array($result);
+        // $contador = 0;
+        $array = mysqli_fetch_array($result);
+        if (($numrows == 1) && (password_verify($password, $array['contraseña']))) {
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
                 if ($array['id_rol'] == 1) { //Administrador
@@ -38,6 +37,7 @@ class User extends DataBase
                     header("index.php");
                 }
             } else {
+
                 echo '<div id="alerta" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
             left: 50%;transform: translate(-50%, 0%);">
                 Usuario no existe

@@ -43,7 +43,7 @@ class Entidad extends DataBase
         $result = $this->connect()->query($consulta);
         $filas = mysqli_fetch_array($result);
 
-        if ($filas['foto'] == null || $filas['foto'] == null) {
+        if ($filas['foto'] == null || $filas['foto'] == '') {
             echo 'default.png';
         } else {
 

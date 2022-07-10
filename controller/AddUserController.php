@@ -1,5 +1,5 @@
 <?php
-
+// include '../model/UserModel.php';
 if (isset($_POST['agregar'])) {
 
     $id_rol = $_POST['role'];
@@ -11,6 +11,8 @@ if (isset($_POST['agregar'])) {
     $semestre = $_POST['semestre'];
     $email = $_POST['email'];
 
+    $contraseña = $_POST['cedula'];
+    $pass_cifrado = password_hash($contraseña, PASSWORD_DEFAULT);
 
     if ($programa_id == '1') {
 ?>
@@ -28,7 +30,7 @@ if (isset($_POST['agregar'])) {
     } else {
         $user = new User;
         for ($i = 0; $i < count($id_rol); $i++) {
-            $user->createUser($nombre, $email, $cedula, $cedula, $id_rol[$i]);
+            $user->createUser($nombre, $email, $cedula, $pass_cifrado, $id_rol[$i]);
 
             for ($j = 0; $j < count($programa_id); $j++) {
                 if ($id_rol[$i] == '2') {
@@ -40,7 +42,7 @@ if (isset($_POST['agregar'])) {
                 }
             }
         }
-        include("../admin/pages/agregar-usuario.php");
+        // include("../admin/pages/agregar-usuario.php");
     ?>
         <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
             Usuario registrado con éxito

@@ -1,13 +1,16 @@
 <?php
 include("../../model/conexion.php");
-include("../../model/Entidad.php");
 include("../../model/Metodos.php");
+$obj = new Metodos();
+
 
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
@@ -54,8 +57,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </button>
             <div class="usuario">
                 <?php
-                $profile = new Entidad;
-                $profile->getProfileUser();
+                // $profile = new Entidad;
+                // $profile->getProfileUser();
                 ?>
             </div>
             <ul class="menu-opciones">
@@ -87,11 +90,9 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <ul class="">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
+                            <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
 
-                            <?php
-                            $profile->getProfileUser();
-                            ?>
+                            <?php echo $userP['nombre']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -109,10 +110,24 @@ if ($variable_sesion == null || $variable_sesion = '') {
         </nav>
 
         <div class="secciones" id="body">
-            <div class="anouncement_card">
+            <div style="resize: horizontal;" class="anouncement_card">
                 <div>
                     <span><i class="bi bi-info-circle-fill"></i> Anuncios del curso</span>
                 </div>
+                <?php
+
+                $rep = $obj->viewAnuncio();
+                while ($actual = mysqli_fetch_array($rep)) {
+                ?>
+                    <div>
+                        <p><?php echo $actual['nombre_user']; ?></p>
+                        <p><?php echo $actual['contenido']; ?></p>
+                        <p><?php echo $actual['fecha']; ?></p>
+                    </div>
+                <?php
+                }
+
+                ?>
                 <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi iste nesciunt tempore deserunt, eius
                     amet?
                     Perspiciatis, hic alias! Cum laborum, nihil magnam esse quasi officiis ipsam adipisci dolorem.
@@ -252,12 +267,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
 
         </div>
-        <?php
-        $buscar = "SELECT * FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
-        $dato = mysqli_query($conexion, $buscar);
-        $registro = mysqli_fetch_array($dato);
-        ?>
-
         <div class="estado_propuesta">
             <h3>Estado de su proyecto</h3>
             <label>

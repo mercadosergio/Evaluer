@@ -75,7 +75,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     </nav>
 
 
-
     <div id="sidemenu" class="menu-collapsed">
         <!-- Header -->
         <div class="header">
@@ -119,32 +118,33 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
     <div class="admin-profile-usuario">
 
-        <div class="separation">
-            <a href="pages/agregar-usuario.php">
-                <div class="option_ad">
-                    <h2>Registro de usuario</h2>
-                    <center><i class="fas fa-user-plus"></i></center>
-                </div>
-            </a>
-        </div>
+        <div class="grid-template">
+            <div class="separation">
+                <a href="pages/agregar-usuario.php">
+                    <div class="option_ad">
+                        <h2>Registro de usuario</h2>
+                        <center><i class="fas fa-user-plus"></i></center>
+                    </div>
+                </a>
+            </div>
 
-        <div class="separation">
-            <a href="pages/control-usuarios.php">
-                <div class="option_ad">
-                    <h2>Gestión de usuarios</h2>
-                    <center><i class="fas fa-search"></i></center>
-                </div>
-            </a>
+            <div class="separation">
+                <a href="pages/control-usuarios.php">
+                    <div class="option_ad">
+                        <h2>Gestión de usuarios</h2>
+                        <center><i class="fas fa-search"></i></center>
+                    </div>
+                </a>
+            </div>
+            <div class="separation">
+                <a href="">
+                    <div class="option_ad">
+                        <h2>Asignar coordinador</h2>
+                        <center><i class="fas fa-user-plus"></i></center>
+                    </div>
+                </a>
+            </div>
         </div>
-        <div class="separation">
-            <a href="">
-                <div class="option_ad">
-                    <h2>Asignar coordinador</h2>
-                    <center><i class="fas fa-user-plus"></i></center>
-                </div>
-            </a>
-        </div>
-
     </div>
     <div class="mobile_alert">
         <div><i class="bi bi-exclamation-octagon-fill"></i>

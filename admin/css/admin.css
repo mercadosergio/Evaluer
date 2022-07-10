@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    padding-top: 70px;
     background: whitesmoke;
-    padding-top: 110px;
 }
 
 :root {
@@ -188,18 +186,19 @@ ul {
 }
 
 #sidemenu {
-    background-color: var(--bgcolor);
-    color: white;
+    background-color: #d4d3d3;
+    color: black;
     position: fixed;
     height: 100%;
     left: 0;
     right: 0;
     width: 18%;
     padding-top: 20px;
+    z-index: -1;
 }
 
 #sidemenu a {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
@@ -285,12 +284,18 @@ ul {
 /* Seccion de registro y control de estudiantes................................................... */
 
 .admin-profile-usuario {
-    padding: 10px;
-    padding-top: 30px;
+    margin-top: 97px;
+    padding: 40px 40px;
     margin-left: 18%;
     width: 82%;
+    display: flex;
+}
+
+.grid-template {
+    width: 70%;
+    margin: auto;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 50px;
 }
 

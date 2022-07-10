@@ -1,5 +1,8 @@
 <?php
 include_once '../../model/Metodos.php';
+include("../../model/UserModel.php");
+include '../../controller/AddUserController.php';
+
 $data = new Metodos();
 session_start();
 error_reporting(0);
@@ -62,7 +65,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </ul>
         </div>
     </nav>
-    <form action="" method="POST">
+    <form method="POST">
         <div class="content shadow p-3 mb-5 bg-white rounded">
             <div class="roles">
                 <h5>Seleccione el rol de usuario:</h5>

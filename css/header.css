@@ -10,6 +10,7 @@
     border-bottom: var(--color-detalle) 5px solid;
     display: flex;
     align-items: center;
+    z-index: 1 !important;
 }
 
 .navbar-brand label {
