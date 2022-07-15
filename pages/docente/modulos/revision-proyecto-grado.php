@@ -1,17 +1,18 @@
 <?php
 include("../../../model/conexion.php");
-include("../../../model/Entidad.php");
-$profile = new Entidad;
+include("../../../model/Metodos.php");
+$obj = new Metodos();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-
-include_once  '../../../controller/nombre.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -59,10 +60,8 @@ include_once  '../../../controller/nombre.php';
             <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -77,7 +76,7 @@ include_once  '../../../controller/nombre.php';
         </div>
 
     </nav>
-    <div class="anteproyecto">
+    <div class="proyectos">
         <div class="cont-titulo">
             <h3>Historial de proyectos de grado</h3>
         </div>
@@ -97,7 +96,7 @@ include_once  '../../../controller/nombre.php';
                         <th>Estado</th>
                         <th>Calificación</th>
                         <th>Observaciones</th>
-                        <th>Acción</th>
+                        <th hidden>Acción</th>
                     </tr>
                 </thead>
                 <tbody id="info">
@@ -126,7 +125,7 @@ include_once  '../../../controller/nombre.php';
                                     <ul class="o" style="color: black; background: white;">
                                         <li>
                                             <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
-white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
+                                            white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
                                             <input id="radio_d" type="radio">
                                             <ul class="texto_o">
                                                 <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $filas['observaciones']; ?></textarea></li>
@@ -134,7 +133,7 @@ white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
                                         </li>
                                     </ul>
                                 </td>
-                                <td>
+                                <td hidden>
                                     <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
                                     <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
 

@@ -1,18 +1,18 @@
 <?php
 include("../../../model/conexion.php");
-include("../../../model/Entidad.php");
+include("../../../model/Metodos.php");
+$obj = new Metodos();
 
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    // echo "NO TIENE AUTORIZACIÓN";
+if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-
-$profile = new Entidad;
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,7 +25,7 @@ $profile = new Entidad;
     <meta name="author" content="">
 
     <title>Subir Proyecto de Grado</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/unicons.css">
     <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
@@ -61,11 +61,8 @@ $profile = new Entidad;
             <ul class="log">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -82,89 +79,91 @@ $profile = new Entidad;
     </nav>
 
     <form action="../../../controller/upload_proyecto.php" method="POST" enctype="multipart/form-data">
-        <div class="cont-titulo">
-            <h3 class="titulo1">Subir proyecto de grado</h3>
-        </div>
-        <div class="seccion-proyecto">
-            <?php
-            $fecha = date("Y-m-d H:i:s");
-            ?>
-            <div class="detalles">
-                <div style="display: flex;">
-                    <i class="activity fas fa-chalkboard-teacher"></i>
-                    <p>Adjuntar la entrega del proyecto de grado en este espacio.</p>
-                </div>
-                <label for="">Descripción:</label>
-                <label for="">Fecha de entrega:</label>
+        <div class="format">
+            <div class="cont-titulo">
+                <h3 class="titulo1">Subir proyecto de grado</h3>
             </div>
-            <div class="archivo">
-                <div class="container-input">
-                    <?php
-                    $time_proyecto = $conexion->query("SELECT time_proyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
-                    $tiempo = mysqli_fetch_array($time_proyecto);
-                    ?>
-                    <input type="file" name="archivo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
-                    <label for="file-5">
-                        <figure>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17">
-                                <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
-                            </svg>
-                        </figure>
-                        <span class="iborrainputfile">Seleccionar archivo</span>
-                    </label>
+            <div class="seccion-proyecto">
+                <?php
+                $fecha = date("Y-m-d H:i:s");
+                ?>
+                <div class="detalles">
+                    <div style="display: flex;">
+                        <i class="activity fas fa-chalkboard-teacher"></i>
+                        <p>Adjuntar la entrega del proyecto de grado en este espacio.</p>
+                    </div>
+                    <label for="">Descripción:</label>
+                    <label for="">Fecha de entrega:</label>
                 </div>
-                <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
+                <div class="archivo">
+                    <div class="container-input">
+                        <?php
+                        $time_proyecto = $conexion->query("SELECT time_proyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
+                        $tiempo = mysqli_fetch_array($time_proyecto);
+                        ?>
+                        <input type="file" name="archivo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
+                        <label for="file-5">
+                            <figure>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17">
+                                    <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
+                                </svg>
+                            </figure>
+                            <span class="iborrainputfile">Seleccionar archivo</span>
+                        </label>
+                    </div>
+                    <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
+                    <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
+                </div>
             </div>
-        </div>
-        <div class="cont-titulo">
-            <h3 class="titulo2">Entregas</h3>
-        </div>
-        <div class="historial">
-            <?php
+            <div class="cont-titulo">
+                <h3 class="titulo2">Entregas</h3>
+            </div>
+            <div class="historial">
+                <?php
 
-            $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
-            $q = mysqli_query($conexion, $listar);
-            while ($contenido = mysqli_fetch_array($q)) {
+                $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+                $q = mysqli_query($conexion, $listar);
+                while ($contenido = mysqli_fetch_array($q)) {
 
-            ?>
-                <div class="cont-entregas">
-                    <div class="detalle_entrega">
-                        <i class="fas fa-file-alt"></i>
-                        <div class="datos">
-                            <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
-                            <label>Fecha: <?php echo $contenido['fecha'] ?></label>
-                        </div>
-                        <div class="evaluacion">
-                            <label for="">Estado: <?php echo $contenido['estado'] ?></label>
-                            <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+                ?>
+                    <div class="cont-entregas">
+                        <div class="detalle_entrega">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="datos">
+                                <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
+                                <label>Fecha: <?php echo $contenido['fecha'] ?></label>
+                            </div>
+                            <div class="evaluacion">
+                                <label for="">Estado: <?php echo $contenido['estado'] ?></label>
+                                <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-        <div class="guia_arbol">
-            <ul>
-                <li>
-                    <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
-                    <ul>
-                        <li>
-                            <i class="fas fa-file-alt"></i>
-                            <a href="">Propuesta de grado</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-file-alt"></i>
-                            <a href="">Anteproyecto</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-file-alt"></i>
-                            <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                <?php
+                }
+                ?>
+            </div>
+            <div class="guia_arbol">
+                <ul>
+                    <li>
+                        <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
+                        <ul>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="">Propuesta de grado</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="">Anteproyecto</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-alt"></i>
+                                <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </form>
     <script>
@@ -211,6 +210,8 @@ $profile = new Entidad;
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

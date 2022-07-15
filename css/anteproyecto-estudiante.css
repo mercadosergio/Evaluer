@@ -140,13 +140,17 @@ form {
     position: relative;
 }
 
+.format {
+    padding: 0 70px;
+}
+
 .cont-titulo {
     width: 80%;
     margin-top: 20px;
     border: #bebebe 1px solid;
     background: #fff;
     border-radius: 5px;
-    padding: 15px;
+    padding: 13px;
     display: flex;
     align-items: center;
 }
@@ -154,6 +158,8 @@ form {
 .cont-titulo h3 {
     font-size: 20px;
     color: black;
+    display: flex;
+    align-items: center;
 }
 
 .seccion-anteproyecto {
@@ -180,7 +186,7 @@ form {
     font-size: 20px;
     color: #fff;
     background: var(--background-primario);
-    border-radius: 10px;
+    border-radius: 7px;
     border: none;
     margin-left: auto;
     margin-right: auto;

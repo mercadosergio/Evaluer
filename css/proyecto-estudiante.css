@@ -117,17 +117,8 @@ strong {
     overflow: hidden;
 }
 
-
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
+.format {
+    padding: 0 70px;
 }
 
 .cont-titulo {
@@ -190,12 +181,12 @@ p {
 
 .seccion-proyecto .archivo .btn-enviar {
     font-family: 'Maven', sans-serif;
-    padding: 5px;
+    padding: 7px;
     width: 205px;
     font-size: 20px;
     color: #fff;
     background: var(--background-primario);
-    border-radius: 10px;
+    border-radius: 7px;
     border: none;
     margin-left: auto;
     margin-right: auto;

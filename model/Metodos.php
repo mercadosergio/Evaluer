@@ -28,6 +28,20 @@ class Metodos
         return $result2;
     }
 
+    public function viewAnuncioSender()
+    {
+        $c = new DataBase();
+        $conexion = $c->connect();
+
+        // $sql = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
+        // $result = mysqli_query($conexion, $sql);
+        // $arrayImg = mysqli_fetch_array($result);
+
+        $sql2 = "SELECT * FROM anuncios WHERE usuario = " . $_SESSION['usuario'];
+        $result2 = mysqli_query($conexion, $sql2);
+        return $result2;
+    }
+
     public function getProfileUser()
     {
         $this->db = new DataBase();
@@ -35,5 +49,14 @@ class Metodos
         $consulta  = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
         $result = mysqli_query($this->conexion, $consulta);
         return $result;
+    }
+    public function getProfileAsesor()
+    {
+        $this->db = new DataBase();
+        $this->conexion = $this->db->connect();
+        
+        $sql  = "SELECT * FROM docente WHERE usuario = " . $_SESSION['usuario'];
+        $resultado = mysqli_query($this->conexion, $sql);
+        return $resultado;
     }
 }

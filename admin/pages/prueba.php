@@ -5,7 +5,7 @@ include_once '../../model/Metodos.php';
 // $us = Metodos::all();
 
 // var_dump($us);
-
+session_start();
 
 $obj = new Metodos();
 $sql = "SELECT * FROM estudiante";
@@ -21,10 +21,18 @@ foreach ($datos as $key) {
 
 $rep = $obj->viewAnuncio();
 
-while($actual=mysqli_fetch_array($rep)){
+while ($actual = mysqli_fetch_array($rep)) {
     $mostrar = '<p>';
 }
 
+$getA = $obj->viewAnuncioSender();
+
+foreach ($getA as $key) {
+    echo $key['id'];
+    echo $key['nombre_user'];
+    echo $key['fecha'];
+    echo $key['contenido'];
+}
 
 ?>
 <select name="" id="">

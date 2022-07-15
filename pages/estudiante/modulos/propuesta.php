@@ -1,15 +1,19 @@
 <?php
 include("../../../model/conexion.php");
-include("../../../model/Entidad.php");
+include("../../../model/Metodos.php");
+$obj = new Metodos();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
-$profile = new Entidad;
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +26,7 @@ $profile = new Entidad;
     <meta name="author" content="">
 
     <title>Propuesta de grado</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/unicons.css">
     <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
@@ -65,11 +69,8 @@ $profile = new Entidad;
             <ul class="log">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -164,7 +165,7 @@ $profile = new Entidad;
                 </div>
                 <div class="contenedor-btn">
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                    <input <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar">
+                    <input <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar btn btn-primary mb-4">
                 </div>
             </form>
         </div>
@@ -190,8 +191,6 @@ $profile = new Entidad;
                         <div>
                             <p class="<?php echo $contenido['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $contenido['estado']; ?></p>
                         </div>
-
-
                     </div>
                 <?php
                 }
@@ -199,10 +198,10 @@ $profile = new Entidad;
             </div>
         </form>
     </div>
-
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

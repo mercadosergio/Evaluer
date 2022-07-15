@@ -140,6 +140,10 @@ strong {
 
 /* ........................................ */
 
+.proyectos {
+    padding: 30px 90px;
+}
+
 .cont-titulo {
     width: 100%;
     border: #bebebe 1px solid;
@@ -183,10 +187,6 @@ strong {
     outline: none;
     font-size: 15px;
     padding-left: 10px;
-}
-
-.anteproyecto {
-    padding-top: 30px;
 }
 
 .filtro {

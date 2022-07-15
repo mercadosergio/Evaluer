@@ -116,19 +116,6 @@ strong {
 }
 
 
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
-}
-
-
 /* ........................................ */
 
 .cont-titulo {
@@ -147,15 +134,12 @@ strong {
 
 .cont-titulo h3 {
     font-size: 20px;
-    /* text-align: center; */
     margin: 15px;
 }
 
 .anteproyecto {
     margin-top: 110px;
-    padding-top: 30px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 30px 90px;
 }
 
 .contenedor-titulo {

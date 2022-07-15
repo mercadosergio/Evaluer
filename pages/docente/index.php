@@ -1,16 +1,21 @@
 <?php
-include("../../model/Entidad.php");
-$profile = new Entidad;
+include("../../model/conexion.php");
+include("../../model/Metodos.php");
+$obj = new Metodos();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    // echo "NO TIENE AUTORIZACIÓN";
-    header("location: ../../index.php");
+$getAsesor = $obj->getProfileAsesor();
+$userD = mysqli_fetch_array($getAsesor);
+
+if ($sesion == null || $sesion = '') {
+    header("location: ../index.php");
     die();
 }
-
 ?>
 
 <!doctype html>
@@ -27,8 +32,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <title>Docente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/editor.css">
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
 
     <!-- MAIN STYLE -->
@@ -57,11 +60,8 @@ if ($variable_sesion == null || $variable_sesion = '') {
             <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -121,9 +121,9 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <div class="form-group">
                     <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
                 </div>
-                <input hidden type="text" name="nombre" value="<?php $profile->getProfileName() ?>">
+                <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
 
-                <input hidden type="text" name="programa_id" value="<?php $profile->getProfileProgram() ?>">
+                <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
                 <input hidden type="datetime" name="datetime" value="<?php
                                                                         date_default_timezone_set('America/Bogota');
                                                                         $fecha = date("Y-m-d H:i:s");
@@ -140,9 +140,25 @@ if ($variable_sesion == null || $variable_sesion = '') {
         </div>
         <form action="../../controller/EliminarAnuncio.php" method="POST">
             <?php
-            $data = new Entidad;
-            $data->getAnuncios();
+
+            $getA = $obj->viewAnuncioSender();
+            $listA = mysqli_fetch_array($getA);
+
+            foreach ($getA as $key) {
             ?>
+                <div class="grid">
+                    <input hidden type="text" name="id" value="<?php echo $key['id'] ?>">
+                    <div class="e1"><img src="../../files/photos/default.png"></div>
+                    <div class="e2"><?php echo $key['nombre_user']; ?></div>
+                    <div class="e3">
+                        <p><?php echo $key['fecha']; ?></p>
+                    </div>
+                    <div class="e4">
+                        <p><?php echo $key['contenido']; ?></p>
+                    </div>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                </div>
+            <?php } ?>
         </form>
 
     </div>
@@ -174,7 +190,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
             });
         });
     </script>
-    <script src="../../font/9390efa2c5.js"></script>
+    <script src="../../font/d029bf1c92.js"></script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">

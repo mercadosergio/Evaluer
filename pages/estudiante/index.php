@@ -3,7 +3,6 @@ include("../../model/conexion.php");
 include("../../model/Metodos.php");
 $obj = new Metodos();
 
-
 session_start();
 error_reporting(0);
 $sesion = $_SESSION['usuario'];
@@ -91,8 +90,7 @@ if ($sesion == null || $sesion = '') {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
-
-                            <?php echo $userP['nombre']; ?>
+                            <?php echo $userP['nombres'] . ' ' . $userP['p_apellido']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>

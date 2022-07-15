@@ -372,12 +372,12 @@ strong {
 
 .btn-enviar {
     font-family: 'Maven', sans-serif;
-    padding: 10px;
+    padding: 7px 10px;
     width: 150px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     background: var(--background-primario);
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     margin-bottom: 30px;
 }
