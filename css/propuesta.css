@@ -416,7 +416,8 @@ strong {
 .notif i {
     margin-left: 15px;
     font-size: 20px;
-    float: right;
+    text-align: end;
+    /* float: right; */
 }
 
 .notif .edit {
@@ -425,5 +426,24 @@ strong {
 
 .notif .trash {
     color: #df1001;
-    float: right;
+    /* float: right; */
+}
+
+.notif p {
+    margin: 0 !important;
+}
+
+.notif>div {
+    display: flex;
+    align-items: center;
+}
+
+.aprobada {
+    font-weight: bold;
+    color: rgb(0, 92, 0);
+}
+
+.reprobada {
+    font-weight: bold;
+    color: rgb(185, 1, 1);
 }

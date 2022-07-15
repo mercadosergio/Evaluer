@@ -180,9 +180,18 @@ $profile = new Entidad;
                 ?>
                     <div class="notif">
                         <input hidden type="text" name="remitente" value="<?php echo $contenido['remitente']; ?>">
-                        <label><?php echo $contenido['titulo'] ?></label>
-                        <a href=""><i class="edit fas fa-edit"></i></a>
-                        <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
+                        <div> <label><?php echo $contenido['titulo'] ?></label> </div>
+                        <div class="action-edit">
+                            <a href=""><i class="edit fas fa-edit"></i></a>
+                        </div>
+                        <div class="action-delete">
+                            <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
+                        </div>
+                        <div>
+                            <p class="<?php echo $contenido['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $contenido['estado']; ?></p>
+                        </div>
+
+
                     </div>
                 <?php
                 }
