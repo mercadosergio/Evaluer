@@ -1,7 +1,9 @@
 <?php
-include("../../../model/conexion.php");
-include("../../../model/Metodos.php");
-$obj = new Metodos();
+
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+
 
 session_start();
 error_reporting(0);
@@ -78,7 +80,7 @@ if ($sesion == null || $sesion = '') {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -91,9 +93,9 @@ if ($sesion == null || $sesion = '') {
             <form action="../../../controller/send-propuesta.php" method="POST" id="envio">
                 <div class="grid-form">
                     <?php
+                    $res = new Metodos();
                     $fecha = date("Y-m-d H:i:s");
-                    $time_propuesta = $conexion->query("SELECT time_propuesta FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
-                    $tiempo = mysqli_fetch_array($time_propuesta);
+                    $getTime = $res->restrictPropuesta();
                     ?>
 
                     <div class="subtitulo">
@@ -101,35 +103,35 @@ if ($sesion == null || $sesion = '') {
                         <h3 class="">Propuesta de grado</h3>
                     </div>
                     <p class="info">
-                        Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos para evaluar un anteproyecto.
+                        Diligencie la información correspondiente a su propuesta de grado, con los p_$p_selected requeridos para evaluar un anteproyecto.
                     </p>
 
                     <label class="lbl-titulo">Título del proyecto:</label>
                     <div class="titulo" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
                         <i class="fa-solid fa-font"></i>
                     </div>
 
                     <label class="lbl-linea">Linea de investigación:</label>
                     <div class="linea" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="linea">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="linea">
                         <i class="fa-solid fa-diagram-project"></i>
                     </div>
 
                     <label class="lbl-integrantes">Número de integrantes:</label>
                     <div class="integrantes" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="number" max="3" min="1" class="camponumero" name="integrantes">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="number" max="3" min="1" class="camponumero" name="integrantes">
                         <i class="fa-solid fa-users"></i>
                     </div>
                     <label class="lbl-asesor">Nombre del asesor:</label>
                     <div class="asesor" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
                         <i class="fa-solid fa-user-tie"></i>
                     </div>
 
                     <label class="lbl-lider">Nombre del lider:</label>
                     <div class="lider" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
                         <i class="fa-solid fa-user-pen"></i>
                     </div>
 
@@ -138,59 +140,74 @@ if ($sesion == null || $sesion = '') {
                         <select class="" name="id_programa[]">
                             <?php
                             $buscar_programa = "SELECT programa,programa_id,semestre FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
-                            $resultado = mysqli_query($conexion, $buscar_programa);
+                            $datos = $res->listar($buscar_programa);
 
-                            $filas = mysqli_fetch_array($resultado);
-                            echo '<option selected value="' . $filas['identificador'] . '">' . $filas['programa'] . '</option>';
+                            foreach ($datos as $p_selected) {
+                                echo '<option selected value="' . $p_selected['programa_id'] . '">' . $p_selected['programa'] . '</option>';
+                            }
                             ?>
                         </select>
                         <i class="fa-solid fa-list-ol"></i>
                     </div>
                     <label class="lbl-semsetre">Semestre:</label>
                     <div class="semestre" id="contenedorInput">
-                        <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $filas['semestre']; ?>">
+                        <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $p_selected['semestre']; ?>">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
                     <div class="descripcion">
                         <label>Descripción:</label>
-                        <textarea <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
+                        <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
                         <i class="fa-solid fa-rectangle-list"></i>
                     </div>
 
                     <label class="lbl-equipo">Nombres de los integrantes:</label>
                     <div class="equipo" id="contenedorInput">
-                        <input class="" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> placeholder="Separar por ','" type="text" class="campotexto" id="campo_integrantes" name="grupo">
+                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> placeholder="Separar por ','" type="text" class="campotexto" id="campo_integrantes" name="grupo">
                         <i class="fa-solid fa-people-group"></i>
                     </div>
                 </div>
                 <div class="contenedor-btn">
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                    <input <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar btn btn-primary mb-4">
+                    <input <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar btn btn-primary mb-4">
                 </div>
             </form>
         </div>
         <form method="GET">
             <div class="details">
                 <label><i class="fas fa-bell"></i> Detalles y notificaciones</label>
+
                 <?php
-
                 $listar = "SELECT * FROM propuesta WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
-                $q = mysqli_query($conexion, $listar);
-                while ($contenido = mysqli_fetch_array($q)) {
-
+                $prop = $res->listar($listar);
+                if ($prop >= 1) {
+                    if (time() < $getTime) {
                 ?>
-                    <div class="notif">
-                        <input hidden type="text" name="remitente" value="<?php echo $contenido['remitente']; ?>">
-                        <div> <label><?php echo $contenido['titulo'] ?></label> </div>
-                        <div class="action-edit">
-                            <a href=""><i class="edit fas fa-edit"></i></a>
+                        <div class="noti">
+                            <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> Su propuesta ha sido enviada</div>
                         </div>
-                        <div class="action-delete">
-                            <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $contenido['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
+                    <?php
+                    }
+                    foreach ($prop as $propuesta_state) {
+                    ?>
+                        <div class="notif">
+                            <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
+                            <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
+                            <div class="action-edit">
+                                <a href=""><i class="edit fas fa-edit"></i></a>
+                            </div>
+                            <div class="action-delete">
+                                <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $propuesta_state['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
+                            </div>
+                            <div>
+                                <p class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $propuesta_state['estado']; ?></p>
+                            </div>
                         </div>
-                        <div>
-                            <p class="<?php echo $contenido['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $contenido['estado']; ?></p>
-                        </div>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <div class="nothing">
+                        <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> No hay notificaciones por el momento</div>
                     </div>
                 <?php
                 }

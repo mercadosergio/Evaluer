@@ -1,8 +1,8 @@
 <?php
-include("../../../model/conexion.php");
-include("../../../model/Metodos.php");
-$obj = new Metodos();
-
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+$res = new Metodos();
 session_start();
 error_reporting(0);
 $sesion = $_SESSION['usuario'];
@@ -70,7 +70,7 @@ if ($sesion == null || $sesion = '') {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -84,9 +84,7 @@ if ($sesion == null || $sesion = '') {
                 <h3 class="titulo1">Subir proyecto de grado</h3>
             </div>
             <div class="seccion-proyecto">
-                <?php
-                $fecha = date("Y-m-d H:i:s");
-                ?>
+
                 <div class="detalles">
                     <div style="display: flex;">
                         <i class="activity fas fa-chalkboard-teacher"></i>
@@ -98,10 +96,10 @@ if ($sesion == null || $sesion = '') {
                 <div class="archivo">
                     <div class="container-input">
                         <?php
-                        $time_proyecto = $conexion->query("SELECT time_proyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
-                        $tiempo = mysqli_fetch_array($time_proyecto);
+                        $fecha = date("Y-m-d H:i:s");
+                        $getTime = $res->restrictProyecto();
                         ?>
-                        <input type="file" name="archivo" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
+                        <input type="file" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
                         <label for="file-5">
                             <figure>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17">
@@ -112,7 +110,7 @@ if ($sesion == null || $sesion = '') {
                         </label>
                     </div>
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                    <input type="submit" <?php echo (time() < $tiempo['0']) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
+                    <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
                 </div>
             </div>
             <div class="cont-titulo">
@@ -120,22 +118,20 @@ if ($sesion == null || $sesion = '') {
             </div>
             <div class="historial">
                 <?php
-
-                $listar = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
-                $q = mysqli_query($conexion, $listar);
-                while ($contenido = mysqli_fetch_array($q)) {
-
+                $listarP = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+                $data = $res->listar($listarP);
+                foreach ($data as $archivados) {
                 ?>
                     <div class="cont-entregas">
                         <div class="detalle_entrega">
                             <i class="fas fa-file-alt"></i>
                             <div class="datos">
-                                <a href="<?php echo $contenido['documento'] ?>" download="<?php echo $contenido['nombre'] ?>"><?php echo $contenido['nombre'] ?></a>
-                                <label>Fecha: <?php echo $contenido['fecha'] ?></label>
+                                <a href="<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
+                                <label>Fecha: <?php echo $archivados['fecha'] ?></label>
                             </div>
                             <div class="evaluacion">
-                                <label for="">Estado: <?php echo $contenido['estado'] ?></label>
-                                <label for="">Calificación: <?php echo $contenido['calificacion'] ?></label>
+                                <label for="">Estado: <?php echo $archivados['estado'] ?></label>
+                                <label for="">Calificación: <?php echo $archivados['calificacion'] ?></label>
                             </div>
                         </div>
                     </div>
@@ -192,7 +188,7 @@ if ($sesion == null || $sesion = '') {
         }(document, window, 0));
     </script>
     <?php
-    if (time() < $tiempo['0']) {
+    if (time() < $getTime) {
     ?>
         <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
   				left: 50%;

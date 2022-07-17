@@ -1,5 +1,7 @@
 <?php
-@session_start();
-session_destroy();
-header("location: ../index.php");
-exit();
+
+include_once '../model/UserModel.php';
+
+$user = new User();
+
+$user->cerrarSesion();

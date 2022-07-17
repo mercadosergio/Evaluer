@@ -1,7 +1,9 @@
 <?php
-include("../../model/conexion.php");
-include("../../model/Metodos.php");
-$obj = new Metodos();
+
+include_once("../../model/Metodos.php");
+include("../../model/UserModel.php");
+
+$obj = new User();
 
 session_start();
 error_reporting(0);
@@ -9,11 +11,11 @@ $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
-$getAsesor = $obj->getProfileAsesor();
+$getAsesor = $obj->getDocenteProfile();
 $userD = mysqli_fetch_array($getAsesor);
 
 if ($sesion == null || $sesion = '') {
-    header("location: ../index.php");
+    header("location: ../../index.php");
     die();
 }
 ?>
@@ -69,7 +71,7 @@ if ($sesion == null || $sesion = '') {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -140,8 +142,8 @@ if ($sesion == null || $sesion = '') {
         </div>
         <form action="../../controller/EliminarAnuncio.php" method="POST">
             <?php
-
-            $getA = $obj->viewAnuncioSender();
+            $recurso = new Metodos();
+            $getA = $recurso->viewAnuncioSender();
             $listA = mysqli_fetch_array($getA);
 
             foreach ($getA as $key) {

@@ -70,7 +70,7 @@ include("../../controller/nombre.php");
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>

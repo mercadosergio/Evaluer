@@ -1,10 +1,12 @@
 <?php
-include("../../model/conexion.php");
-include("../../model/Metodos.php");
-$obj = new Metodos();
 
+include_once("../../model/Metodos.php");
+include("../../model/UserModel.php");
+
+$obj = new User();
 session_start();
 error_reporting(0);
+
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -55,16 +57,13 @@ if ($sesion == null || $sesion = '') {
                 <i class="bi bi-x"></i>
             </button>
             <div class="usuario">
-                <?php
-                // $profile = new Entidad;
-                // $profile->getProfileUser();
-                ?>
+                <?php echo $userP['nombre']; ?>
             </div>
             <ul class="menu-opciones">
                 <li><a href=""><i class="bi bi-person-circle"></i> Perfil</a></li>
                 <li><a href="../../support/account.php"><i class="bi bi-key-fill"></i> Cambiar contraseña</a>
                 </li>
-                <li><a href="../../controller/logout.php"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a></li>
+                <li><a href="../../controller/Logout.php"><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a></li>
             </ul>
         </div>
         <!-- MENU -->
@@ -90,7 +89,7 @@ if ($sesion == null || $sesion = '') {
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
-                            <?php echo $userP['nombres'] . ' ' . $userP['p_apellido']; ?>
+                            <?php echo $userP['nombre']; ?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -98,7 +97,7 @@ if ($sesion == null || $sesion = '') {
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="../../controller/logout.php">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="../../controller/Logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,8 +112,8 @@ if ($sesion == null || $sesion = '') {
                     <span><i class="bi bi-info-circle-fill"></i> Anuncios del curso</span>
                 </div>
                 <?php
-
-                $rep = $obj->viewAnuncio();
+                $recurso = new Metodos();
+                $rep = $recurso->viewAnuncio();
                 while ($actual = mysqli_fetch_array($rep)) {
                 ?>
                     <div>
@@ -269,10 +268,10 @@ if ($sesion == null || $sesion = '') {
             <h3>Estado de su proyecto</h3>
             <label>
                 <?php
-                $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
-                $dato2 = mysqli_query($conexion, $estado);
-                $r = mysqli_fetch_array($dato2);
-                echo $r['0'];
+                // $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
+                // $dato2 = mysqli_query($conexion, $estado);
+                // $r = mysqli_fetch_array($dato2);
+                // echo $r['0'];
                 ?>
             </label>
         </div>

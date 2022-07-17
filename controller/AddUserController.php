@@ -1,7 +1,6 @@
 <?php
-// include '../model/UserModel.php';
-if (isset($_POST['agregar'])) {
 
+if (isset($_POST['agregar'])) {
     $id_rol = $_POST['role'];
     $nombre = $_POST['nombre'];
     $p_apellido = $_POST['p_apellido'];
@@ -28,7 +27,7 @@ if (isset($_POST['agregar'])) {
         </script>
     <?php
     } else {
-        $user = new User;
+        $user = new User();
         for ($i = 0; $i < count($id_rol); $i++) {
             $user->createUser($nombre, $email, $cedula, $pass_cifrado, $id_rol[$i]);
 
@@ -36,7 +35,7 @@ if (isset($_POST['agregar'])) {
                 if ($id_rol[$i] == '2') {
                     $user->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $cedula);
                 } else if ($id_rol[$i] == '3') {
-                    $user->createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $semestre, $cedula);
+                    $user->agregarEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $semestre, $cedula);
                 } else if ($id_rol[$i] == '4') {
                     $user->createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $cedula);
                 }

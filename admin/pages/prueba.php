@@ -10,7 +10,9 @@ session_start();
 $obj = new Metodos();
 $sql = "SELECT * FROM estudiante";
 $datos = $obj->listar($sql);
-
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+echo $userP['nombre'];
 
 foreach ($datos as $key) {
     echo $key['id'];

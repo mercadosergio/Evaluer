@@ -1,8 +1,8 @@
 <?php
-include("../../../model/conexion.php");
-include("../../../model/Metodos.php");
-$obj = new Metodos();
-
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+$funcion = new Metodos();
 session_start();
 error_reporting(0);
 $sesion = $_SESSION['usuario'];
@@ -69,7 +69,7 @@ if ($sesion == null || $sesion = '') {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -101,40 +101,32 @@ if ($sesion == null || $sesion = '') {
                 </thead>
                 <tbody id="info">
                     <?php
-                    $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
-                    $dato = mysqli_query($conexion, $buscar);
-                    $registro = mysqli_fetch_array($dato);
-                    ?>
-                    <?php
-                    $mostrar_by_fecha = "SELECT * FROM proyecto_grado WHERE asesor_user=" . $registro['usuario'] . " ORDER BY fecha";
-                    $result = mysqli_query($conexion, $mostrar_by_fecha);
-
-                    while ($filas = mysqli_fetch_array($result)) {
-                        $id_registro = $filas['0'];
+                    $mostrar = $funcion->revisionProyectos();
+                    foreach ($mostrar as $value) {
                     ?>
                         <tr>
                             <form action="../../../controller/evaluate-proyecto.php" method="POST">
-                                <td><?php echo $filas['0']; ?></td>
-                                <td><?php echo $filas['titulo']; ?></td>
-                                <td><a href="<?php echo $filas['documento']; ?>"><?php echo $filas['nombre']; ?></a></td>
-                                <td hidden><?php echo $filas['programa']; ?></td>
-                                <td><?php echo $filas['fecha']; ?></td>
-                                <td><input type="text" name="estado" value="<?php echo $filas['estado'] ?>" style="text-transform:uppercase;"></td>
-                                <td><input type="text" name="nota" value="<?php echo $filas['calificacion'] ?>"></td>
+                                <td><?php echo $value['id']; ?></td>
+                                <td><?php echo $value['titulo']; ?></td>
+                                <td><a href="<?php echo $value['documento']; ?>"><?php echo $value['nombre']; ?></a></td>
+                                <td hidden><?php echo $value['programa']; ?></td>
+                                <td><?php echo $value['fecha']; ?></td>
+                                <td><input type="text" name="estado" value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;"></td>
+                                <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
                                 <td>
                                     <ul class="o" style="color: black; background: white;">
                                         <li>
                                             <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
-                                            white-space: nowrap;"><?php echo $filas['observaciones']; ?></label>
+                                            white-space: nowrap;"><?php echo $value['observaciones']; ?></label>
                                             <input id="radio_d" type="radio">
                                             <ul class="texto_o">
-                                                <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $filas['observaciones']; ?></textarea></li>
+                                                <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $value['observaciones']; ?></textarea></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </td>
                                 <td hidden>
-                                    <input name="getIdProyecto" type="text" hidden value="<?php echo $filas['0'] ?>">
+                                    <input name="getIdProyecto" type="text" hidden value="<?php echo $value['0'] ?>">
                                     <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
 
                                     <script>

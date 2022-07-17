@@ -98,70 +98,6 @@ strong {
     overflow: hidden;
 }
 
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
-}
-
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
-.log {
-    margin-right: 25px;
-    color: #fff;
-}
-
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--background-primario);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-    /* border: 1px solid #000; */
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
-
-/* END MENU DESPLEGABLE */
-
 
 /* Cabecera de pagina.......................................................................................................... */
 
@@ -203,7 +139,7 @@ ul {
 }
 
 #sidemenu .profile {
-    border-bottom: solid 1px var(--hovercolor);
+    border-bottom: solid 1px #a1a1a1;
     padding: var(--padding) 0;
     text-align: center;
 }
@@ -260,7 +196,7 @@ ul {
 }
 
 .menu-items .item a:hover {
-    background-color: var(--hovercolor);
+    background-color: #b4b4b4;
 }
 
 .menu-items .item .title {
@@ -274,10 +210,10 @@ ul {
     cursor: pointer;
 }
 
-.menu-items .separador {
+.menu-items .separator {
     height: 1px;
-    border-bottom: 1px solid var(--hovercolor);
-    margin: 15px 0;
+    border-bottom: 1px solid #a1a1a1;
+    /* margin: 15px 0; */
 }
 
 

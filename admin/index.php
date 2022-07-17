@@ -1,11 +1,15 @@
 <?php
-include("../model/conexion.php");
+
+include("../model/UserModel.php");
+$obj = new User();
+
 session_start();
 error_reporting(0);
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-$variable_sesion = $_SESSION['usuario'];
-
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
@@ -23,11 +27,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <meta name="author" content="">
 
     <title>Aministrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/unicons.css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
+
     <link rel="stylesheet" href="../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
@@ -56,22 +59,22 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <li class="nav-item">
                 </li>
             </ul>
-            <ul class="log">
-                <li>
-                    <a class="navbar-brand" href=""><i class='uil uil-user'></i>
-                        <label>
-                            <?php echo $_SESSION['usuario'];
-                            ?>
-                        </label>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
-                    <ul>
-                        <li><a class="out" href="">Perfil</a></li>
-                        <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
-                        <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
-        </div>
     </nav>
 
 
@@ -86,7 +89,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
         <div class="profile">
             <div class="foto">
                 <img class="perfil" src="../img/perfil.png" alt="">
-                <div class="name"><span><?php echo $_SESSION['usuario'] ?></span></div>
+                <div class="name"><span><?php echo $userP['nombre']; ?></span></div>
             </div>
         </div>
         <!-- Items -->
@@ -153,8 +156,10 @@ if ($variable_sesion == null || $variable_sesion = '') {
         </div>
     </div>
     <script src="../utilities/loading/load.js"></script>
-    <script src="../font/9390efa2c5.js"></script>
+    <script src="../font/d029bf1c92.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

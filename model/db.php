@@ -2,23 +2,17 @@
 
 class DataBase
 {
-    private $server;
-    private $user;
-    private $password;
-    private $db;
+    private $server = 'localhost';
+    private $user = 'root';
+    private $password = '';
+    private $db = 'evaluer';
+    protected $con;
 
     public function __construct()
     {
-        $this->server = 'localhost';
-        $this->user = 'root';
-        $this->password = '';
-        $this->db = 'evaluer';
+        $this->con = new mysqli($this->server, $this->user, $this->password, $this->db);
+        if ($this->con->connect_errno) {
+            return "Error en conexión de bd";
+        }
     }
-
-    public function connect()
-    {
-        $conexion = new mysqli($this->server, $this->user, $this->password, $this->db);
-        return $conexion;
-    }
-
 }

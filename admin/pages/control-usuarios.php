@@ -1,12 +1,19 @@
 <?php
 
-include("../../model/Metodos.php");
+include("../../model/UserModel.php");
+$obj = new User();
+
+include_once("../../model/Metodos.php");
+$recurso = new Metodos();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../index.php");
+if ($sesion == null || $sesion = '') {
+    header("location: ../../index.php");
     die();
 }
 ?>
@@ -26,9 +33,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
+
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- MAIN STYLE -->
@@ -56,13 +61,19 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 </li>
             </ul>
 
-            <ul class="log">
-                <li class="">
-
-                    <ul>
-                        <li><a class="out" href="">Perfil</a></li>
-                        <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
-                        <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -103,7 +114,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                         <tbody id="userInfo">
                             <?php
 
-                            $obj = new Metodos();
+
                             $sql = "SELECT * FROM estudiante ORDER BY id";
                             $datos = $obj->listar($sql);
 
@@ -118,7 +129,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td><?php echo $key['programa'] ?></td>
                                     <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
                                     <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
@@ -126,50 +137,6 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                             <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
-                                        <!-- Modal component -->
-                                        <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <label class="lbl-nombre">Nombre:</label>
-                                                        <input type="text" class="nombre form-control" name="nombre" value="">
-                                                        <label class="lbl-p-apellido">Primer apellido:</label>
-                                                        <input type="text" class="p-apellido form-control" name="p_apellido" value="">
-                                                        <label class="lbl-s-apellido">Segundo apellido:</label>
-                                                        <input type="text" class="s-apellido form-control" name="s_apellido" value="">
-                                                        <label class="lbl-cedula">Documento de identidad:</label>
-                                                        <input type="text" class="cedula form-control" name="cedula" value="">
-                                                        <label class="lbl-programa">Programa:</label>
-
-                                                        <select name="programa_id[]" class="programa form-select">
-
-                                                            <option class="programa_selected" selected value="<?php echo $key['programa_id']; ?>"></option>
-
-                                                            <option value="1">Seleccione...</option>
-                                                            <?php
-                                                            $non_selected = "SELECT * FROM programas";
-                                                            $options = $obj->listar($non_selected);
-
-                                                            foreach ($options as $pro) {
-                                                                echo '<option value="' . $pro['identificador'] . '">' . $pro['nombre'] . '</option>';
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                        <label class="lbl-semestre">Semestre:</label>
-                                                        <input type="number" max="9" min="6" class="semestre form-control" name="semestre" value="">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                        <button type="button" class="btn btn-primary">Guardar cambios</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End modal component -->
                                     </td>
                                 </tr>
                             <?php
@@ -198,25 +165,24 @@ if ($variable_sesion == null || $variable_sesion = '') {
                             $sql2 = "SELECT * FROM docente ORDER BY id";
                             $datos_docente = $obj->listar($sql2);
 
-                            foreach ($datos_docente as $key_d) {
-                                $id_registro_d = $key_d['id'];
+                            foreach ($datos_docente as $asesor) {
+                                $id_registro_d = $asesor['id'];
                             ?>
                                 <tr>
-                                    <td><?php echo $key_d['id'] ?></td>
-                                    <td><?php echo $key_d['nombres'] ?></td>
-                                    <td><?php echo $key_d['p_apellido'] ?></td>
-                                    <td><?php echo $key_d['s_apellido'] ?></td>
-                                    <td><?php echo $key_d['cedula'] ?></td>
-                                    <td><?php echo $key_d['programa'] ?></td>
+                                    <td><?php echo $asesor['id'] ?></td>
+                                    <td><?php echo $asesor['nombres'] ?></td>
+                                    <td><?php echo $asesor['p_apellido'] ?></td>
+                                    <td><?php echo $asesor['s_apellido'] ?></td>
+                                    <td><?php echo $asesor['cedula'] ?></td>
+                                    <td><?php echo $asesor['programa'] ?></td>
                                     <td class="botones_tabla">
-                                        <a href="modificar-docente.php?id=<?php echo $key_d['id'] ?>&nombres=<?php echo $key_d['nombres'] ?>
-                                                &p_apellido=<?php echo $key_d['p_apellido'] ?> &s_apellido=<?php echo $key_d['s_apellido'] ?> &cedula=<?php echo $key_d['cedula'] ?> 
-                                                &programa=<?php echo $key_d['programa'] ?>
-                                        " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
+                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </button>
                                         </a>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $key_d['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $key_d['id'] ?>">
+                                            <input type="text" name="user" hidden readonly value="<?php echo $asesor['usuario'] ?>">
+                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $asesor['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
@@ -236,6 +202,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                 <th>Primer apellido</th>
                                 <th>Segundo apellido</th>
                                 <th>Documento de identidad</th>
+                                <th>Programa</th>
                                 <th>Acción</th>
                             </tr>
                         </thead>
@@ -253,11 +220,11 @@ if ($variable_sesion == null || $variable_sesion = '') {
                                     <td><?php echo $key_c['p_apellido'] ?></td>
                                     <td><?php echo $key_c['s_apellido'] ?></td>
                                     <td><?php echo $key_c['cedula'] ?></td>
+                                    <td><?php echo $key_c['programa'] ?></td>
                                     <td class="botones_tabla">
-                                        <a href="modificar-coordinador.php?id=<?php echo $key_c['id'] ?>&nombres=<?php echo $key_c['nombres'] ?>
-                                                &p_apellido=<?php echo $key_c['p_apellido'] ?> &s_apellido=<?php echo $key_c['s_apellido'] ?> &cedula=<?php echo $key_c['cedula'] ?>
-                                                " name="modificarDocente" class="btn-editar"> <i class="bi bi-pencil-fill"></i>
-                                        </a>
+                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </button>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
                                             <input type="text" name="user" hidden readonly value="<?php echo $key_c['usuario'] ?>">
                                             <input type="text" name="getIdU" hidden readonly value="<?php echo $key_c['id'] ?>">
@@ -274,6 +241,54 @@ if ($variable_sesion == null || $variable_sesion = '') {
             </div>
         </div>
     </div>
+    <?php
+    include("../../controller/EditUser.php");
+    ?>
+    <!-- Modal component -->
+    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form method="POST">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="id form-control" name="id" value="">
+                        <label class="lbl-nombre">Nombre:</label>
+                        <input type="text" class="nombre form-control" name="nombre" value="">
+                        <label class="lbl-p-apellido">Primer apellido:</label>
+                        <input type="text" class="p-apellido form-control" name="p_apellido" value="">
+                        <label class="lbl-s-apellido">Segundo apellido:</label>
+                        <input type="text" class="s-apellido form-control" name="s_apellido" value="">
+                        <label class="lbl-cedula">Documento de identidad:</label>
+                        <input type="text" class="cedula form-control" name="cedula" value="">
+                        <label class="lbl-programa">Programa:</label>
+
+                        <select name="programa_id[]" class="programa form-select">
+                            <option class="programa_selected" selected value=""></option>
+                            <option value="1">Seleccione...</option>
+                            <?php
+                            $non_selected = "SELECT * FROM programas";
+                            $options = $obj->listar($non_selected);
+
+                            foreach ($options as $pro) {
+                                echo '<option value="' . $pro['identificador'] . '">' . $pro['nombre'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <label class="lbl-semestre" id="lbl-semestre">Semestre:</label>
+                        <input type="number" max="9" min="6" class="semestre form-control" id="semestre" name="semestre" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="editar" class="editar btn btn-primary">Guardar cambios</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End modal component -->
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -292,12 +307,23 @@ if ($variable_sesion == null || $variable_sesion = '') {
             var datos = $tr.children('td').map(function() {
                 return $(this).text();
             });
+            $('.id').val(datos[0]);
             $('.nombre').val(datos[1]);
             $('.p-apellido').val(datos[2]);
             $('.s-apellido').val(datos[3]);
             $('.cedula').val(datos[4]);
             $('.programa_selected').html(datos[5]);
             $('.semestre').val(datos[6]);
+
+
+        });
+        $('.edit_a').on('click', function() {
+            document.getElementById("semestre").style = "display: none";
+            document.getElementById("lbl-semestre").style = "display: none";
+        });
+        $('.edit_s').on('click', function() {
+            document.getElementById("semestre").style = "display: block";
+            document.getElementById("lbl-semestre").style = "display: block";
         });
     </script>
     <script>

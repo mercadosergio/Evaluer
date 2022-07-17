@@ -1,7 +1,9 @@
 <?php
-include("../../../model/conexion.php");
-include("../../../model/Metodos.php");
-$obj = new Metodos();
+
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+$funcion = new Metodos();
 
 session_start();
 error_reporting(0);
@@ -63,7 +65,7 @@ if ($sesion == null || $sesion = '') {
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../../controller/logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -114,36 +116,29 @@ if ($sesion == null || $sesion = '') {
                     </thead>
                     <tbody id="contenido_tabla">
                         <?php
-                        $buscar = "SELECT * FROM docente WHERE usuario =" . $_SESSION['usuario'];
-                        $dato = mysqli_query($conexion, $buscar);
-                        $registro = mysqli_fetch_array($dato);
-                        ?>
+                        $mostrar = $funcion->listarPropuestas();
 
-                        <?php
-                        $mostrar_by_fecha = "SELECT * FROM propuesta WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha";
-                        $result = mysqli_query($conexion, $mostrar_by_fecha);
-
-                        while ($filas = mysqli_fetch_array($result)) {
-                            $id_registro = $filas['id'];
+                        foreach ($mostrar as $value) {
+                            $id_registro = $value['id'];
                         ?>
                             <tr>
-                                <td style="max-width: 600px;"><?php echo $filas['titulo'] ?></td>
-                                <td hidden><?php echo $filas['linea'] ?></td>
-                                <td style="text-align: center;"><?php echo $filas['integrantes'] ?></td>
-                                <td hidden><?php echo $filas['tutor'] ?></td>
-                                <td hidden><?php echo $filas['lider'] ?></td>
-                                <td><?php echo $filas['programa'] ?></td>
-                                <td style="text-align: center;"><?php echo $filas['semestre'] ?></td>
-                                <td hidden><?php echo $filas['descripcion'] ?></td>
-                                <td hidden><?php echo $filas['grupo'] ?></td>
-                                <td><?php echo $filas['fecha'] ?></td>
+                                <td style="max-width: 600px;"><?php echo $value['titulo'] ?></td>
+                                <td hidden><?php echo $value['linea'] ?></td>
+                                <td style="text-align: center;"><?php echo $value['integrantes'] ?></td>
+                                <td hidden><?php echo $value['tutor'] ?></td>
+                                <td hidden><?php echo $value['lider'] ?></td>
+                                <td><?php echo $value['programa'] ?></td>
+                                <td style="text-align: center;"><?php echo $value['semestre'] ?></td>
+                                <td hidden><?php echo $value['descripcion'] ?></td>
+                                <td hidden><?php echo $value['grupo'] ?></td>
+                                <td><?php echo $value['fecha'] ?></td>
                                 <form action="../../../controller/evaluate-propuesta.php" method="POST">
                                     <td id="celdaCalif">
-                                        <input type="text" name="getIdPropuesta" hidden value="<?php echo $filas['id'] ?>">
-                                        <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $filas['estado'] ?>">
+                                        <input type="text" name="getIdPropuesta" hidden value="<?php echo $value['id'] ?>">
+                                        <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $value['estado'] ?>">
                                     </td>
                                     <td>
-                                        <input name="id_p" type="text" hidden value="<?php echo $filas['id'] ?>">
+                                        <input name="id_p" type="text" hidden value="<?php echo $value['id'] ?>">
 
                                         <button class="editbtn" type="button" data-target="#panel-propuesta">
                                             <button type="button" class="editbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -207,7 +202,7 @@ if ($sesion == null || $sesion = '') {
                                         <input hidden type="submit" name="calificar" value="Calificar" class="btn-estado" id="calificarN">
                                     </td>
                                 </form>
-                                <td hidden><?php echo $filas['programa_id'] ?></td>
+                                <td hidden><?php echo $value['programa_id'] ?></td>
                             </tr>
                         <?php
                         }

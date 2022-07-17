@@ -1,16 +1,18 @@
 <?php
-include("../model/conexion.php");
-include("../model/Entidad.php");
+
+include("../model/UserModel.php");
+$obj = new User();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
-
-$profile = new Entidad;
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,6 +25,7 @@ $profile = new Entidad;
     <meta name="author" content="">
 
     <title>Cambiar contraseña</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/unicons.css">
@@ -40,7 +43,7 @@ $profile = new Entidad;
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../pages/estudiante/index.php"><img class="logo" src="../img/logo_p.png"></a>
+        <a style="cursor: pointer;" class="navbar-brand" onclick="history.back()"><img class="logo" src="../img/logo_p.png"></a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <h3>CAMBIAR CONTRASEÑA</h3>
@@ -48,18 +51,19 @@ $profile = new Entidad;
             <ul class="navbar-nav mx-auto">
 
             </ul>
-            <ul class="log">
-                <li>
-                    <img style="width: 40px; height: 40px; border-radius: 50%;" src="../files/photos/<?php $profile->getProfilePhoto();
-                                                                                                        ?>" alt="">
-
-                    <?php
-                    $profile->getProfileUser();
-                    ?>
-                    <ul>
-                        <li><a class="out" href="">Perfil</a></li>
-                        <li><a class="out" href="../support/account.php">Cambiar contraseña</a></li>
-                        <li><a class="out" href="../controller/logout.php">Cerrar sesión</a></li>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -88,10 +92,8 @@ $profile = new Entidad;
                     </label>
                 </div>
                 <div class="photo">
-                    <?php
-                    $profile->getProfileUser();
-                    ?>
-                    <img src="../files/photos/<?php $profile->getProfilePhoto(); ?>">
+                    <?php echo $userP['nombre']; ?>
+                    <img src="../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>">
                 </div>
             </div>
             <button class="btn btn-primary" type="submit" name="ch">Guardar</button>
@@ -136,6 +138,7 @@ $profile = new Entidad;
             });
         }(document, window, 0));
     </script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
         function confirmEnviar() {
             envio.archivo.disabled = true;
@@ -150,15 +153,10 @@ $profile = new Entidad;
             return confirmEnviar();
         }, false);
     </script>
-    <script src="../font/9390efa2c5.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Headroom.js"></script>
-    <script src="../js/jQuery.headroom.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/smoothscroll.js"></script>
-    <script src="../js/custom.js"></script>
+    <script src="../font/d029bf1c92.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 
 </body>
 

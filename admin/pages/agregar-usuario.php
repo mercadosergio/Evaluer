@@ -1,15 +1,16 @@
 <?php
 include_once '../../model/Metodos.php';
 include("../../model/UserModel.php");
-include '../../controller/AddUserController.php';
 
-$data = new Metodos();
+$data = new User();
+include '../../controller/AddUserController.php';
 session_start();
 error_reporting(0);
+$sesion = $_SESSION['usuario'];
+$getProfile = $data->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-$variable_sesion = $_SESSION['usuario'];
-
-if ($variable_sesion == null || $variable_sesion = '') {
+if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
@@ -53,13 +54,19 @@ if ($variable_sesion == null || $variable_sesion = '') {
                 <li class="nav-item">
                 </li>
             </ul>
-            <ul class="log">
-                <li class="">
-                    <a class="navbar-brand" href=""><i class='uil uil-user'></i><?php echo $_SESSION['usuario'] ?></a>
-                    <ul>
-                        <li><a class="out" href="">Perfil</a></li>
-                        <li><a class="out" href="../../support/account.php">Cambiar contraseña</a></li>
-                        <li><a class="out" href="../../controller/logout.php">Cerrar sesión</a></li>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -134,6 +141,7 @@ if ($variable_sesion == null || $variable_sesion = '') {
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
