@@ -11,7 +11,7 @@ div::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover,
 div::-webkit-scrollbar-thumb:hover {
-    background: #014674;
+    background: #0176c4d3;
 }
 
 body::-webkit-scrollbar-track,

@@ -13,6 +13,7 @@ if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
+
 ?>
 
 <!doctype html>
@@ -140,10 +141,18 @@ if ($sesion == null || $sesion = '') {
                 </a>
             </div>
             <div class="separation">
-                <a href="">
+                <a href="pages/notas.php">
                     <div class="option_ad">
-                        <h2>Asignar coordinador</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
+                        <h2>Ver notas de proyectos</h2>
+                        <center><i class="fa-solid fa-clipboard"></i></center>
+                    </div>
+                </a>
+            </div>
+            <div class="separation">
+                <a href="pages/gestion-academica.php">
+                    <div class="option_ad">
+                        <h2>Gestión académica</h2>
+                        <center><i class="fa-regular fa-id-card"></i></center>
                     </div>
                 </a>
             </div>

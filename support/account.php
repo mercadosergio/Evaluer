@@ -113,9 +113,7 @@ if ($sesion == null || $sesion = '') {
     </div>
 
     <script>
-        'use strict';
-
-        ;
+        'use strict';;
         (function(document, window, index) {
             var inputs = document.querySelectorAll('.inputfile');
             Array.prototype.forEach.call(inputs, function(input) {

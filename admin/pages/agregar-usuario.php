@@ -76,10 +76,10 @@ if ($sesion == null || $sesion = '') {
         <div class="content shadow p-3 mb-5 bg-white rounded">
             <div class="roles">
                 <h5>Seleccione el rol de usuario:</h5>
-                <select name="role[]" id="role" class="role form-select" onchange="cambiarRol()">
-                    <option class="coo" value="2">Coordinador</option>
-                    <option class="other" value="3" selected>Estudiante</option>
-                    <option class="other" value="4">Docente</option>
+                <select name="role[]" id="role" class="role form-select">
+                    <option class="coo" value="3">Coordinador</option>
+                    <option class="other" value="1" selected>Estudiante</option>
+                    <option class="other" value="2">Docente</option>
                 </select>
             </div>
 
@@ -114,28 +114,30 @@ if ($sesion == null || $sesion = '') {
             </div>
         </div>
     </form>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            cambiarRol();
+            $('#role').change(function() {
+                cambiarRol();
+            });
+        })
+    </script>
     <script type="text/javascript">
         function cambiarRol() {
-            const selectElement = document.getElementById('role');
-
-            selectElement.addEventListener('change', (event) => {
-                let input = document.getElementById("semestre");
-                if (document.getElementById("role").value === '2') {
-                    input.disabled = true;
-                    // input.style = 'display:none';
-                    $('#stitle').html("Información del coordinador");
-                } else if (document.getElementById("role").value === '3') {
-                    input.disabled = false;
-                    // input.style = 'display:flex';
-                    $('#stitle').html("Información del estudiante");
-                } else if (document.getElementById("role").value === '4') {
-                    input.disabled = false;
-                    $('#stitle').html("Información del asesor");
-                }
-            });
+            let input = document.getElementById("semestre");
+            if ($('#role').val() == 1) {
+                input.style = 'display:flex';
+                $('#stitle').html("Información del estudiante");
+            } else if ($('#role').val() == 2) {
+                input.style = 'display:none';
+                $('#stitle').html("Información del asesor");
+            } else {
+                input.style = 'display:none';
+                $('#stitle').html("Información del coordinador");
+            }
         }
     </script>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
@@ -145,7 +147,6 @@ if ($sesion == null || $sesion = '') {
 
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>
-    <script src="../../js/jquery-3.3.1.min.js"></script>
 </body>
 
 </html>

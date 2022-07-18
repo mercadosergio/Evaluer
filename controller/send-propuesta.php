@@ -10,8 +10,11 @@ $tutor = $_POST['tutor'];
 $lider = $_POST['lider'];
 $semestre = $_POST['semestre'];
 $descripcion = $_POST['description']; // TEXTAREA
-$grupo = $_POST['grupo'];
 $fecha = $_POST['fecha'];
+
+$miembro1 = $_POST['miembro1'];
+$miembro2 = $_POST['miembro2'];
+$miembro3 = $_POST['miembro3'];
 
 $programa_id = $_POST['id_programa'];
 
@@ -38,12 +41,12 @@ if ($descripcion == null || $descripcion == '') {
         $json = json_encode($programa_id, true);
 
         for ($i = 0; $i < count($programa_id); $i++) {
-            $conexion->query("INSERT INTO propuesta(titulo,linea,integrantes,tutor,lider,programa_id,semestre,descripcion,grupo,fecha,remitente)
-                VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$programa_id[$i]','$semestre','$descripcion','$grupo','$fecha'," . $_SESSION['usuario'] . ")");
+            $conexion->query("INSERT INTO propuesta(titulo,linea,integrantes,tutor,lider,programa_id,semestre,descripcion,miembro1,miembro2,miembro3,fecha,remitente)
+            VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$programa_id[$i]','$semestre','$descripcion','$miembro1','$miembro2','$miembro3','$fecha'," . $_SESSION['usuario'] . ")");
 
             $conexion->query("UPDATE propuesta a
-                JOIN estudiante es ON a.remitente = es.usuario
-                                    SET a.programa_id = es.programa_id");
+            JOIN estudiante es ON a.remitente = es.usuario
+            SET a.programa_id = es.programa_id");
 
 
             $conexion->query("UPDATE propuesta a

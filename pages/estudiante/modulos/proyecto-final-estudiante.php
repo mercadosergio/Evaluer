@@ -126,7 +126,7 @@ if ($sesion == null || $sesion = '') {
                         <div class="detalle_entrega">
                             <i class="fas fa-file-alt"></i>
                             <div class="datos">
-                                <a href="<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
+                                <a href="../<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
                                 <label>Fecha: <?php echo $archivados['fecha'] ?></label>
                             </div>
                             <div class="evaluacion">
