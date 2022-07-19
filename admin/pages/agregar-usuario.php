@@ -77,9 +77,9 @@ if ($sesion == null || $sesion = '') {
             <div class="roles">
                 <h5>Seleccione el rol de usuario:</h5>
                 <select name="role[]" id="role" class="role form-select">
-                    <option class="coo" value="3">Coordinador</option>
-                    <option class="other" value="1" selected>Estudiante</option>
-                    <option class="other" value="2">Docente</option>
+                    <option class="coo" value="2">Coordinador</option>
+                    <option class="other" value="3" selected>Estudiante</option>
+                    <option class="other" value="4">Docente</option>
                 </select>
             </div>
 
@@ -126,10 +126,10 @@ if ($sesion == null || $sesion = '') {
     <script type="text/javascript">
         function cambiarRol() {
             let input = document.getElementById("semestre");
-            if ($('#role').val() == 1) {
+            if ($('#role').val() == 3) {
                 input.style = 'display:flex';
                 $('#stitle').html("Información del estudiante");
-            } else if ($('#role').val() == 2) {
+            } else if ($('#role').val() == 4) {
                 input.style = 'display:none';
                 $('#stitle').html("Información del asesor");
             } else {

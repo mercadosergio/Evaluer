@@ -2,6 +2,7 @@
 include 'model/db.php';
 include 'model/UserModel.php';
 include 'controller/UserController.php';
+// echo '<script>alert('.$_POST['user'].')</script>';
 ?>
 
 <!doctype html>
