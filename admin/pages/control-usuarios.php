@@ -113,8 +113,6 @@ if ($sesion == null || $sesion = '') {
                         </thead>
                         <tbody id="userInfo">
                             <?php
-
-
                             $sql = "SELECT * FROM estudiante ORDER BY id";
                             $datos = $obj->listar($sql);
 
@@ -128,6 +126,8 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $key['cedula'] ?></td>
                                     <td><?php echo $key['programa'] ?></td>
                                     <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
+                                    <td hidden><?php echo $key['id_usuario'] ?></td>
+                                    <td hidden><?php echo 3 ?></td>
                                     <td class="botones_tabla">
                                         <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-user-pen"></i>
@@ -175,6 +175,8 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $asesor['s_apellido'] ?></td>
                                     <td><?php echo $asesor['cedula'] ?></td>
                                     <td><?php echo $asesor['programa'] ?></td>
+                                    <td hidden><?php echo $asesor['id_usuario'] ?></td>
+                                    <td hidden><?php echo 4 ?></td>
                                     <td class="botones_tabla">
                                         <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-user-pen"></i>
@@ -211,23 +213,25 @@ if ($sesion == null || $sesion = '') {
                             $sql3 = "SELECT * FROM coordinador ORDER BY id";
                             $datos_c = $obj->listar($sql3);
 
-                            foreach ($datos_c as $key_c) {
-                                $id_registro_d = $key_c['id'];
+                            foreach ($datos_c as $principal) {
+                                $id_registro_d = $principal['id'];
                             ?>
                                 <tr>
-                                    <td><?php echo $key_c['id'] ?></td>
-                                    <td><?php echo $key_c['nombres'] ?></td>
-                                    <td><?php echo $key_c['p_apellido'] ?></td>
-                                    <td><?php echo $key_c['s_apellido'] ?></td>
-                                    <td><?php echo $key_c['cedula'] ?></td>
-                                    <td><?php echo $key_c['programa'] ?></td>
+                                    <td><?php echo $principal['id'] ?></td>
+                                    <td><?php echo $principal['nombres'] ?></td>
+                                    <td><?php echo $principal['p_apellido'] ?></td>
+                                    <td><?php echo $principal['s_apellido'] ?></td>
+                                    <td><?php echo $principal['cedula'] ?></td>
+                                    <td><?php echo $principal['programa'] ?></td>
+                                    <td hidden><?php echo $principal['id_usuario'] ?></td>
+                                    <td hidden><?php echo 2 ?></td>
                                     <td class="botones_tabla">
                                         <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>
                                         <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $key_c['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $key_c['id'] ?>">
+                                            <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
+                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $principal['id'] ?>">
                                             <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
                                         </form>
                                     </td>
@@ -254,7 +258,9 @@ if ($sesion == null || $sesion = '') {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="id form-control" name="id" value="">
+                        <input hidden type="text" class="id_user form-control" name="id_usuario" value="">
+                        <input hidden type="text" class="rol form-control" name="rol" value="">
+                        <input hidden type="text" class="id form-control" name="id" value="">
                         <label class="lbl-nombre">Nombre:</label>
                         <input type="text" class="nombre form-control" name="nombre" value="">
                         <label class="lbl-p-apellido">Primer apellido:</label>
@@ -263,6 +269,10 @@ if ($sesion == null || $sesion = '') {
                         <input type="text" class="s-apellido form-control" name="s_apellido" value="">
                         <label class="lbl-cedula">Documento de identidad:</label>
                         <input type="text" class="cedula form-control" name="cedula" value="">
+
+                        <label class="lbl-cedula">Email:</label>
+                        <input type="text" class="email form-control" name="email" value="">
+
                         <label class="lbl-programa">Programa:</label>
 
                         <select name="programa_id[]" class="programa form-select">
@@ -314,6 +324,8 @@ if ($sesion == null || $sesion = '') {
             $('.cedula').val(datos[4]);
             $('.programa_selected').html(datos[5]);
             $('.semestre').val(datos[6]);
+            $('.id_user').val(datos[7]);
+            $('.rol').val(datos[8]);
 
 
         });

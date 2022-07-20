@@ -82,9 +82,9 @@ class User extends DataBase
           JOIN programas p ON e.programa_id = p.identificador
           SET e.programa = p.nombre");
 
-        $this->con->query("UPDATE estudiante e
-          JOIN usuarios u ON e.usuario = u.usuario
-          SET e.id_usuario = u.id");
+        // $this->con->query("UPDATE estudiante e
+        //   JOIN usuarios u ON e.usuario = u.usuario
+        //   SET e.id_usuario = u.id");
         mysqli_close($this->con);
     }
     /*
@@ -100,9 +100,9 @@ class User extends DataBase
         ON cr.programa_id = p.identificador
         SET cr.programa = p.nombre");
 
-        $this->con->query("UPDATE coordinador cr
-        JOIN usuarios u ON cr.usuario = u.usuario
-        SET cr.id_usuario = u.id");
+        // $this->con->query("UPDATE coordinador cr
+        // JOIN usuarios u ON cr.usuario = u.usuario
+        // SET cr.id_usuario = u.id");
 
         mysqli_close($this->con);
     }
@@ -121,14 +121,22 @@ Función para agregar un usuario de tipo asesor de investigación a la base de d
         ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
-        $this->con->query("UPDATE docente e
-        JOIN usuarios u ON e.usuario = u.usuario
-        SET e.id_usuario = u.id");
+        // $this->con->query("UPDATE docente e
+        // JOIN usuarios u ON e.usuario = u.usuario
+        // SET e.id_usuario = u.id");
 
         mysqli_close($this->con);
         return true;
     }
 
+
+
+    public function editUser($nombre,  $usuario, $id)
+    {
+        $sql = "UPDATE usuarios SET nombre='$nombre',usuario='$usuario' WHERE id = '$id'";
+        $this->con->query($sql);
+        mysqli_close($this->con);
+    }
 
     public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre)
     {
@@ -238,7 +246,7 @@ Función para agregar un usuario de tipo asesor de investigación a la base de d
         mysqli_close($this->con);
     }
     /*
-    Metodos para obtener datos de los usuarios y roles que iniciaron sesión
+        Metodos para obtener datos de los usuarios y roles que iniciaron sesión
     */
 
     public function getProfileUser()
@@ -255,7 +263,7 @@ Función para agregar un usuario de tipo asesor de investigación a la base de d
 
 
     /* 
-    Cerrar sesión
+        Cerrar sesión
     */
 
     public function cerrarSesion()
