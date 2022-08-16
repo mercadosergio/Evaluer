@@ -260,8 +260,28 @@ Función para agregar un usuario de tipo asesor de investigación a la base de d
         return $resultado;
     }
 
+    public function deleteEstudiante($id)
+    {
+        $result = $this->con->query("DELETE FROM estudiante WHERE id = '$id'") or die("Error al eliminar usuario");
+        return $result;
+    }
+    public function deleteAsesor($id)
+    {
+        $result = $this->con->query("DELETE FROM docente WHERE id = '$id'") or die("Error al eliminar usuario");
+        return $result;
+    }
 
+    public function deleteCoordinador($id)
+    {
+        $result = $this->con->query("DELETE FROM coordinador WHERE id = '$id'") or die("Error al eliminar usuario");
+        return $result;
+    }
 
+    public function deleteUser($usuario)
+    {
+        $result = $this->con->query("DELETE FROM usuarios WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
+        return $result;
+    }
     /* 
         Cerrar sesión
     */

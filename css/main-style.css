@@ -144,26 +144,6 @@ strong {
 
 /* Contanier Login ...................................................................................*/
 
-.desktop {
-    height: 100vh;
-    background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.desktop .login {
-    width: 360px;
-    height: 430px;
-    background-color: rgba(247, 243, 243, 0.74);
-    top: 50%;
-    left: 85%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 40px 30px;
-    color: black;
-}
-
 .titulo-i {
     margin-bottom: 30px;
 }
@@ -265,7 +245,6 @@ input:focus {
 .pass:focus::placeholder {
     opacity: 0;
     transform: translateX(100%);
-    /*font-size: 12px;*/
 }
 
 .boton {
@@ -334,12 +313,25 @@ input:focus {
 
 /* Footer Begin................................................................................................... */
 
-@media screen and (min-width: 67em) {
-    .mobile {
-        display: none;
+@media screen and (min-width: 1024px) {
+    .fondo {
+        position: relative;
+        height: 100vh;
+        background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-    .desktop {
-        display: block;
+    .fondo .login {
+        width: 360px;
+        height: 430px;
+        background-color: rgba(247, 243, 243, 0.74);
+        top: 50%;
+        left: 85%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        box-sizing: border-box;
+        padding: 40px 30px;
+        color: black;
     }
     .aunar_logo {
         margin-left: 50px;
@@ -355,7 +347,6 @@ input:focus {
         background: linear-gradient(to right, rgba(1, 54, 88, 0.4), rgba(1, 54, 88, 0.4), rgba(1, 55, 88, 0.4)), url("../img/panoramic-view.png");
     }
     footer {
-        /* background: #e9c140; */
         background: #0269ad;
     }
     .des {
@@ -367,12 +358,10 @@ input:focus {
     .team {
         color: #fff;
         margin: auto;
-        /* background: chartreuse; */
         width: 1040px;
         display: flex;
     }
     .team .develop>div {
-        /* background: coral; */
         margin: 10px;
         align-items: center;
         display: block;
@@ -391,7 +380,7 @@ input:focus {
     }
     .develop {
         display: grid;
-        grid-template-areas: "des des" "programer1 programer2";
+        grid-template-areas: "des des""programer1 programer2";
     }
     .des {
         grid-area: des;
@@ -408,13 +397,9 @@ input:focus {
     }
 }
 
-@media screen and (max-width: 67em) {
-    .desktop {
+@media screen and (max-width: 768px) {
+    .container-title {
         display: none;
-    }
-    .mobile {
-        display: block;
-        height: 100vh;
     }
     body {
         background: linear-gradient(to right, rgba(2, 105, 173, 0.568), rgba(0, 0, 0, 0.363), rgba(254, 233, 0, 0.336)), url("../img/campus-aunar-2.png");
@@ -441,13 +426,13 @@ input:focus {
         width: 100%;
     }
     .login {
-        width: 80%;
+        width: 50%;
         background-color: rgba(247, 243, 243, 0.74);
         box-sizing: border-box;
         padding: 20px 30px;
         color: black;
         margin: auto;
-        margin-top: 150px;
+        margin-top: 90px;
         margin-bottom: 80px;
     }
     .login h3 {
@@ -491,10 +476,8 @@ input:focus {
     .team {
         color: #fff;
         margin: auto;
-        /* background: chartreuse; */
     }
     .team .develop>div {
-        /* background: coral; */
         margin: 10px;
         align-items: center;
         display: block;
@@ -515,8 +498,25 @@ input:focus {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
+    .des {
+        grid-column: 1/3;
+    }
+    .des img {
+        margin: auto;
+    }
     .info {
         padding: 20px;
         padding-top: 0;
+    }
+    .org {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .login {
+        width: 80%;
     }
 }

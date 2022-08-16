@@ -128,15 +128,14 @@ if ($sesion == null || $sesion = '') {
                                     <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
                                     <td hidden><?php echo $key['id_usuario'] ?></td>
                                     <td hidden><?php echo 3 ?></td>
+                                    <td hidden><?php echo $key['usuario'] ?></td>
                                     <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#editModal">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>
-                                        <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input hidden type="text" name="user" readonly value="<?php echo $key['usuario'] ?>">
-                                            <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
-                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
-                                        </form>
+                                        <input hidden type="text" name="user" readonly value="<?php echo $key['usuario'] ?>">
+                                        <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
+                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteStudent" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                             <?php
@@ -177,16 +176,15 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $asesor['programa'] ?></td>
                                     <td hidden><?php echo $asesor['id_usuario'] ?></td>
                                     <td hidden><?php echo 4 ?></td>
+                                    <td hidden><?php echo $asesor['usuario'] ?></td>
                                     <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>
                                         </a>
-                                        <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $asesor['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $asesor['id'] ?>">
-                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
-                                        </form>
+                                        <input type="text" name="user" hidden readonly value="<?php echo $asesor['usuario'] ?>">
+                                        <input type="text" name="getIdU" hidden readonly value="<?php echo $asesor['id'] ?>">
+                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                             <?php
@@ -225,15 +223,14 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $principal['programa'] ?></td>
                                     <td hidden><?php echo $principal['id_usuario'] ?></td>
                                     <td hidden><?php echo 2 ?></td>
+                                    <td hidden><?php echo $principal['usuario'] ?></td>
                                     <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
                                             <i class="fa-solid fa-user-pen"></i>
                                         </button>
-                                        <form action="../../controller/eliminar-usuario.php" method="POST">
-                                            <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
-                                            <input type="text" name="getIdU" hidden readonly value="<?php echo $principal['id'] ?>">
-                                            <button type="submit" value="Eliminar" name="eliminar" class="btn-eliminar"><i class="bi bi-trash-fill"></i></button>
-                                        </form>
+                                        <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
+                                        <input type="text" name="getIdU" hidden readonly value="<?php echo $principal['id'] ?>">
+                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                             <?php
@@ -249,7 +246,7 @@ if ($sesion == null || $sesion = '') {
     include("../../controller/EditUser.php");
     ?>
     <!-- Modal component -->
-    <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="POST">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -299,6 +296,34 @@ if ($sesion == null || $sesion = '') {
         </form>
     </div>
     <!-- End modal component -->
+
+
+    <!-- Modal confim -->
+    <?php
+    include("../../controller/DeleteUser.php");
+    ?>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST">
+                    <div class="modal-body">
+                        ¿Está segur@ de eliminar este usuario?
+                        <input name="del_id" type="text" class="id_del" value="">
+                        <input name="del_user" type="text" class="user_del" value="">
+                        <input name="del_role" type="text" class="role_u" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" name="deleteU">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <script src="../../js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -336,6 +361,27 @@ if ($sesion == null || $sesion = '') {
         $('.edit_s').on('click', function() {
             document.getElementById("semestre").style = "display: block";
             document.getElementById("lbl-semestre").style = "display: block";
+        });
+    </script>
+
+    <script>
+        $('.deleteStudent').on('click', function() {
+            $tr = $(this).closest('tr');
+            var datos = $tr.children('td').map(function() {
+                return $(this).text();
+            });
+            $('.id_del').val(datos[0]);
+            $('.user_del').val(datos[9]);
+            $('.role_u').val(datos[8]);
+        });
+        $('.deleteEvaluator').on('click', function() {
+            $tr = $(this).closest('tr');
+            var datos = $tr.children('td').map(function() {
+                return $(this).text();
+            });
+            $('.id_del').val(datos[0]);
+            $('.user_del').val(datos[8]);
+            $('.role_u').val(datos[7]);
         });
     </script>
     <script>

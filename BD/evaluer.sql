@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2022 a las 04:56:03
+-- Tiempo de generación: 16-08-2022 a las 23:21:58
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -190,8 +190,7 @@ CREATE TABLE `estudiante` (
 
 INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `programa_id`, `semestre`, `usuario`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `id_usuario`) VALUES
 (1, 'Sergio', 'Mercado   ', 'Salazar    ', '1143411235 ', 'INGENIERÍA INFORMÁTICA', '010', 9, '1143411235 ', 0, 0, 0, 3),
-(2, 'Dager', 'Lopez', 'Estrada', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, '4444444444', 0, 0, 0, NULL),
-(3, 'Oscar', 'Garces', 'Gomez', '7777777777', 'INGENIERÍA INFORMÁTICA', '010', 7, '7777777777', 0, 100000000, 100000000, NULL);
+(2, 'Dager', 'Lopez', 'Estrada', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, '4444444444', 0, 0, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -331,8 +330,7 @@ INSERT INTO `usuarios` (`id`, `nombre`, `email`, `usuario`, `contraseña`, `id_r
 (5, 'Jorge', 'jorge@gmail.com', '5555555554', '5555555555', 2, ''),
 (6, 'Carlos', 'carlos@gmail.com', '3333333334    ', '$2y$10$PQz/q.OvzOy3JaCZ//OSj.ag61/h8gRnV853w82M3YHBT.7qRPs.S', 4, ''),
 (7, 'Nestor', 'nestor@gmail.com', '2222222222', '2222222222', 4, ''),
-(8, 'Dager', 'dager@gmail.com', '4444444444', '4444444444', 3, ''),
-(9, 'Oscar', 'oscar@gmail.com', '7777777777', '7777777777', 3, '');
+(8, 'Dager', 'dager@gmail.com', '4444444444', '4444444444', 3, '');
 
 --
 -- Índices para tablas volcadas
@@ -436,7 +434,7 @@ ALTER TABLE `docente`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `propuesta`
@@ -460,7 +458,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

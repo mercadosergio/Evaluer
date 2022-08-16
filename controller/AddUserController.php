@@ -16,8 +16,8 @@ if (isset($_POST['agregar'])) {
     if ($programa_id == '1') {
 ?>
         <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
-  left: 50%;
-  transform: translate(-50%, 0%);">
+        left: 50%;
+        transform: translate(-50%, 0%);">
             Seleccione un programa académico
         </div>
         <script>

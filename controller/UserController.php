@@ -2,6 +2,14 @@
 
 if (isset($_POST['login'])) {
 
+    // define('CLAVE', '6LecX3MhAAAAAL2K7kpIQOU_YspLboVwXDP62-31');
+
+    // $token = $_POST['token'];
+    // $action = $_POST['action'];
+
+    // $cu = curl_init();
+    // curl_setopt($cu, CURLOPT_URL, "");
+
     $usuario = $_POST['user'];
     $contraseña = $_POST['pass'];
 
