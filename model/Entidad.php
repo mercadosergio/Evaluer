@@ -53,7 +53,7 @@ class Entidad extends DataBase
 
     public function publicarAnuncio($contenido, $fecha, $programa, $nombre, $usuario)
     {
-        $this->connect()->query("INSERT INTO anuncios(contenido,fecha,programa_id,nombre_user,usuario) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario')");
+        $this->connect()->query("INSERT INTO anuncios(contenido,fecha,programa_id,nombre_usuario,usuario) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario')");
     }
 
     public function getAnuncios()

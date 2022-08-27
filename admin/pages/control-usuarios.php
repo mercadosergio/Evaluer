@@ -351,8 +351,6 @@ if ($sesion == null || $sesion = '') {
             $('.semestre').val(datos[6]);
             $('.id_user').val(datos[7]);
             $('.rol').val(datos[8]);
-
-
         });
         $('.edit_a').on('click', function() {
             document.getElementById("semestre").style = "display: none";

@@ -4,6 +4,7 @@ include("../../model/UserModel.php");
 
 $data = new User();
 include '../../controller/AddUserController.php';
+
 session_start();
 error_reporting(0);
 $sesion = $_SESSION['usuario'];

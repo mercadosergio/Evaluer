@@ -97,11 +97,10 @@ if ($sesion == null || $sesion = '') {
                         $getTime = $res->restrictPropuesta();
                         ?>
                         <div class="subtitulo">
-                            <i class="fas fa-network-wired"></i>
-                            <h3 class="">Propuesta de grado</h3>
+                            <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
                         </div>
                         <p class="info">
-                            Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos para evaluar un anteproyecto.
+                            Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos para registrar su idea investigativa.
                         </p>
 
                         <label class="lbl-titulo">Título del proyecto:</label>
@@ -177,13 +176,14 @@ if ($sesion == null || $sesion = '') {
 
                 <div class="contenedor-btn">
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                    <input <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar btn btn-primary mb-4">
+                    <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
+                    <!-- <input <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar mb-4"> -->
                 </div>
             </form>
         </div>
         <form method="GET">
             <div class="details">
-                <label><i class="fas fa-bell"></i> Detalles y notificaciones</label>
+                <label><i class="fas fa-bell"></i> Notificaciones</label>
 
                 <?php
                 $listar = "SELECT * FROM propuesta WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";

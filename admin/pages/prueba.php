@@ -31,7 +31,7 @@ $getA = $obj->viewAnuncioSender();
 
 foreach ($getA as $key) {
     echo $key['id'];
-    echo $key['nombre_user'];
+    echo $key['user_name'];
     echo $key['fecha'];
     echo $key['contenido'];
 }

@@ -109,7 +109,7 @@ if ($sesion == null || $sesion = '') {
         <div class="secciones" id="body">
             <div style="resize: horizontal;" class="anouncement_card">
                 <div>
-                    <span><i class="bi bi-info-circle-fill"></i> Anuncios del curso</span>
+                    <span><i class="bi bi-info-circle-fill"></i> Anuncios y detalles</span>
                 </div>
                 <?php
                 $recurso = new Metodos();
@@ -117,7 +117,7 @@ if ($sesion == null || $sesion = '') {
                 while ($actual = mysqli_fetch_array($rep)) {
                 ?>
                     <div>
-                        <p><?php echo $actual['nombre_user']; ?></p>
+                        <p><?php echo $actual['nombre_usuario']; ?></p>
                         <p><?php echo $actual['contenido']; ?></p>
                         <p><?php echo $actual['fecha']; ?></p>
                     </div>
@@ -125,86 +125,7 @@ if ($sesion == null || $sesion = '') {
                 }
 
                 ?>
-                <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi iste nesciunt tempore deserunt, eius
-                    amet?
-                    Perspiciatis, hic alias! Cum laborum, nihil magnam esse quasi officiis ipsam adipisci dolorem.
-                    Debitis amet
-                    in perferendis eos laboriosam itaque natus repellendus ut voluptas sequi mollitia eveniet ipsam
-                    impedit,
-                    beatae reprehenderit est laudantium magni odit recusandae. Id adipisci non eveniet vitae, saepe
-                    veniam
-                    excepturi vero possimus dolorem nostrum ea quia debitis laudantium molestiae impedit qui. Itaque
-                    molestias,
-                    quod ea consequuntur quibusdam rerum ducimus, cum officiis deserunt consequatur, enim neque. Quam
-                    illo
-                    suscipit commodi. Beatae nulla officia iure, mollitia et sit est quod neque, similique voluptate
-                    accusantium, ad eaque illo odit nihil. Nobis sint aspernatur at repellat voluptatem facilis hic ab
-                    error aut
-                    maxime! Earum, quidem quis perspiciatis quasi atque animi eligendi laborum dolorum cumque,
-                    aspernatur, sit
-                    tempore maxime. Nulla sint eaque, eligendi adipisci cumque unde distinctio? Molestiae velit, dolore
-                    magni
-                    pariatur consectetur adipisci sed impedit exercitationem! Repellendus repellat laudantium obcaecati
-                    inventore possimus doloribus delectus pariatur? Eveniet temporibus esse officia facere repudiandae,
-                    saepe
-                    possimus perferendis earum velit error aliquam laborum vero expedita magnam obcaecati dolorem non ab
-                    quo
-                    enim quibusdam inventore aperiam exercitationem recusandae sed. Accusamus voluptatum architecto
-                    velit eum,
-                    labore nisi sit cumque cupiditate dolorum minus aut ut, dolorem magni vitae. Dignissimos facere,
-                    nisi
-                    accusamus sapiente autem vel esse, ipsam earum illum facilis ratione, enim nesciunt praesentium
-                    officia ad
-                    quos! Nobis voluptatibus temporibus nesciunt ullam maxime recusandae amet dolores voluptas nulla
-                    aliquid
-                    quam error corporis vel, fugit tenetur magnam delectus culpa ducimus nihil totam qui minus ratione
-                    reprehenderit quis. Mollitia quasi fugit tenetur nam sunt laborum quae et iusto! Magnam similique
-                    accusantium, explicabo alias necessitatibus expedita quis illum, vel nostrum laboriosam
-                    exercitationem eos
-                    perferendis modi facere facilis, sed itaque. Ratione mollitia a amet quia rerum magnam, sunt culpa
-                    quo
-                    repudiandae, atque, quos quam optio consequatur iste aperiam molestias rem perspiciatis. Culpa
-                    mollitia,
-                    numquam cumque totam adipisci blanditiis eius accusamus qui labore! Impedit modi assumenda dolores
-                    aliquid
-                    quaerat dolor iste adipisci inventore, ipsa labore culpa accusamus sed, a fugit ex! Dolores libero
-                    et sit
-                    unde repudiandae consequuntur debitis magnam fuga, odio veniam fugit, ut, quae eius dignissimos.
-                    Quibusdam
-                    optio accusantium deleniti corrupti rerum, expedita unde animi omnis tenetur ullam recusandae
-                    aliquam velit
-                    placeat repudiandae ut minus neque esse ab ex exercitationem molestias dignissimos. Dicta provident
-                    aliquid
-                    maiores. Porro explicabo harum velit consequuntur nesciunt, iste rem optio a eum vitae quos animi
-                    dolores
-                    voluptatibus incidunt error aliquid adipisci. Voluptates possimus fugiat dicta iste hic doloremque
-                    similique
-                    repellendus corporis veniam, magnam voluptatum temporibus ipsa tenetur a, veritatis sequi amet minus
-                    autem
-                    aperiam officiis aspernatur, odit deleniti! Reiciendis necessitatibus et dolorum reprehenderit
-                    placeat
-                    libero consequuntur earum laborum magnam ipsa ut at ex iure similique ad doloribus accusamus
-                    eligendi
-                    aliquam natus soluta, omnis odit culpa dolorem rerum! Quibusdam recusandae odio velit ab earum enim
-                    eum
-                    minima. Minus harum odio ratione iusto magni optio, accusamus alias quam veniam nisi, ex sequi sint
-                    tempore
-                    officia iure tenetur! Iure corrupti vero itaque repudiandae! Totam, omnis illum. Architecto aliquam
-                    suscipit
-                    esse quos dignissimos! Esse dolor fugit dolorem ad quod eum minima excepturi officia consequatur?
-                    Accusamus
-                    magnam expedita at mollitia dolore amet, asperiores esse quis labore obcaecati adipisci, voluptates
-                    reprehenderit odit perferendis ipsa sequi natus voluptatem ducimus aspernatur placeat voluptas?
-                    Maiores,
-                    asperiores. Totam voluptate laudantium id. Necessitatibus maiores aperiam at consequuntur illum
-                    ullam velit
-                    placeat blanditiis, reiciendis molestiae eveniet porro voluptate. Vero repudiandae deleniti iure
-                    praesentium, explicabo quidem, ipsam officia fugiat, beatae error nesciunt neque. Laborum tempora
-                    debitis
-                    mollitia libero vitae tenetur labore magni quas nemo, alias aut saepe blanditiis impedit maiores
-                    ipsa
-                    assumenda voluptatibus error sit eligendi voluptatum accusamus esse enim nostrum? Laudantium, cum!
-                </div>
+                <div><label for="">Juan Diaz</label><h3>Bienvenidos a este curso</h3><p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p><em>12/09/2022</em></div>
             </div>
             <div class="student-module">
                 <h3>Módulos del curso</h3>

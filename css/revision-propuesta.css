@@ -30,14 +30,6 @@ a {
     transition: all 0.4s ease;
 }
 
-
-/* p {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.5;
-    color: #5b5b5b;
-} */
-
 h1,
 h2,
 h3,
@@ -111,19 +103,6 @@ strong {
     overflow: hidden;
 }
 
-
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
-}
-
 .cont-titulo {
     width: 100%;
     border: #bebebe 1px solid;
@@ -140,7 +119,6 @@ strong {
 
 .cont-titulo h3 {
     font-size: 20px;
-    /* text-align: center; */
     margin: 15px;
 }
 
@@ -270,6 +248,10 @@ strong {
 
 .modal-body {
     background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
+}
+
+.modal-body div>label {
+    font-weight: bold;
 }
 
 .modal-body>div {

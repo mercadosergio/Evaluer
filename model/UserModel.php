@@ -56,36 +56,33 @@ class User extends DataBase
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
     /*
-    Función para agregar un usuario a la base de datos de evaluer, acción que se
-    ejecuta cuando el administrador digite los datos requeridos para crear un usuario
-    con datos y credenciales de sesión.
+        Función para agregar un usuario a la base de datos de evaluer, acción que se
+        ejecuta cuando el administrador digite los datos requeridos para crear un usuario
+        con datos y credenciales de sesión.
     */
     public function createUser($nombre, $email, $usuario, $contraseña, $id_rol)
     {
         $new_user = "INSERT INTO usuarios(nombre,email,usuario,contraseña,id_rol)
         VALUES ('$nombre','$email','$usuario','$contraseña','$id_rol')";
         $this->con->query($new_user);
-
-        mysqli_close($this->con);
     }
 
     /*
-    Función para agregar un usuario de tipo estudiante a la base de datos, este posee atributos y datos
-    que le permiten interactuar con el sistema de entregas en el campo de investigación.
+        Función para agregar un usuario de tipo estudiante a la base de datos, este posee atributos y datos
+        que le permiten interactuar con el sistema de entregas en el campo de investigación.
     */
     public function agregarEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre, $usuario)
     {
-        $this->con->query("INSERT INTO estudiante(nombre,p_apellido,s_apellido,programa_id,cedula,semestre,usuario,time_propuesta, time_anteproyecto, time_proyecto)
-        VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario','100000000','100000000','100000000')");
+        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa_id, semestre,usuario, time_propuesta, time_anteproyecto, time_proyecto)
+                                          VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario',100000000,100000000,100000000)");
 
         $this->con->query("UPDATE estudiante e
           JOIN programas p ON e.programa_id = p.identificador
           SET e.programa = p.nombre");
 
-        // $this->con->query("UPDATE estudiante e
-        //   JOIN usuarios u ON e.usuario = u.usuario
-        //   SET e.id_usuario = u.id");
-        mysqli_close($this->con);
+        $this->con->query("UPDATE estudiante e
+          JOIN usuarios u ON e.usuario = u.usuario
+          SET e.id_usuario = u.id");
     }
     /*
      
@@ -100,33 +97,27 @@ class User extends DataBase
         ON cr.programa_id = p.identificador
         SET cr.programa = p.nombre");
 
-        // $this->con->query("UPDATE coordinador cr
-        // JOIN usuarios u ON cr.usuario = u.usuario
-        // SET cr.id_usuario = u.id");
-
-        mysqli_close($this->con);
+        $this->con->query("UPDATE coordinador cr
+        JOIN usuarios u ON cr.usuario = u.usuario
+        SET cr.id_usuario = u.id");
     }
     /*
-Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
-     datos que le permiten interactuar con el rol docente o asesor de seguimiento para el cumplimiento de las
-     metas realizadas.
+        Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
+        datos que le permiten interactuar con el rol docente o asesor de seguimiento para el cumplimiento de las
+        metas realizadas.
     */
     public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
     {
-        $new_tutor = "INSERT INTO docente(nombres,p_apellido,s_apellido,cedula,programa_id,usuario)
-                VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')";
-        $this->con->query($new_tutor);
+        $this->con->query("INSERT INTO docente(nombres,p_apellido,s_apellido,cedula,programa_id,usuario)
+                                  VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')");
 
         $this->con->query("UPDATE docente e JOIN programas p
         ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
-        // $this->con->query("UPDATE docente e
-        // JOIN usuarios u ON e.usuario = u.usuario
-        // SET e.id_usuario = u.id");
-
-        mysqli_close($this->con);
-        return true;
+        $this->con->query("UPDATE docente e
+        JOIN usuarios u ON e.usuario = u.usuario
+        SET e.id_usuario = u.id");
     }
 
 

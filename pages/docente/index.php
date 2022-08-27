@@ -151,7 +151,7 @@ if ($sesion == null || $sesion = '') {
                 <div class="grid">
                     <input hidden type="text" name="id" value="<?php echo $key['id'] ?>">
                     <div class="e1"><img src="../../files/photos/default.png"></div>
-                    <div class="e2"><?php echo $key['nombre_user']; ?></div>
+                    <div class="e2"><?php echo $key['nombre_usuario']; ?></div>
                     <div class="e3">
                         <p><?php echo $key['fecha']; ?></p>
                     </div>

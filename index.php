@@ -3,7 +3,6 @@ include 'model/db.php';
 include 'model/UserModel.php';
 include 'controller/UserController.php';
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -143,7 +142,7 @@ include 'controller/UserController.php';
             $('#alerta').fadeOut('fast');
         }, 4000); // <-- time in milliseconds
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LecX3MhAAAAALXDcbb80fjB-Sw9OMs63FzjG55C"></script>
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LecX3MhAAAAALXDcbb80fjB-Sw9OMs63FzjG55C"></script> -->
     <script>
         $(document).ready(function() {
             $('#login').click(function() {

@@ -86,7 +86,7 @@ if ($sesion == null || $sesion = '') {
             <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
-            <table id="tabla" class="ant">
+            <table id="tabla" class="ant shadow">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -110,7 +110,7 @@ if ($sesion == null || $sesion = '') {
                             <form action="../../../controller/evaluate-anteproyecto.php" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
-                                <td><a href="<?php echo $value['documento']; ?>"><?php echo $value['nombre']; ?></a></td>
+                                <td><a href="<?php echo $value['documento']; ?>"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
                                 <td><?php echo $value['comentarios']; ?></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
                                 <td><?php echo $value['fecha']; ?></td>

@@ -81,8 +81,8 @@ if ($sesion == null || $sesion = '') {
                 include '../../../controller/HabilitarPropuesta.php';
                 ?>
                 <input type="text" hidden value="<?php echo $_SESSION['usuario']; ?>" name="userr">
-                <button name="begin" type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i>Iniciar
-                    entrega</button>
+                <button name="begin" type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i>Habilitar
+                    entregas</button>
             </form>
         </fieldset>
         <div class="lista-propuestas">
@@ -97,7 +97,7 @@ if ($sesion == null || $sesion = '') {
 
 
             <div class="contenedor-tabla">
-                <table class="">
+                <table class="shadow">
                     <thead>
                         <tr>
                             <th>Título</th>
@@ -130,8 +130,11 @@ if ($sesion == null || $sesion = '') {
                                 <td><?php echo $value['programa'] ?></td>
                                 <td style="text-align: center;"><?php echo $value['semestre'] ?></td>
                                 <td hidden><?php echo $value['descripcion'] ?></td>
-                                <td hidden><?php echo $value['grupo'] ?></td>
                                 <td><?php echo $value['fecha'] ?></td>
+                                <td hidden><?php echo $value['miembro1'] ?></td>
+                                <td hidden><?php echo $value['miembro2'] ?></td>
+                                <td hidden><?php echo $value['miembro3'] ?></td>
+                                <td hidden><?php echo $value['id'] ?></td>
                                 <form action="../../../controller/evaluate-propuesta.php" method="POST">
                                     <td id="celdaCalif">
                                         <input type="text" name="getIdPropuesta" hidden value="<?php echo $value['id'] ?>">
@@ -154,45 +157,49 @@ if ($sesion == null || $sesion = '') {
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="linea">
-                                                                <label class="lbl-linea">Linea de investigación:</label>
+                                                                <label class="lbl-linea">Linea de investigación: </label>
                                                                 <p id="linea"></p>
                                                             </div>
                                                             <div class="programa">
-                                                                <label class="lbl-programa">Programa:</label>
+                                                                <label class="lbl-programa">Programa: </label>
                                                                 <p id="program"></p>
                                                             </div>
                                                             <div class="semestre">
-                                                                <label class="lbl-semestre">Semestre:</label>
+                                                                <label class="lbl-semestre">Semestre: </label>
                                                                 <p id="semestre"></p>
                                                             </div>
                                                             <div class="integrantes">
-                                                                <label class="lbl-integrantes">Número de
-                                                                    integrantes:</label>
+                                                                <label class="lbl-integrantes">Número de integrantes: </label>
                                                                 <p id="num"></p>
                                                             </div>
                                                             <div class="tutor">
-                                                                <label class="lbl-tutor">Nombre del asesor:</label>
+                                                                <label class="lbl-tutor">Nombre del asesor: </label>
                                                                 <p id="tutor"></p>
                                                             </div>
                                                             <div class="lider">
-                                                                <label class="lbl-lider">Nombre del lider:</label>
+                                                                <label class="lbl-lider">Nombre del lider: </label>
                                                                 <p id="lid"></p>
                                                             </div>
                                                             <div class="descripcion">
-                                                                <label>Descripción:</label>
-                                                                <textarea name="lider" readonly id="descrip" cols="30" rows="4" name="description" value=""></textarea>
-                                                            </div>
+                                                                <label>Descripción: </label>
+                                                                <textarea style="display: block; text-align: justify;" name="lider" readonly id="descrip" cols="30" rows="4" name="description" value=""></textarea>
+                                                            </div><br>
                                                             <div class="equipo">
-                                                                <label class="lbl-equipo">Nombre de los integrantes:</label>
+                                                                <label class="lbl-equipo">Nombre de los integrantes: </label>
+                                                                <ul>
+                                                                    <li id="int1"></li>
+                                                                    <li id="int2"></li>
+                                                                    <li id="int3"></li>
+                                                                </ul>
                                                                 <p id="n_integrantes"></p>
                                                             </div>
                                                             <div class="dat">
-                                                                <label class="lbl-fecha">Fecha y hora:</label>
+                                                                <label class="lbl-fecha">Fecha y hora: </label>
                                                                 <p id="time"></p>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -241,9 +248,10 @@ if ($sesion == null || $sesion = '') {
             $('#program').html(datos[5]);
             $('#semestre').html(datos[6]);
             $('#descrip').html(datos[7]);
-            $('#n_integrantes').html(datos[8]);
-            $('#time').html(datos[9]);
-
+            $('#time').html(datos[8]);
+            $('#int1').html(datos[9]);
+            $('#int2').html(datos[10]);
+            $('#int3').html(datos[11]);
         });
     </script>
     <script src="../../../utilities/loading/load.js"></script>

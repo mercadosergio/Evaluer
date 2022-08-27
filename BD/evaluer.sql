@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-08-2022 a las 23:21:58
+-- Tiempo de generación: 27-08-2022 a las 06:38:04
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -91,8 +91,8 @@ CREATE TABLE `anteproyecto` (
 --
 
 INSERT INTO `anteproyecto` (`id`, `titulo`, `nombre`, `documento`, `comentarios`, `programa`, `programa_id`, `fecha`, `remitente`, `estado`, `calificacion`, `observaciones`) VALUES
-(3, 'sad', 'Guia_proyecto_inv_ing (1).pdf', '../files/anteproyectos/14-06-22-00-06-23-Guia_proyecto_inv_ing (1).pdf', 'edsadsadsadasd', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-14 00:35:17', '1143411235', 'dsad', 'dsd', 'asdasdasd\r\n                                                                                                                                  '),
-(4, 'sad', 'firma.jpg', '../files/anteproyectos/15-06-22-00-06-50-firma.jpg', 'sadsadssdaa', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-15 00:42:40', '1143411235', '', '', '');
+(1, 'sad', 'proyecto_inv_ing.pdf', '../files/anteproyectos/14-06-22-00-06-23-Guia_proyecto_inv_ing (1).pdf', 'Aspectos metodologicos', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-14 00:35:17', '1143411235', 'APROBADO', '4.2', 'Plasmar mas referencias\n                                                                                                                                  '),
+(2, 'sad', 'entrega_parcial.pdf', '../files/anteproyectos/15-06-22-00-06-50-firma.jpg', 'Entrega parcial con correciones de marco referencial', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-15 00:42:40', '1143411235', 'EN REVISION', '--', '');
 
 -- --------------------------------------------------------
 
@@ -105,7 +105,7 @@ CREATE TABLE `anuncios` (
   `contenido` varchar(400) NOT NULL,
   `fecha` varchar(20) NOT NULL,
   `programa_id` int(20) NOT NULL,
-  `nombre_user` varchar(70) NOT NULL,
+  `nombre_usuario` varchar(70) NOT NULL,
   `usuario` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -132,8 +132,9 @@ CREATE TABLE `coordinador` (
 --
 
 INSERT INTO `coordinador` (`id`, `nombres`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `programa_id`, `usuario`, `id_usuario`) VALUES
-(1, 'Jorge', 'Perez ', 'Sarmiento ', '5555555554', '', '010', '5555555554', 5),
-(2, 'Mauricio', 'Castro', 'Castro', '8888888888', '', '020', '8888888888', 4);
+(0, 'asda', 'dasd', 'ewqe', 'dassa', 'COCINA INTERNACIONAL', '020', 'dassa', 16),
+(1, 'Jorge', 'Perez ', 'Sarmiento ', '5555555554', 'INGENIERÍA INFORMÁTICA', '010', '5555555554', 5),
+(2, 'Mauricio', 'Castro', 'Castro', '8888888888', 'COCINA INTERNACIONAL', '020', '8888888888', 4);
 
 -- --------------------------------------------------------
 
@@ -148,9 +149,9 @@ CREATE TABLE `docente` (
   `s_apellido` varchar(80) NOT NULL,
   `cedula` varchar(14) NOT NULL,
   `programa` varchar(100) NOT NULL,
-  `programa_id` varchar(200) NOT NULL,
+  `programa_id` varchar(4) NOT NULL,
   `usuario` varchar(50) NOT NULL,
-  `id_usuario` int(100) NOT NULL
+  `id_usuario` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -160,7 +161,8 @@ CREATE TABLE `docente` (
 INSERT INTO `docente` (`id`, `nombres`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `programa_id`, `usuario`, `id_usuario`) VALUES
 (1, 'Diana Lilena                                                ', 'Velasquez ', 'Romero ', '0001112345    ', 'INGENIERÍA INFORMÁTICA', '010', '0001112345                                        ', 2),
 (2, 'Carlos                                                      ', 'Gomez       ', 'Pereira       ', '3333333334    ', 'CONTADURÍA PÚBLICA', '030', '3333333334                                        ', 6),
-(3, 'Nestor', 'Suat', 'Rojas', '2222222222', 'INGENIERÍA INFORMÁTICA', '010', '2222222222', 7);
+(3, 'Nestor', 'Suat', 'Rojas', '2222222222', 'INGENIERÍA INFORMÁTICA', '010', '2222222222', 7),
+(4, 'Andres', 'Perez', 'Garcia', '0987654321', 'INGENIERIA INFORMATICA', '010', '0987654321', 9);
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,7 @@ CREATE TABLE `estudiante` (
 --
 
 INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `programa_id`, `semestre`, `usuario`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `id_usuario`) VALUES
-(1, 'Sergio', 'Mercado   ', 'Salazar    ', '1143411235 ', 'INGENIERÍA INFORMÁTICA', '010', 9, '1143411235 ', 0, 0, 0, 3),
+(1, 'Sergio', 'Mercado   ', 'Salazar    ', '1143411235 ', 'INGENIERÍA INFORMÁTICA', '010', 9, '1143411235 ', 1692914400, 0, 0, 3),
 (2, 'Dager', 'Lopez', 'Estrada', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, '4444444444', 0, 0, 0, 8);
 
 -- --------------------------------------------------------
@@ -247,7 +249,8 @@ CREATE TABLE `propuesta` (
 --
 
 INSERT INTO `propuesta` (`id`, `titulo`, `linea`, `integrantes`, `tutor`, `lider`, `programa`, `programa_id`, `semestre`, `descripcion`, `miembro1`, `miembro2`, `miembro3`, `grupo`, `fecha`, `estado`, `id_estudiante`, `remitente`) VALUES
-(33, 'sdas', 'dsad', 0, 'sad', 'asd', 'CONTADURÍA PÚBLICA', '030', 7, 'sad', '', '', '', 'asdasd', '2022-06-17 23:00:18', '', 2, '4444444444');
+(1, 'plataforma de contabilidad', 'sistema web', 1, 'sad', 'asd', 'INGENIERÍA INFORMÁTICA', '010', 7, 'sad', '', '', '', 'asdasd', '2022-06-17 23:00:18', '', 2, '4444444444'),
+(2, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Desarrollo de aplicaciones web', 2, 'Andres Perez', 'Sergio Mercado', 'INGENIERÍA INFORMÁTICA', '010', 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eleifend leo. Etiam pharetra odio quis magna condimentum convallis. In hac habitasse platea dictumst. Cras et erat odio. ', 'Sergio Mercado', 'Martin Rodriguez', '', '', '2022-08-25 00:43:48', '', 1, '1143411235');
 
 -- --------------------------------------------------------
 
@@ -330,7 +333,13 @@ INSERT INTO `usuarios` (`id`, `nombre`, `email`, `usuario`, `contraseña`, `id_r
 (5, 'Jorge', 'jorge@gmail.com', '5555555554', '5555555555', 2, ''),
 (6, 'Carlos', 'carlos@gmail.com', '3333333334    ', '$2y$10$PQz/q.OvzOy3JaCZ//OSj.ag61/h8gRnV853w82M3YHBT.7qRPs.S', 4, ''),
 (7, 'Nestor', 'nestor@gmail.com', '2222222222', '2222222222', 4, ''),
-(8, 'Dager', 'dager@gmail.com', '4444444444', '4444444444', 3, '');
+(8, 'Dager', 'dager@gmail.com', '4444444444', '4444444444', 3, ''),
+(9, 'Andres ', 'andres@gmail.com', '0987654321', '$2y$10$3Xw6El7c6n2MDK9Bw.an2O0vBf/PrJ0h9inQOUUld9wwZ0I.M8Df.', 4, ''),
+(10, 'daniel', 'daniel@mail.com', '112092112', '$2y$10$j3K2hcomheBVACooopGOt.aCCrnyeoqe9Ls.JhYRhf9MXS5f0DCaW', 4, ''),
+(16, 'asda', 'asdsadsa', 'dassa', '$2y$10$b3ff8nFqxcugcBKN0Cqt0.Q43gag8JVPd488eN0ZRRUGY01JhY9fC', 4, ''),
+(17, 'asda', 'asdsadsa', 'dassa', '$2y$10$oonLwgPJ45w/8jgALIGRTepQG5OXHNSwznfDVd.F97ccav/sqtuMO', 4, ''),
+(18, 'asda', 'asdsadsa', 'dassa', '$2y$10$7olAXYwELBSIXHnOsJhuwuV64azSxeoG2G1hEvWLtqoGP7B8ioPxO', 2, ''),
+(19, 'dsad', 'sad', 'a1212', '$2y$10$unaKtQjl8IuaA/oUKpTDJ.qK7uAfbGUx1DXKS5Z1yeyduft0les7y', 4, '');
 
 --
 -- Índices para tablas volcadas
@@ -416,7 +425,7 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `anteproyecto`
 --
 ALTER TABLE `anteproyecto`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `anuncios`
@@ -428,19 +437,19 @@ ALTER TABLE `anuncios`
 -- AUTO_INCREMENT de la tabla `docente`
 --
 ALTER TABLE `docente`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `propuesta`
 --
 ALTER TABLE `propuesta`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto_grado`
@@ -458,7 +467,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas

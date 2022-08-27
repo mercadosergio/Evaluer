@@ -96,7 +96,7 @@ if ($sesion == null || $sesion = '') {
         <!-- Items -->
         <div class="menu-items">
             <div class="item">
-                <a href="">
+                <a href="pages/agregar-usuario.php">
                     <div class="title">
                         <i class="fas fa-user-plus"></i>
                         <label>Registro de usuario</label>
@@ -104,15 +104,32 @@ if ($sesion == null || $sesion = '') {
                 </a>
             </div>
             <div class="separator">
-
             </div>
-
-
             <div class="item">
-                <a href="">
+                <a href="pages/control-usuarios.php">
                     <div class="title">
                         <i class="fas fa-search"></i>
                         <label>Gestión de usuarios</label>
+                    </div>
+                </a>
+            </div>
+            <div class="separator">
+            </div>
+            <div class="item">
+                <a href="pages/notas.php">
+                    <div class="title">
+                        <i class="fa-solid fa-clipboard"></i>
+                        <label>Notas de proyectos de grado</label>
+                    </div>
+                </a>
+            </div>
+            <div class="separator">
+            </div>
+            <div class="item">
+                <a href="pages/gestion-academica.php">
+                    <div class="title">
+                        <i class="fa-regular fa-id-card"></i>
+                        <label>Gestión académica</label>
                     </div>
                 </a>
             </div>
@@ -143,7 +160,7 @@ if ($sesion == null || $sesion = '') {
             <div class="separation">
                 <a href="pages/notas.php">
                     <div class="option_ad">
-                        <h2>Ver notas de proyectos</h2>
+                        <h2>Notas de proyectos de grado</h2>
                         <center><i class="fa-solid fa-clipboard"></i></center>
                     </div>
                 </a>

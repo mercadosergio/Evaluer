@@ -128,9 +128,9 @@ strong {
     height: 100%;
     left: 0;
     right: 0;
-    width: 18%;
+    width: 17%;
     padding-top: 20px;
-    z-index: -1;
+    z-index: 0;
 }
 
 #sidemenu a {
@@ -173,10 +173,11 @@ strong {
 .menu-items .item {
     width: 100%;
     padding: 0;
+    cursor: pointer;
 }
 
 .menu-items .item .title {
-    font-size: 14px;
+    font-size: 16px;
     vertical-align: middle;
     overflow: hidden;
     display: flex;
@@ -213,7 +214,6 @@ strong {
 .menu-items .separator {
     height: 1px;
     border-bottom: 1px solid #a1a1a1;
-    /* margin: 15px 0; */
 }
 
 
@@ -229,7 +229,7 @@ strong {
 
 .grid-template {
     width: 70%;
-    margin: auto;
+    margin: 40px auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;

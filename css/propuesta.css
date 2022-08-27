@@ -369,13 +369,15 @@ strong {
 
 .contenedor-btn {
     text-align: center;
+    margin: 20px;
 }
 
 .btn-enviar {
     font-family: 'Maven', sans-serif;
     padding: 7px 10px;
-    width: 150px;
+    width: 210px;
     font-size: 18px;
+    font-weight: bold;
     color: white;
     background: var(--background-primario);
     border-radius: 5px;
