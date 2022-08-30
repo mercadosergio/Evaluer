@@ -1,20 +1,12 @@
 <?php
-// include '../model/db.php';
-include '../model/conexion.php';
-// include_once '../model/UserModel.php';
+
 if (isset($_POST['begin'])) {
-    session_start();
-    error_reporting(0);
-
     $uses = $_POST['userr'];
-
-    $ver = $conexion->query("SELECT * FROM docente WHERE usuario = '$uses'");
-    $array = mysqli_fetch_array($ver);
-
-    $conexion->query("UPDATE estudiante SET time_propuesta = 0 WHERE programa_id =" . $array['programa_id']);
+    
+    $asesor = new Asesor();
+    $asesor->HabilitarEnvios($uses);
 
     include "../pages/docente/modulos/revision-propuesta.php";
-
     // header("Location: ../pages/docente/modulos/revision-propuesta.php");
 }
 ?>

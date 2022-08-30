@@ -150,16 +150,13 @@ form {
     border: #bebebe 1px solid;
     background: #fff;
     border-radius: 5px;
-    padding: 13px;
     display: flex;
     align-items: center;
 }
 
 .cont-titulo h3 {
     font-size: 20px;
-    color: black;
-    display: flex;
-    align-items: center;
+    margin: 15px;
 }
 
 .seccion-anteproyecto {
@@ -385,4 +382,24 @@ textarea {
 
 .guia_arbol a:hover {
     color: rgb(17, 101, 255);
+}
+
+.none {
+    display: none !important;
+}
+
+.aviso {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 150px;
+}
+
+.aviso p {
+    margin: auto;
+    text-align: center;
+    color: #910303;
+    font-size: 19px;
 }

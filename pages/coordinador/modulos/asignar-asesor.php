@@ -1,16 +1,22 @@
 <?php
-include("../../../model/conexion.php");
-include("../../../model/Entidad.php");
-$profile = new Entidad;
-session_start();
-error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+$funcion = new Metodos();
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../index.php");
+session_start();
+// error_reporting(0);
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+$getMyself = $obj->getCoordinatorProfile();
+$myProfile = mysqli_fetch_array($getMyself);
+
+if ($sesion == null || $sesion = '') {
+    header("location: ../../../index.php");
     die();
 }
-include("../../../controller/nombre.php");
 ?>
 
 <!doctype html>
@@ -62,10 +68,8 @@ include("../../../controller/nombre.php");
             <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -82,15 +86,16 @@ include("../../../controller/nombre.php");
     </nav>
 
     <div class="main_section">
-        <h3 class="title">Asignar asesor</h3>
-
-        <div class="search-registro">
-            <div class="contenedor">
-                <input type="search" id="search" placeholder="Search..." />
-                <button class="icon" name="buscar"><i class="fa fa-search"></i></button>
-            </div>
+        <div class="cont-titulo">
+            <h3>Asignar asesor</h3>
         </div>
-        <table class="tabla_asesor">
+
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="search" id="search" placeholder="Search..." />
+        </div>
+
+        <table class="tabla_asign shadow">
             <thead>
                 <tr>
                     <th>#</th>
@@ -108,36 +113,34 @@ include("../../../controller/nombre.php");
                 ?>
                 <form id="form" action="../../../controller/asignar-docente.php" name="sub" method="POST">
                     <?php
-                    $sql = "SELECT * from proyecto_grado";
-                    $result = mysqli_query($conexion, $sql);
-
-
-                    while ($mostrar = mysqli_fetch_array($result)) {
+                    $sql = "SELECT * from proyecto_grado WHERE programa_id = " . $myProfile['programa_id'];
+                    $data = $funcion->listar($sql);
+                    foreach ($data as $key) {
                     ?>
                         <tr>
-                            <td><?php echo $mostrar['0'] ?></td>
-                            <td style="max-width: 600px;"><?php echo $mostrar['titulo'] ?></td>
-                            <td><a href="<?php echo $mostrar['documento']; ?>"><?php echo $mostrar['nombre']; ?></a></td>
-                            <td><?php echo $mostrar['programa'] ?></td>
-                            <td style="text-align:center;"><?php echo $mostrar['semestre'] ?></td>
-                            <td><?php echo $mostrar['fecha'] ?></td>
+                            <td><?php echo $key['id'] ?></td>
+                            <td style="max-width: 600px;"><?php echo $key['titulo'] ?></td>
+                            <td><a href="<?php echo $key['documento']; ?>"><?php echo $key['nombre']; ?></a></td>
+                            <td><?php echo $key['programa'] ?></td>
+                            <td style="text-align:center;"><?php echo $key['semestre'] ?></td>
+                            <td><?php echo $key['fecha'] ?></td>
 
                             <td>
                                 <select name="asesor[]" id="asesor" onchange="seleccionarDocente()">
-                                    <option selected value="<?php echo $mostrar['asesor_user']; ?>"><?php echo $mostrar['nombre_asesor']; ?></option>
+                                    <option selected value="<?php echo $key['asesor_user']; ?>"><?php echo $key['nombre_asesor']; ?></option>
                                     <option value="1">Seleccione...</option>
                                     <?php
-                                    $buscar_docente = "SELECT * FROM docente";
-                                    $resultado = mysqli_query($conexion, $buscar_docente);
+                                    $sql2 = "SELECT * FROM docente";
+                                    $coach = $funcion->listar($sql2);
 
-                                    while ($filas = mysqli_fetch_array($resultado)) {
-                                        echo '<option value="' . $filas['usuario'] . '">' . $filas['nombres'] . " " . $filas['p_apellido']  . '</option>';
+                                    foreach ($coach as $d) {
+                                        echo '<option value="' . $d['usuario'] . '">' . $d['nombres'] . " " . $d['p_apellido']  . '</option>';
                                     }
                                     ?>
                                 </select>
                             </td>
                             <td hidden>
-                                <input type="text" hidden id="id_proyecto" name="id_proyecto" value="<?php echo $mostrar['0'] ?>">
+                                <input type="text" hidden id="id_proyecto" name="id_proyecto" value="<?php echo $key['id'] ?>">
                                 <input class="asignar" name="asignar_d" value="Guardar" type="submit">
                             </td>
                         </tr>

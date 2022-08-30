@@ -1,14 +1,18 @@
 <?php
-include("../../../model/conexion.php");
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+$obj = new User();
+
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../index.php");
+if ($sesion == null || $sesion = '') {
+    header("location: ../../../index.php");
     die();
 }
-include("../../../controller/nombre.php");
 ?>
 
 <!doctype html>
@@ -33,7 +37,7 @@ include("../../../controller/nombre.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../../css/rev-proyecto-coordinador.css">
+    <link rel="stylesheet" href="../../../css/asignar-jurado.css">
     <link rel="stylesheet" href="../../../css/header.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
 </head>
@@ -54,13 +58,19 @@ include("../../../controller/nombre.php");
                 <ul class="navbar-nav mx-auto">
 
                 </ul>
-                <ul class="log">
-                    <li>
-                        <a class="navbar-brand" href=""><i class='uil uil-user'></i><label for=""><?php echo $nombre_usuario ?></label></a>
-                        <ul>
-                            <li><a class="out" href="">Perfil</a></li>
-                            <li><a class="out" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li><a class="out" href="../../../controller/Logout.php">Cerrar sesión</a></li>
+                <ul class="">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                            <?php echo $userP['nombre']; ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -1,24 +1,23 @@
 <?php
 
-include("../model/conexion.php");
+if (isset($_POST['enviar'])) {
 
-if (isset($_POST['evaluar'])) {
     $estado = $_POST['estado'];
     $nota = $_POST['nota'];
-    $id_a = $_POST['getIdProyecto'];
-    $observacion = $_POST['observacion'];
-    $update_e = $conexion->query("UPDATE proyecto_grado SET estado = '$estado', calificacion='$nota', observaciones='$observacion' WHERE id = '$id_a'");
+    $id = $_POST['getIdProyecto'];
+    $observaciones = $_POST['observacion'];
 
-
-    mysqli_close($conexion);
+    $a = new Asesor();
+    $a->EvaluarProyecto($estado, $nota, $observaciones, $id);
 ?>
-    <p style="position: absolute; padding: 10px;border-radius: 10px; top: 20%; left: 650px;opacity: 1;
-		text-align: center; width: 20%; background: #abff96; color: #1e9700; border: 1px #1e9700 solid;" id="success">Evaluación exitosa</p>
+    <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
+        Evaluación correcta
+    </div>
     <script>
         setTimeout(function() {
             $('#success').fadeOut('fast');
         }, 2000); // <-- time in milliseconds
     </script>
 <?php
-    header("location: ../pages/docente/modulos/revision-proyecto-grado.php");
+    // header("location: ../pages/docente/modulos/revision-proyecto-grado.php");
 }

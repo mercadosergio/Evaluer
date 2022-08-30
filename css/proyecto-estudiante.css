@@ -127,9 +127,13 @@ strong {
     border: #bebebe 1px solid;
     background: #fff;
     border-radius: 5px;
-    padding: 15px;
     display: flex;
     align-items: center;
+}
+
+.cont-titulo h3 {
+    font-size: 20px;
+    margin: 15px;
 }
 
 .titulo1 {
@@ -148,10 +152,15 @@ strong {
     width: 80%;
     background: #fff;
     color: #000;
-    display: block;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     border-radius: 5px;
     border: #bebebe 1px solid;
+}
+
+.seccion-proyecto>div {
+    margin: auto;
 }
 
 .seccion-proyecto .activity {
@@ -171,12 +180,10 @@ p {
 }
 
 .seccion-proyecto .archivo {
+    width: 100%;
     padding: 15px;
     display: block;
-    width: 80%;
     text-align: center;
-    margin: auto;
-    /* background: var(--background-primario); */
 }
 
 .seccion-proyecto .archivo .btn-enviar {
@@ -201,7 +208,6 @@ p {
 
 .container-input {
     color: #000;
-    text-align: center;
     position: relative;
     padding: none;
 }

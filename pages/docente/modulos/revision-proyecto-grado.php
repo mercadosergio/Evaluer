@@ -13,6 +13,8 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+include("../../../model/Asesor.php");
+include("../../../controller/evaluate-proyecto.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -53,7 +55,7 @@ if ($sesion == null || $sesion = '') {
 
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <h3>DOCENTE</h3>
+            <h3>ASESOR DE INVESTIGACIÓN</h3>
             <ul class="navbar-nav mx-auto">
 
             </ul>
@@ -105,7 +107,7 @@ if ($sesion == null || $sesion = '') {
                     foreach ($mostrar as $value) {
                     ?>
                         <tr>
-                            <form action="../../../controller/evaluate-proyecto.php" method="POST">
+                            <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td><a href="<?php echo $value['documento']; ?>"><?php echo $value['nombre']; ?></a></td>
@@ -128,12 +130,6 @@ if ($sesion == null || $sesion = '') {
                                 <td hidden>
                                     <input name="getIdProyecto" type="text" hidden value="<?php echo $value['0'] ?>">
                                     <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
-
-                                    <script>
-                                        // $("#tabla").click(function() {
-                                        //     $("#resultados").submit();
-                                        // });
-                                    </script>
                                 </td>
                             </form>
                         </tr>

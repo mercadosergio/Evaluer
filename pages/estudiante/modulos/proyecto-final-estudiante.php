@@ -1,10 +1,16 @@
 <?php
 include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
+include_once("../../../model/Estudiante.php");
+
 $obj = new User();
 $res = new Metodos();
+
 session_start();
-error_reporting(0);
+// error_reporting(0);
+
+include("../../../controller/upload_proyecto.php");
+
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -25,6 +31,7 @@ if ($sesion == null || $sesion = '') {
     <meta name="author" content="">
 
     <title>Subir Proyecto de Grado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../css/unicons.css">
@@ -78,39 +85,33 @@ if ($sesion == null || $sesion = '') {
 
     </nav>
 
-    <form action="../../../controller/upload_proyecto.php" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
         <div class="format">
             <div class="cont-titulo">
-                <h3 class="titulo1">Subir proyecto de grado</h3>
+                <h3 class="titulo1">Enviar proyecto de grado</h3>
             </div>
             <div class="seccion-proyecto">
-
-                <div class="detalles">
-                    <div style="display: flex;">
-                        <i class="activity fas fa-chalkboard-teacher"></i>
-                        <p>Adjuntar la entrega del proyecto de grado en este espacio.</p>
+                <div>
+                    <div class="detalles">
+                        <div style="display: flex;">
+                            <p><i class="activity bi bi-person-workspace"></i> Adjuntar el entregable del proyecto de grado en este espacio.</p>
+                        </div>
+                        <label for="">Descripción:</label>
+                        <label for="">Fecha de entrega:</label>
                     </div>
-                    <label for="">Descripción:</label>
-                    <label for="">Fecha de entrega:</label>
-                </div>
-                <div class="archivo">
-                    <div class="container-input">
-                        <?php
-                        $fecha = date("Y-m-d H:i:s");
-                        $getTime = $res->restrictProyecto();
-                        ?>
-                        <input type="file" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
-                        <label for="file-5">
-                            <figure>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="iborrainputfile" width="20" height="17" viewBox="0 0 20 17">
-                                    <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path>
-                                </svg>
-                            </figure>
-                            <span class="iborrainputfile">Seleccionar archivo</span>
-                        </label>
+                    <div class="archivo">
+                        <div class="container-input">
+                            <?php
+                            $fecha = date("Y-m-d H:i:s");
+                            $getTime = $res->restrictProyecto();
+                            ?>
+                            <div class="mb-3">
+                                <input class="form-control" type="file" id="formFile" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?>>
+                            </div>
+                        </div>
+                        <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
+                        <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
                     </div>
-                    <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                    <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
                 </div>
             </div>
             <div class="cont-titulo">
@@ -126,7 +127,7 @@ if ($sesion == null || $sesion = '') {
                         <div class="detalle_entrega">
                             <i class="fas fa-file-alt"></i>
                             <div class="datos">
-                                <a href="../<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
+                                <a href="<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
                                 <label>Fecha: <?php echo $archivados['fecha'] ?></label>
                             </div>
                             <div class="evaluacion">
@@ -190,9 +191,7 @@ if ($sesion == null || $sesion = '') {
     <?php
     if (time() < $getTime) {
     ?>
-        <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
-  				left: 50%;
-  				transform: translate(-50%, 0%);">
+        <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
             No puedes enviar archivos hasta la proxima fecha, en 15 días
         </div>
         <script>

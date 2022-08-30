@@ -125,7 +125,10 @@ if ($sesion == null || $sesion = '') {
                 }
 
                 ?>
-                <div><label for="">Juan Diaz</label><h3>Bienvenidos a este curso</h3><p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p><em>12/09/2022</em></div>
+                <div><label for="">Juan Diaz</label>
+                    <h3>Bienvenidos a este curso</h3>
+                    <p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p><em>12/09/2022</em>
+                </div>
             </div>
             <div class="student-module">
                 <h3>Módulos del curso</h3>

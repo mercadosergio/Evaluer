@@ -1,9 +1,9 @@
 <?php
-
 include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
 $obj = new User();
 
+include("../../../model/Estudiante.php");
 
 session_start();
 error_reporting(0);
@@ -16,6 +16,7 @@ if ($sesion == null || $sesion = '') {
     die();
 }
 
+include("../../../controller/DeletePropuesta.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,7 +69,7 @@ if ($sesion == null || $sesion = '') {
                 </li>
             </ul>
 
-            <ul class="log">
+            <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
@@ -88,7 +89,7 @@ if ($sesion == null || $sesion = '') {
     </nav>
     <div class="grid-view">
         <div class="formulario">
-            <form action="../../../controller/send-propuesta.php" method="POST" id="envio">
+            <form action="../../../controller/SendPropuesta.php" method="POST" id="envio">
                 <div class="seccion-inscripcion">
                     <div class="grid-form">
                         <?php
@@ -158,9 +159,8 @@ if ($sesion == null || $sesion = '') {
                     <h3><i class="bi bi-people-fill"></i> Equipo</h3>
                     <label>Número de integrantes:</label>
                     <div id="contenedorInput">
-                        <select id="listaIntegrantes" name="listaIntegrantes">
-                            <option value="0">Selecciona una opcion</option>
-                            <option value="1">1</option>
+                        <select id="listaIntegrantes" name="numIntegrantes[]">
+                            <option selected value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
@@ -177,7 +177,6 @@ if ($sesion == null || $sesion = '') {
                 <div class="contenedor-btn">
                     <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
                     <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
-                    <!-- <input <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" value="Enviar" class="btn-enviar mb-4"> -->
                 </div>
             </form>
         </div>
@@ -199,17 +198,19 @@ if ($sesion == null || $sesion = '') {
                     foreach ($prop as $propuesta_state) {
                     ?>
                         <div class="notif">
-                            <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
-                            <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
-                            <div class="action-edit">
-                                <a href=""><i class="edit fas fa-edit"></i></a>
-                            </div>
-                            <div class="action-delete">
-                                <a href="../../../controller/eliminar-propuesta.php?remitente=<?php echo $propuesta_state['remitente'] ?>"><i class="trash fas fa-trash-alt"></i></a>
-                            </div>
-                            <div>
-                                <p class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $propuesta_state['estado']; ?></p>
-                            </div>
+                            <form method="POST">
+                                <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
+                                <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
+                                <div class="action-edit">
+                                    <a href=""><i class="edit fas fa-edit"></i></a>
+                                </div>
+                                <div class="action-delete">
+                                    <button type="submit" name="del"><i class="trash fas fa-trash-alt"></i></button>
+                                </div>
+                                <div>
+                                    <p class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">Estado: <?php echo $propuesta_state['estado']; ?></p>
+                                </div>
+                            </form>
                         </div>
                     <?php
                     }

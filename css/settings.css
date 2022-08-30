@@ -32,9 +32,6 @@
         text-decoration: none !important;
         transition: all 0.4s ease;
     }
-    /* a:hover {
-    color: #ffffff !important;
-} */
     
     p {
         font-size: 18px;
@@ -158,23 +155,35 @@
     
     .settings {
         display: flex;
+        flex-direction: row !important;
+        align-items: center;
         margin-top: 30px;
+    }
+    
+    .btn-set {
+        background: var(--background-primario);
+        padding: 7px;
+        color: #fff;
+        border: none;
+        border-radius: 7px;
+        margin: 10px auto;
+        font-size: 18px;
+        text-align: center;
+        width: 140px;
     }
     
     .settings img {
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        margin-left: 200px;
+        margin-right: 50px;
     }
     
     .container-input {
         text-align: center;
-        /* background: #282828; */
         padding: 50px 0;
         border-radius: 6px;
         width: 30%;
-        /* margin: 0 auto; */
         margin-bottom: 20px;
     }
     
@@ -189,7 +198,6 @@
     
     .inputfile+label {
         width: auto;
-        /* background-color: #1ca700; */
         font-size: 1.25rem;
         font-weight: 700;
         text-overflow: ellipsis;
@@ -212,7 +220,6 @@
     .iborrainputfile {
         font-size: 16px;
         font-weight: normal;
-        /* font-family: 'Lato'; */
     }
     
     .inputfile-5+label {
@@ -290,11 +297,12 @@
     .contenedor-soporte .btn-g {
         display: block;
         background: var(--background-primario);
-        padding: 10px;
+        padding: 7px;
         color: #fff;
         border: none;
         border-radius: 7px;
         margin-top: 7px;
         font-size: 18px;
         text-align: center;
+        width: 250px;
     }

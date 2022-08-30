@@ -14,6 +14,9 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+
+include("../../../model/Asesor.php");
+include("../../../controller/evaluate-anteproyecto.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -55,7 +58,7 @@ if ($sesion == null || $sesion = '') {
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <h3>DOCENTE</h3>
+            <h3>ASESOR DE INVESTIGACIÓN</h3>
             <ul class="navbar-nav mx-auto">
 
             </ul>
@@ -107,7 +110,7 @@ if ($sesion == null || $sesion = '') {
                     foreach ($mostrar as $value) {
                     ?>
                         <tr>
-                            <form action="../../../controller/evaluate-anteproyecto.php" method="POST">
+                            <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td><a href="<?php echo $value['documento']; ?>"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
@@ -129,8 +132,7 @@ if ($sesion == null || $sesion = '') {
                                                 </textarea>
                                                 </li>
                                                 <input name="getIdAnteproyecto" type="text" hidden value="<?php echo $value['0'] ?>">
-                                                <button type="submit" name="evaluar" class="btn-nota btn btn-primary">Guardar</button>
-                                                <!-- <input type="submit" name="evaluar" value="Evaluar" class="btn-nota"> -->
+                                                <button type="submit" name="enviar" class="btn-nota btn btn-primary">Guardar</button>
                                             </ul>
                                         </li>
                                     </ul>

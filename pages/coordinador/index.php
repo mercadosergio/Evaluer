@@ -1,16 +1,20 @@
 <?php
-include("../../model/conexion.php");
-include("../../model/Entidad.php");
-$profile = new Entidad;
+include_once("../../model/Metodos.php");
+include("../../model/UserModel.php");
+
+$obj = new User();
 session_start();
 error_reporting(0);
-$variable_sesion = $_SESSION['usuario'];
 
-if ($variable_sesion == null || $variable_sesion = '') {
-    header("location: ../../index.php");
+$sesion = $_SESSION['usuario'];
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+if ($sesion == null || $sesion = '') {
+    header("location: ../index.php");
     die();
 }
-include("../../controller/nombre.php");
+
 ?>
 
 <!doctype html>
@@ -55,14 +59,11 @@ include("../../controller/nombre.php");
             <ul class="navbar-nav mx-auto">
 
             </ul>
-            <ul class="log">
+            <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php $profile->getProfilePhoto(); ?>" alt="">
-
-                        <?php
-                        $profile->getProfileUser();
-                        ?>
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -82,15 +83,15 @@ include("../../controller/nombre.php");
         <h3>Módulos de coordinación académica</h3>
 
         <div class="opciones_coordinador">
-            <a href="modulos/asignar-asesor.php">
+            <a href="modulos/asignar-asesor.php" class="shadow">
                 <div>
                     <h3>Asignar asesor</h3>
                     <img src="../../img/asignar.png" alt="">
                 </div>
             </a>
-            <a href="modulos/revision-proyecto-coordinador.php">
+            <a href="modulos/asignar-jurado.php" class="shadow">
                 <div>
-                    <h3>Proyectos de grado</h3>
+                    <h3>Asignar Jurado</h3>
                     <img src="../../img/proyecto-coordinador.png" alt="">
                 </div>
             </a>

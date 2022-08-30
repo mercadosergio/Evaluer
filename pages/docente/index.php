@@ -6,7 +6,7 @@ include("../../model/UserModel.php");
 $obj = new User();
 
 session_start();
-error_reporting(0);
+// error_reporting(0);
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -55,7 +55,7 @@ if ($sesion == null || $sesion = '') {
         <img src="../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="index.php"><img class="logo" src="../../img/logo_p.png"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <h3>DOCENTE</h3>
+            <h3>ASESOR DE INVESTIGACIÓN</h3>
             <ul class="navbar-nav mx-auto">
 
             </ul>

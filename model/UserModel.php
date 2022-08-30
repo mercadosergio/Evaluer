@@ -250,6 +250,11 @@ class User extends DataBase
         $resultado = $this->con->query("SELECT * FROM docente WHERE usuario = " . $_SESSION['usuario']);
         return $resultado;
     }
+    public function getCoordinatorProfile()
+    {
+        $resultado = $this->con->query("SELECT * FROM coordinador WHERE usuario = " . $_SESSION['usuario']);
+        return $resultado;
+    }
 
     public function deleteEstudiante($id)
     {
@@ -276,6 +281,18 @@ class User extends DataBase
     /* 
         Cerrar sesión
     */
+
+
+    public function ChangePassword($nueva_contraseña, $usuario)
+    {
+
+        $this->con->query("UPDATE usuarios SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
+    }
+
+    public function ChangeProfilePhoto($photo, $usuario)
+    {
+        $this->con->query("UPDATE usuarios SET foto = '$photo' WHERE usuario = '$usuario'");
+    }
 
     public function cerrarSesion()
     {

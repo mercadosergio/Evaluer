@@ -5,8 +5,9 @@ include("../../../model/UserModel.php");
 $obj = new User();
 $funcion = new Metodos();
 
+include("../../../model/Asesor.php");
 session_start();
-error_reporting(0);
+// error_reporting(0);
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -15,6 +16,8 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+
+include "../../../controller/RatePropuesta.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -49,7 +52,7 @@ if ($sesion == null || $sesion = '') {
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <h3>DOCENTE</h3>
+            <h3>ASESOR DE INVESTIGACIÓN</h3>
             <ul class="navbar-nav mx-auto">
 
             </ul>
@@ -135,7 +138,7 @@ if ($sesion == null || $sesion = '') {
                                 <td hidden><?php echo $value['miembro2'] ?></td>
                                 <td hidden><?php echo $value['miembro3'] ?></td>
                                 <td hidden><?php echo $value['id'] ?></td>
-                                <form action="../../../controller/evaluate-propuesta.php" method="POST">
+                                <form action="" method="POST">
                                     <td id="celdaCalif">
                                         <input type="text" name="getIdPropuesta" hidden value="<?php echo $value['id'] ?>">
                                         <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $value['estado'] ?>">
@@ -143,70 +146,69 @@ if ($sesion == null || $sesion = '') {
                                     <td>
                                         <input name="id_p" type="text" hidden value="<?php echo $value['id'] ?>">
 
-                                        <button class="editbtn" type="button" data-target="#panel-propuesta">
-                                            <button type="button" class="editbtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                <i class="bi bi-eye-fill"></i>
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="watch btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="linea">
+                                                            <label class="lbl-linea">Linea de investigación: </label>
+                                                            <p id="linea"></p>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="linea">
-                                                                <label class="lbl-linea">Linea de investigación: </label>
-                                                                <p id="linea"></p>
-                                                            </div>
-                                                            <div class="programa">
-                                                                <label class="lbl-programa">Programa: </label>
-                                                                <p id="program"></p>
-                                                            </div>
-                                                            <div class="semestre">
-                                                                <label class="lbl-semestre">Semestre: </label>
-                                                                <p id="semestre"></p>
-                                                            </div>
-                                                            <div class="integrantes">
-                                                                <label class="lbl-integrantes">Número de integrantes: </label>
-                                                                <p id="num"></p>
-                                                            </div>
-                                                            <div class="tutor">
-                                                                <label class="lbl-tutor">Nombre del asesor: </label>
-                                                                <p id="tutor"></p>
-                                                            </div>
-                                                            <div class="lider">
-                                                                <label class="lbl-lider">Nombre del lider: </label>
-                                                                <p id="lid"></p>
-                                                            </div>
-                                                            <div class="descripcion">
-                                                                <label>Descripción: </label>
-                                                                <textarea style="display: block; text-align: justify;" name="lider" readonly id="descrip" cols="30" rows="4" name="description" value=""></textarea>
-                                                            </div><br>
-                                                            <div class="equipo">
-                                                                <label class="lbl-equipo">Nombre de los integrantes: </label>
-                                                                <ul>
-                                                                    <li id="int1"></li>
-                                                                    <li id="int2"></li>
-                                                                    <li id="int3"></li>
-                                                                </ul>
-                                                                <p id="n_integrantes"></p>
-                                                            </div>
-                                                            <div class="dat">
-                                                                <label class="lbl-fecha">Fecha y hora: </label>
-                                                                <p id="time"></p>
-                                                            </div>
+                                                        <div class="programa">
+                                                            <label class="lbl-programa">Programa: </label>
+                                                            <p id="program"></p>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                                        <div class="semestre">
+                                                            <label class="lbl-semestre">Semestre: </label>
+                                                            <p id="semestre"></p>
                                                         </div>
+                                                        <div class="integrantes">
+                                                            <label class="lbl-integrantes">Número de integrantes: </label>
+                                                            <p id="num"></p>
+                                                        </div>
+                                                        <div class="tutor">
+                                                            <label class="lbl-tutor">Nombre del asesor: </label>
+                                                            <p id="tutor"></p>
+                                                        </div>
+                                                        <div class="lider">
+                                                            <label class="lbl-lider">Nombre del lider: </label>
+                                                            <p id="lid"></p>
+                                                        </div>
+                                                        <div class="descripcion">
+                                                            <label>Descripción: </label>
+                                                            <textarea style="display: block; text-align: justify;" name="lider" readonly id="descrip" cols="30" rows="4" name="description" value=""></textarea>
+                                                        </div><br>
+                                                        <div class="equipo">
+                                                            <label class="lbl-equipo">Nombre de los integrantes: </label>
+                                                            <ul>
+                                                                <li id="int1"></li>
+                                                                <li id="int2"></li>
+                                                                <li id="int3"></li>
+                                                            </ul>
+                                                            <p id="n_integrantes"></p>
+                                                        </div>
+                                                        <div class="dat">
+                                                            <label class="lbl-fecha">Fecha y hora: </label>
+                                                            <p id="time"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </button>
+                                        </div>
+
                                         <!-- | -->
-                                        <input hidden type="submit" name="calificar" value="Calificar" class="btn-estado" id="calificarN">
+                                        <input hidden type="submit" name="submit" value="Calificar" class="btn-estado" id="calificarN">
                                     </td>
                                 </form>
                                 <td hidden><?php echo $value['programa_id'] ?></td>
@@ -235,7 +237,7 @@ if ($sesion == null || $sesion = '') {
     </script>
 
     <script>
-        $('.editbtn').on('click', function() {
+        $('.watch').on('click', function() {
             $tr = $(this).closest('tr');
             var datos = $tr.children("td").map(function() {
                 return $(this).text();
