@@ -22,12 +22,12 @@ class Asesor extends DataBase
         $this->con->query("UPDATE propuesta SET estado = '$estado' WHERE id = '$id'");
     }
 
-    public function EvaluarAnteproyecto($estado,$nota,$observaciones, $id)
+    public function EvaluarAnteproyecto($estado, $nota, $observaciones, $id)
     {
         $this->con->query("UPDATE anteproyecto SET estado = '$estado', calificacion='$nota', observaciones='$observaciones' WHERE id = '$id'");
     }
 
-    public function EvaluarProyecto($estado,$nota,$observaciones, $id)
+    public function EvaluarProyecto($estado, $nota, $observaciones, $id)
     {
         $this->con->query("UPDATE proyecto_grado SET estado = '$estado', calificacion='$nota', observaciones='$observaciones' WHERE id = '$id'");
     }

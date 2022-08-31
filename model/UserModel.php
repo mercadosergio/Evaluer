@@ -17,6 +17,7 @@ class User extends DataBase
 
         // $contador = 0;
         $array = mysqli_fetch_array($result);
+        
         if (($numrows == 1) && (password_verify($password, $array['contraseña']))) {
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
@@ -124,7 +125,7 @@ class User extends DataBase
 
     public function editUser($nombre,  $usuario, $id)
     {
-        $sql = "UPDATE usuarios SET nombre='$nombre',usuario='$usuario' WHERE id = '$id'";
+        $sql = "UPDATE usuarios SET nombre='$nombre', usuario='$usuario' WHERE id = '$id'";
         $this->con->query($sql);
         mysqli_close($this->con);
     }
@@ -278,14 +279,9 @@ class User extends DataBase
         $result = $this->con->query("DELETE FROM usuarios WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
         return $result;
     }
-    /* 
-        Cerrar sesión
-    */
-
-
+   
     public function ChangePassword($nueva_contraseña, $usuario)
     {
-
         $this->con->query("UPDATE usuarios SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
     }
 
@@ -293,7 +289,9 @@ class User extends DataBase
     {
         $this->con->query("UPDATE usuarios SET foto = '$photo' WHERE usuario = '$usuario'");
     }
-
+ /* 
+        Cerrar sesión
+    */
     public function cerrarSesion()
     {
         @session_start();

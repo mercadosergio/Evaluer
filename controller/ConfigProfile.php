@@ -6,7 +6,9 @@ if (isset($_POST['cambiar'])) {
     $nueva_contraseña = $_POST['clave'];
     $confirm_nueva = $_POST['clave2'];
 
-    if ($nueva_contraseña == $clave_actual) {
+    $pass_cifrado = password_hash($nueva_contraseña, PASSWORD_DEFAULT);
+
+    if (password_verify($nueva_contraseña, $clave_actual)) {
 ?>
         <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
             Su nueva contraseña es igual a la anterior
@@ -21,7 +23,7 @@ if (isset($_POST['cambiar'])) {
 
         if ($nueva_contraseña == $confirm_nueva) {
             $user = new User();
-            $user->ChangePassword($nueva_contraseña, $usuario);
+            $user->ChangePassword($pass_cifrado, $usuario);
         ?>
             <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
                 Cambios guardados con éxito
@@ -79,8 +81,8 @@ if (isset($_POST['cambiar'])) {
     } else {
 
         if (move_uploaded_file($guardado, '../files/photos/' . $photo)) {
-            $userP= new User();
-            $userP->ChangeProfilePhoto($photo,$_SESSION['usuario']);
+            $userP = new User();
+            $userP->ChangeProfilePhoto($photo, $_SESSION['usuario']);
         ?>
             <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
                 Cambios guardados con éxito
