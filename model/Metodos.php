@@ -17,7 +17,7 @@ class Metodos extends DataBase
 
     public function viewAnuncio()
     {
-        $sql2 = "SELECT * FROM anuncios";
+        $sql2 = "SELECT * FROM anuncio";
         $result2 = $this->con->query($sql2);
         return $result2;
     }
@@ -25,18 +25,18 @@ class Metodos extends DataBase
     public function viewAnuncioSender()
     {
 
-        // $sql = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
+        // $sql = "SELECT * FROM usuario WHERE usuario = " . $_SESSION['usuario'];
         // $result = mysqli_query($conexion, $sql);
         // $arrayImg = mysqli_fetch_array($result);
 
-        $sql2 = "SELECT * FROM anuncios WHERE usuario = " . $_SESSION['usuario'];
+        $sql2 = "SELECT * FROM anuncio WHERE usuario = " . $_SESSION['usuario'];
         $result2 = $this->con->query($sql2);
         return $result2;
     }
 
     public function getProfileUser()
     {
-        $consulta  = "SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario'];
+        $consulta  = "SELECT * FROM usuario WHERE usuario = " . $_SESSION['usuario'];
         $result = $this->con->query($consulta);
         return $result;
     }

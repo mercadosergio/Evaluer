@@ -99,7 +99,6 @@ strong {
 
 .principal {
     width: auto;
-    /* border-bottom: var(--color-detalle) 3px solid; */
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -118,31 +117,23 @@ strong {
     overflow: hidden;
 }
 
-
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
-}
-
 .anteproyecto {
     padding-top: 30px;
 }
 
-.title {
-    font-size: 24px;
-    padding: 5px;
-    background: #fee700;
-    border: 1px solid var(--background-primario);
+.cont-titulo {
+    width: 100%;
+    border: #bebebe 1px solid;
+    background: #fff;
     border-radius: 5px;
-    text-align: center;
-    width: 30%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+}
+
+.cont-titulo h3 {
+    font-size: 20px;
+    margin: 15px;
 }
 
 .filtro {
@@ -186,7 +177,6 @@ select {
 
 .ent th,
 .ent td {
-    /* border: 1px solid #000; */
     padding: 7px;
     padding-left: 8px;
 }

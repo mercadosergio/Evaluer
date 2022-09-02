@@ -25,7 +25,7 @@ if ($sesion == null || $sesion = '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Asignar asesor</title>
+    <title>Asignar jurado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../../css/bootstrap.min.css">
@@ -51,33 +51,34 @@ if ($sesion == null || $sesion = '') {
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
-        <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <h3>COORDINADOR</h3>
+            <ul class="navbar-nav mx-auto">
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <h3>COORDINADOR</h3>
-                <ul class="navbar-nav mx-auto">
-
-                </ul>
-                <ul class="">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
-                            <?php echo $userP['nombre']; ?>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            </ul>
+            <ul class="">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
+                        <?php echo $userP['nombre']; ?>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+
     </nav>
-    <h3 class="title">Historial de proyectos de grado</h3>
+    <div class="cont-titulo">
+        <h3>Asignar asesor</h3>
+    </div>
+
     <div class="contenedor-titulo">
         <table id="tabla" class="ent">
             <thead>
@@ -91,7 +92,7 @@ if ($sesion == null || $sesion = '') {
                     <th hidden>Acción</th>
                 </tr>
             </thead>
-
+            
             <?php
             $mostrar_by_fecha = "SELECT * FROM proyecto_grado ORDER BY fecha";
             $result = mysqli_query($conexion, $mostrar_by_fecha);

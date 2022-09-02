@@ -10,7 +10,7 @@ class User extends DataBase
     //Obtener usuario para inicio de sesión
     public function getUser($username, $password)
     {
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$username'";
+        $sql = "SELECT * FROM usuario WHERE usuario = '$username'";
         $result = $this->con->query($sql);
 
         $numrows = $result->num_rows;
@@ -21,13 +21,13 @@ class User extends DataBase
         if (($numrows == 1) && (password_verify($password, $array['contraseña']))) {
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
-                if ($array['id_rol'] == 1) { //Administrador
+                if ($array['rol_id'] == 1) { //Administrador
                     header("location: admin/index.php");
-                } else if ($array['id_rol'] == 2) { //Coordinador
+                } else if ($array['rol_id'] == 2) { //Coordinador
                     header("location: pages/coordinador/index.php");
-                } else if ($array['id_rol'] == 3) { //Estudiante
+                } else if ($array['rol_id'] == 3) { //Estudiante
                     header("location: pages/estudiante/index.php");
-                } else if ($array['id_rol'] == 4) { //Docente
+                } else if ($array['rol_id'] == 4) { //Docente
                     header("location: pages/docente/index.php");
                 } else {
                     header("index.php");
@@ -61,10 +61,10 @@ class User extends DataBase
         ejecuta cuando el administrador digite los datos requeridos para crear un usuario
         con datos y credenciales de sesión.
     */
-    public function createUser($nombre, $email, $usuario, $contraseña, $id_rol)
+    public function createUser($nombre, $email, $usuario, $contraseña, $rol_id)
     {
-        $new_user = "INSERT INTO usuarios(nombre,email,usuario,contraseña,id_rol)
-        VALUES ('$nombre','$email','$usuario','$contraseña','$id_rol')";
+        $new_user = "INSERT INTO usuario(nombre,email,usuario,contraseña,rol_id)
+        VALUES ('$nombre','$email','$usuario','$contraseña','$rol_id')";
         $this->con->query($new_user);
     }
 
@@ -78,12 +78,12 @@ class User extends DataBase
                                           VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario',100000000,100000000,100000000)");
 
         $this->con->query("UPDATE estudiante e
-          JOIN programas p ON e.programa_id = p.identificador
+          JOIN programa p ON e.programa_id = p.identificador
           SET e.programa = p.nombre");
 
         $this->con->query("UPDATE estudiante e
-          JOIN usuarios u ON e.usuario = u.usuario
-          SET e.id_usuario = u.id");
+          JOIN usuario u ON e.usuario = u.usuario
+          SET e.usuario_id = u.id");
     }
     /*
      
@@ -94,13 +94,13 @@ class User extends DataBase
                 VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')";
         $this->con->query($coordinator);
 
-        $this->con->query("UPDATE coordinador cr JOIN programas p
+        $this->con->query("UPDATE coordinador cr JOIN programa p
         ON cr.programa_id = p.identificador
         SET cr.programa = p.nombre");
 
         $this->con->query("UPDATE coordinador cr
-        JOIN usuarios u ON cr.usuario = u.usuario
-        SET cr.id_usuario = u.id");
+        JOIN usuario u ON cr.usuario = u.usuario
+        SET cr.usuario_id = u.id");
     }
     /*
         Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
@@ -112,20 +112,20 @@ class User extends DataBase
         $this->con->query("INSERT INTO docente(nombres,p_apellido,s_apellido,cedula,programa_id,usuario)
                                   VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')");
 
-        $this->con->query("UPDATE docente e JOIN programas p
+        $this->con->query("UPDATE docente e JOIN programa p
         ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
         $this->con->query("UPDATE docente e
-        JOIN usuarios u ON e.usuario = u.usuario
-        SET e.id_usuario = u.id");
+        JOIN usuario u ON e.usuario = u.usuario
+        SET e.usuario_id = u.id");
     }
 
 
 
     public function editUser($nombre,  $usuario, $id)
     {
-        $sql = "UPDATE usuarios SET nombre='$nombre', usuario='$usuario' WHERE id = '$id'";
+        $sql = "UPDATE usuario SET nombre='$nombre', usuario='$usuario' WHERE id = '$id'";
         $this->con->query($sql);
         mysqli_close($this->con);
     }
@@ -136,15 +136,15 @@ class User extends DataBase
         programa_id='$programa_id',semestre='$semestre',usuario='$cedula' WHERE id = '$id'";
         $this->con->query($sql);
 
-        $sql2 = "UPDATE usuarios SET nombre='$nombre', usuario = '$cedula' WHERE id='$id'";
+        $sql2 = "UPDATE usuario SET nombre='$nombre', usuario = '$cedula' WHERE id='$id'";
         $this->con->query($sql2);
 
         $this->con->query("UPDATE estudiante e
-        JOIN programas p ON e.programa_id = p.identificador
+        JOIN programa p ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
-        $this->con->query("UPDATE usuarios u JOIN estudiante e
-        ON u.id = e.id_usuario
+        $this->con->query("UPDATE usuario u JOIN estudiante e
+        ON u.id = e.usuario_id
         SET u.usuario = e.cedula");
 
         if (!$sql) {
@@ -176,11 +176,11 @@ class User extends DataBase
         $this->con->query($sql);
 
         $this->con->query("UPDATE docente e
-        JOIN programas p ON e.programa_id = p.identificador
+        JOIN programa p ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
-        $this->con->query("UPDATE usuarios u JOIN docente e
-        ON u.id = e.id_usuario
+        $this->con->query("UPDATE usuario u JOIN docente e
+        ON u.id = e.usuario_id
         SET u.usuario = e.cedula");
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
@@ -210,11 +210,11 @@ class User extends DataBase
         $this->con->query($sql);
 
         $this->con->query("UPDATE coordinador e
-        JOIN programas p ON e.programa_id = p.identificador
+        JOIN programa p ON e.programa_id = p.identificador
         SET e.programa = p.nombre");
 
-        $this->con->query("UPDATE usuarios u JOIN coordinador e
-        ON u.id = e.id_usuario
+        $this->con->query("UPDATE usuario u JOIN coordinador e
+        ON u.id = e.usuario_id
         SET u.usuario = e.cedula");
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
@@ -238,12 +238,12 @@ class User extends DataBase
         mysqli_close($this->con);
     }
     /*
-        Metodos para obtener datos de los usuarios y roles que iniciaron sesión
+        Metodos para obtener datos de los usuario y roles que iniciaron sesión
     */
 
     public function getProfileUser()
     {
-        $result = $this->con->query("SELECT * FROM usuarios WHERE usuario = " . $_SESSION['usuario']);
+        $result = $this->con->query("SELECT * FROM usuario WHERE usuario = " . $_SESSION['usuario']);
         return $result;
     }
     public function getDocenteProfile()
@@ -276,18 +276,18 @@ class User extends DataBase
 
     public function deleteUser($usuario)
     {
-        $result = $this->con->query("DELETE FROM usuarios WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
+        $result = $this->con->query("DELETE FROM usuario WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
         return $result;
     }
    
     public function ChangePassword($nueva_contraseña, $usuario)
     {
-        $this->con->query("UPDATE usuarios SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
+        $this->con->query("UPDATE usuario SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
     }
 
     public function ChangeProfilePhoto($photo, $usuario)
     {
-        $this->con->query("UPDATE usuarios SET foto = '$photo' WHERE usuario = '$usuario'");
+        $this->con->query("UPDATE usuario SET foto = '$photo' WHERE usuario = '$usuario'");
     }
  /* 
         Cerrar sesión

@@ -26,8 +26,8 @@ class Student extends DataBase
 
             $this->con->query("UPDATE propuesta a
             JOIN estudiante es ON a.remitente = es.usuario
-            JOIN programas p ON a.programa_id = p.identificador
-            SET a.programa = p.nombre, a.id_estudiante = es.id");
+            JOIN programa p ON a.programa_id = p.identificador
+            SET a.programa = p.nombre, a.estudiante_id = es.id");
 
             $this->con->query("UPDATE estudiante SET time_propuesta = '$time_propuesta' WHERE usuario =" . $_SESSION['usuario']);
         }

@@ -34,13 +34,13 @@ class Asesor extends DataBase
 
     public function publicarAnuncio($contenido, $fecha, $programa, $nombre, $usuario)
     {
-        $this->con->query("INSERT INTO anuncios(contenido,fecha,programa_id,nombre_usuario,usuario) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario')");
+        $this->con->query("INSERT INTO anuncio(contenido,fecha,programa_id,nombre_usuario,usuario) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario')");
     }
 
     public function deleteAnuncio()
     {
         $id_a = $_POST['id'];
 
-        $this->con->query("DELETE FROM anuncios WHERE id = '$id_a'");
+        $this->con->query("DELETE FROM anuncio WHERE id = '$id_a'");
     }
 }

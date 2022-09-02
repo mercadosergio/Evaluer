@@ -14,7 +14,6 @@ if (isset($_POST['editar'])) {
 
     $rol = $_POST['rol'];
 
-
     $user = new User();
 
     $user->editUser($nombre, $usuario, $idUser);

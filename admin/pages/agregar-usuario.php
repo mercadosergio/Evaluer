@@ -100,7 +100,7 @@ if ($sesion == null || $sesion = '') {
                     <select name="programa_id[]" class="programa-s form-select">
                         <option selected value="1">Seleccione...</option>
                         <?php
-                        $sql = "SELECT * FROM programas";
+                        $sql = "SELECT * FROM programa";
                         $datos = $data->listar($sql);
                         foreach ($datos as $key) {
                             echo '<option value="' . $key['identificador'] . '">' . $key['nombre'] . '</option>';

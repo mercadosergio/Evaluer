@@ -126,7 +126,7 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $key['cedula'] ?></td>
                                     <td><?php echo $key['programa'] ?></td>
                                     <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
-                                    <td hidden><?php echo $key['id_usuario'] ?></td>
+                                    <td hidden><?php echo $key['usuario_id'] ?></td>
                                     <td hidden><?php echo 3 ?></td>
                                     <td hidden><?php echo $key['usuario'] ?></td>
                                     <td class="botones_tabla">
@@ -174,7 +174,7 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $asesor['s_apellido'] ?></td>
                                     <td><?php echo $asesor['cedula'] ?></td>
                                     <td><?php echo $asesor['programa'] ?></td>
-                                    <td hidden><?php echo $asesor['id_usuario'] ?></td>
+                                    <td hidden><?php echo $asesor['usuario_id'] ?></td>
                                     <td hidden><?php echo 4 ?></td>
                                     <td hidden><?php echo $asesor['usuario'] ?></td>
                                     <td class="botones_tabla">
@@ -221,7 +221,7 @@ if ($sesion == null || $sesion = '') {
                                     <td><?php echo $principal['s_apellido'] ?></td>
                                     <td><?php echo $principal['cedula'] ?></td>
                                     <td><?php echo $principal['programa'] ?></td>
-                                    <td hidden><?php echo $principal['id_usuario'] ?></td>
+                                    <td hidden><?php echo $principal['usuario_id'] ?></td>
                                     <td hidden><?php echo 2 ?></td>
                                     <td hidden><?php echo $principal['usuario'] ?></td>
                                     <td class="botones_tabla">
@@ -255,7 +255,7 @@ if ($sesion == null || $sesion = '') {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input hidden type="text" class="id_user form-control" name="id_usuario" value="">
+                        <input hidden type="text" class="id_user form-control" name="usuario_id" value="">
                         <input hidden type="text" class="rol form-control" name="rol" value="">
                         <input hidden type="text" class="id form-control" name="id" value="">
                         <label class="lbl-nombre">Nombre:</label>
@@ -276,7 +276,7 @@ if ($sesion == null || $sesion = '') {
                             <option class="programa_selected" selected value=""></option>
                             <option value="1">Seleccione...</option>
                             <?php
-                            $non_selected = "SELECT * FROM programas";
+                            $non_selected = "SELECT * FROM programa";
                             $options = $obj->listar($non_selected);
 
                             foreach ($options as $pro) {

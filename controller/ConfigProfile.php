@@ -34,17 +34,17 @@ if (isset($_POST['cambiar'])) {
                 }, 2000); // <-- time in milliseconds
             </script>
         <?php
-            // $consulta_rol = $conexion->query("SELECT * FROM usuarios WHERE usuario = '$usuario'");
+            // $consulta_rol = $conexion->query("SELECT * FROM usuario WHERE usuario = '$usuario'");
             // $tupla = mysqli_fetch_array($consulta_rol);
 
             // // Dependiendo del rol que tenga ese usuario que cambio la contraseña redirigir a su pargina principal
-            // if ($tupla['id_rol'] == 1) {
+            // if ($tupla['rol_id'] == 1) {
             //     header("location: ../admin/index.php");
-            // } else if ($tupla['id_rol'] == 2) {
+            // } else if ($tupla['rol_id'] == 2) {
             //     header("location: ../pages/coordinador/index.php");
-            // } else if ($tupla['id_rol'] == 3) {
+            // } else if ($tupla['rol_id'] == 3) {
             //     header("location: ../pages/estudiante/index.php");
-            // } else if ($tupla['id_rol'] == 4) {
+            // } else if ($tupla['rol_id'] == 4) {
             //     header("location: ../pages/docente/index.php");
             // }
             // mysqli_close($conexion);

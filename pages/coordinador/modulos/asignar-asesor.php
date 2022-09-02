@@ -59,7 +59,6 @@ if ($sesion == null || $sesion = '') {
         <img src="../../../img/aunar.png" class="aunar_logo">
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
 
-
         <div class="collapse navbar-collapse" id="navbarNav">
             <h3>COORDINADOR</h3>
             <ul class="navbar-nav mx-auto">
@@ -108,10 +107,8 @@ if ($sesion == null || $sesion = '') {
                 </tr>
             </thead>
             <tbody id="search">
-                <?php
-                // include("../../../controller/asignar-docente.php");
-                ?>
-                <form id="form" action="../../../controller/asignar-docente.php" name="sub" method="POST">
+         
+                <form id="form" action="../../../controller/AsignarDocente.php" name="sub" method="POST">
                     <?php
                     $sql = "SELECT * from proyecto_grado WHERE programa_id = " . $myProfile['programa_id'];
                     $data = $funcion->listar($sql);
@@ -177,7 +174,7 @@ if ($sesion == null || $sesion = '') {
                 e.preventDefault();
                 const request = new XMLHttpRequest();
 
-                request.open("post", "../../../controller/asignar-docente.php");
+                request.open("post", "../../../controller/AsignarDocente.php");
                 request.onload = function() {
                     console.log(request.responseText);
                 }
