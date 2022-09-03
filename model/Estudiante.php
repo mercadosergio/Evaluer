@@ -17,23 +17,17 @@ class Student extends DataBase
         if (time() > $tiempo['0']) {
             $time_propuesta = strtotime("+365 days, 12:00am", time());
 
-            $this->con->query("INSERT INTO propuesta(titulo, linea, integrantes, tutor, lider, programa_id, semestre, descripcion, miembro1, miembro2, miembro3, fecha, remitente)
-                                             VALUES ('$titulo','$linea','$integrantes','$tutor','$lider','$programa_id','$semestre','$descripcion','$miembro1','$miembro2','$miembro3','$fecha', '$usuario')");
-
-            $this->con->query("UPDATE propuesta a
-            JOIN estudiante es ON a.remitente = es.usuario
-            SET a.programa_id = es.programa_id");
-
-            $this->con->query("UPDATE propuesta a
-            JOIN estudiante es ON a.remitente = es.usuario
-            JOIN programa p ON a.programa_id = p.identificador
-            SET a.programa = p.nombre, a.estudiante_id = es.id");
+            $this->con->query("INSERT INTO propuesta(titulo, linea, integrantes, tutor, lider, programa_id, semestre, descripcion, miembro1, miembro2, miembro3, fecha, remitente, programa, estudiante_id)
+                                             SELECT '$titulo','$linea','$integrantes','$tutor','$lider','$programa_id','$semestre','$descripcion','$miembro1','$miembro2','$miembro3','$fecha', '$usuario', p.nombre, es.id
+                                             FROM programa p
+                                             JOIN estudiante es
+                                             ON p.idetificador = '$programa_id' AND es.usuario = '$usuario'");
 
             $this->con->query("UPDATE estudiante SET time_propuesta = '$time_propuesta' WHERE usuario =" . $_SESSION['usuario']);
         }
     }
 
-    public function EnviarAnteproyecto($nombre, $ruta, $comentario, $usuario, $fecha)
+    public function EnviarAnteproyecto($nombre, $ruta, $comentario, $usuario, $fecha, $programa_id, $programa)
     {
         $time_anteproyecto = $this->con->query("SELECT time_anteproyecto FROM estudiante WHERE usuario = " . $_SESSION['usuario']);
         $tiempo = mysqli_fetch_array($time_anteproyecto);
@@ -41,16 +35,11 @@ class Student extends DataBase
         if (time() > $tiempo['0']) {
             $time_anteproyecto = strtotime("+15 days, 12:00am", time());
 
-            $this->con->query("INSERT INTO anteproyecto(nombre,documento,comentarios,remitente,fecha) VALUES('$nombre','$ruta','$comentario','$usuario','$fecha')");
-
-            $this->con->query("UPDATE anteproyecto a
-			JOIN estudiante es ON a.remitente = es.usuario
-			SET a.programa_id = es.programa_id");
-
-            $this->con->query("UPDATE anteproyecto a
-				JOIN estudiante e ON a.programa_id = e.programa_id 
-				JOIN propuesta p ON a.remitente = p.remitente
-				SET a.programa = e.programa, a.titulo = p.titulo");
+            $this->con->query("INSERT INTO anteproyecto(nombre,documento,comentarios,remitente,fecha, programa_id, programa, titulo, estudiante_id) 
+                            SELECT '$nombre','$ruta','$comentario','$usuario','$fecha', '$programa_id', $programa, pro.titulo, es.id
+                            FROM propuesta pro
+                            JOIN estudiante es
+                            ON pro.remitente = '$usuario' AND es.usuario = '$usuario'");
 
             $this->con->query("UPDATE estudiante SET time_anteproyecto = '$time_anteproyecto' WHERE usuario = " . $_SESSION['usuario']);
         } else {
@@ -64,7 +53,7 @@ class Student extends DataBase
                 </script>";
         }
     }
-    public function ProyectoFinal($nombre, $ruta, $usuario, $fecha)
+    public function ProyectoFinal($nombre, $ruta, $usuario, $fecha, $programa_id, $programa)
     {
         $time_proyecto = $this->con->query("SELECT time_proyecto FROM estudiante WHERE usuario = " . $_SESSION['usuario']);
         $tiempo = mysqli_fetch_array($time_proyecto);
@@ -72,14 +61,11 @@ class Student extends DataBase
         if (time() > $tiempo['0']) {
             $time_proyecto = strtotime("+15 days, 12:00am", time());
 
-            $this->con->query("INSERT INTO proyecto_grado(nombre,documento,remitente,fecha) VALUES('$nombre','$ruta','$usuario','$fecha')");
-
-            $this->con->query("UPDATE proyecto_grado p
-            JOIN estudiante es ON p.remitente = es.usuario 
-            JOIN estudiante e ON p.programa_id = e.programa_id
-            JOIN propuesta prop ON p.remitente = prop.remitente
-            JOIN propuesta ps ON p.remitente = prop.remitente
-            SET p.programa_id = es.programa_id, p.programa = e.programa, p.titulo = prop.titulo, p.semestre = ps.semestre");
+            $this->con->query("INSERT INTO proyecto_grado(nombre,documento,remitente,fecha, programa_id, programa, titulo, estudiante_id, semestre) 
+                            SELECT '$nombre','$ruta','$usuario','$fecha', '$programa_id', $programa, pro.titulo, es.id, es.semestre
+                            FROM propuesta pro
+                            JOIN estudiante es
+                            ON pro.remitente = '$usuario' AND es.usuario = '$usuario'");
 
             $this->con->query("UPDATE estudiante SET time_proyecto = '$time_proyecto' WHERE usuario = " . $_SESSION['usuario']);
         } else {

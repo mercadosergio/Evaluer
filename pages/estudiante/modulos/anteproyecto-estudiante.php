@@ -15,6 +15,11 @@ $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
+
+$getMyRole = $obj->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
+
+
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
@@ -105,8 +110,9 @@ if ($sesion == null || $sesion = '') {
                     ?>
                     <div class="archivo <?php echo (time() < $getTime) ? "none" : ''; ?>">
                         <div class="container-input">
-
                             <input type="text" hidden name="user" value="<?php echo $_SESSION['usuario'] ?>">
+                            <input type="text" hidden name="programa_id" value="<?php echo $userE['programa_id'] ?>">
+                            <input type="text" hidden name="programa_n" value="<?php echo $userE['programa'] ?>">
                             <input type="file" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?> id="file-5" class="inputfile inputfile-5" data-multiple-caption="{count} archivos seleccionados" multiple />
                             <label for="file-5">
                                 <figure>
@@ -116,12 +122,11 @@ if ($sesion == null || $sesion = '') {
                                 </figure>
                                 <span class="iborrainputfile">Seleccionar archivo</span>
                             </label>
-
                         </div>
                         <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
                         <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" id="enviar" name="enviar" class="btn-enviar">
                     </div>
-
+                    
                     <div class="comentario <?php echo (time() < $getTime) ? "none" : ''; ?>">
                         <label for="">Comentarios:</label>
                         <div class="marco-textarea">
@@ -135,7 +140,6 @@ if ($sesion == null || $sesion = '') {
             <div class="cont-titulo">
                 <h3>Entregas</h3>
             </div>
-
             <div class="historial">
                 <?php
                 $listarA = "SELECT * FROM anteproyecto WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";

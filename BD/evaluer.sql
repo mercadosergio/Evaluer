@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-09-2022 a las 05:58:48
+-- Tiempo de generación: 02-09-2022 a las 07:10:51
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -342,10 +342,10 @@ INSERT INTO `usuario` (`id`, `nombre`, `email`, `usuario`, `contraseña`, `foto`
 (2, 'Diana', 'diana@gmail.com', '0001112345', '$2y$10$aCROUJwt/0ch5nEebMcVUOueEOp43dzm0UXfX/efA2Mot3Yfh0gbG', '', 4),
 (3, 'Sergio', 'mercadosergio754@gmail.com', '1143411235 ', '$2y$10$UmBCM9Uk6n6Sw1Vt96vpY.8af/gRS7zd.xmRGR/v0OGTUjUijSZ72', '19-06-22-05-06-36-once.JPG', 3),
 (4, 'Mauricio', 'mauricio@gmail.com', '8888888888', '$2y$10$1v0K7eCLgmnprexC5y/lcOVmugSuNLxlvD/QarM7WmkmZcGzF9BqS', '', 2),
-(5, 'Jorge', 'jorge@gmail.com', '5555555554', '5555555553', '29-08-22-23-08-07-', 2),
+(5, 'Jorge', 'jorge@gmail.com', '5555555554', '$2y$10$xrEuPyXc1x2SXppusfR8mu7meBV1fvHb2wtXL54jrIvyL8CrYqquS', '29-08-22-23-08-07-', 2),
 (6, 'Carlos', 'carlos@gmail.com', '3333333334    ', '$2y$10$PQz/q.OvzOy3JaCZ//OSj.ag61/h8gRnV853w82M3YHBT.7qRPs.S', '', 4),
-(7, 'Nestor', 'nestor@gmail.com', '2222222222', '2222222222', '', 4),
-(8, 'Dager', 'dager@gmail.com', '4444444444', '4444444444', '', 3),
+(7, 'Nestor', 'nestor@gmail.com', '2222222222', '$2y$10$ohVU7xn3OaGZAKps42EXjuVAUmyU1qO6inusBFXER0R8bJPQHGErK', '', 4),
+(8, 'Dager', 'dager@gmail.com', '4444444444', '$2y$10$8.QWkjP3LRDFuwRxJOfwW.6hxYd2RetRF5LHFoDZu8yu7lTBZ6wVq', '', 3),
 (9, 'Andres ', 'andres@gmail.com', '0987654321', '$2y$10$3Xw6El7c6n2MDK9Bw.an2O0vBf/PrJ0h9inQOUUld9wwZ0I.M8Df.', '', 4),
 (10, 'daniel', 'daniel@mail.com', '112092112', '$2y$10$j3K2hcomheBVACooopGOt.aCCrnyeoqe9Ls.JhYRhf9MXS5f0DCaW', '', 4);
 

@@ -107,7 +107,7 @@ if ($sesion == null || $sesion = '') {
                 </tr>
             </thead>
             <tbody id="search">
-         
+
                 <form id="form" action="../../../controller/AsignarDocente.php" name="sub" method="POST">
                     <?php
                     $sql = "SELECT * from proyecto_grado WHERE programa_id = " . $myProfile['programa_id'];

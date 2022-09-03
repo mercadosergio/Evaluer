@@ -69,7 +69,7 @@ if ($sesion == null || $sesion = '') {
         <!-- MENU -->
         <nav class="navbar navbar-expand-sm navbar-light">
             <button onclick="activar()" class="hamburger">
-                <i class="bi bi-list"></i>
+                <i class="bi bi-estP"></i>
             </button>
             <img src="../../img/aunar.png" class="aunar_logo">
             <a class="navbar-brand" href="../../pages/estudiante/index.php"><img class="logo" src="../../img/logo_p.png"></a>
@@ -148,14 +148,21 @@ if ($sesion == null || $sesion = '') {
                         </div>
                     </a>
                 </div>
-                <div class="container">
-                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php">
-                        <div class="seleccion">
-                            <img src="../../img/proyectof.png" alt="">
-                            <p>Proyecto de grado</p>
-                        </div>
-                    </a>
-                </div>
+                <?php
+
+                $myProfileStudent = $obj->getStudentProfile();
+                $estP = mysqli_fetch_array($myProfileStudent);
+                if ($estP['semestre'] == 9) {
+                ?>
+                    <div class="container">
+                        <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php">
+                            <div class="seleccion">
+                                <img src="../../img/proyectof.png" alt="">
+                                <p>Proyecto de grado</p>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
             </div>
 
             <div class="guia_arbol">

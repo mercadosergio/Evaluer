@@ -106,6 +106,8 @@ if ($sesion == null || $sesion = '') {
                             $getTime = $res->restrictProyecto();
                             ?>
                             <div class="mb-3">
+                                <input type="text" hidden name="programa_id" value="<?php echo $userE['programa_id'] ?>">
+                                <input type="text" hidden name="programa_n" value="<?php echo $userE['programa'] ?>">
                                 <input class="form-control" type="file" id="formFile" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?>>
                             </div>
                         </div>

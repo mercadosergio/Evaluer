@@ -17,7 +17,7 @@ class User extends DataBase
 
         // $contador = 0;
         $array = mysqli_fetch_array($result);
-        
+
         if (($numrows == 1) && (password_verify($password, $array['contraseña']))) {
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
@@ -44,10 +44,9 @@ class User extends DataBase
         }
     }
 
-    public function getStudent()
+    public function getStudents()
     {
         $result = $this->con->query("SELECT * FROM estudiante");
-        //convertir a arreglo $result
         $listaStudent = $result->fetch_all(MYSQLI_ASSOC);
         return $listaStudent;
     }
@@ -63,9 +62,8 @@ class User extends DataBase
     */
     public function createUser($nombre, $email, $usuario, $contraseña, $rol_id)
     {
-        $new_user = "INSERT INTO usuario(nombre,email,usuario,contraseña,rol_id)
-        VALUES ('$nombre','$email','$usuario','$contraseña','$rol_id')";
-        $this->con->query($new_user);
+        $this->con->query("INSERT INTO usuario(nombre,email,usuario,contraseña,rol_id)
+        VALUES ('$nombre','$email','$usuario','$contraseña','$rol_id')");
     }
 
     /*
@@ -74,33 +72,22 @@ class User extends DataBase
     */
     public function agregarEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre, $usuario)
     {
-        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa_id, semestre,usuario, time_propuesta, time_anteproyecto, time_proyecto)
-                                          VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$semestre','$usuario',100000000,100000000,100000000)");
-
-        $this->con->query("UPDATE estudiante e
-          JOIN programa p ON e.programa_id = p.identificador
-          SET e.programa = p.nombre");
-
-        $this->con->query("UPDATE estudiante e
-          JOIN usuario u ON e.usuario = u.usuario
-          SET e.usuario_id = u.id");
+        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa_id, semestre,usuario, time_propuesta, time_anteproyecto, time_proyecto, usuario_id,programa)
+         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id',$semestre,'$usuario',100000000,100000000,100000000, u.id, p.nombre
+         FROM usuario u
+         JOIN programa p
+         ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
     }
     /*
      
     */
     public function createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
     {
-        $coordinator = "INSERT INTO coordinador(nombres,p_apellido,s_apellido,cedula,programa_id,usuario)
-                VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')";
-        $this->con->query($coordinator);
-
-        $this->con->query("UPDATE coordinador cr JOIN programa p
-        ON cr.programa_id = p.identificador
-        SET cr.programa = p.nombre");
-
-        $this->con->query("UPDATE coordinador cr
-        JOIN usuario u ON cr.usuario = u.usuario
-        SET cr.usuario_id = u.id");
+        $this->con->query("INSERT INTO coordinador(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
+         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario', u.id, p.nombre
+         FROM usuario u
+         JOIN programa p
+         ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
     }
     /*
         Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
@@ -109,16 +96,11 @@ class User extends DataBase
     */
     public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
     {
-        $this->con->query("INSERT INTO docente(nombres,p_apellido,s_apellido,cedula,programa_id,usuario)
-                                  VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario')");
-
-        $this->con->query("UPDATE docente e JOIN programa p
-        ON e.programa_id = p.identificador
-        SET e.programa = p.nombre");
-
-        $this->con->query("UPDATE docente e
-        JOIN usuario u ON e.usuario = u.usuario
-        SET e.usuario_id = u.id");
+        $this->con->query("INSERT INTO docente(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
+                            SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario', u.id, p.nombre
+                            FROM usuario u
+                            JOIN programa p
+                            ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
     }
 
 
@@ -251,6 +233,11 @@ class User extends DataBase
         $resultado = $this->con->query("SELECT * FROM docente WHERE usuario = " . $_SESSION['usuario']);
         return $resultado;
     }
+    public function getStudentProfile()
+    {
+        $resultado = $this->con->query("SELECT * FROM estudiante WHERE usuario = " . $_SESSION['usuario']);
+        return $resultado;
+    }
     public function getCoordinatorProfile()
     {
         $resultado = $this->con->query("SELECT * FROM coordinador WHERE usuario = " . $_SESSION['usuario']);
@@ -259,27 +246,27 @@ class User extends DataBase
 
     public function deleteEstudiante($id)
     {
-        $result = $this->con->query("DELETE FROM estudiante WHERE id = '$id'") or die("Error al eliminar usuario");
-        return $result;
+        $this->con->query("DELETE FROM estudiante WHERE id = '$id'") or die("Error al eliminar usuario");
+        $this->con->query("CALL reset_increment()");
     }
     public function deleteAsesor($id)
     {
-        $result = $this->con->query("DELETE FROM docente WHERE id = '$id'") or die("Error al eliminar usuario");
-        return $result;
+        $this->con->query("DELETE FROM docente WHERE id = '$id'") or die("Error al eliminar usuario");
+        $this->con->query("CALL reset_increment()");
     }
 
     public function deleteCoordinador($id)
     {
-        $result = $this->con->query("DELETE FROM coordinador WHERE id = '$id'") or die("Error al eliminar usuario");
-        return $result;
+        $this->con->query("DELETE FROM coordinador WHERE id = '$id'") or die("Error al eliminar usuario");
+        $this->con->query("CALL reset_increment()");
     }
 
     public function deleteUser($usuario)
     {
-        $result = $this->con->query("DELETE FROM usuario WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
-        return $result;
+        $this->con->query("DELETE FROM usuario WHERE usuario = '$usuario'") or die("Error al eliminar usuario");
+        $this->con->query("CALL reset_increment()");
     }
-   
+
     public function ChangePassword($nueva_contraseña, $usuario)
     {
         $this->con->query("UPDATE usuario SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
@@ -289,7 +276,7 @@ class User extends DataBase
     {
         $this->con->query("UPDATE usuario SET foto = '$photo' WHERE usuario = '$usuario'");
     }
- /* 
+    /* 
         Cerrar sesión
     */
     public function cerrarSesion()
