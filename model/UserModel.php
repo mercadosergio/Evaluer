@@ -109,25 +109,17 @@ class User extends DataBase
     {
         $sql = "UPDATE usuario SET nombre='$nombre', usuario='$usuario' WHERE id = '$id'";
         $this->con->query($sql);
-        mysqli_close($this->con);
     }
 
     public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre)
     {
-        $sql = "UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
-        programa_id='$programa_id',semestre='$semestre',usuario='$cedula' WHERE id = '$id'";
+        $sql = "UPDATE estudiante e SET e.nombre='$nombre', e.p_apellido='$p_apellido', e.s_apellido='$s_apellido', e.cedula='$cedula',
+        e.programa_id='$programa_id', e.semestre='$semestre', e.usuario='$cedula' WHERE e.id = '$id'";
         $this->con->query($sql);
 
-        $sql2 = "UPDATE usuario SET nombre='$nombre', usuario = '$cedula' WHERE id='$id'";
-        $this->con->query($sql2);
-
-        $this->con->query("UPDATE estudiante e
-        JOIN programa p ON e.programa_id = p.identificador
-        SET e.programa = p.nombre");
-
-        $this->con->query("UPDATE usuario u JOIN estudiante e
-        ON u.id = e.usuario_id
-        SET u.usuario = e.cedula");
+        $this->con->query("UPDATE estudiante e JOIN programa p
+                            ON p.identificador = '$programa_id'
+                            SET e.programa = p.nombre");
 
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
@@ -153,17 +145,16 @@ class User extends DataBase
 
     public function editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)
     {
-        $sql = "UPDATE docente SET nombres='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
-        programa_id='$programa_id',usuario='$cedula' WHERE id = '$id'";
+        $sql = "UPDATE docente d JOIN programa p
+                SET d.nombre='$nombre', d.p_apellido='$p_apellido', d.s_apellido='$s_apellido', d.cedula='$cedula',
+                    d.programa_id='$programa_id', d.usuario='$cedula'
+                    WHERE d.id = $id";
         $this->con->query($sql);
 
-        $this->con->query("UPDATE docente e
-        JOIN programa p ON e.programa_id = p.identificador
-        SET e.programa = p.nombre");
+        $this->con->query("UPDATE docente d JOIN programa p
+        p.identificador = '$programa_id'
+        SET d.programa = p.nombre");
 
-        $this->con->query("UPDATE usuario u JOIN docente e
-        ON u.id = e.usuario_id
-        SET u.usuario = e.cedula");
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
                       No se guardaron los cambios
@@ -187,17 +178,16 @@ class User extends DataBase
     }
     public function editCoordinador($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)
     {
-        $sql = "UPDATE coordinador SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
-        programa_id='$programa_id',usuario='$cedula' WHERE id = '$id'";
+        $sql = "UPDATE coordinador c JOIN programa p
+                SET c.nombre='$nombre', c.p_apellido='$p_apellido', c.s_apellido='$s_apellido', c.cedula='$cedula',
+                    c.programa_id='$programa_id', c.usuario='$cedula'
+                    WHERE c.id = $id";
         $this->con->query($sql);
 
-        $this->con->query("UPDATE coordinador e
-        JOIN programa p ON e.programa_id = p.identificador
-        SET e.programa = p.nombre");
+        $this->con->query("UPDATE coordinador c JOIN programa p
+        p.identificador = '$programa_id'
+        SET c.programa = p.nombre");
 
-        $this->con->query("UPDATE usuario u JOIN coordinador e
-        ON u.id = e.usuario_id
-        SET u.usuario = e.cedula");
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
                       No se guardaron los cambios

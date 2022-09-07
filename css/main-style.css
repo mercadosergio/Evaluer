@@ -57,7 +57,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: bold;
     letter-spacing: -1px;
 }
 
@@ -73,11 +72,6 @@ h2 {
     font-weight: bold;
 }
 
-h3 {
-    color: #484848;
-}
-
-h3,
 b,
 strong {
     font-weight: bold;

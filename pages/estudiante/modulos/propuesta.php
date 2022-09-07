@@ -17,6 +17,7 @@ if ($sesion == null || $sesion = '') {
 }
 
 include("../../../controller/DeletePropuesta.php");
+include("../../../controller/SendPropuesta.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,11 +30,8 @@ include("../../../controller/DeletePropuesta.php");
     <meta name="author" content="">
 
     <title>Propuesta de grado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/propuesta.css">
@@ -89,7 +87,7 @@ include("../../../controller/DeletePropuesta.php");
     </nav>
     <div class="grid-view">
         <div class="formulario">
-            <form action="../../../controller/SendPropuesta.php" method="POST" id="envio">
+            <form action="" method="POST" id="envio">
                 <div class="seccion-inscripcion">
                     <div class="grid-form">
                         <?php
@@ -175,7 +173,7 @@ include("../../../controller/DeletePropuesta.php");
                 </div>
 
                 <div class="contenedor-btn">
-                    <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
+                    <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
                     <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
                 </div>
             </form>

@@ -25,11 +25,12 @@ ul li {
     list-style: none;
 }
 
-a {
+
+/* a {
     font-weight: normal;
     text-decoration: none !important;
     transition: all 0.4s ease;
-}
+} */
 
 p {
     font-size: 18px;
@@ -44,7 +45,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: bold;
     letter-spacing: -1px;
 }
 
@@ -60,11 +60,6 @@ h2 {
     font-weight: bold;
 }
 
-h3 {
-    color: #fff;
-}
-
-h3,
 b,
 strong {
     font-weight: bold;
@@ -81,73 +76,13 @@ strong {
     width: auto;
 }
 
-.inicio {
-    width: auto;
-    border-bottom: var(--color-detalle) 3px solid;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.inicio a {
-    width: auto;
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-}
-
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
-.log {
-    margin-right: 25px;
-    color: #fff;
-}
-
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--background-primario);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-    /* border: 1px solid #000; */
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
 
 /* FILTRO DE BUSQUEDA.............................*/
+
+.add_user {
+    background: rgb(40, 167, 69);
+    color: #fff;
+}
 
 .box {
     width: 300px;
@@ -185,7 +120,7 @@ ul {
     list-style: none;
 }
 
-a {
+.tabs a {
     text-decoration: none;
     color: black;
 }

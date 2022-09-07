@@ -11,7 +11,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
     --color-detalle-hover: #e4d103;
@@ -54,7 +54,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: bold;
     letter-spacing: -1px;
 }
 
@@ -70,7 +69,6 @@ h2 {
     font-weight: bold;
 }
 
-h3,
 b,
 strong {
     font-weight: bold;
@@ -89,7 +87,7 @@ strong {
 }
 
 .navbar-nav li {
-    border-top: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
     margin-right: 20px;
 }
 
@@ -101,7 +99,7 @@ strong {
 
 .principal {
     width: auto;
-    border-top: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
     border-bottom: var(--color-detalle) 3px solid;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -122,22 +120,6 @@ strong {
 }
 
 
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
-}
-
-.logo {
-    width: 200px;
-    border-radius: 10px;
-}
-
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-
 /* ........................................ */
 
 .proyectos {
@@ -156,7 +138,6 @@ strong {
 
 .cont-titulo h3 {
     font-size: 20px;
-    /* text-align: center; */
     margin: 15px;
 }
 
@@ -220,7 +201,7 @@ select {
 }
 
 .ent thead {
-    background: var(--background-primario);
+    background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }
@@ -314,4 +295,27 @@ select {
 #radio_d:checked~.texto_o {
     display: flex;
     visibility: visible;
+}
+
+.valoracion {
+    padding: 7px 14px;
+    text-align: center;
+    background: #a8a8a8;
+    border-radius: 10px;
+}
+
+.APROBADO {
+    background: #00bd19 !important;
+}
+
+.REPROBADO {
+    background: #f71a1a !important;
+}
+
+.en {
+    background: #dab201 !important;
+}
+
+.APLAZADO {
+    background: #a8a8a8 !important;
 }

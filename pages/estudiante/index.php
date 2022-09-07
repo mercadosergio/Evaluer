@@ -2,8 +2,10 @@
 
 include_once("../../model/Metodos.php");
 include("../../model/UserModel.php");
+include("../../model/Estudiante.php");
 
 $obj = new User();
+$est = new Student();
 session_start();
 error_reporting(0);
 
@@ -15,7 +17,8 @@ if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
-
+$findP = $est->getMyPropuesta();
+$findA = $est->getMyAnteproyecto();
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,11 +31,8 @@ if ($sesion == null || $sesion = '') {
     <meta name="author" content="">
 
     <title>Estudiante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/unicons.css">
-    <link rel="stylesheet" href="../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
@@ -141,8 +141,13 @@ if ($sesion == null || $sesion = '') {
                     </a>
                 </div>
                 <div class="container">
-                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php">
+                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'desahilitar' : '' ?>">
                         <div class="seleccion">
+                            <?php
+                            if ($findP == false) {
+                                echo '<div class="salto"></div>';
+                            }
+                            ?>
                             <img src="../../img/anteproyecto.png" alt="">
                             <p>Anteproyecto</p>
                         </div>
@@ -155,8 +160,13 @@ if ($sesion == null || $sesion = '') {
                 if ($estP['semestre'] == 9) {
                 ?>
                     <div class="container">
-                        <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php">
+                        <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($findA == false) ? 'desahilitar' : '' ?>">
                             <div class="seleccion">
+                                <?php
+                                if ($findA == false) {
+                                    echo '<div class="salto"></div>';
+                                }
+                                ?>
                                 <img src="../../img/proyectof.png" alt="">
                                 <p>Proyecto de grado</p>
                             </div>
@@ -165,33 +175,37 @@ if ($sesion == null || $sesion = '') {
                 <?php } ?>
             </div>
 
-            <div class="guia_arbol">
-                <ul>
-                    <li>
-                        <i class="fas fa-folder" style="margin-right: 3px;"></i>
-                        <label>Guia de investigación</label>
-                        <ul>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Propuesta de grado</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Anteproyecto</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de
-                                    grado</a>
-                            </li>
-                        </ul>
-                        <i class="bi bi-bell-fill" style="margin-right: 3px;"></i>
-                        <label>Anuncios</label>
-                        <ul>
-
-                        </ul>
-                    </li>
-                </ul>
+            <div class="treeview">
+                <div class="tree-view">
+                    <details open="open">
+                        <summary>Guia de investigación</summary>
+                        <div class="folder">
+                            <details open="open">
+                                <summary>Académico</summary>
+                                <div class="folder">
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="">Propuesta de grado</a>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="">Anteproyecto</a>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                                    </p>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+                    <details open="open">
+                        <summary>General</summary>
+                        <div class="folder">
+                            <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
+                        </div>
+                    </details>
+                </div>
             </div>
 
         </div>
@@ -208,6 +222,21 @@ if ($sesion == null || $sesion = '') {
         </div>
     </div>
 
+    <?php
+    if ($findP == false) {
+    ?>
+        <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:12%;left: 56%;transform: translate(-50%, 0%);">
+            Paso 1: Diligencie y envíe su propuesta para avanzar a Anteproyectos
+        </div>
+        <script>
+            setTimeout(function() {
+                $('#success').fadeOut('fast');
+            }, 7000); // <-- time in milliseconds
+        </script>
+    <?php
+    }
+    ?>
+
     <script>
         function activar() {
             // document.getElementById("menu-side").style.width = "50%";
@@ -219,7 +248,13 @@ if ($sesion == null || $sesion = '') {
             document.getElementById("menu-side").style.left = "0%";
         }
     </script>
-
+    <script>
+        // $(document).ready(function() {
+        //     $('a').on("click", function(e) {
+        //         e.preventDefault();
+        //     });
+        // });
+    </script>
     <script src="../../utilities/loading/load.js"></script>
 
     <script src="../../font/9390efa2c5.js"></script>

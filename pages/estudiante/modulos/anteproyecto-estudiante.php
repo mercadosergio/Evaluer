@@ -5,6 +5,7 @@ include_once("../../../model/Estudiante.php");
 
 $obj = new User();
 $res = new Metodos();
+$est = new Student();
 
 session_start();
 // error_reporting(0);
@@ -15,10 +16,8 @@ $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
-
 $getMyRole = $obj->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
-
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
@@ -35,14 +34,11 @@ if ($sesion == null || $sesion = '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Subir Anteproyecto</title>
+    <title>Actividad Anteproyecto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/anteproyecto-estudiante.css">
     <link rel="stylesheet" href="../../../css/header.css">
@@ -98,6 +94,16 @@ if ($sesion == null || $sesion = '') {
                 <div class="cont-titulo">
                     <h3>Enviar anteproyecto</h3>
                 </div>
+                <?php
+                $findP = $est->getMyPropuesta();
+                if ($findP == false) {
+                ?>
+                    <div class="paso_propuesta">
+                        <p><i class="bi bi-exclamation-triangle"></i> ADVERTENCIA: No envió su propuesta, puede hacerlo ingresando <a href="propuesta.php">aquí</a>.</p>
+                    </div>
+                <?php
+                }
+                ?>
                 <div class="seccion-anteproyecto">
                     <?php
                     if (time() < $getTime) {
@@ -108,6 +114,7 @@ if ($sesion == null || $sesion = '') {
                     <?php
                     }
                     ?>
+
                     <div class="archivo <?php echo (time() < $getTime) ? "none" : ''; ?>">
                         <div class="container-input">
                             <input type="text" hidden name="user" value="<?php echo $_SESSION['usuario'] ?>">
@@ -126,7 +133,7 @@ if ($sesion == null || $sesion = '') {
                         <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
                         <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" id="enviar" name="enviar" class="btn-enviar">
                     </div>
-                    
+
                     <div class="comentario <?php echo (time() < $getTime) ? "none" : ''; ?>">
                         <label for="">Comentarios:</label>
                         <div class="marco-textarea">
@@ -165,30 +172,44 @@ if ($sesion == null || $sesion = '') {
                 <?php
                 }
                 ?>
+                <div class="tree-view">
+                    <details open="open">
+                        <summary>Guia de investigación</summary>
+                        <div class="folder">
+                            <details open="open">
+                                <summary>Académico</summary>
+                                <div class="folder">
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="">Propuesta de grado</a>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="">Anteproyecto</a>
+                                    </p>
+                                    <p>
+                                        <i class="fas fa-file-alt"></i>
+                                        <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>img</summary>
+                                <div class="folder">
+                                    <p>banner.png</p>
+                                    <p>foo.png</p>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+                    <div class="folder">
+                        <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
+                    </div>
+                </div>
             </div>
-            <div class="guia_arbol">
-                <ul>
-                    <li>
-                        <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
-                        <ul>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Propuesta de grado</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Anteproyecto</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+        </div>
     </form>
-    </div>
+
     <script>
         'use strict';;
         (function(document, window, index) {

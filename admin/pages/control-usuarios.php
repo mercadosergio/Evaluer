@@ -7,7 +7,7 @@ include_once("../../model/Metodos.php");
 $recurso = new Metodos();
 
 session_start();
-error_reporting(0);
+// error_reporting(0);
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -16,6 +16,8 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+
+include("../../controller/EditUser.php");
 ?>
 
 <!doctype html>
@@ -31,9 +33,6 @@ if ($sesion == null || $sesion = '') {
 
     <title>Administración de usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- MAIN STYLE -->
@@ -83,6 +82,7 @@ if ($sesion == null || $sesion = '') {
 
     <div>
         <div class="tabs-container">
+            <a href="agregar-usuario.php" class="add_user btn btn-success"><i class="bi bi-plus-lg"></i> Agregar usuarios</a>
             <div class="box">
                 <i class="fa fa-search"></i>
                 <input type="search" id="search" placeholder="Search..." />
@@ -242,9 +242,7 @@ if ($sesion == null || $sesion = '') {
             </div>
         </div>
     </div>
-    <?php
-    include("../../controller/EditUser.php");
-    ?>
+
     <!-- Modal component -->
     <div class="modal fade" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="POST">
@@ -255,9 +253,9 @@ if ($sesion == null || $sesion = '') {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input hidden type="text" class="id_user form-control" name="usuario_id" value="">
-                        <input hidden type="text" class="rol form-control" name="rol" value="">
-                        <input hidden type="text" class="id form-control" name="id" value="">
+                        <input hidden type="number" class="id_user form-control" name="usuario_id" value="">
+                        <input hidden type="number" class="rol form-control" name="rol" value="">
+                        <input hidden type="number" class="id form-control" name="id" value="">
                         <label class="lbl-nombre">Nombre:</label>
                         <input type="text" class="nombre form-control" name="nombre" value="">
                         <label class="lbl-p-apellido">Primer apellido:</label>
@@ -288,7 +286,7 @@ if ($sesion == null || $sesion = '') {
                         <input type="number" max="9" min="6" class="semestre form-control" id="semestre" name="semestre" value="">
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" name="editar" class="editar btn btn-primary">Guardar cambios</button>
+                        <button type="submit" name="modificar" class="editar btn btn-primary">Guardar cambios</button>
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>

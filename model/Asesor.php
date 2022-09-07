@@ -43,4 +43,15 @@ class Asesor extends DataBase
 
         $this->con->query("DELETE FROM anuncio WHERE id = '$id_a'");
     }
+
+    public function getProyecto($id)
+    {
+        $result = $this->con->query("SELECT * FROM proyecto_grado WHERE id = '$id'");
+        return $result;
+    }
+    public function getAnteproyecto($id)
+    {
+        $result = $this->con->query("SELECT * FROM anteproyecto WHERE id = '$id'");
+        return $result;
+    }
 }

@@ -48,7 +48,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: bold;
     letter-spacing: -1px;
 }
 
@@ -64,7 +63,6 @@ h2 {
     font-weight: bold;
 }
 
-h3,
 b,
 strong {
     font-weight: bold;
@@ -288,4 +286,26 @@ strong {
 #radio_d:checked~.texto_o {
     display: flex;
     visibility: visible;
+}
+
+.valoracion {
+    padding: 7px 14px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.APROBADO {
+    background: #00bd19 !important;
+}
+
+.REPROBADO {
+    background: #f71a1a !important;
+}
+
+.EN {
+    background: #dab201 !important;
+}
+
+.APLAZADO {
+    background: #a8a8a8 !important;
 }

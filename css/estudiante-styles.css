@@ -44,7 +44,6 @@
     h4,
     h5,
     h6 {
-        font-weight: bold;
         letter-spacing: -1px;
     }
     
@@ -60,7 +59,6 @@
         font-weight: bold;
     }
     
-    h3,
     b,
     strong {
         font-weight: bold;
@@ -112,41 +110,115 @@
     }
     /* END MENU DESPLEGABLE.......................................... */
     
+    .seleccion {
+        position: relative;
+    }
+    
     .student-module .seleccion div {
         margin-left: auto;
         display: flex;
+    }
+    
+    .desahilitar {
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    
+    .salto {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(-60deg, rgba(255, 255, 255, 0.6), rgba(245, 245, 245, 0.6) 15px);
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .salto p {
+        color: #000;
+        margin: auto;
+        font-size: 25px;
     }
     /* .student-module .seleccion div {
     background-color: #615a42;
     cursor: pointer;
 } */
+    /* Navegación guia */
     
-    .guia_arbol>ul {
-        font-size: 18px;
-        font-weight: normal;
+    .tree-view {
+        /* position: absolute;
+        top: 13%;
+        right: 1%;
+        display: block;
+        width: 380px; */
     }
     
-    .guia_arbol ul li>ul {
-        font-size: 17px;
-        margin: 5px;
-        margin-left: 15px;
+    details {
+        position: relative;
+        width: auto;
+        height: auto;
+        overflow: hidden;
+        max-height: 2.5em !important;
+        transition: all 0.1s ease;
     }
     
-    .guia_arbol ul li>ul>li {
-        margin: 5px;
-        margin-left: 0;
+    details ::-webkit-details-marker {
+        display: none;
     }
     
-    .guia_arbol a {
-        text-decoration: none;
-        color: #000;
+    details>summary {
+        position: relative;
+        margin-top: 0.25em;
+        color: #35abfa;
+        padding: 0.1em 0.5em 0.2em;
+        background: #444;
     }
     
-    .guia_arbol i {
+    details>summary:before {
+        /* content: "⊞"; */
+        color: #eee;
+        font-size: 0.5em;
+        margin-right: 0.5em;
+    }
+    
+    details[open]>summary {
+        background: var(--primary);
+        color: #eee;
+    }
+    
+    details[open]>summary:before {
+        /* content: "⊟"; */
+        color: #ccc;
+    }
+    
+    .folder {
+        margin: 0 0 0.5em 0.86em;
+        padding: 0.5em 0em 0.5em 1.5em;
+        border-left: 0.1em #ccc dotted;
+        border-bottom: 0.1em #ccc dotted;
+    }
+    
+    .folder p {
+        margin: 0;
+    }
+    
+    details[open] {
+        height: auto;
+        max-height: 99em !important;
+        transition: all 1.2s ease;
+    }
+    
+    details:not([open]) .folder {
+        height: 0px !important;
+    }
+    
+    .tree-view i {
         color: #0269ad;
     }
     
-    .guia_arbol a:hover {
+    .tree-view a:hover {
         color: rgb(17, 101, 255);
     }
     /* Escritorio */
@@ -263,7 +335,7 @@
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
-        .student-module .seleccion p {
+        .student-module .seleccion>p {
             font-size: 27px;
             cursor: pointer;
             font-family: "Maven Pro", sans-serif;
@@ -279,17 +351,12 @@
             margin-right: 20px;
             margin-left: 5px;
         }
-        .guia_arbol {
+        .treeview {
             margin-top: 20px;
-            /* top: 12%;
-            right: 0; */
-            /* background: #fff; */
             background: linear-gradient(to bottom, #fff, #fff, transparent);
             border: #bebebe 1px solid;
             border-bottom: none;
-            /* position: absolute; */
-            /* width: 280px; */
-            width: 15%;
+            width: 20%;
             height: 60%;
             padding: 10px;
         }
@@ -309,7 +376,7 @@
         .student-module .seleccion p {
             font-size: 24px;
         }
-        .guia_arbol {
+        .treeview {
             width: 20%;
         }
     }
@@ -431,7 +498,7 @@
             text-align: center;
             margin-bottom: 15px;
         }
-        .guia_arbol {
+        .treeview {
             margin: auto;
             width: 80%;
             margin-top: 20px;

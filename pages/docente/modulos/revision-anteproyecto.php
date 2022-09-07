@@ -30,11 +30,8 @@ include("../../../controller/evaluate-anteproyecto.php");
 
     <title>Anteproyectos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -95,13 +92,11 @@ include("../../../controller/evaluate-anteproyecto.php");
                         <th>#</th>
                         <th>Título</th>
                         <th>Archivo</th>
-                        <th>Comentarios</th>
                         <th hidden>Programa</th>
                         <th>Fecha</th>
-                        <th>Estado</th>
                         <th>Calificación</th>
-                        <th>Observaciones</th>
-                        <th hidden>Acción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="contenido_tabla">
@@ -113,32 +108,17 @@ include("../../../controller/evaluate-anteproyecto.php");
                             <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
-                                <td><a href="<?php echo $value['documento']; ?>"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
-                                <td><?php echo $value['comentarios']; ?></td>
+                                <td><a href="<?php echo $value['documento']; ?>" target="_blank"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
                                 <td><?php echo $value['fecha']; ?></td>
-                                <td><input type="text" name="estado" value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;"></td>
                                 <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
                                 <td>
-                                    <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="popover" title="Popover title" data-bs-content="<textarea placeholder=" Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $value['observaciones']; ?></textarea>" data-placement="bottom">Click to toggle popover</button> -->
-                                    <ul class="o" style="color: black; background: white;">
-                                        <li>
-                                            <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
-                                            white-space: nowrap;"><?php echo $value['observaciones']; ?></label>
-                                            <input id="radio_d" type="radio">
-                                            <ul class="texto_o">
-                                                <li>
-                                                    <textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $value['observaciones']; ?>
-                                                </textarea>
-                                                </li>
-                                                <input name="getIdAnteproyecto" type="text" hidden value="<?php echo $value['0'] ?>">
-                                                <button type="submit" name="enviar" class="btn-nota btn btn-primary">Guardar</button>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
+                                </td>
+                                <td>
+                                    <a href="gestion-actividad-anteproyecto.php?id=<?php echo $value['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
                                 </td>
                                 <td hidden>
-
                                     <script>
                                         // $("#tabla").click(function() {
                                         //     $("#resultados").submit();

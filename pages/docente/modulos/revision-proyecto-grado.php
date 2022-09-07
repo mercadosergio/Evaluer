@@ -28,11 +28,8 @@ include("../../../controller/evaluate-proyecto.php");
 
     <title>Proyectos de grado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -95,10 +92,9 @@ include("../../../controller/evaluate-proyecto.php");
                         <th>Archivo</th>
                         <th hidden>Programa</th>
                         <th>Fecha</th>
-                        <th>Estado</th>
                         <th>Calificación</th>
-                        <th>Observaciones</th>
-                        <th hidden>Acción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="info">
@@ -110,26 +106,17 @@ include("../../../controller/evaluate-proyecto.php");
                             <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
-                                <td><a href="<?php echo $value['documento']; ?>"><?php echo $value['nombre']; ?></a></td>
+                                <td><a href="<?php echo $value['documento']; ?>" target="_blank"><?php echo $value['nombre']; ?></a></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
                                 <td><?php echo $value['fecha']; ?></td>
-                                <td><input type="text" name="estado" value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;"></td>
                                 <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
-                                <td>
-                                    <ul class="o" style="color: black; background: white;">
-                                        <li>
-                                            <label for="#radio_d" style="width: 100px; height: 20px; text-overflow: ellipsis; overflow: hidden;
-                                            white-space: nowrap;"><?php echo $value['observaciones']; ?></label>
-                                            <input id="radio_d" type="radio">
-                                            <ul class="texto_o">
-                                                <li><textarea placeholder="Escriba aquí" name="observacion" id="" cols="30" rows="10"><?php echo $value['observaciones']; ?></textarea></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <td><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
+                                    <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
-                                <td hidden>
-                                    <input name="getIdProyecto" type="text" hidden value="<?php echo $value['0'] ?>">
-                                    <input type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+                                <td>
+                                    <input hidden name="getIdProyecto" type="text" value="<?php echo $value['id'] ?>">
+                                    <a href="gestion-actividad-proyecto-grado.php?id=<?php echo $value['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
+                                    <input hidden type="submit" name="evaluar" value="Evaluar" class="btn-nota">
                                 </td>
                             </form>
                         </tr>

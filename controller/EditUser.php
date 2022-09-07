@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['editar'])) {
+if (isset($_POST['modificar'])) {
 
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
@@ -10,7 +10,7 @@ if (isset($_POST['editar'])) {
     $programa_id = $_POST['programa_id'];
     $semestre = $_POST['semestre'];
     $usuario = $_POST['cedula'];
-    $idUser = $_POST['id_usuario'];
+    $idUser = $_POST['usuario_id'];
 
     $rol = $_POST['rol'];
 

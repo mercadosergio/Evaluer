@@ -30,13 +30,9 @@ if ($sesion == null || $sesion = '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Subir Proyecto de Grado</title>
+    <title>Actividad Proyecto de Grado</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/unicons.css">
-    <link rel="stylesheet" href="../../../css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../../css/owl.theme.default.min.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/proyecto-estudiante.css">
@@ -102,6 +98,9 @@ if ($sesion == null || $sesion = '') {
                     <div class="archivo">
                         <div class="container-input">
                             <?php
+
+                            date_default_timezone_set('America/Bogota');
+
                             $fecha = date("Y-m-d H:i:s");
                             $getTime = $res->restrictProyecto();
                             ?>
@@ -111,7 +110,7 @@ if ($sesion == null || $sesion = '') {
                                 <input class="form-control" type="file" id="formFile" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?>>
                             </div>
                         </div>
-                        <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
+                        <input type="datetime" hidden name="fecha" value="<?php echo $fecha; ?>">
                         <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" name="enviar" class="btn-enviar">
                     </div>
                 </div>
@@ -142,26 +141,40 @@ if ($sesion == null || $sesion = '') {
                 }
                 ?>
             </div>
-            <div class="guia_arbol">
-                <ul>
-                    <li>
-                        <i class="fas fa-folder" style="margin-right: 3px;"></i><label>Guia de investigación</label>
-                        <ul>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Propuesta de grado</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="">Anteproyecto</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="tree-view">
+                <details open="open">
+                    <summary>Guia de investigación</summary>
+
+                    <div class="folder">
+                        <details open="open">
+                            <summary>Académico</summary>
+                            <div class="folder">
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="">Propuesta de grado</a>
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="">Anteproyecto</a>
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                                </p>
+                            </div>
+                        </details>
+                        <details>
+                            <summary>img</summary>
+                            <div class="folder">
+                                <p>banner.png</p>
+                                <p>foo.png</p>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                <div class="folder">
+                    <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
+                </div>
             </div>
         </div>
     </form>
