@@ -99,7 +99,7 @@ include "../../../controller/RatePropuesta.php";
 
 
             <div class="contenedor-tabla">
-                <table class="shadow">
+                <table class="tabla-propuestas shadow">
                     <thead>
                         <tr>
                             <th>Título</th>
@@ -132,7 +132,10 @@ include "../../../controller/RatePropuesta.php";
                                 <td><?php echo $value['programa'] ?></td>
                                 <td style="text-align: center;"><?php echo $value['semestre'] ?></td>
                                 <td hidden><?php echo $value['descripcion'] ?></td>
-                                <td><?php echo $value['fecha'] ?></td>
+                                <td><?php
+                                    $originalDate = $value['fecha'];
+                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                    ?></td>
                                 <td hidden><?php echo $value['miembro1'] ?></td>
                                 <td hidden><?php echo $value['miembro2'] ?></td>
                                 <td hidden><?php echo $value['miembro3'] ?></td>
@@ -149,64 +152,6 @@ include "../../../controller/RatePropuesta.php";
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="linea">
-                                                            <label class="lbl-linea">Linea de investigación: </label>
-                                                            <p id="linea"></p>
-                                                        </div>
-                                                        <div class="programa">
-                                                            <label class="lbl-programa">Programa: </label>
-                                                            <p id="program"></p>
-                                                        </div>
-                                                        <div class="semestre">
-                                                            <label class="lbl-semestre">Semestre: </label>
-                                                            <p id="semestre"></p>
-                                                        </div>
-                                                        <div class="integrantes">
-                                                            <label class="lbl-integrantes">Número de integrantes: </label>
-                                                            <p id="num"></p>
-                                                        </div>
-                                                        <div class="tutor">
-                                                            <label class="lbl-tutor">Nombre del asesor: </label>
-                                                            <p id="tutor"></p>
-                                                        </div>
-                                                        <div class="lider">
-                                                            <label class="lbl-lider">Nombre del lider: </label>
-                                                            <p id="lid"></p>
-                                                        </div>
-                                                        <div class="descripcion">
-                                                            <label>Descripción: </label>
-                                                            <textarea style="display: block; text-align: justify;" name="lider" readonly id="descrip" cols="30" rows="4" name="description" value=""></textarea>
-                                                        </div><br>
-                                                        <div class="equipo">
-                                                            <label class="lbl-equipo">Nombre de los integrantes: </label>
-                                                            <ul>
-                                                                <li id="int1"></li>
-                                                                <li id="int2"></li>
-                                                                <li id="int3"></li>
-                                                            </ul>
-                                                            <p id="n_integrantes"></p>
-                                                        </div>
-                                                        <div class="dat">
-                                                            <label class="lbl-fecha">Fecha y hora: </label>
-                                                            <p id="time"></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- | -->
                                         <input hidden type="submit" name="submit" value="Calificar" class="btn-estado" id="calificarN">
                                     </td>
                                 </form>
@@ -220,6 +165,94 @@ include "../../../controller/RatePropuesta.php";
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td><img src="../../../img/aunar2s.png" alt="" width="200"></td>
+                            <td align="center">CORPORACION UNIVERSITARIA AUTONOMA DE NARIÑO EXTENSIÓN CARTAGENA</td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2">PROPUESTA DE GRADO</td>
+                        </tr>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <td colspan="1"><label for="">Título:</label> </td>
+                            <td colspan="3">
+                                <p class="modal-title" id="title"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="">Línea de investigación:</label> </td>
+                            <td colspan="3">
+                                <p id="linea"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Programa:</label> </td>
+                            <td>
+                                <p id="program"></p>
+                            </td>
+                            <td><label for="">Semestre:</label> </td>
+                            <td align="center">
+                                <p id="semestre"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="4"><label for="">Descripción</label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <p style="text-align: justify;" id="descrip" name="description"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Nombre del asesor:</label> </td>
+                            <td>
+                                <p id="tutor"></p>
+                            </td>
+                            <td><label for="">Nombre del lider:</label> </td>
+                            <td>
+                                <p id="lid"></p>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><label for="">Número de integrantes</label></td>
+                            <td align="center" colspan="3"><label for="">Integrantes</label></td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="1">
+                                <p id="num"></p>
+                            </td>
+                            <td colspan="3">
+                                <ol>
+                                    <li id="int1"></li>
+                                    <li id="int2"></li>
+                                    <li id="int3"></li>
+                                </ol>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- | -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
@@ -241,7 +274,7 @@ include "../../../controller/RatePropuesta.php";
             var datos = $tr.children("td").map(function() {
                 return $(this).text();
             });
-            $('#exampleModalLabel').html(datos[0]);
+            $('#title').html(datos[0]);
             $('#linea').html(datos[1]);
             $('#num').html(datos[2]);
             $('#tutor').html(datos[3]);

@@ -176,25 +176,24 @@ strong {
     padding: 15px;
 }
 
-.lista-propuestas table {
+.lista-propuestas .tabla-propuestas {
     margin: auto;
     background: #fff;
     min-width: 100%
 }
 
-.lista-propuestas table thead {
+.lista-propuestas .tabla-propuestas thead {
     background: var(--background-primario);
     color: #fff;
     padding: 10px;
 }
 
-.lista-propuestas table tr:nth-child(even) {
+.lista-propuestas .tabla-propuestas tr:nth-child(even) {
     background: #ddd;
 }
 
-.lista-propuestas table th,
-.lista-propuestas table td {
-    /* border: 1px solid #000; */
+.lista-propuestas .tabla-propuestas th,
+.lista-propuestas .tabla-propuestas td {
     padding: 10px;
     padding-left: 8px;
 }
@@ -222,7 +221,7 @@ strong {
     text-align: center;
 }
 
-.lista-propuestas table tr td>button {
+.lista-propuestas .tabla-propuestas tr td>button {
     text-decoration: none;
     color: #1188d8;
     background: none;
@@ -234,12 +233,24 @@ strong {
 
 /* Modal....................................................................................................................... */
 
+.modal-dialog {
+    max-width: 700px;
+}
+
+.modal-content {
+    background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
+}
+
+.modal-header {
+    background: linear-gradient(-60deg, rgba(2, 105, 173, 0.2), rgba(254, 233, 0, 0.2));
+}
+
 .modal-header button {
     color: #000;
 }
 
 .modal-body {
-    background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
+    background: #fff;
 }
 
 .modal-body div>label {
@@ -250,9 +261,20 @@ strong {
     display: flex;
 }
 
+.modal-body table {
+    margin: 5px auto;
+}
+
+.modal-body table td {
+    align-items: center;
+    vertical-align: middle;
+    border: 1px solid #000;
+    padding: 7px;
+}
+
+.equipo,
 .descripcion {
-    display: block;
-    width: 90%;
+    display: block !important;
 }
 
 .descripcion label {
@@ -260,14 +282,23 @@ strong {
     display: block;
 }
 
-.descripcion textarea {
+.modal-body label {
+    font-weight: bold;
+}
+
+.descripcion .descrip {
     width: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    resize: none;
+    margin-bottom: 0 !important;
+}
+
+ol {
+    margin-bottom: 0 !important;
 }
 
 .modal {
     z-index: 9999999999999999;
+}
+
+p {
+    margin-bottom: 0 !important;
 }

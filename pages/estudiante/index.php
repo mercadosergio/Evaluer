@@ -131,7 +131,7 @@ $findA = $est->getMyAnteproyecto();
                 </div>
             </div>
             <div class="student-module">
-                <h3>Módulos del curso</h3>
+                <h3>MÓDULOS DEL CURSO</h3>
                 <div class="container">
                     <a href="../../pages/estudiante/modulos/propuesta.php">
                         <div class="seleccion">

@@ -41,7 +41,6 @@ if ($sesion == null || $sesion = '') {
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/scrollbar.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 </head>
 
 
@@ -79,62 +78,62 @@ if ($sesion == null || $sesion = '') {
 
     </nav>
 
-    <div class="docente-profile">
-        <h3>Modulos de revisión y evaluación</h3>
-        <div class="horizontal">
-            <a href="../docente/modulos/revision-propuesta.php">
-                <div class="seleccion">
-                    <div>
-                        <h3>Propuesta de grado</h3>
+    <div class="wall">
+        <div class="docente-profile">
+            <h3>MÓDULOS DE REVISIÓN Y EVALUACIÓN</h3>
+            <div class="horizontal">
+                <a href="../docente/modulos/revision-propuesta.php">
+                    <div class="seleccion">
                         <div>
-                            <i class="icono fas fa-search"></i>
-                        </div>
+                            <h3>Propuesta de grado</h3>
+                            <div>
+                                <i class="icono fas fa-search"></i>
+                            </div>
 
-                    </div>
-                </div>
-            </a>
-            <a href="../docente/modulos/revision-anteproyecto.php">
-                <div class="seleccion">
-                    <div>
-                        <h3>Anteproyectos</h3>
-                        <div>
-                            <i class="fas fa-book-open"></i>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="../docente/modulos/revision-proyecto-grado.php">
-                <div class="seleccion">
-                    <div>
-                        <h3>Proyectos de grado</h3>
+                </a>
+                <a href="../docente/modulos/revision-anteproyecto.php">
+                    <div class="seleccion">
                         <div>
-                            <i class="fas fa-user-tie"></i>
+                            <h3>Anteproyectos</h3>
+                            <div>
+                                <i class="fas fa-book-open"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        </div>
-        <div class="cont-titulo">
-            <h3>Publicar un anuncio en el curso</h3>
-        </div>
-        <div class="publicar">
-            <button class="btn_anuncio btn btn-primary" id="btn_form">Publicar un anuncio</button>
-            <form class="post_form" id="post_form" action="../../controller/PublicarAnuncio.php" method="POST">
-                <div class="form-group">
-                    <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
-                </div>
-                <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
+                </a>
+                <a href="../docente/modulos/revision-proyecto-grado.php">
+                    <div class="seleccion">
+                        <div>
+                            <h3>Proyectos de grado</h3>
+                            <div>
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="cont-titulo">
+                <h3>Publicar un anuncio en el curso</h3>
+            </div>
+            <div class="publicar">
+                <button class="btn_anuncio btn btn-primary" id="btn_form">Publicar un anuncio</button>
+                <form class="post_form" id="post_form" action="../../controller/PublicarAnuncio.php" method="POST">
+                    <div class="form-group">
+                        <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
+                    </div>
+                    <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
 
-                <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
-                <input hidden type="datetime" name="datetime" value="<?php
-                                                                        date_default_timezone_set('America/Bogota');
-                                                                        $fecha = date("Y-m-d H:i:s");
-                                                                        echo $fecha; ?>">
-                <button type="submit" class="guardar btn btn-primary" id="btn_publicar">Publicar</button>
-            </form>
+                    <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
+                    <input hidden type="datetime" name="datetime" value="<?php
+                                                                            date_default_timezone_set('America/Bogota');
+                                                                            $fecha = date("Y-m-d H:i:s");
+                                                                            echo $fecha; ?>">
+                    <button type="submit" class="guardar btn btn-primary" id="btn_publicar">Publicar</button>
+                </form>
+            </div>
         </div>
-
-
     </div>
     <div class="seccion_anuncios">
         <div class="cont-titulo">

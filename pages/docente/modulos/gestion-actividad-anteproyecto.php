@@ -81,7 +81,7 @@ $idAnteproyecto = $_GET['id'];
 
     <div class="format-3">
         <div class="cont-titulo">
-            <h3>Información del proyecto</h3>
+            <h3>Información del anteproyecto</h3>
         </div>
         <?php
         $getAnteproyecto = $docente->getAnteproyecto($idAnteproyecto);
