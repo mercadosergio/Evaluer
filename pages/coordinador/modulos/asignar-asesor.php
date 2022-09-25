@@ -5,13 +5,12 @@ $obj = new User();
 $funcion = new Metodos();
 
 session_start();
-// error_reporting(0);
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
 $getMyself = $obj->getCoordinatorProfile();
-$myProfile = mysqli_fetch_array($getMyself);
+$myRole = mysqli_fetch_array($getMyself);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
@@ -33,11 +32,6 @@ if ($sesion == null || $sesion = '') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/asignar-asesor.css">
     <link rel="stylesheet" href="../../../css/header.css">
@@ -92,59 +86,66 @@ if ($sesion == null || $sesion = '') {
 
         <table class="tabla_asign shadow">
             <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Título</th>
-                    <th>Documento</th>
-                    <th>Programa</th>
-                    <th>Semestre</th>
-                    <th>Fecha y hora</th>
-                    <th>Asesor de proyecto</th>
-                </tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Primer apellido</th>
+                <th>Segundo apellido</th>
+                <th>Documento de identidad</th>
+                <th>Programa</th>
+                <th>Semestre</th>
+                <th>Acción</th>
             </thead>
             <tbody id="search">
+                <?php
+                $sql = "SELECT * FROM estudiante WHERE programa_id = " . $myRole['programa_id'];
+                $datos = $obj->listar($sql);
 
-                <form id="form" action="../../../controller/AsignarDocente.php" name="sub" method="POST">
-                    <?php
-                    $sql = "SELECT * from proyecto_grado WHERE programa_id = " . $myProfile['programa_id'];
-                    $data = $funcion->listar($sql);
-                    foreach ($data as $key) {
-                    ?>
-                        <tr>
+                foreach ($datos as $key) {
+                ?>
+                    <tr class="valores">
+                        <form id="form" action="../../../controller/AsignarDocente.php" name="sub" method="POST">
                             <td><?php echo $key['id'] ?></td>
-                            <td style="max-width: 600px;"><?php echo $key['titulo'] ?></td>
-                            <td><a href="<?php echo $key['documento']; ?>"><?php echo $key['nombre']; ?></a></td>
+                            <td><?php echo $key['nombre'] ?></td>
+                            <td><?php echo $key['p_apellido'] ?></td>
+                            <td><?php echo $key['s_apellido'] ?></td>
+                            <td><?php echo $key['cedula'] ?></td>
                             <td><?php echo $key['programa'] ?></td>
-                            <td style="text-align:center;"><?php echo $key['semestre'] ?></td>
-                            <td><?php echo $key['fecha'] ?></td>
-
+                            <td><?php echo $key['semestre'] ?></td>
+                            <td hidden><?php echo $key['usuario_id'] ?></td>
+                            <td hidden><?php echo $key['usuario'] ?></td>
                             <td>
-                                <select name="asesor[]" id="asesor" onchange="seleccionarDocente()">
-                                    <option selected value="<?php echo $key['asesor_user']; ?>"><?php echo $key['nombre_asesor']; ?></option>
-                                    <option value="1">Seleccione...</option>
+
+                                <select class="form-select" name="id_asesor[]" id="asesor" onchange="this.form.submit()">
                                     <?php
-                                    $sql2 = "SELECT * FROM docente";
+                                    if ($key['asesor_id'] != 0) {
+                                    ?>
+                                        <option selected value="<?php echo $key['asesor_id']; ?>"><?php echo $key['asesor']; ?><i class="bi bi-circle-fill"></i></option>
+                                    <?php
+                                    }
+                                    ?>
+                                    <option value="0">Seleccione...</option>
+                                    <?php
+                                    $sql2 = "SELECT * FROM asesor WHERE programa_id = " . $myRole['programa_id'];
                                     $coach = $funcion->listar($sql2);
 
                                     foreach ($coach as $d) {
-                                        echo '<option value="' . $d['usuario'] . '">' . $d['nombres'] . " " . $d['p_apellido']  . '</option>';
+                                        echo '<option value="' . $d['id'] . '">' . $d['nombres'] . " " . $d['p_apellido']  . '</option>';
                                     }
                                     ?>
                                 </select>
-                            </td>
-                            <td hidden>
-                                <input type="text" hidden id="id_proyecto" name="id_proyecto" value="<?php echo $key['id'] ?>">
-                                <input class="asignar" name="asignar_d" value="Guardar" type="submit">
-                            </td>
-                        </tr>
+                                <input hidden type="text" id="id" name="id" value="<?php echo $key['id'] ?>">
+                                <input hidden class="asignar" name="asignar_d" value="Guardar" type="submit">
 
-                    <?php
-                    }
-                    ?>
-                </form>
+                            </td>
+                        </form>
+                    </tr>
+                <?php
+                }
+                ?>
             </tbody>
         </table>
     </div>
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#search").on("keyup", function() {
@@ -159,12 +160,11 @@ if ($sesion == null || $sesion = '') {
     <script type="text/javascript">
         function seleccionarDocente() {
 
-            let id = document.getElementById('id_proyecto').value;
+            let id = document.getElementById('id').value;
             let asesor = document.getElementById('asesor');
             let variables = asesor.value;
 
             const formulario = document.getElementById("asesor");
-
 
             formulario.addEventListener("submit", (e) => {
                 e.preventDefault();
@@ -177,43 +177,18 @@ if ($sesion == null || $sesion = '') {
                 request.send(new FormData(formulario));
             });
 
-            document.sub.submit();
-            // alert(id);
             // alert(variables);
+            console.log(variables);
+            document.sub.submit();
             // document.sub.submit();
-
         }
     </script>
 
 
-    <script>
-        // var cod = document.getElementById("asesor").value;
-        // // alert(cod);
-
-        // /* Para obtener el texto */
-        // var combo = document.getElementById("asesor");
-        // var selected = combo.options[combo.selectedIndex].text;
-        // // alert(selected);
-
-        // const $form = document.querySelector('#form')
-        // $form.addEventListener('submit', handleSubmit)
-
-        // function handleSubmit(event) {
-        //     event.preventDefault()
-        //     const form = new FormData(this)
-        //     console.log(cod)
-        // }
-    </script>
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
-    <script src="../../../js/jquery-3.3.1.min.js"></script>
-    <script src="../../../js/popper.min.js"></script>
-    <script src="../../../js/bootstrap.min.js"></script>
     <script src="../../../js/Headroom.js"></script>
     <script src="../../../js/jQuery.headroom.js"></script>
-    <script src="../../../js/owl.carousel.min.js"></script>
-    <script src="../../../js/smoothscroll.js"></script>
-    <script src="../../../js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 </body>

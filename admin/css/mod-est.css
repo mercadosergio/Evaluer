@@ -14,7 +14,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
 }
@@ -84,7 +84,7 @@ strong {
     z-index: 999999;
     will-change: transform;
     transition: transform 200ms linear;
-    background: var(--background-primario);
+    background: var(--primary);
     color: white;
     border-bottom: var(--color-detalle) 5px solid;
     height: 120px;
@@ -232,7 +232,7 @@ ul {
 }
 
 .log li ul {
-    background: var(--background-primario);
+    background: var(--primary);
     display: none;
     position: absolute;
     min-width: 140px;
@@ -367,7 +367,7 @@ ul {
     font-family: "Maven Pro", sans-serif;
     margin-right: auto;
     margin-left: auto;
-    background: var(--background-primario);
+    background: var(--primary);
     padding: 7px;
     border-radius: 10px;
     border: none;

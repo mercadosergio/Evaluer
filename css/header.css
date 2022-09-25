@@ -5,8 +5,11 @@
     --color-detalle-hover: #ffef42;
 }
 
+.navbar h3 {
+    margin-bottom: 0 !important;
+}
+
 .navbar {
-    padding-left: 20px;
     position: fixed;
     top: 0;
     right: 0;
@@ -121,10 +124,6 @@
     cursor: pointer !important;
 }
 
-.dropdown img {
-    /* border: 1px solid var(--color-detalle); */
-}
-
 .dropdown-toggle {
     font-size: 18px;
 }
@@ -133,6 +132,10 @@
 /* Escritorio................................... */
 
 @media screen and (min-width: 67em) {
+    .navbar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
     .navbar .collapse {
         display: flex;
         align-items: center;
@@ -144,6 +147,7 @@
         margin-right: 20px;
     }
     .logo {
+        /* background: linear-gradient(to right, transparent, #fff, transparent); */
         width: 200px;
         border-radius: 10px;
     }
@@ -188,7 +192,33 @@
 }
 
 
+/* Tablet */
+
+@media screen and (min-width: 425px)and (max-width: 768px) {
+    .navbar {
+        width: 100% !important;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .mx-auto {
+        display: none;
+    }
+    .dropdown {
+        margin-left: 140px;
+    }
+}
+
+
 /* Mobile....................................... */
+
+@media screen and (min-width: 500px) {
+    .hamburger {
+        display: none;
+    }
+    .menu-side {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 67em) {
     /* Logos  */

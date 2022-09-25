@@ -7,11 +7,13 @@ include("../../model/Estudiante.php");
 $obj = new User();
 $est = new Student();
 session_start();
-error_reporting(0);
 
 $sesion = $_SESSION['usuario'];
 $getProfile = $obj->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
+
+$getMyrole = $obj->getStudentProfile();
+$userE = mysqli_fetch_array($getMyrole);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
@@ -31,10 +33,10 @@ $findA = $est->getMyAnteproyecto();
     <meta name="author" content="">
 
     <title>Estudiante</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../css/estudiante-styles.css">
@@ -44,7 +46,6 @@ $findA = $est->getMyAnteproyecto();
 
 
 <body>
-
     <div class="fondo">
         <!-- Pantalla de carga -->
         <div id="contenedor_carga">
@@ -69,7 +70,7 @@ $findA = $est->getMyAnteproyecto();
         <!-- MENU -->
         <nav class="navbar navbar-expand-sm navbar-light">
             <button onclick="activar()" class="hamburger">
-                <i class="bi bi-estP"></i>
+                <i class="bi bi-list"></i>
             </button>
             <img src="../../img/aunar.png" class="aunar_logo">
             <a class="navbar-brand" href="../../pages/estudiante/index.php"><img class="logo" src="../../img/logo_p.png"></a>
@@ -107,14 +108,15 @@ $findA = $est->getMyAnteproyecto();
         </nav>
 
         <div class="secciones" id="body">
-            <div style="resize: horizontal;" class="anouncement_card">
+            <div class="anouncement_card">
                 <div>
                     <span><i class="bi bi-info-circle-fill"></i> Anuncios y detalles</span>
                 </div>
                 <?php
                 $recurso = new Metodos();
-                $rep = $recurso->viewAnuncio();
-                while ($actual = mysqli_fetch_array($rep)) {
+                $sql = "SELECT * FROM anuncio WHERE docente_id =".$userE['asesor_id'];
+                $rep = $recurso->listar($sql);
+                foreach ($rep as $actual) {
                 ?>
                     <div>
                         <p><?php echo $actual['nombre_usuario']; ?></p>
@@ -131,7 +133,12 @@ $findA = $est->getMyAnteproyecto();
                 </div>
             </div>
             <div class="student-module">
-                <h3>MÓDULOS DEL CURSO</h3>
+                <div class="resp_title">
+                    <div class="cont-titulo">
+                    <i class="bi bi-columns-gap"></i>
+                        <h3>Módulos del curso</h3>
+                    </div>
+                </div>
                 <div class="container">
                     <a href="../../pages/estudiante/modulos/propuesta.php">
                         <div class="seleccion">
@@ -209,17 +216,7 @@ $findA = $est->getMyAnteproyecto();
             </div>
 
         </div>
-        <div class="estado_propuesta">
-            <h3>Estado de su proyecto</h3>
-            <label>
-                <?php
-                // $estado = "SELECT estado FROM propuesta WHERE remitente =" . $_SESSION['usuario'];
-                // $dato2 = mysqli_query($conexion, $estado);
-                // $r = mysqli_fetch_array($dato2);
-                // echo $r['0'];
-                ?>
-            </label>
-        </div>
+
     </div>
 
     <?php

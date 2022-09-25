@@ -5,7 +5,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
 }
@@ -242,7 +242,7 @@ strong {
     padding: 10px;
     height: 230px;
     /* width: 230px; */
-    background: var(--background-primario);
+    background: var(--primary);
     align-items: center;
 }
 

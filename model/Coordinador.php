@@ -9,12 +9,20 @@ class Coordinator extends DataBase
         parent::__construct();
     }
 
-    public function AssignCoach($asesor, $id_proyecto)
+    public function AssignCoach($id_asesor, $id)
     {
-        $this->con->query("UPDATE proyecto_grado SET asesor_user = '$asesor' WHERE id = '$id_proyecto'");
+        $this->con->query("UPDATE estudiante SET asesor_id = $id_asesor WHERE id = $id");
 
-        $this->con->query("UPDATE proyecto_grado p JOIN docente d
-        ON p.asesor_user = d.usuario
-        SET p.nombre_asesor = concat(d.nombres, d.p_apellido)");
+        $this->con->query("UPDATE estudiante e JOIN asesor d
+        ON e.asesor_id = d.id
+        SET e.asesor = concat(d.nombres,' ',d.p_apellido)");
+    }
+    public function AssignJudge($jurado1, $jurado2, $jurado3, $id)
+    {
+        $this->con->query("UPDATE proyecto_grado SET jurado1 = '$jurado1', jurado2 = '$jurado2', jurado3 = '$jurado3' WHERE id = $id");
+
+        $this->con->query("UPDATE proyecto_grado e JOIN asesor d
+        ON e.asesor_id = d.id
+        SET e.asesor = concat(d.nombres,' ',d.p_apellido)");
     }
 }

@@ -161,7 +161,7 @@ include("../../controller/EditUser.php");
                         </thead>
                         <tbody id="userInfo">
                             <?php
-                            $sql2 = "SELECT * FROM docente ORDER BY id";
+                            $sql2 = "SELECT * FROM asesor ORDER BY id";
                             $datos_docente = $obj->listar($sql2);
 
                             foreach ($datos_docente as $asesor) {

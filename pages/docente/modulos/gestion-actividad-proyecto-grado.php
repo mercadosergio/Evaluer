@@ -92,7 +92,10 @@ $idProyecto = $_GET['id'];
                 <p><?php echo $findData['titulo'] ?></p>
             </div>
             <div class="row_"><label for="">Fecha de envío: </label>
-                <p><?php echo $findData['fecha'] ?></p>
+                <p><?php
+                    $originalDate = $findData['fecha'];
+                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                    ?></p>
             </div>
             <div class="row_"><label for="">Archivo: </label>
                 <a class="file_container" href="<?php echo $findData['documento'] ?>" target="_blank"><i class="fas fa-file-alt"></i>

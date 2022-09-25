@@ -110,7 +110,10 @@ include("../../../controller/evaluate-anteproyecto.php");
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td><a href="<?php echo $value['documento']; ?>" target="_blank"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
-                                <td><?php echo $value['fecha']; ?></td>
+                                <td><?php
+                                    $originalDate = $value['fecha'];
+                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                    ?></td>
                                 <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
                                 <td>
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>

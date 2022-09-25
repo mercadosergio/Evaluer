@@ -15,7 +15,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --background-secundario: #ffc200;
     --color-detalle: #fee700;
@@ -176,7 +176,7 @@ strong {
 .login select>option:hover,
 .login select>option:focus,
 .login select>option:checked {
-    background: var(--background-primario);
+    background: var(--primary);
     color: white;
 }
 
@@ -220,7 +220,7 @@ select:focus>option:focus {
 }
 
 input:focus {
-    border-color: var(--background-primario);
+    border-color: var(--primary);
 }
 
 .user::placeholder {
@@ -245,7 +245,7 @@ input:focus {
     border: none;
     outline: none;
     height: 40px;
-    background: var(--background-primario);
+    background: var(--primary);
     color: white;
     font-size: 18px;
     border-radius: 4px;
@@ -365,7 +365,7 @@ input:focus {
         text-align: center;
     }
     .team img {
-        border: var(--background-primario) 1px solid;
+        border: var(--primary) 1px solid;
         text-align: center;
         width: 140px;
     }
@@ -405,7 +405,7 @@ input:focus {
     }
     .navbar {
         width: 100%;
-        background: var(--background-primario);
+        background: var(--primary);
         display: flex;
     }
     .aunar_logo {
@@ -481,7 +481,7 @@ input:focus {
         text-align: center;
     }
     .team img {
-        border: var(--background-primario) 1px solid;
+        border: var(--primary) 1px solid;
         text-align: center;
         width: 100px;
     }

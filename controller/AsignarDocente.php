@@ -1,13 +1,12 @@
 <?php
 
-$id = $_POST['id_proyecto'];
-$asesor = $_POST['asesor'];
+$id = $_POST['id'];
+$id_asesor = $_POST['id_asesor'];
 
-for ($i = 0; $i < count($asesor); $i++) {
-
-    include("../model/Coordinador.php");
+include("../model/Coordinador.php");
+for ($i = 0; $i < count($id_asesor); $i++) {
     $obj = new Coordinator();
-    $obj->AssignCoach($asesor[$i], $id);
+    $obj->AssignCoach($id_asesor[$i], $id);
 }
 ?>
 <script>

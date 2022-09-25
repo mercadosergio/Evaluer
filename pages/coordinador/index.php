@@ -28,6 +28,7 @@ if ($sesion == null || $sesion = '') {
     <meta name="author" content="">
 
     <title>Coordinador</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
@@ -76,7 +77,10 @@ if ($sesion == null || $sesion = '') {
     </nav>
 
     <div class="coordinador-profile">
-        <h3>Módulos de coordinación académica</h3>
+        <div class="cont-titulo">
+            <i class="bi bi-columns-gap"></i>
+            <h3>Módulos de coordinación académica</h3>
+        </div>
 
         <div class="opciones_coordinador">
             <a href="modulos/asignar-asesor.php" class="shadow">
@@ -85,7 +89,7 @@ if ($sesion == null || $sesion = '') {
                     <img src="../../img/asignar.png" alt="">
                 </div>
             </a>
-            <a href="modulos/asignar-jurado.php" class="shadow">
+            <a href="modulos/lista-proyectos.php" class="shadow">
                 <div>
                     <h3>Asignar Jurado</h3>
                     <img src="../../img/proyecto-coordinador.png" alt="">

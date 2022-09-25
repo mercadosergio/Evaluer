@@ -18,6 +18,7 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+include("../../controller/PublicarAnuncio.php");
 ?>
 
 <!doctype html>
@@ -80,7 +81,10 @@ if ($sesion == null || $sesion = '') {
 
     <div class="wall">
         <div class="docente-profile">
-            <h3>MÓDULOS DE REVISIÓN Y EVALUACIÓN</h3>
+            <div class="cont-titulo">
+                <i class="bi bi-columns-gap"></i>
+                <h3>Módulos de revisión y evaluación</h3>
+            </div>
             <div class="horizontal">
                 <a href="../docente/modulos/revision-propuesta.php">
                     <div class="seleccion">
@@ -114,29 +118,30 @@ if ($sesion == null || $sesion = '') {
                     </div>
                 </a>
             </div>
-            <div class="cont-titulo">
+            <div class="cont-titulo-anuncios">
                 <h3>Publicar un anuncio en el curso</h3>
             </div>
             <div class="publicar">
                 <button class="btn_anuncio btn btn-primary" id="btn_form">Publicar un anuncio</button>
-                <form class="post_form" id="post_form" action="../../controller/PublicarAnuncio.php" method="POST">
+                <form class="post_form" id="post_form" action="" method="POST">
                     <div class="form-group">
                         <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
                     </div>
                     <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
 
                     <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
+                    <input hidden type="text" name="docente_id" value="<?php echo $userD['id'] ?>">
                     <input hidden type="datetime" name="datetime" value="<?php
                                                                             date_default_timezone_set('America/Bogota');
                                                                             $fecha = date("Y-m-d H:i:s");
                                                                             echo $fecha; ?>">
-                    <button type="submit" class="guardar btn btn-primary" id="btn_publicar">Publicar</button>
+                    <button type="submit" class="guardar btn btn-primary" name="submit" id="btn_publicar">Publicar</button>
                 </form>
             </div>
         </div>
     </div>
     <div class="seccion_anuncios">
-        <div class="cont-titulo">
+        <div class="cont-titulo-anuncios">
             <h3>Anuncios</h3>
         </div>
         <form action="../../controller/EliminarAnuncio.php" method="POST">

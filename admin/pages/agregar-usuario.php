@@ -28,7 +28,7 @@ if ($sesion == null || $sesion = '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registrar estudiante</title>
+    <title>Registrar usuario</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
@@ -79,7 +79,7 @@ if ($sesion == null || $sesion = '') {
                 <select name="role[]" id="role" class="role form-select">
                     <option class="coo" value="2">Coordinador</option>
                     <option class="other" value="3" selected>Estudiante</option>
-                    <option class="other" value="4">Docente</option>
+                    <option class="other" value="4">Asesor</option>
                 </select>
             </div>
 
@@ -89,13 +89,25 @@ if ($sesion == null || $sesion = '') {
                     <h3 class="title" id="stitle">Información del usuario</h3>
                 </div>
 
-                <input type="text" name="nombre" class="campo-nombre form-control" placeholder="Nombres">
-                <input type="text" name="p_apellido" class="campo-primer-apellido form-control" placeholder="Primer apellido">
-                <input type="text" name="s_apellido" class="campo-segundo-apellido form-control" placeholder="Segundo apellido">
-                <input type="text" name="cedula" class="campo-cedula form-control" placeholder="No. documento de identidad">
+                <div class="campo-nombre">
+                    <label for="">Nombres:</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="">
+                </div>
+                <div class="campo-primer-apellido">
+                    <label for="">Primer apellido:</label>
+                    <input type="text" name="p_apellido" class="form-control" placeholder="">
+                </div>
+                <div class="campo-segundo-apellido ">
+                    <label for="">Segundo apellido:</label>
+                    <input type="text" name="s_apellido" class="form-control" placeholder="">
+                </div>
+                <div class="campo-cedula ">
+                    <label for="">Documento de identidad:</label>
+                    <input type="text" name="cedula" class="form-control" placeholder="">
+                </div>
 
                 <div class="programa">
-                    <label>Programa:</label>
+                    <label>Programa académico:</label>
                     <select name="programa_id[]" class="programa-s form-select">
                         <option selected value="1">Seleccione...</option>
                         <?php
@@ -107,10 +119,15 @@ if ($sesion == null || $sesion = '') {
                         ?>
                     </select>
                 </div>
-                <input type="number" min="6" max="9" name="semestre" class="cammpo-semestre form-control" placeholder="Semestre" id="semestre">
-                <input type="text" name="email" class="campo-email form-control" placeholder="Email">
+                <div class="cammpo-semestre" id="semestre">
+                    <label>Semestre:</label>
+                    <input type="number" min="6" max="9" name="semestre" class="form-control" placeholder="" id="semestre">
+                </div>
+                <div class="campo-email">
+                    <label for="">Email:</label>
+                    <input type="text" name="email" class="form-control" placeholder="Email">
+                </div>
                 <input type="submit" name="agregar" class="btn-agregar form-control" value="Registrar">
-
             </div>
         </div>
     </form>
@@ -127,7 +144,7 @@ if ($sesion == null || $sesion = '') {
         function cambiarRol() {
             let input = document.getElementById("semestre");
             if ($('#role').val() == 3) {
-                input.style = 'display:flex';
+                input.style = 'display:block';
                 $('#stitle').html("Información del estudiante");
             } else if ($('#role').val() == 4) {
                 input.style = 'display:none';
@@ -139,11 +156,15 @@ if ($sesion == null || $sesion = '') {
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
 
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/9390efa2c5.js"></script>

@@ -7,7 +7,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
     --color-detalle-hover: #e4d103;
@@ -84,8 +84,8 @@ strong {
 
 .navbar-nav li {
     margin-right: 20px;
-    border-top: var(--background-primario) 3px solid;
-    border-bottom: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
+    border-bottom: var(--primary) 3px solid;
 }
 
 .nav-link span {
@@ -180,7 +180,7 @@ form {
     width: 205px;
     font-size: 20px;
     color: #fff;
-    background: var(--background-primario);
+    background: var(--primary);
     border-radius: 7px;
     border: none;
     margin-left: auto;
@@ -312,7 +312,7 @@ textarea {
     padding-left: 10px;
     background: #fff;
     display: flex;
-    border: var(--background-primario) 1px solid;
+    border: var(--primary) 1px solid;
 }
 
 .detalle_entrega i {

@@ -8,7 +8,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
     --color-detalle-hover: #e4d103;
@@ -85,8 +85,8 @@ strong {
 
 .navbar-nav li {
     margin-right: 20px;
-    border-top: var(--background-primario) 3px solid;
-    border-bottom: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
+    border-bottom: var(--primary) 3px solid;
 }
 
 .nav-link span {
@@ -132,7 +132,7 @@ strong {
     margin-bottom: 30px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     padding-top: 30px;
-    border: 1px var(--background-primario) solid;
+    border: 1px var(--primary) solid;
     border-radius: 5px;
 }
 
@@ -344,7 +344,7 @@ strong {
 
 .miembros {
     padding: 30px 70px;
-    border: 1px var(--background-primario) solid;
+    border: 1px var(--primary) solid;
     border-radius: 5px;
 }
 
@@ -364,7 +364,7 @@ strong {
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background: var(--background-primario);
+    background: var(--primary);
     border-radius: 5px;
     border: none;
     margin-bottom: 30px;
@@ -373,14 +373,14 @@ strong {
 .details {
     background: #fff;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-    border: 1px var(--background-primario) solid;
+    border: 1px var(--primary) solid;
     display: block;
     border-radius: 5px;
     max-width: 500px;
 }
 
 .details>label {
-    background: var(--background-primario);
+    background: var(--primary);
     padding: 5px;
     padding-left: 8px;
     color: #fff;

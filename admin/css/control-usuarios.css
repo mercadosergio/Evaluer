@@ -7,7 +7,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
 }
@@ -222,7 +222,7 @@ ul {
 }
 
 .tabla-est thead {
-    background: var(--background-primario);
+    background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }

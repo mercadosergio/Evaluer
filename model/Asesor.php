@@ -11,7 +11,7 @@ class Asesor extends DataBase
 
     public function HabilitarEnvios($usuario)
     {
-        $myself = $this->con->query("SELECT * FROM docente WHERE usuario = '$usuario'");
+        $myself = $this->con->query("SELECT * FROM asesor WHERE usuario = '$usuario'");
         $array = mysqli_fetch_array($myself);
 
         $this->con->query("UPDATE estudiante SET time_propuesta = 0 WHERE programa_id = " . $array['programa_id']);
@@ -32,9 +32,9 @@ class Asesor extends DataBase
         $this->con->query("UPDATE proyecto_grado SET estado = '$estado', calificacion='$nota', observaciones='$observaciones' WHERE id = '$id'");
     }
 
-    public function publicarAnuncio($contenido, $fecha, $programa, $nombre, $usuario)
+    public function publicarAnuncio($contenido, $fecha, $programa, $nombre, $usuario, $id)
     {
-        $this->con->query("INSERT INTO anuncio(contenido,fecha,programa_id,nombre_usuario,usuario) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario')");
+        $this->con->query("INSERT INTO anuncio(contenido,fecha,programa_id,nombre_usuario,usuario,docente_id) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario', $id)");
     }
 
     public function deleteAnuncio()

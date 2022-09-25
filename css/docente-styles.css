@@ -11,7 +11,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
     --color-detalle-hover: #e4d103;
@@ -106,7 +106,7 @@ strong {
 }
 
 .navbar-nav li {
-    border-top: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
     margin-right: 20px;
 }
 
@@ -118,7 +118,7 @@ strong {
 
 .principal {
     width: auto;
-    border-top: var(--background-primario) 3px solid;
+    border-top: var(--primary) 3px solid;
     border-bottom: var(--color-detalle) 3px solid;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -138,21 +138,27 @@ strong {
     overflow: hidden;
 }
 
-
-/* Logos e imagenes */
-
-.aunar_logo {
-    width: 80px;
-    margin-right: 20px;
+.cont-titulo {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 30px;
+    border-bottom: #bebebe 2px solid;
+    border-radius: 5px;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    justify-content: center;
 }
 
-.logo {
-    width: 200px;
-    border-radius: 10px;
+.cont-titulo h3 {
+    font-size: 24px;
+    margin: auto 5px;
 }
 
-
-/* MENU DESPLEGABLE DE USUARIO */
+.cont-titulo i {
+    font-size: 20px;
+}
 
 * {
     padding: 0px;
@@ -188,7 +194,7 @@ strong {
     width: 270px;
     height: 200px;
     margin: auto;
-    background-color: var(--background-primario);
+    background-color: var(--primary);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: all 400ms ease;
 }
@@ -206,13 +212,11 @@ img {
 }
 
 .docente-profile a:hover .seleccion {
-    /* padding: 2em 0 1.5em; */
     transform: translate(10px, 10px);
 }
 
 .docente-profile .seleccion {
     text-align: center;
-    /* position: relative; */
     cursor: pointer;
     font-size: 25px;
     width: 270px;
@@ -237,7 +241,7 @@ img {
     text-align: center;
     bottom: 10px;
     font-size: 25px;
-    background: var(--background-primario);
+    background: var(--primary);
     color: var(--color-detalle);
 }
 
@@ -247,7 +251,7 @@ img {
 }
 
 .seleccion i {
-    color: var(--background-primario);
+    color: var(--primary);
     font-size: 65px;
 }
 
@@ -290,7 +294,7 @@ img {
     padding: 20px 0;
 }
 
-.cont-titulo {
+.cont-titulo-anuncios {
     margin: 10px auto;
     width: 60%;
     border: #bebebe 1px solid;
@@ -301,7 +305,7 @@ img {
     align-items: center;
 }
 
-.cont-titulo h3 {
+.cont-titulo-anuncios h3 {
     font-size: 20px;
     margin: 15px;
 }

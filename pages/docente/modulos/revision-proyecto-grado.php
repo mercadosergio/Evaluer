@@ -108,7 +108,10 @@ include("../../../controller/evaluate-proyecto.php");
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td><a href="<?php echo $value['documento']; ?>" target="_blank"><?php echo $value['nombre']; ?></a></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
-                                <td><?php echo $value['fecha']; ?></td>
+                                <td><?php
+                                    $originalDate = $value['fecha'];
+                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                    ?></td>
                                 <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
                                 <td><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>

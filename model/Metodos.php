@@ -42,7 +42,7 @@ class Metodos extends DataBase
     }
     public function getProfileAsesor()
     {
-        $sql  = "SELECT * FROM docente WHERE usuario = " . $_SESSION['usuario'];
+        $sql  = "SELECT * FROM asesor WHERE usuario = " . $_SESSION['usuario'];
         $resultado = $this->con->query($sql);
         return $resultado;
     }
@@ -96,6 +96,11 @@ class Metodos extends DataBase
         $registro = mysqli_fetch_array($profile);
 
         $result = $this->con->query("SELECT * FROM proyecto_grado WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha");
+        return $result;
+    }
+    public function getProyecto($id)
+    {
+        $result = $this->con->query("SELECT * FROM proyecto_grado WHERE id = '$id'");
         return $result;
     }
 }

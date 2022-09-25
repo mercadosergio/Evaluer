@@ -8,7 +8,7 @@
     }
     
      :root {
-        --background-primario: #0269ad;
+        --primary: #0269ad;
         --hover: #0477c4;
         --color-detalle: #fee700;
         --color-detalle-hover: #ffef42;
@@ -104,13 +104,13 @@
     }
     
     .navbar-nav li {
-        border-top: var(--background-primario) 3px solid;
+        border-top: var(--primary) 3px solid;
         margin-right: 20px;
     }
     
     .principal {
         width: auto;
-        border-top: var(--background-primario) 3px solid;
+        border-top: var(--primary) 3px solid;
         border-bottom: var(--color-detalle) 3px solid;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -159,7 +159,7 @@
     }
     
     .btn-set {
-        background: var(--background-primario);
+        background: var(--primary);
         padding: 7px;
         color: #fff;
         border: none;
@@ -284,7 +284,7 @@
     .contenedor-soporte .campo {
         width: 80%;
         padding: 3px;
-        border: var(--background-primario) 1px solid;
+        border: var(--primary) 1px solid;
         border-radius: 5px;
     }
     
@@ -294,7 +294,7 @@
     
     .contenedor-soporte .btn-g {
         display: block;
-        background: var(--background-primario);
+        background: var(--primary);
         padding: 7px;
         color: #fff;
         border: none;

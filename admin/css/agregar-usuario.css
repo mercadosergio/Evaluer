@@ -6,7 +6,7 @@ body {
 }
 
 :root {
-    --background-primario: #0269ad;
+    --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
 }
@@ -134,7 +134,7 @@ ul {
 }
 
 .log li ul {
-    background: var(--background-primario);
+    background: var(--primary);
     display: none;
     position: absolute;
     min-width: 140px;
@@ -166,7 +166,7 @@ ul {
 .roles {
     margin: auto;
     width: 90%;
-    padding: 15px;
+    padding: 15px 0;
 }
 
 
@@ -186,7 +186,7 @@ ul {
 .cont-title {
     grid-area: titulo;
     display: flex;
-    margin: 15px;
+    margin: 15px 0;
 }
 
 .campo-nombre {
@@ -210,7 +210,6 @@ ul {
 }
 
 .cammpo-semestre {
-    margin-top: 15px;
     grid-area: semestre;
     width: 40%;
 }
@@ -225,7 +224,6 @@ ul {
 
 .campo-email {
     grid-area: email;
-    width: 50%;
 }
 
 .btn-agregar {
@@ -253,8 +251,7 @@ ul {
 
 .form-add-user .programa {
     display: flex;
-    align-items: center;
-    padding: 15px;
+    flex-direction: column;
 }
 
 
@@ -266,7 +263,7 @@ ul {
 
 .form-add-user .btn-agregar {
     margin: 15px;
-    background: var(--background-primario);
+    background: var(--primary);
     font-family: "Maven Pro", sans-serif;
     padding: 7px;
     border-radius: 7px;

@@ -145,13 +145,13 @@ class User extends DataBase
 
     public function editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)
     {
-        $sql = "UPDATE docente d JOIN programa p
+        $sql = "UPDATE asesor d JOIN programa p
                 SET d.nombre='$nombre', d.p_apellido='$p_apellido', d.s_apellido='$s_apellido', d.cedula='$cedula',
                     d.programa_id='$programa_id', d.usuario='$cedula'
                     WHERE d.id = $id";
         $this->con->query($sql);
 
-        $this->con->query("UPDATE docente d JOIN programa p
+        $this->con->query("UPDATE asesor d JOIN programa p
         p.identificador = '$programa_id'
         SET d.programa = p.nombre");
 
@@ -220,7 +220,7 @@ class User extends DataBase
     }
     public function getDocenteProfile()
     {
-        $resultado = $this->con->query("SELECT * FROM docente WHERE usuario = " . $_SESSION['usuario']);
+        $resultado = $this->con->query("SELECT * FROM asesor WHERE usuario = " . $_SESSION['usuario']);
         return $resultado;
     }
     public function getStudentProfile()
@@ -241,7 +241,7 @@ class User extends DataBase
     }
     public function deleteAsesor($id)
     {
-        $this->con->query("DELETE FROM docente WHERE id = '$id'") or die("Error al eliminar usuario");
+        $this->con->query("DELETE FROM asesor WHERE id = '$id'") or die("Error al eliminar usuario");
         $this->con->query("CALL reset_increment()");
     }
 
