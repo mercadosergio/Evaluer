@@ -36,11 +36,6 @@ a {
     transition: all 0.4s ease;
 }
 
-
-/* a:hover {
-    color: #ffffff !important;
-} */
-
 p {
     font-size: 18px;
     font-weight: 300;
@@ -133,12 +128,17 @@ strong {
     border-radius: 5px;
     vertical-align: middle;
     display: flex;
+    padding: 10px 15px;
     align-items: center;
 }
 
 .cont-titulo h3 {
+    margin: auto 5px;
     font-size: 20px;
-    margin: 15px;
+}
+
+.cont-titulo i {
+    font-size: 20px;
 }
 
 
@@ -318,4 +318,8 @@ select {
 
 .APLAZADO {
     background: #a8a8a8 !important;
+}
+
+.download i {
+    font-size: 20px;
 }

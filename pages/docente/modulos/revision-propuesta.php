@@ -89,6 +89,7 @@ include "../../../controller/RatePropuesta.php";
         </fieldset>
         <div class="lista-propuestas">
             <div class="cont-titulo">
+                <i class="bi bi-list-ul"></i>
                 <h3>Propuestas de grado</h3>
             </div>
             <!-- <label>Filtro de busqueda:</label> -->
@@ -102,6 +103,7 @@ include "../../../controller/RatePropuesta.php";
                 <table class="tabla-propuestas shadow">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Título</th>
                             <th hidden>Linea de investigación</th>
                             <th>No. integrantes</th>
@@ -124,13 +126,14 @@ include "../../../controller/RatePropuesta.php";
                             $id_registro = $value['id'];
                         ?>
                             <tr>
+                                <td><?php echo $value['id'] ?></td>
                                 <td style="max-width: 600px;"><?php echo $value['titulo'] ?></td>
                                 <td hidden><?php echo $value['linea'] ?></td>
-                                <td style="text-align: center;"><?php echo $value['integrantes'] ?></td>
+                                <td><?php echo $value['integrantes'] ?></td>
                                 <td hidden><?php echo $value['tutor'] ?></td>
                                 <td hidden><?php echo $value['lider'] ?></td>
                                 <td><?php echo $value['programa'] ?></td>
-                                <td style="text-align: center;"><?php echo $value['semestre'] ?></td>
+                                <td><?php echo $value['semestre'] ?></td>
                                 <td hidden><?php echo $value['descripcion'] ?></td>
                                 <td><?php
                                     $originalDate = $value['fecha'];
@@ -235,11 +238,11 @@ include "../../../controller/RatePropuesta.php";
                                 <p id="num"></p>
                             </td>
                             <td colspan="3">
-                                <ol>
+                                <ul>
                                     <li id="int1"></li>
                                     <li id="int2"></li>
                                     <li id="int3"></li>
-                                </ol>
+                                </ul>
                             </td>
                         </tr>
                     </table>
@@ -274,18 +277,24 @@ include "../../../controller/RatePropuesta.php";
             var datos = $tr.children("td").map(function() {
                 return $(this).text();
             });
-            $('#title').html(datos[0]);
-            $('#linea').html(datos[1]);
-            $('#num').html(datos[2]);
-            $('#tutor').html(datos[3]);
-            $('#lid').html(datos[4]);
-            $('#program').html(datos[5]);
-            $('#semestre').html(datos[6]);
-            $('#descrip').html(datos[7]);
-            $('#time').html(datos[8]);
-            $('#int1').html(datos[9]);
-            $('#int2').html(datos[10]);
-            $('#int3').html(datos[11]);
+            $('#title').html(datos[1]);
+            $('#linea').html(datos[2]);
+            $('#num').html(datos[3]);
+            $('#tutor').html(datos[4]);
+            $('#lid').html(datos[5]);
+            $('#program').html(datos[6]);
+            $('#semestre').html(datos[7]);
+            $('#descrip').html(datos[8]);
+            $('#time').html(datos[9]);
+            if (datos[10] != "") {
+                $('#int1').html(datos[10]);
+            }
+            if (datos[11] != "") {
+                $('#int2').html(datos[11]);
+            }
+            if (datos[12] != "") {
+                $('#int3').html(datos[12]);
+            }
         });
     </script>
     <script src="../../../utilities/loading/load.js"></script>

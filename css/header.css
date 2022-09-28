@@ -170,6 +170,8 @@
 
 @media screen and (max-width: 1600px) {
     .navbar {
+        padding-left: 20px;
+        padding-right: 20px;
         height: 97px;
     }
     .aunar_logo {
@@ -188,6 +190,9 @@
     }
     .cl {
         font-size: 18px;
+    }
+    .dropdown {
+        margin-right: 40px;
     }
 }
 

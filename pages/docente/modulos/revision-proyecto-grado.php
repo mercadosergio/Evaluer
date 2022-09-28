@@ -77,6 +77,8 @@ include("../../../controller/evaluate-proyecto.php");
     </nav>
     <div class="proyectos">
         <div class="cont-titulo">
+            <i class="bi bi-list-ul"></i>
+
             <h3>Historial de proyectos de grado</h3>
         </div>
         <div class="box">
@@ -89,7 +91,6 @@ include("../../../controller/evaluate-proyecto.php");
                     <tr>
                         <th>#</th>
                         <th>Título</th>
-                        <th>Archivo</th>
                         <th hidden>Programa</th>
                         <th>Fecha</th>
                         <th>Calificación</th>
@@ -106,7 +107,6 @@ include("../../../controller/evaluate-proyecto.php");
                             <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
-                                <td><a href="<?php echo $value['documento']; ?>" target="_blank"><?php echo $value['nombre']; ?></a></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
                                 <td><?php
                                     $originalDate = $value['fecha'];
@@ -120,6 +120,7 @@ include("../../../controller/evaluate-proyecto.php");
                                     <input hidden name="getIdProyecto" type="text" value="<?php echo $value['id'] ?>">
                                     <a href="gestion-actividad-proyecto-grado.php?id=<?php echo $value['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
                                     <input hidden type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+                                    <a class="download" href="<?php echo $value['documento']; ?>" target="_blank"><i class="fa-solid fa-download"></i></a>
                                 </td>
                             </form>
                         </tr>
@@ -144,7 +145,7 @@ include("../../../controller/evaluate-proyecto.php");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     <script src="../../../utilities/loading/load.js"></script>
-    <script src="../../../font/9390efa2c5.js"></script>
+    <script src="../../../font/d029bf1c92.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
 
 

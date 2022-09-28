@@ -114,14 +114,17 @@ $findA = $est->getMyAnteproyecto();
                 </div>
                 <?php
                 $recurso = new Metodos();
-                $sql = "SELECT * FROM anuncio WHERE docente_id =".$userE['asesor_id'];
+                $sql = "SELECT * FROM anuncio WHERE docente_id =" . $userE['asesor_id'];
                 $rep = $recurso->listar($sql);
-                foreach ($rep as $actual) {
+                foreach ($rep as $anuncio) {
                 ?>
                     <div>
-                        <p><?php echo $actual['nombre_usuario']; ?></p>
-                        <p><?php echo $actual['contenido']; ?></p>
-                        <p><?php echo $actual['fecha']; ?></p>
+                        <p><?php echo $anuncio['nombre_usuario']; ?></p>
+                        <p><?php echo $anuncio['contenido']; ?></p>
+                        <p><?php $originalDate = $anuncio['fecha'];
+                            echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+
+                            ?></p>
                     </div>
                 <?php
                 }
@@ -129,13 +132,20 @@ $findA = $est->getMyAnteproyecto();
                 ?>
                 <div><label for="">Juan Diaz</label>
                     <h3>Bienvenidos a este curso</h3>
-                    <p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p><em>12/09/2022</em>
+                    <p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p>
+                    <?php
+                    date_default_timezone_set('America/Bogota');
+                    $fechaCreacion = date("2022-09-27 16:09:31");
+                    $fechaActual = date("Y-m-d H:i:s");
+                    $intervalo = $obj->calcularIntervalo($fechaCreacion, $fechaActual);
+                    echo $intervalo;
+                    ?>
                 </div>
             </div>
             <div class="student-module">
                 <div class="resp_title">
                     <div class="cont-titulo">
-                    <i class="bi bi-columns-gap"></i>
+                        <i class="bi bi-columns-gap"></i>
                         <h3>Módulos del curso</h3>
                     </div>
                 </div>

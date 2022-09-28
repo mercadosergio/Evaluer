@@ -276,4 +276,55 @@ class User extends DataBase
         header("location: ../index.php");
         exit();
     }
+
+    public static function DateString($time)
+    {
+        global $TEMP;
+        $diff = time() - $time;
+        if ($diff < 1) {
+            return $TEMP['#word']['now'];
+        }
+        $dates = array(
+            31536000 => array($TEMP['#word']['year'], $TEMP['#word']['years']),
+            2592000 => array($TEMP['#word']['month'], $TEMP['#word']['months']),
+            86400 => array($TEMP['#word']['day'], $TEMP['#word']['days']),
+            3600 => array($TEMP['#word']['hour'], $TEMP['#word']['hours']),
+            60 => array($TEMP['#word']['minute'], $TEMP['#word']['minutes']),
+            1 => array($TEMP['#word']['second'], $TEMP['#word']['seconds'])
+        );
+        foreach ($dates as $key => $value) {
+            $was = $diff / $key;
+            if ($was >= 1) {
+                $was_int = intval($was);
+                $string = $was_int > 1 ? $value[1] : $value[0];
+                return "{$TEMP['#word']['does']} $was_int $string";
+            }
+        }
+    }
+
+    public function calcularIntervalo($createdAt, $actualDate)
+    {
+        $date1 = date_create($createdAt);
+        $date2 = date_create($actualDate);
+        $interval = date_diff($date1, $date2);
+
+        $tiempo = array();
+
+        foreach ($interval as $valor) {
+            $tiempo[] = $valor;
+        }
+        if ($tiempo[5] >= 1 && $tiempo[3] < 1 && $tiempo[4] <= 0) {
+            return "Ahora";
+        } else if ($tiempo[4] >= 1 && $tiempo[3] <= 0) {
+            return "Hace " . $tiempo[4] . " minutos";
+        } else if ($tiempo[3] >= 1 && $tiempo[2] <= 0) {
+            return "Hace " . $tiempo[3] . " horas";
+        } else if ($tiempo[2] >= 1 && $tiempo[1] <= 0) {
+            return "Hace " . $tiempo[2] . " dias";
+        } else if ($tiempo[1] >= 1 && $tiempo[0] <= 0) {
+            return "Hace " . $tiempo[1] . " meses";
+        } else if ($tiempo[0] >= 1) {
+            return "Hace " . $tiempo[0] . " años";
+        }
+    }
 }

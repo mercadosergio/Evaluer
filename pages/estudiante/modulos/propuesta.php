@@ -81,54 +81,65 @@ include("../../../controller/SendPropuesta.php");
                         </li>
                         <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
                     </ul>
+                    
                 </li>
             </ul>
         </div>
     </nav>
-    <div class="grid-view">
-        <div class="formulario">
-            <form action="" method="POST" id="envio">
-                <div class="seccion-inscripcion">
-                    <div class="grid-form">
-                        <?php
-                        $res = new Metodos();
-                        $fecha = date("Y-m-d H:i:s");
-                        $getTime = $res->restrictPropuesta();
-                        ?>
+    <div class="format">
+
+        <form action="" method="POST" id="envio">
+            <div class="seccion-informacion">
+                <div class="layoutx2">
+                    <?php
+                    $res = new Metodos();
+                    $fecha = date("Y-m-d H:i:s");
+                    $getTime = $res->restrictPropuesta();
+                    ?>
+                    <div class="cabecera">
                         <div class="subtitulo">
                             <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
                         </div>
                         <p class="info">
                             Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos para registrar su idea investigativa.
                         </p>
+                    </div>
 
+                    <div class="titulo">
                         <label class="lbl-titulo">Título del proyecto:</label>
-                        <div class="titulo" id="contenedorInput">
+                        <div id="contenedorInput">
                             <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
                             <i class="fa-solid fa-font"></i>
                         </div>
+                    </div>
 
+                    <div class="linea">
                         <label class="lbl-linea">Linea de investigación:</label>
-                        <div class="linea" id="contenedorInput">
+                        <div id="contenedorInput">
                             <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="linea">
                             <i class="fa-solid fa-diagram-project"></i>
                         </div>
+                    </div>
 
-
+                    <div class="asesor">
                         <label class="lbl-asesor">Nombre del asesor:</label>
-                        <div class="asesor" id="contenedorInput">
+                        <div id="contenedorInput">
                             <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="tutor">
                             <i class="fa-solid fa-user-tie"></i>
                         </div>
+                    </div>
 
+                    <div class="lider">
                         <label class="lbl-lider">Nombre del lider:</label>
-                        <div class="lider" id="contenedorInput">
+                        <div id="contenedorInput">
                             <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
                             <i class="fa-solid fa-user-pen"></i>
                         </div>
+                    </div>
 
+                    <div class="programa">
                         <label class="lbl-programa">Programa:</label>
-                        <div class="programa" id="contenedorInput">
+                        <div id="contenedorInput">
                             <select class="" name="id_programa[]">
                                 <?php
                                 $buscar_programa = "SELECT programa,programa_id,semestre FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
@@ -141,43 +152,46 @@ include("../../../controller/SendPropuesta.php");
                             </select>
                             <i class="fa-solid fa-list-ol"></i>
                         </div>
+                    </div>
+                    <div class="semestre">
                         <label class="lbl-semsetre">Semestre:</label>
-                        <div class="semestre" id="contenedorInput">
+                        <div id="contenedorInput">
                             <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $p_selected['semestre']; ?>">
                             <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <div class="descripcion">
-                            <label>Descripción:</label>
-                            <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
-                            <i class="fa-solid fa-rectangle-list"></i>
-                        </div>
+                    </div>
+                    <div class="descripcion">
+                        <label>Descripción:</label>
+                        <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
+                        <i class="fa-solid fa-rectangle-list"></i>
                     </div>
                 </div>
-                <div class="miembros">
-                    <h3><i class="bi bi-people-fill"></i> Equipo</h3>
-                    <label>Número de integrantes:</label>
-                    <div id="contenedorInput">
-                        <select id="listaIntegrantes" name="numIntegrantes[]">
-                            <option selected value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <label>Nombre del integrante #1:</label>
-                    <div id="contenedorInput">
-                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="miembro1">
-                        <i class="fa-solid fa-user-pen"></i>
-                    </div>
-                    <div id="interacion"></div>
+            </div>
+            <div class="miembros">
+                <h3><i class="bi bi-people-fill"></i> Equipo</h3>
+                <label>Número de integrantes:</label>
+                <div id="contenedorInput">
+                    <select id="listaIntegrantes" name="numIntegrantes[]">
+                        <option selected value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <i class="fa-solid fa-users"></i>
                 </div>
+                <label>Nombre del integrante #1:</label>
+                <div id="contenedorInput">
+                    <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="miembro1">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div id="interacion"></div>
+            </div>
 
-                <div class="contenedor-btn">
-                    <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
-                    <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
-                </div>
-            </form>
-        </div>
+            <div class="contenedor-btn">
+                <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
+                <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
+            </div>
+        </form>
+
         <form method="GET">
             <div class="details">
                 <label><i class="fas fa-bell"></i> Notificaciones</label>

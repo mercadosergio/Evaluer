@@ -79,6 +79,8 @@ include("../../../controller/evaluate-anteproyecto.php");
     </nav>
     <div class="anteproyecto">
         <div class="cont-titulo">
+        <i class="bi bi-list-ul"></i>
+
             <h3>Historial de anteproyectos</h3>
         </div>
         <div class="box">

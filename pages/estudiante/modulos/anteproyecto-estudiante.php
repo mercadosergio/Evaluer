@@ -131,16 +131,17 @@ if ($sesion == null || $sesion = '') {
                             </label>
                         </div>
                         <input type="datetime" name="fecha" hidden value="<?php echo $fecha; ?>">
-                        <input type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> value="Enviar" id="enviar" name="enviar" class="btn-enviar">
                     </div>
 
                     <div class="comentario <?php echo (time() < $getTime) ? "none" : ''; ?>">
                         <label for="">Comentarios:</label>
                         <div class="marco-textarea">
-                            <!-- <span class="glyphicon glyphicon-align-left"></span> -->
                             <i class="bi bi-chat-left-dots"></i>
                             <textarea style="background: #fff;" <?php echo (time() < $getTime) ? "disabled" : ''; ?> name="coment" id="" cols="30" rows="10"></textarea>
                         </div>
+                    </div>
+                    <div class="button">
+                        <button type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> id="enviar" name="enviar" class="btn-enviar">Enviar</button>
                     </div>
                 </div>
             </div>
@@ -153,22 +154,22 @@ if ($sesion == null || $sesion = '') {
                 $data = $res->listar($listarA);
                 foreach ($data as $archivados) {
                 ?>
-                    <div class="cont-entregas">
-                        <div class="detalle_entrega">
-                            <i class="fas fa-file-alt"></i>
-                            <div class="datos">
-                                <a href="<?php echo $archivados['documento'] ?>" target="_blank"><?php echo $archivados['nombre'] ?></a>
-                                <label for="">Estado: <?php echo $archivados['estado'] ?></label>
-                                <label for="">Observaciones:</label>
 
-                                <label>Fecha: <?php echo $archivados['fecha'] ?></label>
-                                <label for="">Calificación: <?php echo $archivados['calificacion'] ?></label>
-                                <div style="overflow:auto;" name="" id="">
-                                    <?php echo $archivados['observaciones']; ?>
-                                </div>
+                    <div class="detalle_entrega">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="datos">
+                            <a href="<?php echo $archivados['documento'] ?>" target="_blank"><?php echo $archivados['nombre'] ?></a>
+                            <label for="">Estado: <?php echo $archivados['estado'] ?></label>
+                            <label for="">Observaciones:</label>
+
+                            <label>Fecha: <?php echo $archivados['fecha'] ?></label>
+                            <label for="">Calificación: <?php echo $archivados['calificacion'] ?></label>
+                            <div style="overflow:auto;" name="" id="">
+                                <?php echo $archivados['observaciones']; ?>
                             </div>
                         </div>
                     </div>
+
                 <?php
                 }
                 ?>

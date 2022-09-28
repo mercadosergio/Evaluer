@@ -108,12 +108,17 @@ strong {
     border-radius: 5px;
     vertical-align: middle;
     display: flex;
+    padding: 10px 15px;
     align-items: center;
 }
 
 .cont-titulo h3 {
+    margin: auto 5px;
     font-size: 20px;
-    margin: 15px;
+}
+
+.cont-titulo i {
+    font-size: 20px;
 }
 
 .general_content {
