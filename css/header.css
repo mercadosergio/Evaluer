@@ -225,14 +225,23 @@
     }
 }
 
-@media screen and (max-width: 67em) {
+@media screen and (max-width: 425px) {
+    .hamburger {
+        display: inline;
+    }
+    .menu-side {
+        display: block;
+    }
+    .navbar {
+        height: 80px;
+    }
     /* Logos  */
     .aunar_logo {
-        width: 80px;
+        width: 60px;
         margin-right: 20px;
     }
     .logo {
-        width: 180px;
+        width: 140px;
         border-radius: 10px;
     }
 }

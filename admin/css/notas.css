@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
+    padding-top: 110px;
     background: rgb(245, 245, 245);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 :root {
@@ -34,7 +38,6 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
-    color: #5b5b5b;
 }
 
 h1,
@@ -47,69 +50,21 @@ h6 {
 }
 
 h1 {
-    color: #212121;
     font-size: 2.8em;
     margin: 24px 0;
 }
 
 h2 {
-    color: #353535;
     font-size: 2.4em;
     font-weight: bold;
 }
 
-b,
-strong {
-    font-weight: bold;
-}
-
-.copyright-text {
-    font-size: 16px;
-    font-weight: normal;
-    display: block;
-}
-
-.division {
-    height: 100%;
-    background: white;
-    display: flex;
-}
-
-.navbar-nav li {
-    border-top: var(--primary) 3px solid;
-    margin-right: 20px;
-}
-
-.nav-link span {
-    color: white;
-    font-size: 20px;
-    width: auto;
-}
-
-.principal {
-    width: auto;
-    border-top: var(--primary) 3px solid;
-    border-bottom: var(--color-detalle) 3px solid;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.fecha {
-    width: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.principal a,
-.fecha {
-    width: auto;
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-}
-
 
 /* ........................................ */
+
+.proyectos {
+    padding: 30px 90px;
+}
 
 .cont-titulo {
     width: 100%;
@@ -129,15 +84,6 @@ strong {
 
 .cont-titulo i {
     font-size: 20px;
-}
-
-.anteproyecto {
-    margin-top: 110px;
-    padding: 30px 90px;
-}
-
-.contenedor-titulo {
-    margin: auto;
 }
 
 
@@ -169,7 +115,26 @@ strong {
     padding-left: 10px;
 }
 
-.ant {
+.filtro {
+    display: flex;
+    padding: 10px;
+    padding-left: 0;
+}
+
+.filtro label {
+    font-size: 20px;
+}
+
+select {
+    margin-right: 10px;
+    border-radius: 7px;
+}
+
+.contenedor-titulo {
+    margin: auto;
+}
+
+.ent {
     margin-top: 20px;
     margin-bottom: 30px;
     border: none;
@@ -180,101 +145,53 @@ strong {
     margin-right: auto;
 }
 
-.ant thead {
+.ent thead {
     background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }
 
-.ant tr:nth-child(even) {
+.ent tr:nth-child(even) {
     background: #ddd;
 }
 
-.ant th {
-    padding: 5px 3px;
+th {
+    padding: 5px 5px;
     vertical-align: middle;
 }
 
-.ant td {
-    padding: 4px 3px;
+td {
     vertical-align: middle;
+    padding: 3px 5px;
 }
 
-.ant .botones_tabla {
+.ent .botones_tabla {
     display: flex;
 }
 
-.ant tr .botones_tabla form {
+.ent tr .botones_tabla form {
     margin-right: auto;
 }
 
-.ant tr td a {
+.ent tr td a {
     text-decoration: none;
 }
 
-.ant tr td>input {
+.ent tr td input {
     background: none;
     outline: none;
     border: none;
 }
 
-.ant tr td>input:focus {
-    background: #b3b1ff;
-}
-
-.o {
-    margin-right: 25px;
-}
-
-.o i {
-    width: 150px;
-}
-
-.o li a {
-    padding: 10px;
-    display: block;
-}
-
-.o>li {
-    float: left;
-}
-
-.o li ul {
-    background: #fff;
-    display: none;
-    position: absolute;
-    right: 30px;
-    min-width: 140px;
-    border: 1px solid #000;
-    margin-right: 30px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.o li:hover>ul {
-    display: block;
-}
-
-.o textarea {
-    outline: none;
-    padding: 3px;
-    background: repeating-linear-gradient(-180deg, whitesmoke 0px, rgb(221, 220, 220) 25px);
+.ent tr td .btn-nota {
+    background: none;
+    color: #1188d8;
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 .texto_o {
     display: none;
-}
-
-.texto_o li {
-    display: block;
-}
-
-.btn-nota {
-    outline: none;
-    background: #1188d8;
-    color: #fff;
-    cursor: pointer;
-    padding: 4px;
 }
 
 #radio_d {
@@ -289,6 +206,7 @@ strong {
 .valoracion {
     padding: 7px 14px;
     text-align: center;
+    background: #a8a8a8;
     border-radius: 10px;
 }
 
@@ -300,7 +218,7 @@ strong {
     background: #f71a1a !important;
 }
 
-.EN {
+.en {
     background: #dab201 !important;
 }
 
@@ -308,6 +226,6 @@ strong {
     background: #a8a8a8 !important;
 }
 
-.row {
-    width: 100% !important;
+.download i {
+    font-size: 20px;
 }

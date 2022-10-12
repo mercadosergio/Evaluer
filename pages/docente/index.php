@@ -2,6 +2,7 @@
 
 include_once("../../model/Metodos.php");
 include("../../model/UserModel.php");
+include("../../model/Asesor.php");
 
 $obj = new User();
 
@@ -118,70 +119,57 @@ include("../../controller/PublicarAnuncio.php");
                     </div>
                 </a>
             </div>
-            <div class="cont-titulo-anuncios">
-                <h3>Publicar un anuncio en el curso</h3>
-            </div>
-            <div class="publicar">
-                <button class="btn_anuncio btn btn-primary" id="btn_form">Publicar un anuncio</button>
-                <form class="post_form" id="post_form" action="" method="POST">
-                    <div class="form-group">
-                        <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
-                    </div>
-                    <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
-
-                    <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
-                    <input hidden type="text" name="docente_id" value="<?php echo $userD['id'] ?>">
-                    <input hidden type="datetime" name="datetime" value="<?php
-                                                                            date_default_timezone_set('America/Bogota');
-                                                                            $fecha = date("Y-m-d H:i:s");
-                                                                            echo $fecha; ?>">
-                    <button type="submit" class="guardar btn btn-primary" name="submit" id="btn_publicar">Publicar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="seccion_anuncios">
-        <div class="cont-titulo-anuncios">
-            <h3>Anuncios</h3>
-        </div>
-        <form action="../../controller/EliminarAnuncio.php" method="POST">
-            <?php
-            $recurso = new Metodos();
-            $getA = $recurso->viewAnuncioSender();
-            $listA = mysqli_fetch_array($getA);
-
-            foreach ($getA as $key) {
-            ?>
-                <div class="grid">
-                    <input hidden type="text" name="id" value="<?php echo $key['id'] ?>">
-                    <div class="e1"><img src="../../files/photos/default.png"></div>
-                    <div class="e2"><?php echo $key['nombre_usuario']; ?></div>
-                    <div class="e3">
-                        <p><?php echo $key['fecha']; ?></p>
-                    </div>
-                    <div class="e4">
-                        <p><?php echo $key['contenido']; ?></p>
-                    </div>
-                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+            <div class="seccion_anuncios">
+                <div class="cont-titulo-anuncios">
+                    <h3><i class="bi bi-card-heading"></i> Actividad</h3>
                 </div>
-            <?php } ?>
-        </form>
 
+                <div class="action">
+                    <button class="btn_anuncio btn btn-primary" id="btn_form">Publicar un anuncio</button>
+                    <form class="post_form" id="post_form" action="" method="POST">
+                        <div class="form-group">
+                            <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
+                        </div>
+                        <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
+                        <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
+                        <input hidden type="text" name="docente_id" value="<?php echo $userD['id'] ?>">
+                        <input hidden type="datetime" name="datetime" value="<?php
+                                                                                date_default_timezone_set('America/Bogota');
+                                                                                $fecha = date("Y-m-d H:i:s");
+                                                                                echo $fecha; ?>">
+                        <button type="submit" class="guardar btn btn-primary" name="submit" id="btn_publicar">Publicar</button>
+                    </form>
+                </div>
+                <form action="../../controller/EliminarAnuncio.php" method="POST">
+                    <?php
+                    $recurso = new Metodos();
+                    $getA = $recurso->viewAnuncioSender();
+                    $listA = mysqli_fetch_array($getA);
+
+                    foreach ($getA as $key) {
+                    ?>
+                        <div class="grid">
+                            <input hidden type="text" name="id" value="<?php echo $key['id'] ?>">
+                            <div class="e1"><img src="../../files/photos/default.png"></div>
+                            <div class="e2"><?php echo $key['nombre_usuario']; ?></div>
+                            <div class="e3">
+                                <p><?php
+                                    $originalDate = $key['fecha'];
+                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                    ?></p>
+                            </div>
+                            <div class="e4">
+                                <p><?php echo $key['contenido']; ?></p>
+                            </div>
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+                        </div>
+                    <?php } ?>
+                </form>
+
+            </div>
+        </div>
     </div>
-    <script>
-        // ClassicEditor
-        //     .create(document.querySelector('#txt-content'))
-        //     .catch(error => {
-        //         console.error(error);
-        //     });
-    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-        // function showForm() {
-        //     document.getElementById('post_form').style.display = 'block';
-        //     document.getElementById('btn_form').style.display = 'none';
-        // }
-    </script>
     <script>
         $(document).ready(() => {
             $('#post_form').hide();

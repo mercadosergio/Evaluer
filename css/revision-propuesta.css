@@ -197,10 +197,14 @@ strong {
     background: #ddd;
 }
 
-.lista-propuestas .tabla-propuestas th,
+.lista-propuestas .tabla-propuestas th {
+    padding: 5px 3px;
+    vertical-align: middle;
+}
+
 .lista-propuestas .tabla-propuestas td {
-    padding: 10px;
-    padding-left: 8px;
+    vertical-align: middle;
+    padding: 0 3px;
 }
 
 .estado {

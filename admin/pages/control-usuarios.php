@@ -80,168 +80,174 @@ include("../../controller/EditUser.php");
 
     </nav>
 
-    <div>
-        <div class="tabs-container">
-            <a href="agregar-usuario.php" class="add_user btn btn-success"><i class="bi bi-plus-lg"></i> Agregar usuarios</a>
-            <div class="box">
-                <i class="fa fa-search"></i>
-                <input type="search" id="search" placeholder="Search..." />
+
+    <div class="tabs-container">
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="search" id="search" placeholder="Buscar..." />
+        </div>
+        <ul class="tabs">
+            <li class="active">
+                <a href="">Estudiantes</a>
+            </li>
+            <li>
+                <a href="">Asesores</a>
+            </li>
+            <li>
+                <a href="">Coordinadores</a>
+            </li>
+        </ul>
+        <div class="tabs-content">
+            <div class="tabs-panel active" data-index="0">
+                <table class="tabla-est">
+                    <thead>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Primer apellido</th>
+                        <th>Segundo apellido</th>
+                        <th>Documento de identidad</th>
+                        <th>Programa</th>
+                        <th>Semestre</th>
+                        <th>Acción</th>
+                    </thead>
+                    <tbody id="userInfo">
+                        <?php
+                        $sql = "SELECT * FROM estudiante ORDER BY id";
+                        $datos = $obj->listar($sql);
+
+                        foreach ($datos as $key) {
+                        ?>
+                            <tr class="valores">
+                                <td><?php echo $key['id'] ?></td>
+                                <td><?php echo $key['nombre'] ?></td>
+                                <td><?php echo $key['p_apellido'] ?></td>
+                                <td><?php echo $key['s_apellido'] ?></td>
+                                <td><?php echo $key['cedula'] ?></td>
+                                <td><?php echo $key['programa'] ?></td>
+                                <td><?php echo $key['semestre'] ?></td>
+                                <td hidden><?php echo $key['usuario_id'] ?></td>
+                                <td hidden><?php echo 3 ?></td>
+                                <td hidden><?php echo $key['usuario'] ?></td>
+                                <td class="botones_tabla">
+                                    <!-- Botón de editar -->
+                                    <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                    </button>
+                                    <input hidden type="text" name="user" readonly value="<?php echo $key['usuario'] ?>">
+                                    <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
+                                    <!-- Botón de eliminar -->
+                                    <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteStudent" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+
+
             </div>
-            <ul class="tabs">
-                <li class="active">
-                    <a href="">Estudiantes</a>
-                </li>
-                <li>
-                    <a href="">Asesores</a>
-                </li>
-                <li>
-                    <a href="">Coordinadores</a>
-                </li>
-            </ul>
-            <div class="tabs-content">
-                <div class="tabs-panel active" data-index="0">
-                    <table class="tabla-est">
-                        <thead>
+            <div class="tabs-panel" data-index="1">
+                <table class="tabla-est">
+                    <thead>
+                        <tr>
                             <th>#</th>
-                            <th>Nombre</th>
+                            <th>Nombres</th>
                             <th>Primer apellido</th>
                             <th>Segundo apellido</th>
                             <th>Documento de identidad</th>
                             <th>Programa</th>
-                            <th>Semestre</th>
                             <th>Acción</th>
-                        </thead>
-                        <tbody id="userInfo">
-                            <?php
-                            $sql = "SELECT * FROM estudiante ORDER BY id";
-                            $datos = $obj->listar($sql);
+                        </tr>
+                    </thead>
+                    <tbody id="userInfo">
+                        <?php
+                        $sql2 = "SELECT * FROM asesor ORDER BY id";
+                        $datos_docente = $obj->listar($sql2);
 
-                            foreach ($datos as $key) {
-                            ?>
-                                <tr class="valores">
-                                    <td><?php echo $key['id'] ?></td>
-                                    <td><?php echo $key['nombre'] ?></td>
-                                    <td><?php echo $key['p_apellido'] ?></td>
-                                    <td><?php echo $key['s_apellido'] ?></td>
-                                    <td><?php echo $key['cedula'] ?></td>
-                                    <td><?php echo $key['programa'] ?></td>
-                                    <td style="text-align: center;"><?php echo $key['semestre'] ?></td>
-                                    <td hidden><?php echo $key['usuario_id'] ?></td>
-                                    <td hidden><?php echo 3 ?></td>
-                                    <td hidden><?php echo $key['usuario'] ?></td>
-                                    <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fa-solid fa-user-pen"></i>
-                                        </button>
-                                        <input hidden type="text" name="user" readonly value="<?php echo $key['usuario'] ?>">
-                                        <input hidden type="text" name="getIdU" readonly value="<?php echo $key['id'] ?>">
-                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteStudent" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-
-
-                </div>
-                <div class="tabs-panel" data-index="1">
-                    <table class="tabla-est">
-                        <thead>
+                        foreach ($datos_docente as $asesor) {
+                            $id_registro_d = $asesor['id'];
+                        ?>
                             <tr>
-                                <th>#</th>
-                                <th>Nombres</th>
-                                <th>Primer apellido</th>
-                                <th>Segundo apellido</th>
-                                <th>Documento de identidad</th>
-                                <th>Programa</th>
-                                <th>Acción</th>
+                                <td><?php echo $asesor['id'] ?></td>
+                                <td><?php echo $asesor['nombres'] ?></td>
+                                <td><?php echo $asesor['p_apellido'] ?></td>
+                                <td><?php echo $asesor['s_apellido'] ?></td>
+                                <td><?php echo $asesor['cedula'] ?></td>
+                                <td><?php echo $asesor['programa'] ?></td>
+                                <td hidden><?php echo $asesor['usuario_id'] ?></td>
+                                <td hidden><?php echo 4 ?></td>
+                                <td hidden><?php echo $asesor['usuario'] ?></td>
+                                <td class="botones_tabla">
+                                    <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                    </button>
+                                    </a>
+                                    <input type="text" name="user" hidden readonly value="<?php echo $asesor['usuario'] ?>">
+                                    <input type="text" name="getIdU" hidden readonly value="<?php echo $asesor['id'] ?>">
+                                    <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="userInfo">
-                            <?php
-                            $sql2 = "SELECT * FROM asesor ORDER BY id";
-                            $datos_docente = $obj->listar($sql2);
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tabs-panel" data-index="2">
+                <table class="tabla-est">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombres</th>
+                            <th>Primer apellido</th>
+                            <th>Segundo apellido</th>
+                            <th>Documento de identidad</th>
+                            <th>Programa</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userInfo">
+                        <?php
+                        $sql3 = "SELECT * FROM coordinador ORDER BY id";
+                        $datos_c = $obj->listar($sql3);
 
-                            foreach ($datos_docente as $asesor) {
-                                $id_registro_d = $asesor['id'];
-                            ?>
-                                <tr>
-                                    <td><?php echo $asesor['id'] ?></td>
-                                    <td><?php echo $asesor['nombres'] ?></td>
-                                    <td><?php echo $asesor['p_apellido'] ?></td>
-                                    <td><?php echo $asesor['s_apellido'] ?></td>
-                                    <td><?php echo $asesor['cedula'] ?></td>
-                                    <td><?php echo $asesor['programa'] ?></td>
-                                    <td hidden><?php echo $asesor['usuario_id'] ?></td>
-                                    <td hidden><?php echo 4 ?></td>
-                                    <td hidden><?php echo $asesor['usuario'] ?></td>
-                                    <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fa-solid fa-user-pen"></i>
-                                        </button>
-                                        </a>
-                                        <input type="text" name="user" hidden readonly value="<?php echo $asesor['usuario'] ?>">
-                                        <input type="text" name="getIdU" hidden readonly value="<?php echo $asesor['id'] ?>">
-                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tabs-panel" data-index="2">
-                    <table class="tabla-est">
-                        <thead>
+                        foreach ($datos_c as $principal) {
+                            $id_registro_d = $principal['id'];
+                        ?>
                             <tr>
-                                <th>#</th>
-                                <th>Nombres</th>
-                                <th>Primer apellido</th>
-                                <th>Segundo apellido</th>
-                                <th>Documento de identidad</th>
-                                <th>Programa</th>
-                                <th>Acción</th>
+                                <td><?php echo $principal['id'] ?></td>
+                                <td><?php echo $principal['nombres'] ?></td>
+                                <td><?php echo $principal['p_apellido'] ?></td>
+                                <td><?php echo $principal['s_apellido'] ?></td>
+                                <td><?php echo $principal['cedula'] ?></td>
+                                <td><?php echo $principal['programa'] ?></td>
+                                <td hidden><?php echo $principal['usuario_id'] ?></td>
+                                <td hidden><?php echo 2 ?></td>
+                                <td hidden><?php echo $principal['usuario'] ?></td>
+                                <td class="botones_tabla">
+                                    <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
+                                        <i class="fa-solid fa-user-pen"></i>
+                                    </button>
+                                    <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
+                                    <input type="text" name="getIdU" hidden readonly value="<?php echo $principal['id'] ?>">
+                                    <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="userInfo">
-                            <?php
-                            $sql3 = "SELECT * FROM coordinador ORDER BY id";
-                            $datos_c = $obj->listar($sql3);
-
-                            foreach ($datos_c as $principal) {
-                                $id_registro_d = $principal['id'];
-                            ?>
-                                <tr>
-                                    <td><?php echo $principal['id'] ?></td>
-                                    <td><?php echo $principal['nombres'] ?></td>
-                                    <td><?php echo $principal['p_apellido'] ?></td>
-                                    <td><?php echo $principal['s_apellido'] ?></td>
-                                    <td><?php echo $principal['cedula'] ?></td>
-                                    <td><?php echo $principal['programa'] ?></td>
-                                    <td hidden><?php echo $principal['usuario_id'] ?></td>
-                                    <td hidden><?php echo 2 ?></td>
-                                    <td hidden><?php echo $principal['usuario'] ?></td>
-                                    <td class="botones_tabla">
-                                        <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
-                                            <i class="fa-solid fa-user-pen"></i>
-                                        </button>
-                                        <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
-                                        <input type="text" name="getIdU" hidden readonly value="<?php echo $principal['id'] ?>">
-                                        <button type="button" value="Eliminar" name="eliminar" class="btn-eliminar deleteEvaluator" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-trash-fill"></i></button>
-                                    </td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container-button">
+                <p>Para agregar un usuario, puede hacerlo aquí.</p>
+                <a href="agregar-usuario.php" class="add_user btn btn-success"><i class="bi bi-plus-lg"></i> Agregar usuarios</a>
             </div>
         </div>
     </div>
+
+
 
     <!-- Modal component -->
     <div class="modal fade" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">

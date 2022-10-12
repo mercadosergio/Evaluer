@@ -188,29 +188,29 @@ include "../../../controller/RatePropuesta.php";
 
                     <table>
                         <tr>
-                            <td colspan="1"><label for="">Título:</label> </td>
+                            <td style="background: #e7e6e6;" colspan="1"><label for="">Título:</label> </td>
                             <td colspan="3">
                                 <p class="modal-title" id="title"></p>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="1"><label for="">Línea de investigación:</label> </td>
+                            <td style="background: #e7e6e6;" colspan="1"><label for="">Línea de investigación:</label> </td>
                             <td colspan="3">
                                 <p id="linea"></p>
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="">Programa:</label> </td>
+                            <td style="background: #e7e6e6;"><label for="">Programa:</label> </td>
                             <td>
                                 <p id="program"></p>
                             </td>
-                            <td><label for="">Semestre:</label> </td>
+                            <td style="background: #e7e6e6;"><label for="">Semestre:</label> </td>
                             <td align="center">
                                 <p id="semestre"></p>
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="4"><label for="">Descripción</label></td>
+                            <td style="background: #e7e6e6;" align="center" colspan="4"><label for="">Descripción</label></td>
                         </tr>
                         <tr>
                             <td colspan="4">
@@ -218,11 +218,11 @@ include "../../../controller/RatePropuesta.php";
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="">Nombre del asesor:</label> </td>
+                            <td style="background: #e7e6e6;"><label for="">Nombre del asesor:</label> </td>
                             <td>
                                 <p id="tutor"></p>
                             </td>
-                            <td><label for="">Nombre del lider:</label> </td>
+                            <td style="background: #e7e6e6;"><label for="">Nombre del lider:</label> </td>
                             <td>
                                 <p id="lid"></p>
                             </td>
@@ -230,8 +230,8 @@ include "../../../controller/RatePropuesta.php";
                         <tr>
                         </tr>
                         <tr>
-                            <td colspan="1"><label for="">Número de integrantes</label></td>
-                            <td align="center" colspan="3"><label for="">Integrantes</label></td>
+                            <td style="background: #e7e6e6;" colspan="1"><label for="">Número de integrantes</label></td>
+                            <td style="background: #e7e6e6;" align="center" colspan="3"><label for="">Integrantes</label></td>
                         </tr>
                         <tr>
                             <td align="center" colspan="1">

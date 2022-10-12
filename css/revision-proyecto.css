@@ -40,7 +40,6 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
-    color: #5b5b5b;
 }
 
 h1,
@@ -53,13 +52,11 @@ h6 {
 }
 
 h1 {
-    color: #212121;
     font-size: 2.8em;
     margin: 24px 0;
 }
 
 h2 {
-    color: #353535;
     font-size: 2.4em;
     font-weight: bold;
 }
@@ -210,11 +207,14 @@ select {
     background: #ddd;
 }
 
-.ent th,
+.ent th {
+    padding: 5px 3px;
+    vertical-align: middle;
+}
+
 .ent td {
-    /* border: 1px solid #000; */
-    padding: 7px;
-    padding-left: 8px;
+    vertical-align: middle;
+    padding: 4px 3px;
 }
 
 .ent .botones_tabla {
@@ -235,53 +235,11 @@ select {
     border: none;
 }
 
-.ent tr td input:focus {
-    background: #b3b1ff;
-}
-
 .ent tr td .btn-nota {
     background: none;
     color: #1188d8;
     margin-right: 10px;
     cursor: pointer;
-}
-
-.o {
-    margin-right: 25px;
-}
-
-.o i {
-    width: 150px;
-}
-
-.o li a {
-    padding: 10px;
-    display: block;
-}
-
-.o>li {
-    float: left;
-}
-
-.o li ul {
-    background: #fff;
-    display: none;
-    position: absolute;
-    right: 30px;
-    min-width: 140px;
-    border: 1px solid #000;
-    margin-right: 30px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.o li:hover>ul {
-    display: block;
-}
-
-.o textarea {
-    outline: none;
-    padding: 3px;
 }
 
 .texto_o {

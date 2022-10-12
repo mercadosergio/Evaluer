@@ -36,6 +36,70 @@ h3 {
 
 /* Fondo */
 
+.container {
+    margin-top: 120px;
+    overflow: hidden;
+}
+
+table {
+    border: none;
+    width: 100%;
+    background: #fff;
+    margin: 15px auto;
+}
+
+thead {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+}
+
+table tr:nth-child(even) {
+    background: #ddd;
+}
+
+table th {
+    padding: 7px 5px;
+}
+
+table td {
+    padding: 4px 3px;
+}
+
+table button {
+    border: none;
+    background: none;
+}
+
+table button i {
+    font-size: 19px;
+}
+
+table tr td .edit {
+    border: none;
+    background: none;
+    color: #1188d8;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+table tr td .delete {
+    background: none;
+    color: #f71a1a;
+    cursor: pointer;
+    border: 0;
+    width: auto;
+}
+
+.btn-agregar {
+    border: none;
+    background: var(--primary);
+    padding: 10px 20px;
+    text-align: center;
+    color: #fff;
+    float: right;
+}
+
 .fondo {
     padding-top: 20px;
     margin: 95px auto;
@@ -52,8 +116,7 @@ h3 {
 }
 
 .cont-titulo h3 {
-    margin: 15px;
-    font-weight: bold;
+    margin: 10px 15px;
     font-size: 20px;
 }
 

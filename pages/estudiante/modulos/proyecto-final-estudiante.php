@@ -129,7 +129,10 @@ if ($sesion == null || $sesion = '') {
                             <i class="fas fa-file-alt"></i>
                             <div class="datos">
                                 <a href="<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
-                                <label>Fecha: <?php echo $archivados['fecha'] ?></label>
+                                <label>Fecha: <?php
+                                    $originalDate = $archivados['fecha'];
+                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                    ?></label>
                             </div>
                             <div class="evaluacion">
                                 <label for="">Estado: <?php echo $archivados['estado'] ?></label>

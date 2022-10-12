@@ -124,7 +124,7 @@ if ($sesion == null || $sesion = '') {
             <div class="separator">
             </div>
             <div class="item">
-                <a href="pages/gestion-academica.php">
+                <a href="pages/programas.php">
                     <div class="title">
                         <i class="fa-regular fa-id-card"></i>
                         <label>Gestión académica</label>
@@ -136,41 +136,42 @@ if ($sesion == null || $sesion = '') {
 
 
     <div class="admin-profile-usuario">
+        <div class="cont-titulo">
+            <i class="bi bi-columns-gap"></i>
+            <h3>Módulos de administración</h3>
+        </div>
 
-        <div class="grid-template">
-            <div class="separation">
-                <a href="pages/agregar-usuario.php">
-                    <div class="option_ad">
-                        <h2>Registro de usuario</h2>
-                        <center><i class="fas fa-user-plus"></i></center>
-                    </div>
-                </a>
-            </div>
+        <div class="layout">
+            <a href="pages/agregar-usuario.php">
+                <div class="module shadow">
+                    <h2>Registro de usuario</h2>
+                    <!-- <center><i class="fas fa-user-plus"></i></center> -->
+                    <img src="../img/add-user.png" alt="">
+                </div>
+            </a>
+            <a href="pages/control-usuarios.php">
+                <div class="module shadow">
+                    <h2>Gestión de usuarios</h2>
+                    <!-- <center><i class="fas fa-search"></i></center> -->
+                    <img src="../img/control-user.png" alt="">
+                </div>
+            </a>
+            <a href="pages/notas.php">
+                <div class="module shadow">
+                    <h2>Notas</h2>
+                    <!-- <center><i class="fa-solid fa-clipboard"></i></center> -->
+                    <img src="../img/notas.png" alt="">
 
-            <div class="separation">
-                <a href="pages/control-usuarios.php">
-                    <div class="option_ad">
-                        <h2>Gestión de usuarios</h2>
-                        <center><i class="fas fa-search"></i></center>
-                    </div>
-                </a>
-            </div>
-            <div class="separation">
-                <a href="pages/notas.php">
-                    <div class="option_ad">
-                        <h2>Notas de proyectos de grado</h2>
-                        <center><i class="fa-solid fa-clipboard"></i></center>
-                    </div>
-                </a>
-            </div>
-            <div class="separation">
-                <a href="pages/gestion-academica.php">
-                    <div class="option_ad">
-                        <h2>Gestión académica</h2>
-                        <center><i class="fa-regular fa-id-card"></i></center>
-                    </div>
-                </a>
-            </div>
+                </div>
+            </a>
+            <a href="pages/programas.php">
+                <div class="module shadow">
+                    <h2>Programas</h2>
+                    <!-- <center><i class="fa-regular fa-id-card"></i></center> -->
+                    <img src="../img/programas.png" alt="">
+
+                </div>
+            </a>
         </div>
     </div>
     <div class="mobile_alert">

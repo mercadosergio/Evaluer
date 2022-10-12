@@ -4,7 +4,6 @@ include("../../model/UserModel.php");
 
 $data = new User();
 session_start();
-error_reporting(0);
 $sesion = $_SESSION['usuario'];
 $getProfile = $data->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
@@ -13,6 +12,8 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+
+$admin = new Metodos();
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,7 +26,8 @@ if ($sesion == null || $sesion = '') {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Registrar estudiante</title>
+    <title>Programas académicos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="../../utilities/loading/carga.css">
@@ -69,6 +71,46 @@ if ($sesion == null || $sesion = '') {
             </ul>
         </div>
     </nav>
+    <div class="container">
+        <div class="cont-titulo">
+            <h3>Programas académicos</h3>
+        </div>
+        <table class="shadow">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Código snies</th>
+                    <th>Duración (semestres)</th>
+                    <th>Modalidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $programas = $admin->listar("SELECT * FROM programa");
+
+                foreach ($programas as $value) {
+                ?>
+                    <tr>
+                        <td><?php echo $value['id'] ?></td>
+                        <td><?php echo $value['nombre'] ?></td>
+                        <td><?php echo $value['codigo_snies'] ?></td>
+                        <td><?php echo $value['duracion'] ?></td>
+                        <td><?php echo $value['modalidad'] ?></td>
+                        <td>
+                            <button class="edit"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="delete"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <button class="btn-agregar">Agregar</button>
+
+    </div>
     <div class="fondo">
         <div class="cont-titulo">
             <h3>Agregar programas académicos</h3>

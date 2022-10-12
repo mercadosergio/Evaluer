@@ -156,58 +156,72 @@ if ($sesion == null || $sesion = '') {
                 ?>
 
                     <div class="detalle_entrega">
-                        <i class="fas fa-file-alt"></i>
                         <div class="datos">
-                            <a href="<?php echo $archivados['documento'] ?>" target="_blank"><?php echo $archivados['nombre'] ?></a>
-                            <label for="">Estado: <?php echo $archivados['estado'] ?></label>
-                            <label for="">Observaciones:</label>
-
-                            <label>Fecha: <?php echo $archivados['fecha'] ?></label>
-                            <label for="">Calificación: <?php echo $archivados['calificacion'] ?></label>
-                            <div style="overflow:auto;" name="" id="">
-                                <?php echo $archivados['observaciones']; ?>
+                            <div class="icon-file">
+                                <i class="fas fa-file-alt"></i>
                             </div>
+                            <div class="download_file">
+                                <a href="<?php echo $archivados['documento'] ?>" target="_blank"><?php echo $archivados['nombre'] ?></a>
+                            </div>
+                            <label class="state <?php echo $archivados['estado'] ?>" for=""><?php echo $archivados['estado'] ?></label>
+                            <div class="calif">
+                                <label for="">Calificación: <?php echo $archivados['calificacion'] ?></label>
+                            </div>
+
+                            <div class="fechaD">
+                                <label>Fecha: <?php
+                                                $originalDate = $archivados['fecha'];
+                                                echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                                ?></label>
+                            </div>
+                        </div>
+                        <div class="observ" style="overflow:auto;" name="" id="">
+                            <label for="">Observaciones:</label>
+                            <p>
+                                <?php echo $archivados['observaciones']; ?>
+                            </p>
                         </div>
                     </div>
 
                 <?php
                 }
                 ?>
-                <div class="tree-view">
-                    <details open="open">
-                        <summary>Guia de investigación</summary>
-                        <div class="folder">
-                            <details open="open">
-                                <summary>Académico</summary>
-                                <div class="folder">
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="">Propuesta de grado</a>
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="">Anteproyecto</a>
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                                    </p>
-                                </div>
-                            </details>
-                            <details>
-                                <summary>img</summary>
-                                <div class="folder">
-                                    <p>banner.png</p>
-                                    <p>foo.png</p>
-                                </div>
-                            </details>
-                        </div>
-                    </details>
+            </div>
+            <div class="tree-view">
+                <details open="open">
+                    <summary>Guia de investigación</summary>
                     <div class="folder">
-                        <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
+                        <details open="open">
+                            <summary>Académico</summary>
+                            <div class="folder">
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="">Propuesta de grado</a>
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="">Anteproyecto</a>
+                                </p>
+                                <p>
+                                    <i class="fas fa-file-alt"></i>
+                                    <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
+                                </p>
+                            </div>
+                        </details>
+                        <details>
+                            <summary>img</summary>
+                            <div class="folder">
+                                <p>banner.png</p>
+                                <p>foo.png</p>
+                            </div>
+                        </details>
                     </div>
+                </details>
+                <div class="folder">
+                    <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
                 </div>
             </div>
+
         </div>
     </form>
 
@@ -248,7 +262,28 @@ if ($sesion == null || $sesion = '') {
         //     return confirmEnviar();
         // }, false);
     </script>
+    <script>
+        'use strict'
 
+        const bloque = document.querySelectorAll('.detalle_entrega')
+        const title = document.querySelectorAll('.datos')
+
+
+        title.forEach((cadaH2, i) => {
+            title[i].addEventListener('click', () => {
+
+                // Recorrer TODOS los bloques
+                bloque.forEach((cadaBloque, i) => {
+                    // Quitamos la clase activo de TODOS los bloques
+                    bloque[i].classList.remove('active')
+                })
+                // Añadiendo la clase activo al bloque cuya posición sea igual al del h2
+                // (Línea número 12)
+                bloque[i].classList.add('active')
+
+            })
+        })
+    </script>
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>

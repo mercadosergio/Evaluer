@@ -15,6 +15,7 @@ if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+date_default_timezone_set("America/Bogota");
 ?>
 
 <!doctype html>
@@ -84,6 +85,7 @@ if ($sesion == null || $sesion = '') {
             </div>
 
             <div class="form-add-user">
+                <input type="hidden" name="fecha_creacion" value="<?php echo date("Y-m-d H:i:s") ?>">
                 <div class="cont-title">
                     <i class="fas fa-user"></i>
                     <h3 class="title" id="stitle">Información del usuario</h3>

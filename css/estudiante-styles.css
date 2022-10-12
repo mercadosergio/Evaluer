@@ -36,7 +36,7 @@
         font-size: 18px;
         font-weight: 300;
         line-height: 1.5;
-        color: #5b5b5b;
+        margin-bottom: 0;
     }
     
     h1,
@@ -111,11 +111,11 @@
     }
     /* END MENU DESPLEGABLE.......................................... */
     
-    .seleccion {
+    .enlace {
         position: relative;
     }
     
-    .student-module .seleccion div {
+    .student-module .enlace div {
         margin-left: auto;
         display: flex;
     }
@@ -144,14 +144,6 @@
     }
     /* Seccion anuncios */
     
-    .anouncement_card {
-        resize: horizontal;
-        display: block;
-        overflow: auto;
-        max-height: 100%;
-        background: #f5f5f5;
-    }
-    
     .anouncement_card div span {
         font-size: 18px;
     }
@@ -162,7 +154,7 @@
         background: #fff;
         border-radius: 5px;
         margin: 15px;
-        padding: 20px;
+        padding: 15px 20px;
     }
     /* Navegación guia */
     
@@ -267,9 +259,30 @@
         font-size: 20px;
     }
     
-    @media screen and (min-width: 1440px) {
+    .enlace {
+        background: var(--color-detalle);
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        cursor: pointer;
+        width: 100%;
+        margin: auto;
+        padding-left: 20px;
+    }
+    
+    .enlace p {
+        font-family: "Maven Pro", sans-serif;
+        background: var(--primary);
+        color: var(--color-detalle);
+        border-radius: 10px 0 0 10px;
+    }
+    
+    .format-distance {
+        float: right;
+    }
+    
+    @media screen and (max-width: 2600px) {
         body>.fondo {
-            background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
+            /* background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png"); */
             height: 100vh;
             background-repeat: no-repeat;
             background-size: cover;
@@ -289,6 +302,12 @@
         /* Seccion anuncios */
         .anouncement_card {
             width: 30%;
+            resize: horizontal;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            max-height: 100%;
+            background: #f5f5f5;
         }
         /* Seccion 2 */
         .student-module {
@@ -297,44 +316,32 @@
             height: 100%;
             padding: 20px;
         }
-        .student-module h3 {}
         .student-module .container {
-            width: 60%;
+            width: 50%;
             padding: none;
             margin: none;
         }
-        .student-module .seleccion {
-            transform: skew(-7deg);
-            overflow: hidden;
+        .student-module .enlace {
+            border-radius: 5px;
             padding: 10px;
             padding-left: 5px;
-            background-color: var(--color-detalle);
             margin: 20px;
-            width: 100%;
-            cursor: pointer;
             height: 150px;
             line-height: 150px;
-            padding-left: 40px;
+            padding-left: 30px;
             display: flex;
             align-items: center;
-            margin-left: auto;
-            margin-right: auto;
             padding-right: 0;
-            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
         }
-        .student-module .seleccion>p {
+        .student-module .enlace>p {
             font-size: 27px;
             cursor: pointer;
-            font-family: "Maven Pro", sans-serif;
             margin-right: 20px;
-            background: var(--primary);
-            color: var(--color-detalle);
             margin-right: auto;
             width: 100%;
             padding-left: 10px;
         }
-        .student-module .seleccion img {
+        .student-module .enlace img {
             margin-right: 20px;
             margin-left: 5px;
         }
@@ -349,43 +356,50 @@
         }
     }
     
-    @media screen and (min-width: 770px) and (max-width: 1440px) {
+    @media screen and (max-width: 1400px) {
         .secciones {
             width: 100%;
-            display: flex;
+            display: grid;
+            grid-template-columns: 65% 35%;
+            row-gap: 20px;
             margin-top: 97px;
+            box-sizing: border-box;
         }
-        .student-module h3 {
-            font-size: 27px;
-            margin-top: 10px;
-            margin-bottom: 30px;
+        .student-module {
+            grid-row: 1/2;
+            width: 100%;
         }
-        .student-module .seleccion p {
+        .student-module .container {
+            width: 70%;
+        }
+        .student-module .enlace p {
             font-size: 24px;
         }
+        .anouncement_card {
+            width: 100%;
+            grid-row: 2/3;
+            background: transparent;
+            overflow: visible;
+        }
+        .anouncement_card>div {
+            width: 80%;
+            margin: 10px auto;
+        }
         .treeview {
-            width: 20%;
+            width: 100%;
+            grid-row: 1/2;
+            height: 100%;
         }
     }
     /* Tablet */
     
-    @media screen and (min-width: 500px) and (max-width: 770px) {
+    @media screen and (max-width: 770px) {
         .secciones {
-            display: flex;
-            flex-direction: column;
             margin-top: 100px;
         }
         .treeview {
-            position: absolute;
             right: 0;
-            grid-column: 2/3;
-            width: 35%;
-        }
-        .anouncement_card {
-            width: 63%;
-        }
-        .student-module {
-            width: 63%;
+            margin-top: 5px;
         }
         .resp_title {
             display: flex;
@@ -404,7 +418,8 @@
             padding: none;
             margin: none;
         }
-        .student-module .seleccion {
+        .student-module .enlace {
+            transform: skew(-0deg);
             margin: auto;
             margin-top: 20px;
             overflow: hidden;
@@ -415,20 +430,22 @@
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
         }
-        .student-module .seleccion img {
+        .student-module .enlace img {
             display: block;
             margin: auto;
             margin-top: 7px;
             margin-bottom: 7px;
         }
-        .student-module .seleccion p {
+        .student-module .enlace p {
             font-size: 20px;
-            font-family: "Maven Pro", sans-serif;
-            background: var(--primary);
-            color: var(--color-detalle);
             width: 100%;
-            text-align: center;
-            margin-bottom: 15px;
+        }
+        .anouncement_card {
+            overflow: visible;
+            background: transparent;
+        }
+        .anouncement_card>div {
+            margin: 10px auto;
         }
     }
     
@@ -501,29 +518,32 @@
             margin-top: 95px;
             display: flex;
             flex-direction: column;
-            grid-template-columns: repeat(1, 1fr);
         }
         .anouncement_card {
-            grid-row: 2/2;
-        }
-        .anouncement_card {
-            display: block;
-            overflow: auto;
             margin: 10px auto;
             max-height: 100%;
             width: 90%;
-            background: #f5f5f5;
         }
         .anouncement_card div span {
             font-size: 18px;
         }
+        .anouncement_card span {
+            font-size: 16px !important;
+        }
+        .anouncement_card p {
+            font-size: 16px;
+        }
+        .anouncement_card h3 {
+            font-size: 20px;
+        }
         .anouncement_card>div {
             border: #bebebe 1px solid;
             text-align: justify;
+            width: 90%;
+            margin: 7px auto;
             background: #fff;
             border-radius: 5px;
-            margin: 15px;
-            padding: 20px;
+            padding: 15px;
         }
         .resp_title {
             width: 90%;
@@ -536,10 +556,13 @@
             margin: 15px auto;
             padding: 20px;
         }
+        .cont-titulo i {
+            font-size: 18px;
+        }
         .student-module h3 {
             text-align: center;
             position: relative;
-            font-size: 24px;
+            font-size: 20px;
             margin-bottom: 0 !important;
         }
         .student-module .container {
@@ -547,7 +570,7 @@
             padding: none;
             margin: none;
         }
-        .student-module .seleccion {
+        .student-module .enlace {
             margin: auto;
             margin-top: 20px;
             overflow: hidden;
@@ -557,21 +580,16 @@
             align-items: center;
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s;
+            padding-left: 10px;
+            height: 120px;
         }
-        .student-module .seleccion img {
-            display: block;
+        .student-module .enlace img {
             margin: auto;
-            margin-top: 15px;
-            margin-bottom: 15px;
+            width: 80px;
         }
-        .student-module .seleccion p {
-            font-size: 20px;
-            font-family: "Maven Pro", sans-serif;
-            background: var(--primary);
-            color: var(--color-detalle);
+        .student-module .enlace p {
+            font-size: 18px;
             width: 100%;
-            text-align: center;
-            margin-bottom: 15px;
         }
         .treeview {
             margin: auto;
@@ -581,4 +599,15 @@
             border: var(--primary) 1px solid;
             padding: 10px;
         }
+    }
+    
+    @media screen and (max-width: 375px) {
+        .container {
+            width: 100% !important;
+        }
+    }
+    
+    .anouncement_card p,
+    .anouncement_card h3 {
+        margin-bottom: 0 !important;
     }

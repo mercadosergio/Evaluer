@@ -21,6 +21,8 @@ if ($sesion == null || $sesion = '') {
 }
 $findP = $est->getMyPropuesta();
 $findA = $est->getMyAnteproyecto();
+date_default_timezone_set('America/Bogota');
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -119,12 +121,14 @@ $findA = $est->getMyAnteproyecto();
                 foreach ($rep as $anuncio) {
                 ?>
                     <div>
-                        <p><?php echo $anuncio['nombre_usuario']; ?></p>
+                        <p style="color: var(--primary);"><?php echo $anuncio['nombre_usuario']; ?></p>
                         <p><?php echo $anuncio['contenido']; ?></p>
-                        <p><?php $originalDate = $anuncio['fecha'];
-                            echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
-
-                            ?></p>
+                        <p class="format-distance"><?php
+                                                    $fechaActual = date("Y-m-d H:i:s");
+                                                    $originalDate = $anuncio['fecha'];
+                                                    $intervalo = $obj->calcularIntervalo($originalDate, $fechaActual);
+                                                    echo $intervalo;
+                                                    ?></p>
                     </div>
                 <?php
                 }
@@ -134,24 +138,20 @@ $findA = $est->getMyAnteproyecto();
                     <h3>Bienvenidos a este curso</h3>
                     <p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p>
                     <?php
-                    date_default_timezone_set('America/Bogota');
                     $fechaCreacion = date("2022-09-27 16:09:31");
-                    $fechaActual = date("Y-m-d H:i:s");
-                    $intervalo = $obj->calcularIntervalo($fechaCreacion, $fechaActual);
-                    echo $intervalo;
                     ?>
                 </div>
             </div>
             <div class="student-module">
-                <div class="resp_title">
-                    <div class="cont-titulo">
-                        <i class="bi bi-columns-gap"></i>
-                        <h3>Módulos del curso</h3>
-                    </div>
+
+                <div class="cont-titulo">
+                    <i class="bi bi-columns-gap"></i>
+                    <h3>Módulos del curso</h3>
                 </div>
+
                 <div class="container">
                     <a href="../../pages/estudiante/modulos/propuesta.php">
-                        <div class="seleccion">
+                        <div class="enlace">
                             <img src="../../img/propuesta-e.png" alt="">
                             <p>Propuesta de grado</p>
                         </div>
@@ -159,7 +159,7 @@ $findA = $est->getMyAnteproyecto();
                 </div>
                 <div class="container">
                     <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'desahilitar' : '' ?>">
-                        <div class="seleccion">
+                        <div class="enlace">
                             <?php
                             if ($findP == false) {
                                 echo '<div class="salto"></div>';
@@ -178,7 +178,7 @@ $findA = $est->getMyAnteproyecto();
                 ?>
                     <div class="container">
                         <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($findA == false) ? 'desahilitar' : '' ?>">
-                            <div class="seleccion">
+                            <div class="enlace">
                                 <?php
                                 if ($findA == false) {
                                     echo '<div class="salto"></div>';

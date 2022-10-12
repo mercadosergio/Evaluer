@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
         echo 'ERROR';
     } else {
         $asesor = new Asesor();
-        $asesor->publicarAnuncio($contenido, $fecha, $programa, $nombre, $_SESSION['usuario'], $id);
+        $asesor->publicarAnuncio($contenido, $fecha, $programa, $nombre, $_SESSION['usuario'], $id_docente);
 
         // include '../pages/docente/index.php';
         // header("Location: ../pages/docente/index.php");
