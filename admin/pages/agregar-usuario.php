@@ -1,20 +1,20 @@
 <?php
-include_once '../../model/Metodos.php';
-include("../../model/UserModel.php");
-
-$data = new User();
-include '../../controller/AddUserController.php';
-
 session_start();
-error_reporting(0);
 $sesion = $_SESSION['usuario'];
-$getProfile = $data->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+
+include_once '../../model/Metodos.php';
+include("../../model/UserModel.php");
+
+$usuario = new User();
+$admin = new Metodos();
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+include '../../controller/AddUserController.php';
 date_default_timezone_set("America/Bogota");
 ?>
 
@@ -114,7 +114,7 @@ date_default_timezone_set("America/Bogota");
                         <option selected value="1">Seleccione...</option>
                         <?php
                         $sql = "SELECT * FROM programa";
-                        $datos = $data->listar($sql);
+                        $datos = $usuario->listar($sql);
                         foreach ($datos as $key) {
                             echo '<option value="' . $key['identificador'] . '">' . $key['nombre'] . '</option>';
                         }

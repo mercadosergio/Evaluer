@@ -1,28 +1,27 @@
 <?php
-include_once("../../../model/Metodos.php");
-include("../../../model/UserModel.php");
-include_once("../../../model/Estudiante.php");
-
-$obj = new User();
-$res = new Metodos();
-$est = new Student();
-
 session_start();
-// error_reporting(0);
-
-include '../../../controller/UploadA.php';
-
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
-
-$getMyRole = $obj->getStudentProfile();
-$userE = mysqli_fetch_array($getMyRole);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+include_once("../../../model/Estudiante.php");
+
+$usuario = new User();
+$res = new Metodos();
+$estudiante = new Student();
+
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+$getMyRole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
+
+include '../../../controller/UploadA.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -95,7 +94,7 @@ if ($sesion == null || $sesion = '') {
                     <h3>Enviar anteproyecto</h3>
                 </div>
                 <?php
-                $findP = $est->getMyPropuesta();
+                $findP = $estudiante->getMyPropuesta();
                 if ($findP == false) {
                 ?>
                     <div class="paso_propuesta">

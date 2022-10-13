@@ -1,18 +1,17 @@
 <?php
 
-include("../model/UserModel.php");
-$obj = new User();
-
 session_start();
-error_reporting(0);
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
+
 
 if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
+include("../model/UserModel.php");
+$obj = new User();
+$getProfile = $obj->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,7 +88,7 @@ if ($sesion == null || $sesion = '') {
                 </div>
             </div>
             <button class="btn-set" type="submit" name="file_save">Guardar</button>
-    
+
             <div class="card p-3">
                 <h3>Cambiar contraseña</h3>
                 <label class="nombre_u">Usuario:</label>

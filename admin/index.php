@@ -1,19 +1,16 @@
 <?php
 
-include("../model/UserModel.php");
-$obj = new User();
-
 session_start();
-error_reporting(0);
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
-
+include("../model/UserModel.php");
+$usuario = new User();
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 ?>
 
 <!doctype html>

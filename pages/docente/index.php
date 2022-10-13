@@ -1,24 +1,24 @@
 <?php
 
-include_once("../../model/Metodos.php");
-include("../../model/UserModel.php");
-include("../../model/Asesor.php");
-
-$obj = new User();
 
 session_start();
-// error_reporting(0);
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
-
-$getAsesor = $obj->getDocenteProfile();
-$userD = mysqli_fetch_array($getAsesor);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
+include_once("../../model/Metodos.php");
+include("../../model/UserModel.php");
+include("../../model/Asesor.php");
+
+$usuario = new User();
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+$getAsesor = $usuario->getDocenteProfile();
+$userD = mysqli_fetch_array($getAsesor);
+
 include("../../controller/PublicarAnuncio.php");
 ?>
 

@@ -1,19 +1,19 @@
 <?php
-include_once '../../model/Metodos.php';
-include("../../model/UserModel.php");
-
-$data = new User();
 session_start();
 $sesion = $_SESSION['usuario'];
-$getProfile = $data->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
 
+include_once '../../model/Metodos.php';
+include("../../model/UserModel.php");
+
+$data = new User();
 $admin = new Metodos();
+$getProfile = $data->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
 ?>
 <!doctype html>
 <html lang="en">

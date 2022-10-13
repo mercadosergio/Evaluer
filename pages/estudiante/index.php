@@ -1,28 +1,28 @@
 <?php
 
-include_once("../../model/Metodos.php");
-include("../../model/UserModel.php");
-include("../../model/Estudiante.php");
-
-$obj = new User();
-$est = new Student();
 session_start();
-
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
-
-$getMyrole = $obj->getStudentProfile();
-$userE = mysqli_fetch_array($getMyrole);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
+
+include_once("../../model/Metodos.php");
+include("../../model/UserModel.php");
+include("../../model/Estudiante.php");
+
+$usuario = new User();
+$est = new Student();
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+$getMyrole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyrole);
+
 $findP = $est->getMyPropuesta();
 $findA = $est->getMyAnteproyecto();
 date_default_timezone_set('America/Bogota');
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -126,7 +126,7 @@ date_default_timezone_set('America/Bogota');
                         <p class="format-distance"><?php
                                                     $fechaActual = date("Y-m-d H:i:s");
                                                     $originalDate = $anuncio['fecha'];
-                                                    $intervalo = $obj->calcularIntervalo($originalDate, $fechaActual);
+                                                    $intervalo = $usuario->calcularIntervalo($originalDate, $fechaActual);
                                                     echo $intervalo;
                                                     ?></p>
                     </div>
@@ -172,7 +172,7 @@ date_default_timezone_set('America/Bogota');
                 </div>
                 <?php
 
-                $myProfileStudent = $obj->getStudentProfile();
+                $myProfileStudent = $usuario->getStudentProfile();
                 $estP = mysqli_fetch_array($myProfileStudent);
                 if ($estP['semestre'] == 9) {
                 ?>

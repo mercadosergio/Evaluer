@@ -1,24 +1,27 @@
 <?php
-include_once("../../../model/Metodos.php");
-include("../../../model/UserModel.php");
-include_once("../../../model/Estudiante.php");
-
-$obj = new User();
-$res = new Metodos();
-
 session_start();
-// error_reporting(0);
-
-include("../../../controller/upload_proyecto.php");
-
 $sesion = $_SESSION['usuario'];
-$getProfile = $obj->getProfileUser();
-$userP = mysqli_fetch_array($getProfile);
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+
+include_once("../../../model/Metodos.php");
+include("../../../model/UserModel.php");
+include_once("../../../model/Estudiante.php");
+
+$usuario = new User();
+$res = new Metodos();
+$estudiante = new Student();
+
+$getProfile = $usuario->getProfileUser();
+$userP = mysqli_fetch_array($getProfile);
+
+$getMyRole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
+
+include("../../../controller/upload_proyecto.php");
 ?>
 <!doctype html>
 <html lang="en">
