@@ -17,7 +17,7 @@ class Metodos extends DataBase
 
     public function viewAnuncio()
     {
-        $sql2 = "SELECT * FROM anuncio";
+        $sql2 = "SELECT * FROM post";
         $result2 = $this->con->query($sql2);
         return $result2;
     }
@@ -29,7 +29,7 @@ class Metodos extends DataBase
         // $result = mysqli_query($conexion, $sql);
         // $arrayImg = mysqli_fetch_array($result);
 
-        $sql2 = "SELECT * FROM anuncio WHERE usuario = " . $_SESSION['usuario'];
+        $sql2 = "SELECT * FROM post WHERE usuario = " . $_SESSION['usuario'];
         $result2 = $this->con->query($sql2);
         return $result2;
     }

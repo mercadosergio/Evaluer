@@ -75,7 +75,7 @@ $userP = mysqli_fetch_array($getProfile);
         <div class="cont-titulo">
             <h3>Programas académicos</h3>
         </div>
-        <table class="shadow">
+        <table class="shadow table table-bordered">
             <thead>
                 <tr>
                     <th>#</th>

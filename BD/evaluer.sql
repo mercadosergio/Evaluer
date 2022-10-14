@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2022 a las 04:15:59
+-- Tiempo de generación: 14-10-2022 a las 04:29:31
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -100,22 +100,6 @@ INSERT INTO `anteproyecto` (`id`, `titulo`, `nombre`, `documento`, `comentarios`
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `anuncio`
---
-
-CREATE TABLE `anuncio` (
-  `id` int(20) NOT NULL,
-  `contenido` varchar(400) NOT NULL,
-  `fecha` varchar(20) NOT NULL,
-  `programa_id` int(20) NOT NULL,
-  `nombre_usuario` varchar(70) NOT NULL,
-  `usuario` varchar(200) NOT NULL,
-  `docente_id` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `asesor`
 --
 
@@ -171,6 +155,18 @@ INSERT INTO `coordinador` (`id`, `nombres`, `p_apellido`, `s_apellido`, `cedula`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `curso`
+--
+
+CREATE TABLE `curso` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `duración` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `estudiante`
 --
 
@@ -179,10 +175,13 @@ CREATE TABLE `estudiante` (
   `nombre` varchar(20) NOT NULL,
   `p_apellido` varchar(20) NOT NULL,
   `s_apellido` varchar(20) NOT NULL,
+  `tipo_di` varchar(7) NOT NULL,
   `cedula` varchar(14) NOT NULL,
   `programa` varchar(60) NOT NULL,
   `programa_id` varchar(11) NOT NULL,
   `semestre` int(2) NOT NULL,
+  `telefono` int(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `usuario` varchar(40) NOT NULL,
   `time_propuesta` int(11) DEFAULT NULL,
   `time_anteproyecto` int(11) DEFAULT NULL,
@@ -196,11 +195,34 @@ CREATE TABLE `estudiante` (
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `programa_id`, `semestre`, `usuario`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `asesor`, `usuario_id`, `asesor_id`) VALUES
-(1, 'Sergio', 'Mercado', 'Salazar', '1143411235', 'INGENIERÍA INFORMÁTICA', '010', 9, '1143411235', 0, 0, 1663020000, 'Andres Perez', 3, 4),
-(2, 'Dager', 'Lopez', 'Estrada', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, '4444444444', 0, 0, 0, '', 8, 0),
-(3, 'Oscar', 'Garces', 'Gomez', '7777777777', 'INGENIERÍA INFORMÁTICA', '010', 9, '7777777777', 1693864800, 1663624800, 1663624800, 'Diana Lilena Velasquez ', 11, 1),
-(4, 'ffff', 'ffffff', 'fffff', '121239912', 'INGENIERÍA INFORMÁTICA', '', 9, '121239912', 100000000, 100000000, 100000000, '', 13, 0);
+INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `tipo_di`, `cedula`, `programa`, `programa_id`, `semestre`, `telefono`, `email`, `usuario`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `asesor`, `usuario_id`, `asesor_id`) VALUES
+(1, 'Sergio', 'Mercado', 'Salazar', '', '1143411235', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '1143411235', 0, 0, 1663020000, 'Andres Perez', 3, 4),
+(2, 'Dager', 'Lopez', 'Estrada', '', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, 0, '', '4444444444', 0, 0, 0, '', 8, 0),
+(3, 'Oscar', 'Garces', 'Gomez', '', '7777777777', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '7777777777', 1693864800, 1663624800, 1663624800, 'Diana Lilena Velasquez ', 11, 1),
+(4, 'ffff', 'ffffff', 'fffff', '', '121239912', 'INGENIERÍA INFORMÁTICA', '', 9, 0, '', '121239912', 100000000, 100000000, 100000000, '', 13, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(20) NOT NULL,
+  `contenido` varchar(400) NOT NULL,
+  `fecha` varchar(20) NOT NULL,
+  `programa_id` int(20) NOT NULL,
+  `nombre_usuario` varchar(70) NOT NULL,
+  `usuario` varchar(200) NOT NULL,
+  `docente_id` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `post`
+--
+
+INSERT INTO `post` (`id`, `contenido`, `fecha`, `programa_id`, `nombre_usuario`, `usuario`, `docente_id`) VALUES
+(3, '<h3>Bienvenidos a este curso</h3>\r\n                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam accusantium quam quidem, quasi eos\r\n                        eveniet id tempore laudantium quos, ut, ducimus alias aperiam enim et at. Nam veniam ipsam\r\n                        facere, voluptatibus hic exercitationem dolore sapiente ducimus doloremque amet, rem consectetur\r\n      ', '2022-09-29 17:20:12', 10, 'Andres Perez', '0987654321', 4);
 
 -- --------------------------------------------------------
 
@@ -209,21 +231,25 @@ INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `cedula`, 
 --
 
 CREATE TABLE `programa` (
+  `id` int(11) NOT NULL,
   `codigo` varchar(10) NOT NULL,
   `nombre` varchar(40) NOT NULL,
-  `identificador` varchar(11) NOT NULL
+  `identificador` varchar(11) NOT NULL,
+  `codigo_snies` varchar(11) NOT NULL,
+  `duracion` int(11) NOT NULL,
+  `modalidad` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `programa`
 --
 
-INSERT INTO `programa` (`codigo`, `nombre`, `identificador`) VALUES
-('CD010', 'INGENIERÍA INFORMÁTICA', '010'),
-('CD030', 'CONTADURÍA PÚBLICA', '030'),
-('CD050', 'ARQUITECTURA', '050'),
-('CD020', 'COCINA INTERNACIONAL', '020'),
-('CD130', 'ADMINISTRACIÓN DE EMPRESAS', '130');
+INSERT INTO `programa` (`id`, `codigo`, `nombre`, `identificador`, `codigo_snies`, `duracion`, `modalidad`) VALUES
+(1, 'CD010', 'INGENIERÍA INFORMÁTICA', '010', '', 0, ''),
+(2, 'CD030', 'CONTADURÍA PÚBLICA', '030', '', 0, ''),
+(3, 'CD050', 'ARQUITECTURA', '050', '', 0, ''),
+(4, 'CD020', 'COCINA INTERNACIONAL', '020', '', 0, ''),
+(5, 'CD130', 'ADMINISTRACIÓN DE EMPRESAS', '130', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -293,7 +319,7 @@ INSERT INTO `proyecto_grado` (`id`, `titulo`, `nombre`, `documento`, `programa`,
 (1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Proyecto-grado-libros.pdf', '../../files/proyectos_de_grado/05-09-22-01-09-07-documento.pdf', 'INGENIERÍA INFORMÁTICA', '010', 9, '2022-05-08 18:30:31', '1143411235', 'APROBADO', '4.3', 'Implementar normas APA', 1, 'Diana Lilena Velasquez ', 'Andres Perez', 'Diana Lilena Velasquez ', 'Nestor Suat', 1),
 (2, 'Sistema de gestión de contabilidad para procesos de compra', 'proyecto_contabilidad.pdf', '../files/proyectos_de_grado/14-06-22-00-06-15-Guia_proyecto_inv_ing (1).pdf', 'INGENIERÍA INFORMÁTICA', '010', 8, '2022-06-14 00:49:11', '1143411235', 'en revisión', '', '', 1, 'Diana Lilena Velasquez ', '', '', '', 1),
 (4, '', 'Diagrama de caso de uso.png', '../../files/proyectos_de_grado/29-08-22-21-08-26-Diagrama de caso de uso.png', '', '', 0, '2022-08-29 21:30:18', '1143411235', '', '', '', NULL, '', '', '', '', 1),
-(5, 'feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'documento.pdf', '../../files/proyectos_de_grado/05-09-22-01-09-07-documento.pdf', '<br /><b>Warning</b>:  Undefined variable $userE in <b>C:xampphtdocsEvaluerpagesestudiantemodulospro', '<br /', 9, '2022-09-05 01:50:05', '7777777777', '', '', '', NULL, '', '', '', '', 3);
+(5, 'feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'documento.pdf', '../../files/proyectos_de_grado/05-09-22-01-09-07-documento.pdf', '', '<br /', 9, '2022-09-05 01:50:05', '7777777777', '', '', '', NULL, '', '', '', '', 3);
 
 -- --------------------------------------------------------
 
@@ -329,6 +355,7 @@ CREATE TABLE `usuario` (
   `email` varchar(200) NOT NULL,
   `usuario` varchar(250) NOT NULL,
   `contraseña` varchar(250) NOT NULL,
+  `time_password_interval` int(11) NOT NULL,
   `foto` varchar(300) NOT NULL,
   `rol_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -337,20 +364,20 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `usuario`, `contraseña`, `foto`, `rol_id`) VALUES
-(1, 'Juan', 'admin@gmail.com', '1234567890', '$2y$10$p2HJq8dMMPW/nsJb..eg7eYIAkVKiJ5.jMZtBkLv/0eQ385SFJ2gG', '02-09-22-07-09-59-', 1),
-(2, 'Diana', 'diana@gmail.com', '0001112345', '$2y$10$aCROUJwt/0ch5nEebMcVUOueEOp43dzm0UXfX/efA2Mot3Yfh0gbG', '', 4),
-(3, 'Sergio', 'mercadosergio754@gmail.com', '1143411235', '$2y$10$UmBCM9Uk6n6Sw1Vt96vpY.8af/gRS7zd.xmRGR/v0OGTUjUijSZ72', '19-06-22-05-06-36-once.JPG', 3),
-(4, 'Mauricio', 'mauricio@gmail.com', '8888888888', '$2y$10$1v0K7eCLgmnprexC5y/lcOVmugSuNLxlvD/QarM7WmkmZcGzF9BqS', '', 2),
-(5, 'Jorge', 'jorge@gmail.com', '5555555554', '$2y$10$xrEuPyXc1x2SXppusfR8mu7meBV1fvHb2wtXL54jrIvyL8CrYqquS', '29-08-22-23-08-07-', 2),
-(6, 'Carlos', 'carlos@gmail.com', '3333333334    ', '$2y$10$PQz/q.OvzOy3JaCZ//OSj.ag61/h8gRnV853w82M3YHBT.7qRPs.S', '', 4),
-(7, 'Nestor', 'nestor@gmail.com', '2222222222', '$2y$10$ohVU7xn3OaGZAKps42EXjuVAUmyU1qO6inusBFXER0R8bJPQHGErK', '', 4),
-(8, 'Dager', 'dager@gmail.com', '4444444444', '$2y$10$8.QWkjP3LRDFuwRxJOfwW.6hxYd2RetRF5LHFoDZu8yu7lTBZ6wVq', '', 3),
-(9, 'Andres ', 'andres@gmail.com', '0987654321', '$2y$10$3Xw6El7c6n2MDK9Bw.an2O0vBf/PrJ0h9inQOUUld9wwZ0I.M8Df.', '', 4),
-(10, 'daniel', 'daniel@mail.com', '112092112', '$2y$10$j3K2hcomheBVACooopGOt.aCCrnyeoqe9Ls.JhYRhf9MXS5f0DCaW', '', 4),
-(11, 'Oscar', 'oscar@gmail.com', '7777777777', '$2y$10$/t2FiD05YHslqnz.duLlS.DPyNmTy5360e.YknR4tu9dINmqc5BSK', '', 3),
-(12, 'asdasd', 'asdsa', 'asdsa', '$2y$10$sY8qH0fb0cVkLZoR8CkEZ.XOMkw171XUFSV9dFC8rJd2Oo1G/bGtC', '', 3),
-(13, 'ffff', 'asdasd', '121239912', '$2y$10$qBW1Xut501/qjBuT..7BYOk7c0luARf/NOxfnhzhINx4JeR0xGUoq', '', 3);
+INSERT INTO `usuario` (`id`, `nombre`, `email`, `usuario`, `contraseña`, `time_password_interval`, `foto`, `rol_id`) VALUES
+(1, 'Juan', 'admin@gmail.com', '1234567890', '$2y$10$p2HJq8dMMPW/nsJb..eg7eYIAkVKiJ5.jMZtBkLv/0eQ385SFJ2gG', 0, '02-09-22-07-09-59-', 1),
+(2, 'Diana', 'diana@gmail.com', '0001112345', '$2y$10$aCROUJwt/0ch5nEebMcVUOueEOp43dzm0UXfX/efA2Mot3Yfh0gbG', 0, '', 4),
+(3, 'Sergio', 'mercadosergio754@gmail.com', '1143411235', '$2y$10$UmBCM9Uk6n6Sw1Vt96vpY.8af/gRS7zd.xmRGR/v0OGTUjUijSZ72', 0, '19-06-22-05-06-36-once.JPG', 3),
+(4, 'Mauricio', 'mauricio@gmail.com', '8888888888', '$2y$10$1v0K7eCLgmnprexC5y/lcOVmugSuNLxlvD/QarM7WmkmZcGzF9BqS', 0, '', 2),
+(5, 'Jorge', 'jorge@gmail.com', '5555555554', '$2y$10$xrEuPyXc1x2SXppusfR8mu7meBV1fvHb2wtXL54jrIvyL8CrYqquS', 0, '29-08-22-23-08-07-', 2),
+(6, 'Carlos', 'carlos@gmail.com', '3333333334    ', '$2y$10$PQz/q.OvzOy3JaCZ//OSj.ag61/h8gRnV853w82M3YHBT.7qRPs.S', 0, '', 4),
+(7, 'Nestor', 'nestor@gmail.com', '2222222222', '$2y$10$ohVU7xn3OaGZAKps42EXjuVAUmyU1qO6inusBFXER0R8bJPQHGErK', 0, '', 4),
+(8, 'Dager', 'dager@gmail.com', '4444444444', '$2y$10$8.QWkjP3LRDFuwRxJOfwW.6hxYd2RetRF5LHFoDZu8yu7lTBZ6wVq', 0, '', 3),
+(9, 'Andres ', 'andres@gmail.com', '0987654321', '$2y$10$3Xw6El7c6n2MDK9Bw.an2O0vBf/PrJ0h9inQOUUld9wwZ0I.M8Df.', 0, '', 4),
+(10, 'daniel', 'daniel@mail.com', '112092112', '$2y$10$j3K2hcomheBVACooopGOt.aCCrnyeoqe9Ls.JhYRhf9MXS5f0DCaW', 0, '', 4),
+(11, 'Oscar', 'oscar@gmail.com', '7777777777', '$2y$10$/t2FiD05YHslqnz.duLlS.DPyNmTy5360e.YknR4tu9dINmqc5BSK', 0, '', 3),
+(12, 'asdasd', 'asdsa', 'asdsa', '$2y$10$sY8qH0fb0cVkLZoR8CkEZ.XOMkw171XUFSV9dFC8rJd2Oo1G/bGtC', 0, '', 3),
+(13, 'ffff', 'asdasd', '121239912', '$2y$10$qBW1Xut501/qjBuT..7BYOk7c0luARf/NOxfnhzhINx4JeR0xGUoq', 0, '', 3);
 
 --
 -- Índices para tablas volcadas
@@ -371,13 +398,6 @@ ALTER TABLE `anteproyecto`
   ADD KEY `fk_anteproyecto_estudiante1_idx` (`estudiante_id`);
 
 --
--- Indices de la tabla `anuncio`
---
-ALTER TABLE `anuncio`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_anuncios_docente1_idx` (`docente_id`);
-
---
 -- Indices de la tabla `asesor`
 --
 ALTER TABLE `asesor`
@@ -392,11 +412,30 @@ ALTER TABLE `coordinador`
   ADD KEY `fk_coordinador_usuarios1_idx` (`usuario_id`);
 
 --
+-- Indices de la tabla `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_estudiante_usuarios1_idx` (`usuario_id`);
+
+--
+-- Indices de la tabla `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_anuncios_docente1_idx` (`docente_id`);
+
+--
+-- Indices de la tabla `programa`
+--
+ALTER TABLE `programa`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `propuesta`
@@ -442,22 +481,34 @@ ALTER TABLE `anteproyecto`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT de la tabla `anuncio`
---
-ALTER TABLE `anuncio`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT de la tabla `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `programa`
+--
+ALTER TABLE `programa`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `propuesta`
@@ -494,12 +545,6 @@ ALTER TABLE `anteproyecto`
   ADD CONSTRAINT `fk_anteproyecto_estudiante1` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiante` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Filtros para la tabla `anuncio`
---
-ALTER TABLE `anuncio`
-  ADD CONSTRAINT `fk_anuncios_docente1` FOREIGN KEY (`docente_id`) REFERENCES `asesor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `asesor`
 --
 ALTER TABLE `asesor`
@@ -516,6 +561,12 @@ ALTER TABLE `coordinador`
 --
 ALTER TABLE `estudiante`
   ADD CONSTRAINT `fk_estudiante_usuarios1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `fk_anuncios_docente1` FOREIGN KEY (`docente_id`) REFERENCES `asesor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `propuesta`

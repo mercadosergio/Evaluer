@@ -116,7 +116,7 @@ date_default_timezone_set('America/Bogota');
                 </div>
                 <?php
                 $recurso = new Metodos();
-                $sql = "SELECT * FROM anuncio WHERE docente_id =" . $userE['asesor_id'];
+                $sql = "SELECT * FROM post WHERE docente_id =" . $userE['asesor_id'];
                 $rep = $recurso->listar($sql);
                 foreach ($rep as $anuncio) {
                 ?>

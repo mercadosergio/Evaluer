@@ -221,9 +221,7 @@ ul {
 }
 
 .tabla-est {
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     margin: 10px auto;
-    border: none;
     width: 100%;
     background: #fff;
     text-align: left;
@@ -237,6 +235,7 @@ ul {
 
 .tabla-est tr:nth-child(even) {
     background: #ddd;
+    border-color: #ffffff;
 }
 
 td,

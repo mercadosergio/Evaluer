@@ -10,11 +10,11 @@ if ($sesion == null || $sesion = '') {
 include_once '../../model/Metodos.php';
 include("../../model/UserModel.php");
 
+$data = new User();
+$admin = new Metodos();
 $getProfile = $data->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
-$data = new User();
-$admin = new Metodos();
 ?>
 <!doctype html>
 <html lang="en">
@@ -96,7 +96,7 @@ $admin = new Metodos();
                 </thead>
                 <tbody id="info">
                     <?php
-                    $mostrar = $funcion->listar("SELECT * FROM proyecto_grado");
+                    $mostrar = $admin->listar("SELECT * FROM proyecto_grado");
                     foreach ($mostrar as $value) {
                     ?>
                         <tr>

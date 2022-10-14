@@ -96,7 +96,7 @@ include("../../controller/EditUser.php");
         </ul>
         <div class="tabs-content">
             <div class="tabs-panel active" data-index="0">
-                <table class="tabla-est">
+                <table class="tabla-est table table-bordered">
                     <thead>
                         <th>#</th>
                         <th>Nombre</th>
@@ -110,7 +110,7 @@ include("../../controller/EditUser.php");
                     <tbody id="userInfo">
                         <?php
                         $sql = "SELECT * FROM estudiante ORDER BY id";
-                        $datos = $obj->listar($sql);
+                        $datos = $usuario->listar($sql);
 
                         foreach ($datos as $key) {
                         ?>
@@ -160,7 +160,7 @@ include("../../controller/EditUser.php");
                     <tbody id="userInfo">
                         <?php
                         $sql2 = "SELECT * FROM asesor ORDER BY id";
-                        $datos_docente = $obj->listar($sql2);
+                        $datos_docente = $usuario->listar($sql2);
 
                         foreach ($datos_docente as $asesor) {
                             $id_registro_d = $asesor['id'];
@@ -207,7 +207,7 @@ include("../../controller/EditUser.php");
                     <tbody id="userInfo">
                         <?php
                         $sql3 = "SELECT * FROM coordinador ORDER BY id";
-                        $datos_c = $obj->listar($sql3);
+                        $datos_c = $usuario->listar($sql3);
 
                         foreach ($datos_c as $principal) {
                             $id_registro_d = $principal['id'];
@@ -278,7 +278,7 @@ include("../../controller/EditUser.php");
                             <option value="1">Seleccione...</option>
                             <?php
                             $non_selected = "SELECT * FROM programa";
-                            $options = $obj->listar($non_selected);
+                            $options = $usuario->listar($non_selected);
 
                             foreach ($options as $pro) {
                                 echo '<option value="' . $pro['identificador'] . '">' . $pro['nombre'] . '</option>';

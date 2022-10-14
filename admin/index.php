@@ -142,21 +142,18 @@ $userP = mysqli_fetch_array($getProfile);
             <a href="pages/agregar-usuario.php">
                 <div class="module shadow">
                     <h2>Registro de usuario</h2>
-                    <!-- <center><i class="fas fa-user-plus"></i></center> -->
                     <img src="../img/add-user.png" alt="">
                 </div>
             </a>
             <a href="pages/control-usuarios.php">
                 <div class="module shadow">
                     <h2>Gestión de usuarios</h2>
-                    <!-- <center><i class="fas fa-search"></i></center> -->
                     <img src="../img/control-user.png" alt="">
                 </div>
             </a>
             <a href="pages/notas.php">
                 <div class="module shadow">
                     <h2>Notas</h2>
-                    <!-- <center><i class="fa-solid fa-clipboard"></i></center> -->
                     <img src="../img/notas.png" alt="">
 
                 </div>
@@ -164,9 +161,14 @@ $userP = mysqli_fetch_array($getProfile);
             <a href="pages/programas.php">
                 <div class="module shadow">
                     <h2>Programas</h2>
-                    <!-- <center><i class="fa-regular fa-id-card"></i></center> -->
                     <img src="../img/programas.png" alt="">
 
+                </div>
+            </a>
+            <a href="pages/programas.php">
+                <div class="module shadow">
+                    <h2>Peticiones</h2>
+                    <img src="../img/request.png" alt="">
                 </div>
             </a>
         </div>
