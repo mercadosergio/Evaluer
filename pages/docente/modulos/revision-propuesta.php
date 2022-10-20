@@ -99,7 +99,7 @@ include "../../../controller/RatePropuesta.php";
 
 
             <div class="contenedor-tabla">
-                <table class="tabla-propuestas shadow">
+                <table class="tabla-propuestas shadow table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -145,12 +145,13 @@ include "../../../controller/RatePropuesta.php";
                                 <form action="" method="POST">
                                     <td id="celdaCalif">
                                         <input type="text" name="getIdPropuesta" hidden value="<?php echo $value['id'] ?>">
-                                        <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value="<?php echo $value['estado'] ?>">
+                                        <span class="state_nota <?php echo $value['estado'] ?>"><?php echo $value['estado'] ?></span>
+                                        <!-- <input type="text" class="estado" name="estado" style="text-transform:uppercase;" value=""> -->
                                     </td>
                                     <td>
                                         <input name="id_p" type="text" hidden value="<?php echo $value['id'] ?>">
 
-                                        <button type="button" class="watch btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="watch" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="bi bi-eye-fill"></i>
                                         </button>
                                         <!-- Modal -->
@@ -247,8 +248,8 @@ include "../../../controller/RatePropuesta.php";
                     </table>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                <div class="buttons">
+                    <button type="button" class="close" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

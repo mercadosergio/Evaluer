@@ -129,7 +129,9 @@ date_default_timezone_set("America/Bogota");
                     <label for="">Email:</label>
                     <input type="text" name="email" class="form-control" placeholder="Email">
                 </div>
-                <input type="submit" name="agregar" class="btn-agregar form-control" value="Registrar">
+                <div class="container-button">
+                    <button type="submit" name="agregar" class="btn-agregar">Registrar</button>
+                </div>
             </div>
         </div>
     </form>

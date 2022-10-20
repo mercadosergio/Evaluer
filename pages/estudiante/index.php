@@ -134,13 +134,7 @@ date_default_timezone_set('America/Bogota');
                 }
 
                 ?>
-                <div><label for="">Juan Diaz</label>
-                    <h3>Bienvenidos a este curso</h3>
-                    <p>A continuación podrán enviar su propuesta de proyecto con los datos solicitados.</p>
-                    <?php
-                    $fechaCreacion = date("2022-09-27 16:09:31");
-                    ?>
-                </div>
+
             </div>
             <div class="student-module">
 

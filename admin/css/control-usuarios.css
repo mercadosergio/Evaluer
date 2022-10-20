@@ -16,6 +16,10 @@ body {
     padding: 8rem 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -29,6 +33,7 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
+    margin: auto;
 }
 
 h1,
@@ -76,20 +81,25 @@ td {
 /* FILTRO DE BUSQUEDA.............................*/
 
 .container-button {
-    position: relative;
-    display: flex;
     align-items: center;
 }
 
 .container-button p {
-    margin-bottom: 0;
+    margin: 7px 5px;
     float: right;
 }
 
-.add_user {
-    background: rgb(40, 167, 69);
+.container-button a {
+    background: rgb(36, 156, 64);
     color: #fff;
     float: right;
+    margin: auto;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+.container-button a:hover {
+    color: #fff;
 }
 
 .box {
@@ -137,7 +147,6 @@ ul {
     margin: 30px auto;
     margin-top: 0;
     padding: 25px;
-    /* height: 100%; */
 }
 
 .tabs {
@@ -168,7 +177,6 @@ ul {
 .tabs-content {
     box-sizing: border-box;
     position: relative;
-    /* z-index: 2; */
     padding: 25px;
     border-radius: 0 4px 4px 4px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -187,6 +195,10 @@ ul {
 
 .tabs-panel p+div {
     margin-top: 15px;
+}
+
+td {
+    font-size: 16px;
 }
 
 @media screen and (max-width: 100%) {
@@ -298,6 +310,68 @@ th {
     flex-direction: column;
     padding: 16px 40px !important;
     width: 100% !important;
+}
+
+.modal-edit .modal-body {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 15px;
+}
+
+.modal-edit .modal-body label {
+    margin: auto 0;
+}
+
+.edit-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+.edit-buttons button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.edit-buttons .save {
+    background: var(--primary);
+    color: #fff;
+}
+
+.modal-delete .modal-dialog {
+    max-width: 500px !important;
+}
+
+.modal-delete .modal-body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+p.delete-title {
+    color: #f71a1a;
+    font-size: 20px;
+}
+
+.modal-delete .actions {
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+.actions button {
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.actions .delete {
+    background: var(--primary);
+    color: #fff;
 }
 
 

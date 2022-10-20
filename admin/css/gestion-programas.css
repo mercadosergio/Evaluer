@@ -93,11 +93,12 @@ table tr td .delete {
 
 .btn-agregar {
     border: none;
-    background: var(--primary);
+    background: rgb(36, 156, 64);
     padding: 10px 20px;
     text-align: center;
     color: #fff;
     float: right;
+    border-radius: 3px;
 }
 
 .fondo {

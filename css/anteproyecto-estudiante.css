@@ -158,15 +158,12 @@ form {
 }
 
 .seccion-anteproyecto .btn-enviar {
-    font-family: 'Maven', sans-serif;
-    padding: 5px;
-    width: 205px;
-    font-size: 20px;
+    padding: 10px 30px;
+    font-size: 18px;
     color: #fff;
     background: var(--primary);
-    border-radius: 7px;
+    border-radius: 3px;
     border: none;
-    text-align: center;
 }
 
 

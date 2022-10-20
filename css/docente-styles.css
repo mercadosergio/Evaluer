@@ -44,6 +44,7 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
+    margin: auto 0;
 }
 
 h1,
@@ -145,7 +146,7 @@ strong {
 .cont-titulo {
     width: 50%;
     margin: auto;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     border-bottom: #bebebe 2px solid;
     border-radius: 5px;
     vertical-align: middle;
@@ -181,22 +182,19 @@ strong {
     font-size: 30px;
 }
 
-.docente-profile .horizontal {
+.docente-profile .fila {
     text-decoration: none;
-    margin: auto;
-    margin-bottom: 100px;
     padding: 20px 0;
-    width: 55%;
-    margin-top: 80px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
 }
 
-.docente-profile .horizontal a {
+.docente-profile .fila a {
     cursor: pointer;
     width: 270px;
     height: 200px;
-    margin: auto;
+    margin: auto 40px;
     background-color: var(--primary);
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: all 400ms ease;
@@ -233,7 +231,7 @@ img {
     transition: all 400ms ease;
 }
 
-.docente-profile .horizontal a .seleccion div {
+.docente-profile .fila a .seleccion div {
     display: block;
     width: 100%;
 }
@@ -271,6 +269,18 @@ img {
     align-items: center;
 }
 
+.action button {
+    background: var(--primary);
+    padding: 15px 20px;
+    border-radius: 3px;
+    border: none;
+    color: #fff;
+}
+
+.action button:hover {
+    background: var(--primary);
+}
+
 .form-group {
     width: 100%;
 }
@@ -306,7 +316,7 @@ img {
     margin: 15px;
 }
 
-.grid {
+.card_layout {
     background: #fff;
     border: #bebebe 1px solid;
     border-radius: 5px;
@@ -319,9 +329,28 @@ img {
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
     grid-template-rows: minmax(10px, 20px);
+    position: relative;
 }
 
-.grid>div {
+.card_layout .drop-menu {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    float: right;
+    border: none;
+    background: none;
+}
+
+.card_layout>i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.dropdown-menu .delete {
+    color: #f71a1a;
+}
+
+.card_layout>div {
     color: #000;
     display: flex;
     align-items: center;

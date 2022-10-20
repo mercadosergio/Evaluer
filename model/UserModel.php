@@ -96,7 +96,7 @@ class User extends DataBase
     */
     public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
     {
-        $this->con->query("INSERT INTO docente(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
+        $this->con->query("INSERT INTO asesor(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
                             SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario', u.id, p.nombre
                             FROM usuario u
                             JOIN programa p
@@ -259,7 +259,23 @@ class User extends DataBase
 
     public function ChangePassword($nueva_contraseña, $usuario)
     {
-        $this->con->query("UPDATE usuario SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
+        $unix = $this->con->query("SELECT time_password_interval FROM usuario WHERE usuario = " . $_SESSION['usuario']);
+        $tiempo = mysqli_fetch_array($unix);
+
+        if (time() > $tiempo['0']) {
+            $unix = strtotime("+30 days, 12:00am", time());
+
+            $this->con->query("UPDATE usuario SET contraseña ='$nueva_contraseña' WHERE usuario = '$usuario'");
+        } else {
+            echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
+            No puedes cambiar la contraseña hasta un cierto periodo
+            </div>';
+            echo "<script>
+            setTimeout(function() {
+            $('#fail').fadeOut('fast');
+            }, 2000); // <-- time in milliseconds
+            </script>";
+        }
     }
 
     public function ChangeProfilePhoto($photo, $usuario)

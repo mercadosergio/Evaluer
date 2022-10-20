@@ -88,12 +88,12 @@ include("../../../controller/evaluate-anteproyecto.php");
             <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
-            <table id="tabla" class="ant shadow">
+            <table id="tabla" class="tabla shadow table table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Entregable</th>
                         <th>Título</th>
-                        <th>Archivo</th>
                         <th hidden>Programa</th>
                         <th>Fecha</th>
                         <th>Calificación</th>
@@ -109,19 +109,19 @@ include("../../../controller/evaluate-anteproyecto.php");
                         <tr>
                             <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
-                                <td><?php echo $value['titulo']; ?></td>
                                 <td><a href="<?php echo $value['documento']; ?>" target="_blank"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
+                                <td><?php echo $value['titulo']; ?></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
                                 <td><?php
                                     $originalDate = $value['fecha'];
                                     echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
                                     ?></td>
-                                <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
+                                <td><?php echo $value['calificacion'] ?></td>
                                 <td>
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
                                 <td>
-                                    <a href="gestion-actividad-anteproyecto.php?id=<?php echo $value['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="gestion-actividad-anteproyecto.php?id=<?php echo $value['id'] ?>" class="btn see"><i class="bi bi-eye-fill"></i></a>
                                 </td>
                                 <td hidden>
                                     <script>

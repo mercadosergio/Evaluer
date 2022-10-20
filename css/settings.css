@@ -50,13 +50,11 @@
     }
     
     h1 {
-        color: #212121;
         font-size: 2.8em;
         margin: 24px 0;
     }
     
     h2 {
-        color: #353535;
         font-size: 2.4em;
         font-weight: bold;
     }
@@ -128,17 +126,6 @@
         font-weight: bold;
         font-size: 16px;
         overflow: hidden;
-    }
-    /* Logos e imagenes */
-    
-    .aunar_logo {
-        width: 80px;
-        margin-right: 20px;
-    }
-    
-    .logo {
-        width: 200px;
-        border-radius: 10px;
     }
     /* END MENU DESPLEGABLE.......................................... */
     
@@ -263,7 +250,6 @@
     }
     
     .contenedor-soporte input {
-        margin-bottom: 10px;
         outline: none;
     }
     
@@ -282,14 +268,9 @@
     }
     
     .contenedor-soporte .campo {
-        width: 80%;
         padding: 3px;
         border: var(--primary) 1px solid;
         border-radius: 5px;
-    }
-    
-    .campo:focus {
-        background: rgb(212, 216, 255);
     }
     
     .contenedor-soporte .btn-g {
@@ -303,4 +284,21 @@
         font-size: 18px;
         text-align: center;
         width: 250px;
+    }
+    
+    .bloque {
+        display: flex;
+        overflow: hidden;
+        margin: 15px 0;
+        box-sizing: border-box;
+    }
+    
+    .bloque label {
+        margin: auto;
+        margin-left: 0;
+    }
+    
+    .bloque input {
+        width: 55%;
+        float: right;
     }

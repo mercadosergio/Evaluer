@@ -91,15 +91,23 @@ $userP = mysqli_fetch_array($getProfile);
 
             <div class="card p-3">
                 <h3>Cambiar contraseña</h3>
-                <label class="nombre_u">Usuario:</label>
-                <input class="user" name="user" type="text" readonly value="<?php echo $_SESSION['usuario'] ?>">
-                <label>Introduce tu contraseña actual:</label>
-                <input class="campo" type="password" value="" name="c_actual">
-                <label>Nueva contraseña:</label>
-                <input class="campo" type="password" value="" name="clave">
-                <label>Confirmar nueva contraseña:</label>
-                <input class="campo" type="password" value="" name="clave2">
-                <input class="btn-g" type="submit" name="cambiar" value="Cambiar contraseña">
+                <div class="bloque">
+                    <label class="nombre_u">Usuario:</label>
+                    <input class="user" name="user" type="text" readonly value="<?php echo $_SESSION['usuario'] ?>">
+                </div>
+                <div class="bloque">
+                    <label>Introduce tu contraseña actual:</label>
+                    <input autocomplete="off" class="campo" type="password" value="" name="c_actual">
+                </div>
+                <div class="bloque">
+                    <label>Nueva contraseña:</label>
+                    <input class="campo" type="password" value="" name="clave">
+                </div>
+                <div class="bloque">
+                    <label>Confirmar nueva contraseña:</label>
+                    <input class="campo" type="password" value="" name="clave2">
+                </div>
+                <button class="btn-g" type="submit" name="cambiar">Cambiar contraseña</button>
             </div>
         </form>
     </div>

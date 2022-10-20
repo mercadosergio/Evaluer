@@ -24,7 +24,7 @@ $userP = mysqli_fetch_array($getProfile);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Aministrador</title>
+    <title>Administrador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../utilities/loading/carga.css">
@@ -94,7 +94,7 @@ $userP = mysqli_fetch_array($getProfile);
                 <a href="pages/agregar-usuario.php">
                     <div class="title">
                         <i class="fas fa-user-plus"></i>
-                        <label>Registro de usuario</label>
+                        <p>Registro de usuario</p>
                     </div>
                 </a>
             </div>
@@ -104,7 +104,7 @@ $userP = mysqli_fetch_array($getProfile);
                 <a href="pages/control-usuarios.php">
                     <div class="title">
                         <i class="fas fa-search"></i>
-                        <label>Gestión de usuarios</label>
+                        <p>Gestión de usuarios</p>
                     </div>
                 </a>
             </div>
@@ -114,7 +114,7 @@ $userP = mysqli_fetch_array($getProfile);
                 <a href="pages/notas.php">
                     <div class="title">
                         <i class="fa-solid fa-clipboard"></i>
-                        <label>Notas de proyectos de grado</label>
+                        <p>Notas</p>
                     </div>
                 </a>
             </div>
@@ -124,7 +124,17 @@ $userP = mysqli_fetch_array($getProfile);
                 <a href="pages/programas.php">
                     <div class="title">
                         <i class="fa-regular fa-id-card"></i>
-                        <label>Gestión académica</label>
+                        <p>Programas</p>
+                    </div>
+                </a>
+            </div>
+            <div class="separator">
+            </div>
+            <div class="item">
+                <a href="pages/pqr.php">
+                    <div class="title">
+                        <i class="fa-solid fa-envelopes-bulk"></i>
+                        <p>Peticiones</p>
                     </div>
                 </a>
             </div>
@@ -165,7 +175,7 @@ $userP = mysqli_fetch_array($getProfile);
 
                 </div>
             </a>
-            <a href="pages/programas.php">
+            <a href="pages/pqr.php">
                 <div class="module shadow">
                     <h2>Peticiones</h2>
                     <img src="../img/request.png" alt="">

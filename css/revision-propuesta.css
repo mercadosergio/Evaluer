@@ -175,10 +175,6 @@ strong {
 
 .contenedor-tabla {
     width: 100%;
-    border: #bebebe 1px solid;
-    background: #fff;
-    border-radius: 5px;
-    padding: 15px;
 }
 
 .lista-propuestas .tabla-propuestas {
@@ -198,32 +194,40 @@ strong {
 }
 
 .lista-propuestas .tabla-propuestas th {
-    padding: 5px 3px;
+    padding: 7px 5px;
     vertical-align: middle;
 }
 
 .lista-propuestas .tabla-propuestas td {
     vertical-align: middle;
-    padding: 0 3px;
+    padding: 7px 5px;
 }
 
-.estado {
-    outline: none;
-    padding: 5px;
-    border: none;
-    background: none;
-    text-align: center;
+.state_nota {
+    padding: 7px 14px;
+    border-radius: 7px;
+}
+
+.APROBADO {
+    background: #00bd19 !important;
+}
+
+.REPROBADO {
+    background: #f71a1a !important;
+}
+
+.EN {
+    background: #ecc102 !important;
+}
+
+.APLAZADO {
+    background: #a8a8a8 !important;
 }
 
 .btn-estado {
     background: none;
     border: none;
     color: #00b418;
-}
-
-.estado:focus,
-.estado:active {
-    background: #d8dcff;
 }
 
 .individual {
@@ -247,7 +251,7 @@ strong {
 }
 
 .modal-content {
-    background: repeating-linear-gradient(-60deg, white, whitesmoke 15px);
+    /* background: repeating-linear-gradient(-60deg, white, whitesmoke 15px); */
 }
 
 .modal-header {
@@ -306,6 +310,20 @@ ol {
 
 .modal {
     z-index: 9999999999999999;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+}
+
+.buttons button {
+    padding: 15px 20px;
+    border-radius: 3px;
+    border: none;
+    background: rgb(230, 228, 228);
 }
 
 p {

@@ -81,7 +81,7 @@ $userP = mysqli_fetch_array($getProfile);
             <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
-            <table id="tabla" class="ent shadow p-3 mb-5 rounded">
+            <table id="tabla" class="tabla table table-bordered shadow p-3 mb-5 rounded">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -111,7 +111,8 @@ $userP = mysqli_fetch_array($getProfile);
                                     echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
                                     ?></td>
                                 <td><?php echo $value['calificacion'] ?></td>
-                                <td><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
+                                <td>
+                                    <input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
                             </form>

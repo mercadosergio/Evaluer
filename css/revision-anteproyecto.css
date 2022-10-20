@@ -169,18 +169,16 @@ strong {
     padding-left: 10px;
 }
 
-.ant {
+.tabla {
     margin-top: 20px;
     margin-bottom: 30px;
-    border: none;
     width: 100%;
     background: #fff;
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
-.ant thead {
+.tabla thead {
     background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
@@ -190,83 +188,19 @@ strong {
     background: #ddd;
 }
 
-.ant th {
-    padding: 5px 3px;
+.tabla th {
+    /* padding: 5px 3px; */
     vertical-align: middle;
 }
 
-.ant td {
-    padding: 4px 3px;
+.tabla td {
+    /* padding: 4px 3px; */
     vertical-align: middle;
+    border-color: inherit;
 }
 
-.ant .botones_tabla {
-    display: flex;
-}
-
-.ant tr .botones_tabla form {
-    margin-right: auto;
-}
-
-.ant tr td a {
+.tabla tr td a {
     text-decoration: none;
-}
-
-.ant tr td>input {
-    background: none;
-    outline: none;
-    border: none;
-}
-
-.ant tr td>input:focus {
-    background: #b3b1ff;
-}
-
-.o {
-    margin-right: 25px;
-}
-
-.o i {
-    width: 150px;
-}
-
-.o li a {
-    padding: 10px;
-    display: block;
-}
-
-.o>li {
-    float: left;
-}
-
-.o li ul {
-    background: #fff;
-    display: none;
-    position: absolute;
-    right: 30px;
-    min-width: 140px;
-    border: 1px solid #000;
-    margin-right: 30px;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.o li:hover>ul {
-    display: block;
-}
-
-.o textarea {
-    outline: none;
-    padding: 3px;
-    background: repeating-linear-gradient(-180deg, whitesmoke 0px, rgb(221, 220, 220) 25px);
-}
-
-.texto_o {
-    display: none;
-}
-
-.texto_o li {
-    display: block;
 }
 
 .btn-nota {
@@ -275,6 +209,11 @@ strong {
     color: #fff;
     cursor: pointer;
     padding: 4px;
+}
+
+.see {
+    background: var(--primary);
+    color: #fff;
 }
 
 #radio_d {

@@ -87,7 +87,7 @@ include("../../../controller/evaluate-proyecto.php");
             <input type="search" id="search" placeholder="Search..." />
         </div>
         <div class="contenedor-titulo">
-            <table id="tabla" class="ent shadow p-3 mb-5 rounded">
+            <table id="tabla" class="tabla shadow p-3 mb-5 rounded table table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -113,13 +113,13 @@ include("../../../controller/evaluate-proyecto.php");
                                     $originalDate = $value['fecha'];
                                     echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
                                     ?></td>
-                                <td><input type="text" name="nota" value="<?php echo $value['calificacion'] ?>"></td>
+                                <td><?php echo $value['calificacion'] ?></td>
                                 <td><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
-                                <td>
+                                <td style="display: flex; justify-content: center;">
                                     <input hidden name="getIdProyecto" type="text" value="<?php echo $value['id'] ?>">
-                                    <a href="gestion-actividad-proyecto-grado.php?id=<?php echo $value['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
+                                    <a href="gestion-actividad-proyecto-grado.php?id=<?php echo $value['id'] ?>" class="btn-go"><i class="bi bi-eye-fill"></i></a>
                                     <input hidden type="submit" name="evaluar" value="Evaluar" class="btn-nota">
                                     <a class="download" href="<?php echo $value['documento']; ?>" target="_blank"><i class="fa-solid fa-download"></i></a>
                                 </td>

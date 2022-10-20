@@ -134,56 +134,54 @@ select {
     margin: auto;
 }
 
-.ent {
+.tabla {
     margin-top: 20px;
     margin-bottom: 30px;
-    border: none;
     width: 100%;
     background: #fff;
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
-.ent thead {
+.tabla thead {
     background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }
 
-.ent tr:nth-child(even) {
+.tabla tr:nth-child(even) {
     background: #ddd;
 }
 
 th {
-    padding: 5px 5px;
+    padding: 7px 5px;
     vertical-align: middle;
 }
 
 td {
     vertical-align: middle;
-    padding: 3px 5px;
+    padding: 7px 5px;
 }
 
-.ent .botones_tabla {
+.tabla .botones_tabla {
     display: flex;
 }
 
-.ent tr .botones_tabla form {
+.tabla tr .botones_tabla form {
     margin-right: auto;
 }
 
-.ent tr td a {
+.tabla tr td a {
     text-decoration: none;
 }
 
-.ent tr td input {
+.tabla tr td input {
     background: none;
     outline: none;
     border: none;
 }
 
-.ent tr td .btn-nota {
+.tabla tr td .btn-nota {
     background: none;
     color: #1188d8;
     margin-right: 10px;
@@ -206,7 +204,6 @@ td {
 .valoracion {
     padding: 7px 14px;
     text-align: center;
-    background: #a8a8a8;
     border-radius: 10px;
 }
 

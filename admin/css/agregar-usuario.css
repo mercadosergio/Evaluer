@@ -45,6 +45,7 @@ h4,
 h5,
 h6 {
     letter-spacing: -1px;
+    margin: auto 0;
 }
 
 h1 {
@@ -107,49 +108,6 @@ strong {
     margin: 0px;
 }
 
-.log {
-    margin-right: 25px;
-    color: #fff;
-}
-
-.log i {
-    width: 150px;
-}
-
-ul {
-    list-style: none;
-}
-
-.log li a {
-    padding: 10px;
-    display: block;
-}
-
-.log>li {
-    float: left;
-}
-
-.log li ul {
-    background: var(--primary);
-    display: none;
-    position: absolute;
-    min-width: 140px;
-    /* border: 1px solid #000; */
-}
-
-.log li:hover>ul {
-    display: block;
-}
-
-.log li ul li:hover {
-    background: var(--hover);
-}
-
-.log li ul li .out {
-    text-decoration: none;
-    color: white;
-}
-
 
 /* END MENU DESPLEGABLE */
 
@@ -165,65 +123,28 @@ ul {
     padding: 15px 0;
 }
 
-
-/* .roles select {
-    padding: 7px;
-} */
+.roles select {
+    margin: 5px 0;
+}
 
 .form-add-user {
     display: grid;
     margin: auto;
     width: 90%;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "titulo     titulo" "nombre             primer-apellido" "segundo-apellido   cedula" "programa           semestre" "email              email" "registrar       registrar";
     gap: 20px;
 }
 
 .cont-title {
-    grid-area: titulo;
     display: flex;
-    margin: 15px 0;
-}
-
-.campo-nombre {
-    grid-area: nombre;
-}
-
-.campo-primer-apellido {
-    grid-area: primer-apellido;
-}
-
-.campo-segundo-apellido {
-    grid-area: segundo-apellido;
-}
-
-.campo-cedula {
-    grid-area: cedula;
-}
-
-.programa {
-    grid-area: programa;
-}
-
-.cammpo-semestre {
-    grid-area: semestre;
-    width: 40%;
-}
-
-.cammpo-semestre.disable {
-    display: none;
-}
-
-.cammpo-semestre.enable {
-    display: flex;
-}
-
-.campo-email {
-    grid-area: email;
-}
-
-.btn-agregar {
-    grid-area: registrar;
+    align-items: center;
+    grid-column: 1/3;
+    margin: 15px auto;
+    border-bottom: #bebebe 1px solid;
+    border-radius: 5px;
+    width: 50%;
+    text-align: center;
+    justify-content: center;
 }
 
 .cont-title i {
@@ -234,16 +155,6 @@ ul {
 .title {
     color: #000;
 }
-
-
-/* .form-add-user input:not(input[type="submit"]) {
-    margin: 15px;
-    border: none;
-    outline: none;
-    background: none;
-    padding: 3px;
-    border-bottom: 2px solid #000;
-} */
 
 .form-add-user .programa {
     display: flex;
@@ -257,15 +168,19 @@ ul {
     border: 1px solid #000;
 } */
 
-.form-add-user .btn-agregar {
-    margin: 15px;
+.container-button {
+    grid-column: 1/3;
+    display: flex;
+}
+
+.container-button button {
+    margin: auto;
     background: var(--primary);
     font-family: "Maven Pro", sans-serif;
-    padding: 7px;
-    border-radius: 7px;
+    padding: 10px 15px;
+    border-radius: 3px;
     border: none;
-    width: 180px;
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     text-align: center;
 }

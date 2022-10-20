@@ -111,7 +111,7 @@ strong {
 }
 
 #sidemenu {
-    background-color: #aacefd;
+    background-color: #89b3eb;
     color: black;
     position: fixed;
     height: 100%;
@@ -127,8 +127,14 @@ strong {
     text-decoration: none;
 }
 
+#sidemenu p {
+    margin: auto 0;
+    font-size: 16px;
+    color: #000;
+}
+
 #sidemenu .profile {
-    border-bottom: solid 1px #a1a1a1;
+    border-bottom: solid 1px var(--primary);
     padding: var(--padding) 0;
     text-align: center;
 }
@@ -157,6 +163,7 @@ strong {
 .menu-items {
     overflow: hidden;
     width: 100%;
+    padding-left: 10px;
 }
 
 .menu-items .item {
@@ -167,16 +174,14 @@ strong {
 
 .menu-items .item .title {
     font-size: 16px;
-    vertical-align: middle;
     overflow: hidden;
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 .title i {
-    position: relative;
-    bottom: 3px;
+    font-size: 18px;
+    margin-right: 5px;
 }
 
 .menu-items .item a {
@@ -186,7 +191,7 @@ strong {
 }
 
 .menu-items .item a:hover {
-    background-color: #b4b4b4;
+    background-color: #6288b9;
 }
 
 .menu-items .item .title {
@@ -202,7 +207,7 @@ strong {
 
 .menu-items .separator {
     height: 1px;
-    border-bottom: 1px solid #a1a1a1;
+    border-bottom: 1px solid transparent;
 }
 
 

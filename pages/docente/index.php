@@ -86,7 +86,7 @@ include("../../controller/PublicarAnuncio.php");
                 <i class="bi bi-columns-gap"></i>
                 <h3>Módulos de revisión y evaluación</h3>
             </div>
-            <div class="horizontal">
+            <div class="fila">
                 <a href="../docente/modulos/revision-propuesta.php">
                     <div class="seleccion">
                         <div>
@@ -137,7 +137,7 @@ include("../../controller/PublicarAnuncio.php");
                                                                                 date_default_timezone_set('America/Bogota');
                                                                                 $fecha = date("Y-m-d H:i:s");
                                                                                 echo $fecha; ?>">
-                        <button type="submit" class="guardar btn btn-primary" name="submit" id="btn_publicar">Publicar</button>
+                        <button type="submit" class="guardar" name="submit" id="btn_publicar">Publicar</button>
                     </form>
                 </div>
                 <form action="../../controller/EliminarAnuncio.php" method="POST">
@@ -148,7 +148,13 @@ include("../../controller/PublicarAnuncio.php");
 
                     foreach ($getA as $key) {
                     ?>
-                        <div class="grid">
+                        <div class="card_layout">
+                            <button class="drop-menu" type="button" data-bs-toggle="dropdown" aria-expanded="false"">
+                                <i class=" bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><button class="dropdown-item delete" href="#"><i class="bi bi-trash-fill"></i> Eliminar</button></li>
+                            </ul>
                             <input hidden type="text" name="id" value="<?php echo $key['id'] ?>">
                             <div class="e1"><img src="../../files/photos/default.png"></div>
                             <div class="e2"><?php echo $key['nombre_usuario']; ?></div>
@@ -161,7 +167,6 @@ include("../../controller/PublicarAnuncio.php");
                             <div class="e4">
                                 <p><?php echo $key['contenido']; ?></p>
                             </div>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
                         </div>
                     <?php } ?>
                 </form>

@@ -145,7 +145,7 @@ include("../../controller/EditUser.php");
 
             </div>
             <div class="tabs-panel" data-index="1">
-                <table class="tabla-est">
+                <table class="tabla-est table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -192,7 +192,7 @@ include("../../controller/EditUser.php");
                 </table>
             </div>
             <div class="tabs-panel" data-index="2">
-                <table class="tabla-est">
+                <table class="tabla-est table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -238,8 +238,8 @@ include("../../controller/EditUser.php");
                 </table>
             </div>
             <div class="container-button">
+                <a href="agregar-usuario.php" class="add_user"><i class="bi bi-plus-lg"></i> Agregar usuarios</a>
                 <p>Para agregar un usuario, puede hacerlo aquí.</p>
-                <a href="agregar-usuario.php" class="add_user btn btn-success"><i class="bi bi-plus-lg"></i> Agregar usuarios</a>
             </div>
         </div>
     </div>
@@ -247,7 +247,7 @@ include("../../controller/EditUser.php");
 
 
     <!-- Modal component -->
-    <div class="modal fade" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-edit" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="POST">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -288,9 +288,9 @@ include("../../controller/EditUser.php");
                         <label class="lbl-semestre" id="lbl-semestre">Semestre:</label>
                         <input type="number" max="9" min="6" class="semestre form-control" id="semestre" name="semestre" value="">
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" name="modificar" class="editar btn btn-primary">Guardar cambios</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <div class="edit-buttons">
+                        <button type="submit" name="modificar" class="save">Guardar cambios</button>
+                        <button type="button" class="cancel" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -303,23 +303,28 @@ include("../../controller/EditUser.php");
     <?php
     include("../../controller/DeleteUser.php");
     ?>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade modal-delete" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form method="POST">
                     <div class="modal-body">
-                        ¿Está segur@ de eliminar este usuario?
-                        <input name="del_id" type="text" class="id_del" value="">
-                        <input name="del_user" type="text" class="user_del" value="">
-                        <input name="del_role" type="text" class="role_u" value="">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary" name="deleteU">Confirmar</button>
+                        <div class="confirmación">
+                            <p class="delete-title">Eliminar usuario</p>
+                            <p class="nombre_user"></p>
+                            <p>¿Está seguro de realizar esta acción?</p>
+
+                            <input name="del_id" type="hidden" class="id_del" value="">
+                            <input name="del_user" type="hidden" class="user_del" value="">
+                            <input name="del_role" type="hidden" class="role_u" value="">
+                        </div>
+
+                        <div class="actions">
+                            <button type="button" class="cancel" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="delete" name="deleteU">Confirmar</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -372,6 +377,7 @@ include("../../controller/EditUser.php");
             $('.id_del').val(datos[0]);
             $('.user_del').val(datos[9]);
             $('.role_u').val(datos[8]);
+            $('.nombre_user').html(datos[1] + " " + datos[2]);
         });
         $('.deleteEvaluator').on('click', function() {
             $tr = $(this).closest('tr');
@@ -381,6 +387,8 @@ include("../../controller/EditUser.php");
             $('.id_del').val(datos[0]);
             $('.user_del').val(datos[8]);
             $('.role_u').val(datos[7]);
+            $('.nombre_user').html(datos[1] + " " + datos[2]);
+
         });
     </script>
     <script>
@@ -403,9 +411,7 @@ include("../../controller/EditUser.php");
             });
         }
     </script>
-    <script>
 
-    </script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/d029bf1c92.js"></script>
 

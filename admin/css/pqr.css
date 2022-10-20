@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+body {
+    font-family: "Maven Pro", sans-serif;
+    background: rgb(245, 245, 245);
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+:root {
+    --primary: #0269ad;
+    --hover: #0477c4;
+    --color-detalle: #fee700;
+    --color-detalle-hover: #e4d103;
+}
+
+.full-screen {
+    padding: 8rem 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    font-weight: normal;
+    text-decoration: none !important;
+    transition: all 0.4s ease;
+}
+
+p {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.8em;
+    margin: 24px 0;
+}
+
+h2 {
+    font-size: 2.4em;
+    font-weight: bold;
+}
+
+.format {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    margin-top: 120px;
+}
+
+.cont-titulo {
+    width: 100%;
+    border: #bebebe 1px solid;
+    background: #fff;
+    border-radius: 5px;
+    vertical-align: middle;
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+}
+
+.cont-titulo h3 {
+    margin: auto 5px;
+    font-size: 20px;
+}
+
+.cont-titulo i {
+    font-size: 20px;
+}
+
+.box {
+    height: 40px;
+    background: white;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: #bebebe 1px solid;
+    margin: 10px 0;
+}
+
+.box>i {
+    font-size: 15px;
+    color: #777;
+}
+
+.box>input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.card_ {
+    border-radius: 7px;
+    background: #fff;
+    padding: 15px;
+    border: #bebebe 1px solid;
+}
+
+.name {
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.asunto {
+    font-size: 25px;
+}
+
+.date {
+    float: right;
+    clear: left;
+}
+
+.adv {
+    border-radius: 7px;
+    background: #fff;
+    border: #bebebe 1px solid;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.adv p {
+    font-size: 17px;
+    margin: 70px auto;
+    color: #910303;
+}

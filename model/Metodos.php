@@ -103,4 +103,16 @@ class Metodos extends DataBase
         $result = $this->con->query("SELECT * FROM proyecto_grado WHERE id = '$id'");
         return $result;
     }
+
+
+    public function getPqr()
+    {
+        $resultado = $this->con->query("SELECT * FROM peticion");
+        $cantidad = $resultado->num_rows;
+        if ($cantidad >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

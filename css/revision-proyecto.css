@@ -186,64 +186,32 @@ select {
     margin: auto;
 }
 
-.ent {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border: none;
+.tabla {
     width: 100%;
     background: #fff;
-    text-align: left;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
 }
 
-.ent thead {
+.tabla thead {
     background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }
 
-.ent tr:nth-child(even) {
-    background: #ddd;
-}
-
-.ent th {
-    padding: 5px 3px;
+.tabla th,
+.tabla td {
     vertical-align: middle;
 }
 
-.ent td {
-    vertical-align: middle;
-    padding: 4px 3px;
-}
-
-.ent .botones_tabla {
-    display: flex;
-}
-
-.ent tr .botones_tabla form {
-    margin-right: auto;
-}
-
-.ent tr td a {
+.tabla tr td a {
     text-decoration: none;
 }
 
-.ent tr td input {
-    background: none;
-    outline: none;
-    border: none;
-}
-
-.ent tr td .btn-nota {
+.tabla tr td .btn-nota {
     background: none;
     color: #1188d8;
     margin-right: 10px;
     cursor: pointer;
-}
-
-.texto_o {
-    display: none;
 }
 
 #radio_d {
@@ -271,13 +239,18 @@ select {
 }
 
 .en {
-    background: #dab201 !important;
+    background: #ecc102 !important;
 }
 
 .APLAZADO {
     background: #a8a8a8 !important;
 }
 
+.btn-go {
+    margin-right: 5px;
+}
+
 .download i {
     font-size: 20px;
+    color: rgb(48, 48, 48);
 }
