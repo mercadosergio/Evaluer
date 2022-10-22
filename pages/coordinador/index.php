@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $sesion = $_SESSION['usuario'];
 
@@ -81,15 +80,21 @@ $userP = mysqli_fetch_array($getProfile);
             <h3>Módulos de coordinación académica</h3>
         </div>
 
-        <div class="opciones_coordinador">
-            <a href="modulos/asignar-asesor.php" class="shadow">
-                <div>
+        <div class="layout">
+            <a href="modulos/gestion-inv.php">
+                <div class="shadow">
+                    <h3>Gestión investigativa</h3>
+                    <img src="../../img/asignar.png" alt="">
+                </div>
+            </a>
+            <a href="modulos/asignar-asesor.php">
+                <div class="shadow">
                     <h3>Asignar asesor</h3>
                     <img src="../../img/asignar.png" alt="">
                 </div>
             </a>
-            <a href="modulos/lista-proyectos.php" class="shadow">
-                <div>
+            <a href="modulos/lista-proyectos.php">
+                <div class="shadow">
                     <h3>Asignar Jurado</h3>
                     <img src="../../img/proyecto-coordinador.png" alt="">
                 </div>

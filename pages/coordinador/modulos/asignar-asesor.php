@@ -9,6 +9,7 @@ if ($sesion == null || $sesion = '') {
 }
 include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
+include("../../../model/Coordinador.php");
 $usuario = new User();
 $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser();
@@ -41,6 +42,15 @@ $myRole = mysqli_fetch_array($getMyself);
 </head>
 
 <body>
+    <!-- Guardando... -->
+    <!-- <div class="saving">
+        <div class="lds-facebook loader" id="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        Guardando...
+    </div> -->
     <!-- Pantalla de carga -->
     <div id="contenedor_carga">
         <div id="carga"></div>
@@ -85,48 +95,55 @@ $myRole = mysqli_fetch_array($getMyself);
             <input type="search" id="search" placeholder="Search..." />
         </div>
 
-        <table class="tabla_asign shadow">
+        <table class="tabla table table-bordered shadow">
             <thead>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Primer apellido</th>
-                <th>Segundo apellido</th>
-                <th>Documento de identidad</th>
+                <th>Periodo</th>
                 <th>Programa</th>
                 <th>Semestre</th>
-                <th>Acción</th>
+                <th>Titulo de proyecto</th>
+                <th>No. integrantes</th>
+                <th>Integrantes</th>
+                <th>Asesor</th>
             </thead>
-            <tbody id="search">
+            <tbody id="info">
                 <?php
-                $sql = "SELECT * FROM estudiante WHERE programa_id = " . $myRole['programa_id'];
+                include("../../../controller/AsignarDocente.php");
+                $programa = $myRole['programa'];
+                $sql = "SELECT * FROM grupo WHERE programa = '$programa'";
                 $datos = $usuario->listar($sql);
 
                 foreach ($datos as $key) {
                 ?>
                     <tr class="valores">
-                        <form id="form" action="../../../controller/AsignarDocente.php" name="sub" method="POST">
+                        <form id="form" action="" name="sub" method="POST">
                             <td><?php echo $key['id'] ?></td>
-                            <td><?php echo $key['nombre'] ?></td>
-                            <td><?php echo $key['p_apellido'] ?></td>
-                            <td><?php echo $key['s_apellido'] ?></td>
-                            <td><?php echo $key['cedula'] ?></td>
+                            <td><?php echo $key['periodo'] ?></td>
                             <td><?php echo $key['programa'] ?></td>
                             <td><?php echo $key['semestre'] ?></td>
-                            <td hidden><?php echo $key['usuario_id'] ?></td>
-                            <td hidden><?php echo $key['usuario'] ?></td>
+                            <td><?php echo $key['project_name'] ?></td>
+                            <td><?php echo $key['n_integrantes'] ?></td>
+                            <td>
+                                <ul>
+                                    <li><?php echo $key['nombre_integrante1'] ?></li>
+                                    <li><?php echo $key['nombre_integrante2'] ?></li>
+                                    <li><?php echo $key['nombre_integrante3'] ?></li>
+                                </ul>
+                            </td>
                             <td>
 
                                 <select class="form-select" name="id_asesor[]" id="asesor" onchange="this.form.submit()">
                                     <?php
                                     if ($key['asesor_id'] != 0) {
                                     ?>
-                                        <option selected value="<?php echo $key['asesor_id']; ?>"><?php echo $key['asesor']; ?><i class="bi bi-circle-fill"></i></option>
+                                        <option selected value="<?php echo $key['asesor_id']; ?>"><?php echo $key['nombre_asesor']; ?><i class="bi bi-circle-fill"></i></option>
                                     <?php
                                     }
                                     ?>
                                     <option value="0">Seleccione...</option>
                                     <?php
-                                    $sql2 = "SELECT * FROM asesor WHERE programa_id = " . $myRole['programa_id'];
+                                    $programa_grupos = $key['programa'];
+                                    $sql2 = "SELECT * FROM asesor WHERE programa = '$programa_grupos'";
                                     $coach = $funcion->listar($sql2);
 
                                     foreach ($coach as $d) {
@@ -135,7 +152,7 @@ $myRole = mysqli_fetch_array($getMyself);
                                     ?>
                                 </select>
                                 <input hidden type="text" id="id" name="id" value="<?php echo $key['id'] ?>">
-                                <input hidden class="asignar" name="asignar_d" value="Guardar" type="submit">
+                                <input hidden class="asignar" name="asign" value="Guardar" type="submit">
 
                             </td>
                         </form>

@@ -9,12 +9,16 @@ if ($sesion == null || $sesion = '') {
 }
 include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
+include("../../../model/Estudiante.php");
 
 $usuario = new User();
 $getProfile = $usuario->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
-include("../../../model/Estudiante.php");
+$getMyRole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
+
+$estudiante = new Student();
 
 include("../../../controller/DeletePropuesta.php");
 include("../../../controller/SendPropuesta.php");
@@ -31,15 +35,16 @@ date_default_timezone_set("America/Bogota");
     <meta name="author" content="">
 
     <title>Propuesta de grado</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../../css/jquery-ui.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/propuesta.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../css/header.css">
-    <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../font/fontawesome-free-6.1.1-web/css/all.css">
 
     <script src="../../../font/fontawesome-free-6.0.0-web/js/solid.js"></script>
@@ -47,7 +52,6 @@ date_default_timezone_set("America/Bogota");
     <script src="../../../font/fontawesome-free-6.0.0-web/js/brands.js"></script>
     <script src="../../../font/fontawesome-free-6.0.0-web/js/brands.min.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
-
 </head>
 
 <body>
@@ -63,8 +67,7 @@ date_default_timezone_set("America/Bogota");
             <h3>ESTUDIANTE</h3>
             <ul class="navbar-nav mx-auto">
                 <li class="principal">
-                    <a href="../index.php" class="nav-link"><span data-hover="Principal"><label
-                                for="">Principal</label></a>
+                    <a href="../index.php" class="nav-link"><span data-hover="Principal"><label for="">Principal</label></a>
                 </li>
 
                 </li>
@@ -72,11 +75,8 @@ date_default_timezone_set("America/Bogota");
 
             <ul class="">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <img style="width: 40px; height: 40px; border-radius: 50%;"
-                            src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>"
-                            alt="">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
                         <?php echo $userP['nombre']; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -94,120 +94,145 @@ date_default_timezone_set("America/Bogota");
     </nav>
     <div class="format">
 
-        <form action="" method="POST" id="envio">
-            <div class="seccion-informacion">
-                <div class="layoutx2">
-                    <?php
-                    $res = new Metodos();
-                    $fecha = date("Y-m-d H:i:s");
-                    $getTime = $res->restrictPropuesta();
-                    ?>
+        <div class="envio-f">
+            <form action="" method="POST" id="envio">
+                <div class="seccion-informacion">
+                    <div class="layoutx2">
+                        <?php
+                        $res = new Metodos();
+                        $fecha = date("Y-m-d H:i:s");
+                        $getTime = $res->restrictPropuesta();
+                        ?>
 
-                    <input type="hidden" name="fecha" value="<?php echo $fecha; ?>">
-                    <div class="cabecera">
-                        <div class="subtitulo">
-                            <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
+                        <input type="hidden" name="fecha" value="<?php echo $fecha; ?>">
+                        <div class="cabecera">
+                            <div class="subtitulo">
+                                <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
+                            </div>
+                            <p class="info">
+                                Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos
+                                para registrar su idea investigativa.
+                            </p>
                         </div>
-                        <p class="info">
-                            Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos
-                            para registrar su idea investigativa.
-                        </p>
-                    </div>
 
-                    <div class="titulo">
-                        <label class="lbl-titulo">Título del proyecto:</label>
-                        <div id="contenedorInput">
-                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text"
-                                class="campotexto" name="titulo">
-                            <i class="fa-solid fa-font"></i>
+                        <div class="titulo">
+                            <label class="lbl-titulo">Título del proyecto:</label>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
+                                <i class="fa-solid fa-font"></i>
+                            </div>
+                        </div>
+
+                        <div class="linea">
+                            <label class="lbl-linea">Linea de investigación:</label>
+                            <div id="contenedorInput">
+                                <select <?php echo (time() < $getTime) ? "disabled" : ''; ?> name="linea">
+                                    <option selected value="123">Seleccione...</option>
+                                    <?php
+                                    $programa = $userE['programa'];
+                                    $getLine = $res->listar("SELECT * FROM linea_investigacion WHERE programa = '$programa'");
+                                    foreach ($getLine as $lista) {
+                                    ?>
+                                        <option value="<?php echo $lista['sublinea']; ?>"><?php echo $lista['linea'] . " - " . $lista['sublinea']; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                        </div>
+
+                        <div class="asesor">
+                            <label class="lbl-asesor">Nombre del asesor:</label>
+                            <?php
+                            $myself = $userE['nombre'] . " " . $userE['p_apellido'];
+                            $group = $estudiante->getMyGroup($myself);
+                            $valor = mysqli_fetch_array($group);
+                            ?>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" readonly id="disable" value="<?php echo $valor['nombre_asesor'] ?>" class="campotexto" name="tutor">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                        </div>
+
+                        <div class="lider">
+                            <label class="lbl-lider">Nombre completo del lider:</label>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </div>
+                        </div>
+
+                        <div class="programa">
+                            <label class="lbl-programa">Programa:</label>
+                            <div id="contenedorInput">
+                                <select class="" name="id_programa[]">
+                                    <option selected value="<?php echo $valor['programa'] ?>"><?php echo $valor['programa'] ?></option>
+                                </select>
+                                <i class="fa-solid fa-list-ol"></i>
+                            </div>
+                        </div>
+                        <div class="semestre">
+                            <label class="lbl-semsetre">Semestre:</label>
+                            <div id="contenedorInput">
+                                <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $valor['semestre']; ?>">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                        </div>
+                        <div class="descripcion">
+                            <label>Descripción:</label>
+                            <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
+                            <i class="fa-solid fa-rectangle-list"></i>
                         </div>
                     </div>
-
-                    <div class="linea">
-                        <label class="lbl-linea">Linea de investigación:</label>
+                </div>
+                <div class="miembros">
+                    <form id="formSearch" action="" method="post" autocomplete="off">
+                        <h3><i class="bi bi-people-fill"></i> Equipo</h3>
+                        <label>Número de integrantes:</label>
                         <div id="contenedorInput">
-                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text"
-                                class="campotexto" name="linea">
-                            <i class="fa-solid fa-diagram-project"></i>
-                        </div>
-                    </div>
-
-                    <div class="asesor">
-                        <label class="lbl-asesor">Nombre del asesor:</label>
-                        <div id="contenedorInput">
-                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text"
-                                class="campotexto" name="tutor">
-                            <i class="fa-solid fa-user-tie"></i>
-                        </div>
-                    </div>
-
-                    <div class="lider">
-                        <label class="lbl-lider">Nombre del lider:</label>
-                        <div id="contenedorInput">
-                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text"
-                                class="campotexto" name="lider">
-                            <i class="fa-solid fa-user-pen"></i>
-                        </div>
-                    </div>
-
-                    <div class="programa">
-                        <label class="lbl-programa">Programa:</label>
-                        <div id="contenedorInput">
-                            <select class="" name="id_programa[]">
-                                <?php
-                                $buscar_programa = "SELECT programa,programa_id,semestre FROM estudiante WHERE usuario =" . $_SESSION['usuario'];
-                                $datos = $res->listar($buscar_programa);
-
-                                foreach ($datos as $p_selected) {
-                                    echo '<option selected value="' . $p_selected['programa_id'] . '">' . $p_selected['programa'] . '</option>';
-                                }
-                                ?>
+                            <select id="listaIntegrantes" name="numIntegrantes[]">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
-                            <i class="fa-solid fa-list-ol"></i>
+                            <i class="fa-solid fa-users"></i>
                         </div>
-                    </div>
-                    <div class="semestre">
-                        <label class="lbl-semsetre">Semestre:</label>
-                        <div id="contenedorInput">
-                            <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable"
-                                name="semestre" value="<?php echo $p_selected['semestre']; ?>">
-                            <i class="fa-solid fa-layer-group"></i>
+                        <label>Integrante #1:</label>
+                        <div class="component-miembro">
+                            <?php
+                            $array = array();
+                            $result = $usuario->listar("SELECT * FROM estudiante");
+                            if ($result) {
+                                foreach ($result as $val) {
+                                    array_push($array, $val['nombre']);
+                                }
+                            }
+                            ?>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="dni_int1" name="dni_int1" placeholder="Digite el documento de identidad del integrante #1">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </div>
+                            <label class="sub">Nombres:</label>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="nombres_miembro1" name="nombres_miembro1">
+                                <i class="fa-solid fa-user-pen"></i>
+                                <ul style="background: red; position: absolute;" id="lista"></ul>
+                            </div>
+                            <label class="sub">Apellidos:</label>
+                            <div id="contenedorInput">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="apellidos_miembro1" name="apellidos_miembro1">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="descripcion">
-                        <label>Descripción:</label>
-                        <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6"
-                            name="description"></textarea>
-                        <i class="fa-solid fa-rectangle-list"></i>
-                    </div>
+                        <div id="interacion"></div>
+                    </form>
                 </div>
-            </div>
-            <div class="miembros">
-                <h3><i class="bi bi-people-fill"></i> Equipo</h3>
-                <label>Número de integrantes:</label>
-                <div id="contenedorInput">
-                    <select id="listaIntegrantes" name="numIntegrantes[]">
-                        <option selected value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <label>Nombre del integrante #1:</label>
-                <div id="contenedorInput">
-                    <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto"
-                        name="miembro1">
-                    <i class="fa-solid fa-user-pen"></i>
-                </div>
-                <div id="interacion"></div>
-            </div>
 
-            <div class="contenedor-btn">
-                <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
-                <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send"
-                    class="btn-enviar mb-4">Enviar</button>
-            </div>
-        </form>
+                <div class="contenedor-btn">
+                    <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
+                    <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
+                </div>
+            </form>
+        </div>
 
         <form method="GET">
             <div class="details">
@@ -219,73 +244,160 @@ date_default_timezone_set("America/Bogota");
                 if ($prop >= 1) {
                     if (time() < $getTime) {
                 ?>
-                <div class="noti">
-                    <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> Su propuesta ha sido enviada
-                    </div>
-                </div>
-                <?php
+                        <div class="noti">
+                            <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> Su propuesta ha sido enviada
+                            </div>
+                        </div>
+                    <?php
                     }
                     foreach ($prop as $propuesta_state) {
                     ?>
-                <div class="notif">
-                    <form method="POST">
-                        <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
-                        <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
-                        <div class="action-edit">
-                            <a href=""><i class="edit fas fa-edit"></i></a>
+                        <div class="notif">
+                            <form method="POST">
+                                <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
+                                <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
+                                <div class="action-edit">
+                                    <a href=""><i class="edit fas fa-edit"></i></a>
+                                </div>
+                                <div class="action-delete">
+                                    <button type="submit" name="del"><i class="trash fas fa-trash-alt"></i></button>
+                                </div>
+                                <div>
+                                    <p class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">
+                                        Estado: <?php echo $propuesta_state['estado']; ?></p>
+                                </div>
+                            </form>
                         </div>
-                        <div class="action-delete">
-                            <button type="submit" name="del"><i class="trash fas fa-trash-alt"></i></button>
-                        </div>
-                        <div>
-                            <p
-                                class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">
-                                Estado: <?php echo $propuesta_state['estado']; ?></p>
-                        </div>
-                    </form>
-                </div>
-                <?php
+                    <?php
                     }
                 } else {
                     ?>
-                <div class="nothing">
-                    <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> No hay notificaciones por el
-                        momento</div>
-                </div>
+                    <div class="nothing">
+                        <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> No hay notificaciones por el
+                            momento</div>
+                    </div>
                 <?php
                 }
                 ?>
             </div>
         </form>
     </div>
-    <script src="../../../js/jquery-3.3.1.min.js"></script>
+
 
     <script type="text/javascript">
-    $(document).ready(function() {
-        // var second_select = document.getElementById('second-select').value;
-        // $('#listaIntegrantes').val(1);
-        recargarLista();
-
-        $('#listaIntegrantes').change(function() {
+        $(document).ready(function() {
+            // var second_select = document.getElementById('second-select').value;
+            // $('#listaIntegrantes').val(1);
             recargarLista();
-        });
-    })
+
+            $('#listaIntegrantes').change(function() {
+                recargarLista();
+            });
+        })
     </script>
     <script type="text/javascript">
-    function recargarLista() {
-        $.ajax({
-            type: "POST",
-            url: "../../../utilities/datosInt.php",
-            data: "numero=" + $('#listaIntegrantes').val(),
-            success: function(r) {
-                $('#interacion').html(r);
-            }
+        function recargarLista() {
+            $.ajax({
+                type: "POST",
+                url: "../../../utilities/datosInt.php",
+                data: "numero=" + $('#listaIntegrantes').val(),
+                success: function(r) {
+                    $('#interacion').html(r);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        document.getElementById("dni_int1").onchange = function() {
+            alerta()
+        };
+
+        function alerta() {
+            // Creando el objeto para hacer el request
+            var request = new XMLHttpRequest();
+            request.responseType = 'json';
+
+            // Objeto PHP que consultaremos
+            request.open("POST", "../../../controller/ObtenerEstudiante.php");
+
+            // Definiendo el listener
+            request.onreadystatechange = function() {
+                // Revision si fue completada la peticion y si fue exitosa
+                if (this.readyState === 4 && this.status === 200) {
+                    // Ingresando la respuesta obtenida del PHP
+                    document.getElementById("nombres_miembro1").value = this.response.nombres_miembro1;
+                    document.getElementById("apellidos_miembro1").value = this.response.apellidos_miembro1;
+                }
+            };
+
+            // Recogiendo la data del HTML
+            var myForm = document.getElementById("formSearch");
+            var formData = new FormData(myForm);
+
+            // Enviando la data al PHP
+            request.send(formData);
+        }
+    </script>
+    <script>
+        // document.getElementById("nombres_miembro1").addEventListener("keyup", getNombre)
+
+        // function getNombre() {
+
+        //     let inputCP = document.getElementById("nombres_miembro1").value
+        //     let lista = document.getElementById("lista")
+
+        //     if (inputCP.length > 0) {
+
+        //         let url = "getNombre.php"
+        //         let formData = new FormData()
+        //         formData.append("nombres_miembro1", inputCP)
+
+        //         fetch(url, {
+        //                 method: "POST",
+        //                 body: formData,
+        //                 mode: "cors" //Default cors, no-cors, same-origin
+        //             }).then(response => response.json())
+        //             .then(data => {
+        //                 lista.style.display = 'block'
+        //                 lista.innerHTML = data
+        //             })
+        //             .catch(err => console.log(err))
+        //     } else {
+        //         lista.style.display = 'none'
+        //     }
+        // }
+
+        // function mostrar(cp) {
+        //     lista.style.display = 'none'
+        //     alert("CP: " + cp)
+        // }
+    </script>
+    <script>
+        $(document).ready(function() {
+            var items = <?= json_encode($array) ?>
+
+            $("#nombres_miembro1").autocomplete({
+                source: items,
+                select: function(event, item) {
+                    var params = {
+                        equipo: item.item.value
+                    };
+                    $.get("getNombre.php", params, function(response) {
+                        var json = JSON.parse(response);
+                        if (json.status == 200) {
+                            $("#apellidos_miembro1").val(json.nombre);
+                            // $("#avatar").attr("src", json.icono);
+                        } else {
+
+                        }
+                    }); // ajax
+                }
+            });
         });
-    }
     </script>
     <script src="../../../utilities/loading/load.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
 </body>
 

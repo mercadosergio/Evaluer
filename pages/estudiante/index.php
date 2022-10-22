@@ -143,16 +143,20 @@ date_default_timezone_set('America/Bogota');
                     <h3>Módulos del curso</h3>
                 </div>
 
-                <div class="container">
+                <div class="layout">
+                    <a href="../../pages/estudiante/modulos/team.php">
+                        <div class="enlace">
+                            <img src="../../img/propuesta-e.png" alt="">
+                            <p>Inscribir grupo</p>
+                        </div>
+                    </a>
                     <a href="../../pages/estudiante/modulos/propuesta.php">
                         <div class="enlace">
                             <img src="../../img/propuesta-e.png" alt="">
                             <p>Propuesta de grado</p>
                         </div>
                     </a>
-                </div>
-                <div class="container">
-                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'desahilitar' : '' ?>">
+                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
                             if ($findP == false) {
@@ -163,27 +167,22 @@ date_default_timezone_set('America/Bogota');
                             <p>Anteproyecto</p>
                         </div>
                     </a>
+                    <?php
+                    $myProfileStudent = $usuario->getStudentProfile();
+                    $estP = mysqli_fetch_array($myProfileStudent);
+                    ?>
+                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($findA == false) ? 'deshabilitar' : '' ?>">
+                        <div class="enlace">
+                            <?php
+                            if ($findP == false && $findA == false) {
+                                echo '<div class="salto"></div>';
+                            }
+                            ?>
+                            <img src="../../img/proyectof.png" alt="">
+                            <p>Proyecto de grado</p>
+                        </div>
+                    </a>
                 </div>
-                <?php
-
-                $myProfileStudent = $usuario->getStudentProfile();
-                $estP = mysqli_fetch_array($myProfileStudent);
-                if ($estP['semestre'] == 9) {
-                ?>
-                    <div class="container">
-                        <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($findA == false) ? 'desahilitar' : '' ?>">
-                            <div class="enlace">
-                                <?php
-                                if ($findA == false) {
-                                    echo '<div class="salto"></div>';
-                                }
-                                ?>
-                                <img src="../../img/proyectof.png" alt="">
-                                <p>Proyecto de grado</p>
-                            </div>
-                        </a>
-                    </div>
-                <?php } ?>
             </div>
 
             <div class="treeview">

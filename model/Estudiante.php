@@ -110,4 +110,17 @@ class Student extends DataBase
             return false;
         }
     }
+
+    public function getMyGroup($myself)
+    {
+        $resultado = $this->con->query("SELECT * FROM grupo WHERE nombre_integrante1 = '$myself' OR nombre_integrante2 = '$myself' OR nombre_integrante3 = '$myself'");
+        return $resultado;
+    }
+
+    public function getByDi($nombre)
+    {
+        // $resultado = $this->con->query("SELECT * FROM estudiante WHERE cedula = '$cedula'");
+        $resultado = $this->con->query("SELECT * FROM estudiante WHERE nombre LIKE '%{$nombre}%'");
+        return $resultado;
+    }
 }

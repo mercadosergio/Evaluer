@@ -159,7 +159,6 @@ display: block;
 }
 
 .format label {
-    margin: 0;
     padding: 0;
     font-size: 19px;
     color: black;
@@ -351,6 +350,21 @@ select option:hover {
     padding: 50px 0;
 }
 
+.component-miembro {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.component-miembro label {
+    margin-right: 20px;
+}
+
+.component-miembro #contenedorInput {
+    margin-right: 60px;
+    width: 100%;
+}
+
 
 /* Desktop $ laptop L */
 
@@ -360,9 +374,11 @@ select option:hover {
         padding-top: 120px;
     }
     .format {
-        display: grid;
-        grid-template-columns: 75% 25%;
-        gap: 20px;
+        display: flex;
+    }
+    .envio-f {
+        width: 90%;
+        margin-right: 20px;
     }
     .layoutx2 {
         box-sizing: border-box;

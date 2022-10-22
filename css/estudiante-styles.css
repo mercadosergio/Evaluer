@@ -49,13 +49,11 @@
     }
     
     h1 {
-        color: #212121;
         font-size: 2.8em;
         margin: 24px 0;
     }
     
     h2 {
-        color: #353535;
         font-size: 2.4em;
         font-weight: bold;
     }
@@ -120,7 +118,7 @@
         display: flex;
     }
     
-    .desahilitar {
+    .deshabilitar {
         cursor: not-allowed;
         pointer-events: none;
     }
@@ -259,21 +257,27 @@
         font-size: 20px;
     }
     
+    .layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
     .enlace {
         background: var(--color-detalle);
         box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s;
         cursor: pointer;
         width: 100%;
-        margin: auto;
-        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
     }
     
     .enlace p {
         font-family: "Maven Pro", sans-serif;
         background: var(--primary);
         color: var(--color-detalle);
-        border-radius: 10px 0 0 10px;
+        width: 100%;
     }
     
     .format-distance {
@@ -323,27 +327,15 @@
         }
         .student-module .enlace {
             border-radius: 5px;
-            padding: 10px;
-            padding-left: 5px;
-            margin: 20px;
-            height: 150px;
-            line-height: 150px;
-            padding-left: 30px;
-            display: flex;
+            padding: 30px 0;
             align-items: center;
-            padding-right: 0;
         }
         .student-module .enlace>p {
-            font-size: 27px;
+            text-align: center;
+            font-size: 22px;
             cursor: pointer;
-            margin-right: 20px;
-            margin-right: auto;
+            margin: 0;
             width: 100%;
-            padding-left: 10px;
-        }
-        .student-module .enlace img {
-            margin-right: 20px;
-            margin-left: 5px;
         }
         .treeview {
             margin-top: 20px;

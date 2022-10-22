@@ -12,7 +12,8 @@ if (isset($_POST['enviar'])) {
     $descripcion = $_POST['description']; // TEXTAREA
     $fecha = $_POST['fecha'];
 
-    $miembro1 = $_POST['miembro1'];
+    $nombre_miembro1 = $_POST['nombres_miembro1'];
+    $apellido_miembro1 = $_POST['apellidos_miembro1'];
 
     $programa_id = $_POST['id_programa'];
 
@@ -42,19 +43,22 @@ if (isset($_POST['enviar'])) {
                         $programa_id[$i],
                         $semestre,
                         $descripcion,
-                        $miembro1,
+                        $nombre_miembro1 + ' ' + $apellido_miembro1,
                         '',
                         '',
                         $fecha,
                         $_SESSION['usuario']
                     );
                 } else if ($num_integrantes[$j] == 2) {
-                    $miembro2 = $_POST['miembro2'];
-                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $miembro1, $miembro2, '', $fecha, $_SESSION['usuario']);
+                    $nombre_miembro2 = $_POST['nombres_miembro2'];
+                    $apellido_miembro2 = $_POST['apellidos_miembro2'];
+                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, '', $fecha, $_SESSION['usuario']);
                 } else {
-                    $miembro2 = $_POST['miembro2'];
-                    $miembro3 = $_POST['miembro3'];
-                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $miembro1, $miembro2, $miembro3, $fecha, $_SESSION['usuario']);
+                    $nombre_miembro2 = $_POST['nombres_miembro2'];
+                    $apellido_miembro2 = $_POST['apellidos_miembro2'];
+                    $nombre_miembro3 = $_POST['nombres_miembro3'];
+                    $apellido_miembro3 = $_POST['apellidos_miembro3'];
+                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, $nombre_miembro3 + ' ' + $apellido_miembro3, $fecha, $_SESSION['usuario']);
                 }
             }
         }

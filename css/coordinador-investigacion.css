@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+body {
+    font-family: "Maven Pro", sans-serif;
+    background: rgb(245, 245, 245);
+}
+
+:root {
+    --primary: #0269ad;
+    --hover: #0477c4;
+    --color-detalle: #fee700;
+    --color-detalle-hover: #e4d103;
+}
+
+.full-screen {
+    padding: 8rem 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    font-weight: normal;
+    text-decoration: none !important;
+    transition: all 0.4s ease;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: #5b5b5b;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: -1px;
+}
+
+h1 {
+    font-size: 2.8em;
+    margin: 24px 0;
+}
+
+h2 {
+    font-size: 2.4em;
+    font-weight: bold;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+.copyright-text {
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+}
+
+.division {
+    height: 100%;
+    background: white;
+    display: flex;
+}
+
+.navbar-nav li {
+    border-top: var(--primary) 3px solid;
+    margin-right: 20px;
+}
+
+.nav-link span {
+    color: white;
+    font-size: 20px;
+    width: auto;
+}
+
+.format {
+    margin: 120px 0;
+}
+
+.cont-titulo {
+    width: 70%;
+    border: #bebebe 1px solid;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    padding: 10px 15px;
+    margin: auto;
+}
+
+.cont-titulo h3 {
+    margin: auto 5px;
+    font-size: 20px;
+}
+
+.cont-titulo i {
+    font-size: 20px;
+}
+
+.componente {
+    border: #bebebe 1px solid;
+    background: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 20px auto;
+    padding: 10px 30px;
+}
+
+.componente div {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 20px 0;
+}
+
+.componente div p {
+    margin: auto;
+    margin-left: 0;
+}
+
+.componente div input,
+.componente div textarea {
+    float: right;
+    margin: auto 0;
+    width: 70%;
+    outline: none;
+    border: var(--primary) solid 1px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.action {
+    display: flex;
+    align-items: center;
+}
+
+.action button {
+    margin: auto;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 3px;
+    background: var(--primary);
+    color: #fff;
+}

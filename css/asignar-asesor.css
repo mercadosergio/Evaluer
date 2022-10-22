@@ -31,16 +31,10 @@ a {
     transition: all 0.4s ease;
 }
 
-
-/* a:hover {
-    color: #ffffff !important;
-} */
-
 p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
-    color: #5b5b5b;
 }
 
 h1,
@@ -122,6 +116,10 @@ strong {
     margin: 0px;
 }
 
+ol {
+    margin: auto 0;
+}
+
 
 /* END MENU DESPLEGABLE.......................................... */
 
@@ -184,36 +182,32 @@ strong {
     padding-left: 10px;
 }
 
-.tabla_asign {
+.tabla {
     margin: auto;
     margin-bottom: 30px;
-    border: none;
     width: 100%;
     background: #fff;
 }
 
-.tabla_asign thead {
+.tabla thead {
     background: var(--primary);
     color: #fff;
     border-radius: 10px 10px 0 0;
 }
 
-.tabla_asign tr:nth-child(even) {
-    background: #ddd;
-}
-
-.tabla_asign tr {
+.tabla tr {
     border-radius: 10px;
 }
 
-.tabla_asign th,
-.tabla_asign td {
-    padding: 7px;
-    padding-left: 8px;
+.tabla th,
+.tabla td {
+    /* padding: 7px;
+    padding-left: 8px; */
     font-size: 16px;
+    vertical-align: middle;
 }
 
-.tabla_asign tr td select {
+.tabla tr td select {
     padding: 3px;
     outline: none;
     padding: 3px;
@@ -224,11 +218,11 @@ select option {
     border: var(--primary) 1px solid;
 }
 
-.tabla_asign .botones_tabla {
+.tabla .botones_tabla {
     display: flex;
 }
 
-.tabla_asign .asignar {
+.tabla .asignar {
     background: #00aa09;
     padding: 5px;
     color: #fff;
@@ -238,4 +232,64 @@ select option {
 
 .bi-circle-fill {
     color: #00aa09;
+}
+
+
+/* Guardando... */
+
+.saving {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.589);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 40px;
+}
+
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 8px;
+        height: 64px;
+    }
+    50%,
+    100% {
+        top: 24px;
+        height: 32px;
+    }
 }

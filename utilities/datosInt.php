@@ -13,10 +13,18 @@ $agregar = $num_integrantes - 1;
 
 for ($i = 0; $i < $agregar; $i++) {
 ?>
-    <label>Nombre del integrante #<?php echo $i + 2 ?>:</label>
-    <div id="contenedorInput">
-        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="miembro<?php echo  $i + 2 ?>">
-        <i class="fa-solid fa-user-pen"></i>
+    <label>Integrante #<?php echo $i + 2 ?>:</label>
+    <div class="component-miembro">
+        <label class="sub">Nombres:</label>
+        <div id="contenedorInput">
+            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="nombres_miembro<?php echo  $i + 2 ?>">
+            <i class="fa-solid fa-user-pen"></i>
+        </div>
+        <label class="sub">Apellidos:</label>
+        <div id="contenedorInput">
+            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="apellidos_miembro<?php echo  $i + 2 ?>">
+            <i class="fa-solid fa-user-pen"></i>
+        </div>
     </div>
 <?php
 }

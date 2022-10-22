@@ -5,6 +5,10 @@
     --color-detalle-hover: #ffef42;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .navbar h3 {
     margin-bottom: 0 !important;
 }
