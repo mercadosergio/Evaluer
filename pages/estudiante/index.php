@@ -112,7 +112,7 @@ date_default_timezone_set('America/Bogota');
         <div class="secciones" id="body">
             <div class="anouncement_card">
                 <div>
-                    <span><i class="bi bi-info-circle-fill"></i> Anuncios y detalles</span>
+                    <span><i class="bi bi-info-circle-fill"></i> Actividades del curso</span>
                 </div>
                 <?php
                 $recurso = new Metodos();
@@ -147,15 +147,27 @@ date_default_timezone_set('America/Bogota');
                     <a href="../../pages/estudiante/modulos/team.php">
                         <div class="enlace">
                             <img src="../../img/propuesta-e.png" alt="">
-                            <p>Inscribir grupo</p>
+                            <p>Información de grupo</p>
                         </div>
                     </a>
-                    <a href="../../pages/estudiante/modulos/propuesta.php">
+                    <?php
+                    $group = $est->GroupByDi($userE['cedula']);
+                    ?>
+                    <a href="../../pages/estudiante/modulos/propuesta.php" class="<?php echo ($group->num_rows <= 0) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
+                            <?php
+                            if ($group->num_rows <= 0) {
+                                echo '<div class="salto"></div>';
+                            }
+                            ?>
                             <img src="../../img/propuesta-e.png" alt="">
                             <p>Propuesta de grado</p>
                         </div>
                     </a>
+                    <?php
+
+
+                    ?>
                     <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php

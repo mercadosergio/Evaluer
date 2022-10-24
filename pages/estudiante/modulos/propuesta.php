@@ -39,6 +39,7 @@ date_default_timezone_set("America/Bogota");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/jquery-1.12.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
     <link rel="stylesheet" href="../../../css/jquery-ui.css">
     <!-- MAIN STYLE -->
@@ -110,7 +111,8 @@ date_default_timezone_set("America/Bogota");
                                 <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
                             </div>
                             <p class="info">
-                                Diligencie la información correspondiente a su propuesta de grado, con los datos requeridos
+                                Diligencie la información correspondiente a su propuesta de grado, con los datos
+                                requeridos
                                 para registrar su idea investigativa.
                             </p>
                         </div>
@@ -133,7 +135,8 @@ date_default_timezone_set("America/Bogota");
                                     $getLine = $res->listar("SELECT * FROM linea_investigacion WHERE programa = '$programa'");
                                     foreach ($getLine as $lista) {
                                     ?>
-                                        <option value="<?php echo $lista['sublinea']; ?>"><?php echo $lista['linea'] . " - " . $lista['sublinea']; ?></option>
+                                        <option value="<?php echo $lista['sublinea']; ?>">
+                                            <?php echo $lista['linea'] . " - " . $lista['sublinea']; ?></option>
                                     <?php } ?>
                                 </select>
                                 <i class="fa-solid fa-diagram-project"></i>
@@ -165,7 +168,8 @@ date_default_timezone_set("America/Bogota");
                             <label class="lbl-programa">Programa:</label>
                             <div id="contenedorInput">
                                 <select class="" name="id_programa[]">
-                                    <option selected value="<?php echo $valor['programa'] ?>"><?php echo $valor['programa'] ?></option>
+                                    <option selected value="<?php echo $valor['programa'] ?>">
+                                        <?php echo $valor['programa'] ?></option>
                                 </select>
                                 <i class="fa-solid fa-list-ol"></i>
                             </div>
@@ -185,46 +189,53 @@ date_default_timezone_set("America/Bogota");
                     </div>
                 </div>
                 <div class="miembros">
-                    <form id="formSearch" action="" method="post" autocomplete="off">
-                        <h3><i class="bi bi-people-fill"></i> Equipo</h3>
-                        <label>Número de integrantes:</label>
-                        <div id="contenedorInput">
-                            <select id="listaIntegrantes" name="numIntegrantes[]">
-                                <option selected value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <label>Integrante #1:</label>
-                        <div class="component-miembro">
-                            <?php
-                            $array = array();
-                            $result = $usuario->listar("SELECT * FROM estudiante");
-                            if ($result) {
-                                foreach ($result as $val) {
-                                    array_push($array, $val['nombre']);
-                                }
+                    <!-- <form id="formSearch" action="" method="POST" autocomplete="off"> -->
+                    <h3><i class="bi bi-people-fill"></i> Equipo</h3>
+                    <label>Número de integrantes:</label>
+                    <div id="contenedorInput">
+                        <select id="listaIntegrantes" name="numIntegrantes[]">
+                            <option selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <p>Digite y seleccione el número de documento de identidad del estudiante que desea añadir a su propuesta como integrante</p>
+                    <label>Integrante #1:</label>
+                    <div class="component-miembro">
+                        <?php
+                        $array = array();
+                        $result = $usuario->listar("SELECT * FROM estudiante WHERE programa = '$programa' AND semestre=" . $userE['semestre']);
+                        if ($result) {
+                            foreach ($result as $val) {
+                                array_push($array, $val['cedula'] . " - " . $val['nombre'] . " " . $val['p_apellido']);
                             }
-                            ?>
+                        }
+                        ?>
+                        <div>
+                            <label class="sub">Documento de identidad:</label>
                             <div id="contenedorInput">
-                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="dni_int1" name="dni_int1" placeholder="Digite el documento de identidad del integrante #1">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="dni_int1" name="dni_int1">
                                 <i class="fa-solid fa-user-pen"></i>
                             </div>
-                            <label class="sub">Nombres:</label>
+                        </div>
+                        <div>
+                            <label class="sub">Nombre:</label>
                             <div id="contenedorInput">
-                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="nombres_miembro1" name="nombres_miembro1">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" readonly id="nombres_miembro1" name="nombres_miembro1">
                                 <i class="fa-solid fa-user-pen"></i>
-                                <ul style="background: red; position: absolute;" id="lista"></ul>
                             </div>
+                        </div>
+                        <div>
                             <label class="sub">Apellidos:</label>
                             <div id="contenedorInput">
-                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" id="apellidos_miembro1" name="apellidos_miembro1">
+                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" readonly id="apellidos_miembro1" name="apellidos_miembro1">
                                 <i class="fa-solid fa-user-pen"></i>
                             </div>
                         </div>
-                        <div id="interacion"></div>
-                    </form>
+                    </div>
+                    <div id="interacion"></div>
+                    <!-- </form> -->
                 </div>
 
                 <div class="contenedor-btn">
@@ -283,7 +294,6 @@ date_default_timezone_set("America/Bogota");
         </form>
     </div>
 
-
     <script type="text/javascript">
         $(document).ready(function() {
             // var second_select = document.getElementById('second-select').value;
@@ -300,7 +310,7 @@ date_default_timezone_set("America/Bogota");
             $.ajax({
                 type: "POST",
                 url: "../../../utilities/datosInt.php",
-                data: "numero=" + $('#listaIntegrantes').val(),
+                data: "numero=" + $('#listaIntegrantes').val() + "&programa=<?= $programa ?>&semestre=<?= $userE['semestre'] ?>",
                 success: function(r) {
                     $('#interacion').html(r);
                 }
@@ -309,35 +319,35 @@ date_default_timezone_set("America/Bogota");
     </script>
 
     <script>
-        document.getElementById("dni_int1").onchange = function() {
-            alerta()
-        };
+        // document.getElementById("dni_int1").onchange = function() {
+        //     alerta()
+        // };
 
-        function alerta() {
-            // Creando el objeto para hacer el request
-            var request = new XMLHttpRequest();
-            request.responseType = 'json';
+        // function alerta() {
+        //     // Creando el objeto para hacer el request
+        //     var request = new XMLHttpRequest();
+        //     request.responseType = 'json';
 
-            // Objeto PHP que consultaremos
-            request.open("POST", "../../../controller/ObtenerEstudiante.php");
+        //     // Objeto PHP que consultaremos
+        //     request.open("POST", "../../../controller/ObtenerEstudiante.php");
 
-            // Definiendo el listener
-            request.onreadystatechange = function() {
-                // Revision si fue completada la peticion y si fue exitosa
-                if (this.readyState === 4 && this.status === 200) {
-                    // Ingresando la respuesta obtenida del PHP
-                    document.getElementById("nombres_miembro1").value = this.response.nombres_miembro1;
-                    document.getElementById("apellidos_miembro1").value = this.response.apellidos_miembro1;
-                }
-            };
+        //     // Definiendo el listener
+        //     request.onreadystatechange = function() {
+        //         // Revision si fue completada la peticion y si fue exitosa
+        //         if (this.readyState === 4 && this.status === 200) {
+        //             // Ingresando la respuesta obtenida del PHP
+        //             document.getElementById("nombres_miembro1").value = this.response.nombres_miembro1;
+        //             document.getElementById("apellidos_miembro1").value = this.response.apellidos_miembro1;
+        //         }
+        //     };
 
-            // Recogiendo la data del HTML
-            var myForm = document.getElementById("formSearch");
-            var formData = new FormData(myForm);
+        //     // Recogiendo la data del HTML
+        //     var myForm = document.getElementById("formSearch");
+        //     var formData = new FormData(myForm);
 
-            // Enviando la data al PHP
-            request.send(formData);
-        }
+        //     // Enviando la data al PHP
+        //     request.send(formData);
+        // }
     </script>
     <script>
         // document.getElementById("nombres_miembro1").addEventListener("keyup", getNombre)
@@ -377,17 +387,18 @@ date_default_timezone_set("America/Bogota");
         $(document).ready(function() {
             var items = <?= json_encode($array) ?>
 
-            $("#nombres_miembro1").autocomplete({
+            $("#dni_int1").autocomplete({
                 source: items,
                 select: function(event, item) {
+                    console.log(item.item.value);
                     var params = {
-                        equipo: item.item.value
+                        estudiante: item.item.value
                     };
                     $.get("getNombre.php", params, function(response) {
                         var json = JSON.parse(response);
                         if (json.status == 200) {
-                            $("#apellidos_miembro1").val(json.nombre);
-                            // $("#avatar").attr("src", json.icono);
+                            $("#nombres_miembro1").val(json.nombre);
+                            $("#apellidos_miembro1").val(json.p_apellido);
                         } else {
 
                         }

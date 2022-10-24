@@ -261,6 +261,8 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 40px;
+        width: 90%;
+        margin: auto;
     }
     
     .enlace {

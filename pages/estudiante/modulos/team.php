@@ -15,8 +15,11 @@ $getProfile = $usuario->getProfileUser();
 $userP = mysqli_fetch_array($getProfile);
 
 include("../../../model/Estudiante.php");
+$getMyRole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
 
 date_default_timezone_set("America/Bogota");
+include("../../../controller/AsignarTeam.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,8 +31,9 @@ date_default_timezone_set("America/Bogota");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Inscribir equipo</title>
+    <title>Equipo de trabajo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
@@ -37,7 +41,10 @@ date_default_timezone_set("America/Bogota");
     <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../css/header.css">
     <link rel="stylesheet" href="../../../font/fontawesome-free-6.1.1-web/css/all.css">
-
+    <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <script src="../../../js/jquery-1.12.1.min.js"></script>
+    <script src="../../../js/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../../css/jquery-ui.css">
 </head>
 
 <body>
@@ -77,12 +84,156 @@ date_default_timezone_set("America/Bogota");
         </div>
     </nav>
     <div class="format">
-        <div class="contenido">
-            <button>Inscribir mi grupo</button>
+        <form action="" class="form" method="POST">
+            <h3 class="text-center">Equipo de trabajo</h3>
+            <!-- Progress bar -->
+            <div class="progressbar">
+                <div class="progress" id="progress"></div>
+                <div class="progress-step progress-step-active" data-title="Introducción"></div>
+                <div class="progress-step" data-title="Número de integrantes"></div>
+                <div class="progress-step" data-title="Información"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="form-step form-step-active">
+                <div class="content">
+                    <div class="intro">
+                        <img src="../../../img/team1.png" alt="">
+                        Registre su grupo de trabajo para este curso de investigación y proyectos
+                    </div>
+                </div>
+                <div class="">
+                    <a href="#" class="btn btn-next width-50 ml-auto">Siguiente<i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="form-step">
+                <div class="content">
+                    <div class="container-selector">
+                        <label>Número de integrantes:</label>
+                        <div id="contenedorInput" class="selector">
+                            <select id="listaCantidad" name="numIntegrantes[]">
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="btns-group">
+                    <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
+                    <a href="#" class="btn btn-next">Siguiente<i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="form-step">
+                <input type="text" hidden value="<?php echo $userE['programa'] ?>" name="programa">
+                <input type="text" hidden value="<?php echo $userE['semestre'] ?>" name="semestre">
+                <div class="content">
+                    <div id="ciclo"></div>
+                </div>
+                <div class="btns-group">
+                    <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
+                    <button type="submit" class="btn" name="save">Aceptar</button>
+                </div>
+            </div>
+        </form>
+        <div hidden class="contenido">
+            <button id="activate">Inscribir mi grupo</button>
+
+            <div class="formulario" id="formulario">
+                <form action="" method="POST">
+                    <div class="">
+                        <p>Documento de identidad:</p>
+                        <input type="text" name="dni1">
+                    </div>
+                    <div class="">
+                        <p>Documento de identidad:</p>
+                        <input type="text" name="dni1">
+                    </div>
+                    <div class="">
+                        <p>Documento de identidad:</p>
+                        <input type="text" name="dni1">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            reloadList();
+
+            $('#listaCantidad').change(function() {
+                reloadList();
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        function reloadList() {
+            $.ajax({
+                type: "POST",
+                url: "../../../utilities/generarForm.php",
+                data: "numero=" + $('#listaCantidad').val(),
+                success: function(r) {
+                    $('#ciclo').html(r);
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        const prevBtns = document.querySelectorAll(".btn-prev");
+        const nextBtns = document.querySelectorAll(".btn-next");
+        const progress = document.getElementById("progress");
+        const formSteps = document.querySelectorAll(".form-step");
+        const progressSteps = document.querySelectorAll(".progress-step");
+
+        let formStepsNum = 0;
+
+        nextBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                formStepsNum++;
+                updateFormSteps();
+                updateProgressbar();
+            });
+        });
+
+        prevBtns.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                formStepsNum--;
+                updateFormSteps();
+                updateProgressbar();
+            });
+        });
+
+        function updateFormSteps() {
+            formSteps.forEach((formStep) => {
+                formStep.classList.contains("form-step-active") &&
+                    formStep.classList.remove("form-step-active");
+            });
+
+            formSteps[formStepsNum].classList.add("form-step-active");
+        }
+
+        function updateProgressbar() {
+            progressSteps.forEach((progressStep, idx) => {
+                if (idx < formStepsNum + 1) {
+                    progressStep.classList.add("progress-step-active");
+                } else {
+                    progressStep.classList.remove("progress-step-active");
+                }
+            });
+
+            const progressActive = document.querySelectorAll(".progress-step-active");
+
+            progress.style.width =
+                ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+        }
+    </script>
     <script src="../../../font/d029bf1c92.js"></script>
-    <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../utilities/loading/load.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>

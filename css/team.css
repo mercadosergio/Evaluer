@@ -2,8 +2,15 @@
 body {
     font-family: "Maven Pro", sans-serif;
     background-color: whitesmoke;
-    padding-top: 110px;
-    padding-left: 20px;
+    padding-top: 120px;
+    /* display: flex; */
+}
+
+* {
+    font-family: "Maven Pro", sans-serif;
+    margin: 0;
+    padding: 0;
+    outline: none;
 }
 
 :root {
@@ -80,6 +87,10 @@ strong {
     width: auto;
 }
 
+.format {
+    width: 100%;
+}
+
 .cont-titulo {
     width: 80%;
     margin-top: 20px;
@@ -104,6 +115,22 @@ strong {
     display: flex;
 }
 
+.container-selector {
+    width: 30%;
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selector {
+    width: 70%;
+}
+
+.container-selector label {
+    font-size: 25px;
+}
+
 .contenido button {
     border: none;
     margin: 200px auto;
@@ -111,4 +138,267 @@ strong {
     color: #fff;
     background: var(--primary);
     padding: 15px 20px;
+}
+
+.content {
+    height: 34rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.intro {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    font-size: 25px;
+    padding: 30px 0;
+}
+
+.intro img {
+    margin: auto;
+    width: 20%;
+}
+
+#contenedorInput {
+    position: relative;
+}
+
+#contenedorInput input {
+    padding-left: 40px;
+}
+
+#contenedorInput input:focus+i,
+#contenedorInput select:focus+i {
+    color: dodgerblue;
+}
+
+.descripcion textarea:focus+i {
+    color: dodgerblue;
+}
+
+i {
+    color: #aaa;
+    font-size: 22px;
+    padding: 3px 8px;
+}
+
+.campos {
+    position: relative;
+}
+
+#contenedorInput i,
+.campos i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+select {
+    background: none;
+    outline: none;
+    /* font-size: 20px; */
+    width: 120px;
+    text-align: center;
+}
+
+.datos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+#ciclo {
+    width: 100%;
+}
+
+.contenedor-estudiante {
+    margin: 15px 0;
+    border-top: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+
+/* Progress steps */
+
+:root {
+    --primary-color: rgb(11, 78, 179);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* Global Stylings */
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input,
+select {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+/* Progressbar */
+
+.progressbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    counter-reset: step;
+    margin: 2rem 0 4rem;
+    z-index: 1000;
+    width: 80%;
+    margin: auto;
+}
+
+.progressbar::before,
+.progress {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 100%;
+    background-color: #dcdcdc;
+    z-index: -1;
+}
+
+.progress {
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: 0.3s;
+}
+
+.progress-step {
+    width: 2.1875rem;
+    height: 2.1875rem;
+    background-color: #dcdcdc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-step::before {
+    counter-increment: step;
+    content: counter(step);
+}
+
+.progress-step::after {
+    content: attr(data-title);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.progress-step-active {
+    background-color: var(--primary-color);
+    color: #f3f3f3;
+}
+
+
+/* Form */
+
+.form {
+    /* width: clamp(320px, 30%, 430px); */
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.35rem;
+    padding: 1.5rem;
+    background: #fff;
+}
+
+.form-step {
+    display: none;
+    transform-origin: top;
+    animation: animate 0.5s;
+}
+
+.form-step-active {
+    display: block;
+}
+
+.input-group {
+    margin: 2rem 0;
+}
+
+@keyframes animate {
+    from {
+        transform: scale(1, 0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+}
+
+
+/* Button */
+
+.btns-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20rem;
+    margin: 20px 0;
+}
+
+.btn {
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: #f3f3f3;
+    text-align: center;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+    border: none;
+    color: #fff;
+}
+
+.btn i {
+    font-size: 20px;
+}
+
+.btn:hover {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--primary-color);
 }

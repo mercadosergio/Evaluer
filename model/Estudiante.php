@@ -117,10 +117,22 @@ class Student extends DataBase
         return $resultado;
     }
 
-    public function getByDi($nombre)
+    public function getByDi($cedula)
     {
         // $resultado = $this->con->query("SELECT * FROM estudiante WHERE cedula = '$cedula'");
-        $resultado = $this->con->query("SELECT * FROM estudiante WHERE nombre LIKE '%{$nombre}%'");
+        $resultado = $this->con->query("SELECT * FROM estudiante WHERE cedula LIKE '%{$cedula}%'");
         return $resultado;
+    }
+
+    public function GroupByDi($cedula)
+    {
+        $resultado = $this->con->query("SELECT * FROM grupo WHERE di_integrante1 = '$cedula' OR di_integrante2 = '$cedula' OR di_integrante3 = '$cedula'");
+        return $resultado;
+    }
+
+    public function asignarGrupo($integrantes, $cedula1, $cedula2, $cedula3, $name1, $name2, $name3, $programa, $semestre, $periodo)
+    {
+        $this->con->query("INSERT INTO grupo(n_integrantes,di_integrante1, nombre_integrante1,di_integrante2, nombre_integrante2,di_integrante3, nombre_integrante3, programa, semestre,periodo)
+        VALUES ('$integrantes','$cedula1','$name1','$cedula2','$name2','$cedula3','$name3','$programa','$semestre','$periodo')");
     }
 }

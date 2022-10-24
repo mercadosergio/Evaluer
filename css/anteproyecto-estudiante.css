@@ -469,16 +469,21 @@ details:not([open]) .folder {
     display: flex;
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (max-width: 2000px) {
     .format {
         padding: 0 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .format>div {
+        width: 80%;
+        margin: 5px auto;
     }
     .cont-titulo {
-        width: 80%;
-        margin-top: 20px;
+        margin: 5px 0;
     }
     .seccion-anteproyecto {
-        width: 80%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }
@@ -488,9 +493,6 @@ details:not([open]) .folder {
     .button .btn-enviar {
         margin: 20px auto;
         text-align: center;
-    }
-    .historial {
-        width: 80%;
     }
     .historial .detalle_entrega {
         display: flex;

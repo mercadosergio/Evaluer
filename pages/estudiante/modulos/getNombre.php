@@ -3,7 +3,7 @@
 require '../../../model/Estudiante.php';
 $estudiante = new Student();
 
-$campo = $_POST["nombres_miembro1"];
+$campo = $_GET["estudiante"];
 
 $result = $estudiante->getByDi($campo);
 
