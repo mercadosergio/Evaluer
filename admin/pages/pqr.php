@@ -84,7 +84,7 @@ $userP = mysqli_fetch_array($getProfile);
             <input type="search" id="search" placeholder="Buscar..." />
         </div>
         <?php
-        $resultado = $admin->listar("SELECT * FROM peticion");
+        $resultado = $admin->listar("SELECT * FROM pqr");
         foreach ($resultado as $key) {
             $existente = $admin->getPqr();
             if ($existente == true) {

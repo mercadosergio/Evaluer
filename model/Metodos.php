@@ -12,6 +12,7 @@ class Metodos extends DataBase
     public function listar($sql)
     {
         $result = $this->con->query($sql);
+        if($result){}
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
@@ -48,23 +49,23 @@ class Metodos extends DataBase
     }
 
 
-    public function restrictPropuesta()
+    public function restrictPropuesta($id_grupo)
     {
-        $time_propuesta = $this->con->query("SELECT time_propuesta FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
+        $time_propuesta = $this->con->query("SELECT time_propuesta FROM grupo WHERE id= $id_grupo");
         $tiempo = mysqli_fetch_array($time_propuesta);
         return $tiempo['0'];
     }
 
-    public function restrictAnteproyecto()
+    public function restrictAnteproyecto($id_grupo)
     {
-        $time_propuesta = $this->con->query("SELECT time_anteproyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
+        $time_propuesta = $this->con->query("SELECT time_anteproyecto FROM grupo WHERE id= $id_grupo");
         $tiempo = mysqli_fetch_array($time_propuesta);
         return $tiempo['0'];
     }
 
-    public function restrictProyecto()
+    public function restrictProyecto($id_grupo)
     {
-        $time_propuesta = $this->con->query("SELECT time_proyecto FROM estudiante WHERE usuario=" . $_SESSION['usuario']);
+        $time_propuesta = $this->con->query("SELECT time_proyecto FROM grupo WHERE id= $id_grupo");
         $tiempo = mysqli_fetch_array($time_propuesta);
         return $tiempo['0'];
     }
@@ -107,7 +108,7 @@ class Metodos extends DataBase
 
     public function getPqr()
     {
-        $resultado = $this->con->query("SELECT * FROM peticion");
+        $resultado = $this->con->query("SELECT * FROM pqr");
         $cantidad = $resultado->num_rows;
         if ($cantidad >= 1) {
             return true;

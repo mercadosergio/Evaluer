@@ -286,6 +286,14 @@
         float: right;
     }
     
+    .not-found {
+        display: flex;
+        justify-content: center;
+        padding: 50px 0;
+        text-align: center;
+        align-items: center;
+    }
+    
     @media screen and (max-width: 2600px) {
         body>.fondo {
             /* background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png"); */

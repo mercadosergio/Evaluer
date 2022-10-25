@@ -6,6 +6,7 @@ if (isset($_POST['enviar'])) {
     $file_save = $_FILES['archivo']['tmp_name'];
 	$programa_id = $_POST['programa_id'];
 	$programa = $_POST['programa_n'];
+    $id_grupo = $_POST['id_grupo'];
 
     $nombre_final =  date("d-m-y") . "-" . date("H-m-s") . "-" . $nombre;
     $ruta = "../../files/proyectos_de_grado/" . $nombre_final;
@@ -23,7 +24,7 @@ if (isset($_POST['enviar'])) {
 
         if (move_uploaded_file($file_save, '../../files/proyectos_de_grado/' . $nombre_final)) {
             $submit = new Student();
-			$submit->ProyectoFinal($nombre, $ruta, $_SESSION['usuario'], $fecha, $programa_id, $programa);
+			$submit->ProyectoFinal($nombre, $ruta, $_SESSION['usuario'], $fecha, $programa_id, $programa,$id_grupo);
 
             // include("../pages/estudiante/index.php");
 ?>

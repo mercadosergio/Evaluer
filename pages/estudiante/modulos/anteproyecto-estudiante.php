@@ -84,17 +84,19 @@ include '../../../controller/UploadA.php';
     </nav>
 
     <form name="envio_archivo" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id_grupo" value="<?php echo $userE['grupo_id'] ?>">
+
         <div class="format">
             <?php
             $fecha = date("Y-m-d H:i:s");
-            $getTime = $res->restrictAnteproyecto();
+            $getTime = $res->restrictAnteproyecto($userE['grupo_id']);
             ?>
             <div class="form <?php echo (time() < $getTime) ? "non" : ''; ?>">
                 <div class="cont-titulo">
                     <h3>Enviar anteproyecto</h3>
                 </div>
                 <?php
-                $findP = $estudiante->getMyPropuesta();
+                $findP = $estudiante->getMyPropuesta($userE['grupo_id']);
                 if ($findP == false) {
                 ?>
                     <div class="paso_propuesta">

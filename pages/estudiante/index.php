@@ -20,8 +20,11 @@ $userP = mysqli_fetch_array($getProfile);
 $getMyrole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyrole);
 
-$findP = $est->getMyPropuesta();
-$findA = $est->getMyAnteproyecto();
+$myGroup = $est->GroupByDi($userE['cedula']);
+$row = mysqli_fetch_array($myGroup);
+
+$findP = $est->getMyPropuesta($userE['grupo_id']);
+$findA = $est->getMyAnteproyecto($userE['grupo_id']);
 date_default_timezone_set('America/Bogota');
 ?>
 <!doctype html>
@@ -116,23 +119,31 @@ date_default_timezone_set('America/Bogota');
                 </div>
                 <?php
                 $recurso = new Metodos();
-                $sql = "SELECT * FROM post WHERE docente_id =" . $userE['asesor_id'];
-                $rep = $recurso->listar($sql);
-                foreach ($rep as $anuncio) {
+                if ($myGroup->num_rows > 0) {
+                    $sql = "SELECT * FROM post WHERE docente_id =" . $row['asesor_id'];
+                    $rep = $recurso->listar($sql);
+                    foreach ($rep as $anuncio) {
                 ?>
-                    <div>
-                        <p style="color: var(--primary);"><?php echo $anuncio['nombre_usuario']; ?></p>
-                        <p><?php echo $anuncio['contenido']; ?></p>
-                        <p class="format-distance"><?php
-                                                    $fechaActual = date("Y-m-d H:i:s");
-                                                    $originalDate = $anuncio['fecha'];
-                                                    $intervalo = $usuario->calcularIntervalo($originalDate, $fechaActual);
-                                                    echo $intervalo;
-                                                    ?></p>
+                        <div>
+                            <p style="color: var(--primary);"><?php echo $anuncio['nombre_usuario']; ?></p>
+                            <p><?php echo $anuncio['contenido']; ?></p>
+                            <p class="format-distance">
+                                <?php
+                                $fechaActual = date("Y-m-d H:i:s");
+                                $originalDate = $anuncio['fecha'];
+                                $intervalo = $usuario->calcularIntervalo($originalDate, $fechaActual);
+                                echo $intervalo;
+                                ?></p>
+                        </div>
+                    <?php
+                    }
+                } else {
+                    ?>
+                    <div class="not-found">
+                        <em>No hay contenido del curso</em>
                     </div>
                 <?php
                 }
-
                 ?>
 
             </div>
@@ -150,13 +161,11 @@ date_default_timezone_set('America/Bogota');
                             <p>Información de grupo</p>
                         </div>
                     </a>
-                    <?php
-                    $group = $est->GroupByDi($userE['cedula']);
-                    ?>
-                    <a href="../../pages/estudiante/modulos/propuesta.php" class="<?php echo ($group->num_rows <= 0) ? 'deshabilitar' : '' ?>">
+
+                    <a href="../../pages/estudiante/modulos/propuesta.php" class="<?php echo ($myGroup->num_rows <= 0) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
-                            if ($group->num_rows <= 0) {
+                            if ($myGroup->num_rows <= 0) {
                                 echo '<div class="salto"></div>';
                             }
                             ?>
@@ -168,10 +177,10 @@ date_default_timezone_set('America/Bogota');
 
 
                     ?>
-                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($findP == false) ? 'deshabilitar' : '' ?>">
+                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findP->num_rows < 1) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
-                            if ($findP == false) {
+                            if ($userE['grupo_id'] == 0 || $findP->num_rows < 1) {
                                 echo '<div class="salto"></div>';
                             }
                             ?>
@@ -183,10 +192,10 @@ date_default_timezone_set('America/Bogota');
                     $myProfileStudent = $usuario->getStudentProfile();
                     $estP = mysqli_fetch_array($myProfileStudent);
                     ?>
-                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($findA == false) ? 'deshabilitar' : '' ?>">
+                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findA->num_rows < 1) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
-                            if ($findP == false && $findA == false) {
+                            if ($userE['grupo_id'] == 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
                                 echo '<div class="salto"></div>';
                             }
                             ?>

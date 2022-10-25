@@ -11,6 +11,7 @@ if (isset($_POST['enviar'])) {
     $semestre = $_POST['semestre'];
     $descripcion = $_POST['description']; // TEXTAREA
     $fecha = $_POST['fecha'];
+    $id_grupo = $_POST['id_grupo'];
 
     $nombre_miembro1 = $_POST['nombres_miembro1'];
     $apellido_miembro1 = $_POST['apellidos_miembro1'];
@@ -47,18 +48,19 @@ if (isset($_POST['enviar'])) {
                         '',
                         '',
                         $fecha,
-                        $_SESSION['usuario']
+                        $_SESSION['usuario'],
+                        $id_grupo
                     );
                 } else if ($num_integrantes[$j] == 2) {
                     $nombre_miembro2 = $_POST['nombres_miembro2'];
                     $apellido_miembro2 = $_POST['apellidos_miembro2'];
-                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, '', $fecha, $_SESSION['usuario']);
+                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, '', $fecha, $_SESSION['usuario'], $id_grupo);
                 } else {
                     $nombre_miembro2 = $_POST['nombres_miembro2'];
                     $apellido_miembro2 = $_POST['apellidos_miembro2'];
                     $nombre_miembro3 = $_POST['nombres_miembro3'];
                     $apellido_miembro3 = $_POST['apellidos_miembro3'];
-                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, $nombre_miembro3 + ' ' + $apellido_miembro3, $fecha, $_SESSION['usuario']);
+                    $objStudent->EnviarPropuesta($titulo, $linea, $num_integrantes[$j], $tutor, $lider, $programa_id[$i], $semestre, $descripcion, $nombre_miembro1 + ' ' + $apellido_miembro1, $nombre_miembro2 + ' ' + $apellido_miembro2, $nombre_miembro3 + ' ' + $apellido_miembro3, $fecha, $_SESSION['usuario'], $id_grupo);
                 }
             }
         }

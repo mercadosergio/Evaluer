@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2022 a las 07:10:33
+-- Tiempo de generación: 26-10-2022 a las 01:16:39
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -38,7 +38,9 @@ ALTER TABLE propuesta AUTO_INCREMENT = 0;
 ALTER TABLE proyecto_grado AUTO_INCREMENT = 0;
 ALTER TABLE rol AUTO_INCREMENT = 0;
 ALTER TABLE usuario AUTO_INCREMENT = 0;
-
+ALTER TABLE grupo AUTO_INCREMENT = 0;
+ALTER TABLE linea_investigacion AUTO_INCREMENT = 0;
+ALTER TABLE peticion AUTO_INCREMENT = 0;
 END$$
 
 DELIMITER ;
@@ -84,18 +86,19 @@ CREATE TABLE `anteproyecto` (
   `estado` varchar(80) NOT NULL,
   `calificacion` varchar(10) NOT NULL,
   `observaciones` varchar(500) NOT NULL,
-  `estudiante_id` int(4) NOT NULL
+  `estudiante_id` int(4) NOT NULL,
+  `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `anteproyecto`
 --
 
-INSERT INTO `anteproyecto` (`id`, `titulo`, `nombre`, `documento`, `comentarios`, `programa`, `programa_id`, `fecha`, `remitente`, `estado`, `calificacion`, `observaciones`, `estudiante_id`) VALUES
-(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'proyecto_inv_ing.pdf', '../files/anteproyectos/14-06-22-00-06-23-Guia_proyecto_inv_ing (1).pdf', 'Aspectos metodologicos', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-14 00:35:17', '1143411235', 'APROBADO', '4.2', 'Plasmar mas referencias', 1),
-(2, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'entrega_parcial.pdf', '../files/anteproyectos/15-06-22-00-06-50-firma.jpg', 'Entrega parcial con correciones de marco referencial', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-15 00:42:40', '1143411235', 'EN REVISION', '--', '', 1),
-(5, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Diagrama de caso de uso (1).png', '../../files/anteproyectos/29-08-22-02-08-10-Diagrama de caso de uso (1).png', 'asdsadsad', 'INGENIERÍA INFORMÁTICA', '010', '2022-08-29 02:16:05', '114341123', '', '', '', 1),
-(6, 'feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'documento.pdf', '../../files/anteproyectos/05-09-22-01-09-07-documento.pdf', 'adddddddddddddddddddddddddddddddddd', 'INGENIERÍA INFORMÁTICA', '010', '2022-09-05 01:48:50', '7777777777', '', '', '', 3);
+INSERT INTO `anteproyecto` (`id`, `titulo`, `nombre`, `documento`, `comentarios`, `programa`, `programa_id`, `fecha`, `remitente`, `estado`, `calificacion`, `observaciones`, `estudiante_id`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'proyecto_inv_ing.pdf', '../files/anteproyectos/14-06-22-00-06-23-Guia_proyecto_inv_ing (1).pdf', 'Aspectos metodologicos', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-14 00:35:17', '1143411235', 'APROBADO', '4.2', 'Plasmar mas referencias', 1, 1),
+(2, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'entrega_parcial.pdf', '../files/anteproyectos/15-06-22-00-06-50-firma.jpg', 'Entrega parcial con correciones de marco referencial', 'INGENIERÍA INFORMÁTICA', '010', '2022-06-15 00:42:40', '4444', 'EN REVISION', '--', '', 1, 0),
+(5, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Diagrama de caso de uso (1).png', '../../files/anteproyectos/29-08-22-02-08-10-Diagrama de caso de uso (1).png', 'asdsadsad', 'INGENIERÍA INFORMÁTICA', '010', '2022-08-29 02:16:05', '114341123', '', '', '', 1, 0),
+(6, 'feeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'documento.pdf', '../../files/anteproyectos/05-09-22-01-09-07-documento.pdf', 'adddddddddddddddddddddddddddddddddd', 'INGENIERÍA INFORMÁTICA', '010', '2022-09-05 01:48:50', '7777777777', '', '', '', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -186,26 +189,23 @@ CREATE TABLE `estudiante` (
   `telefono` int(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `usuario` varchar(40) NOT NULL,
-  `time_propuesta` int(11) DEFAULT NULL,
-  `time_anteproyecto` int(11) DEFAULT NULL,
-  `time_proyecto` int(11) DEFAULT NULL,
   `asesor` varchar(100) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `asesor_id` int(11) NOT NULL
+  `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `estudiante`
 --
 
-INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `tipo_di`, `cedula`, `programa`, `programa_id`, `semestre`, `telefono`, `email`, `usuario`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `asesor`, `usuario_id`, `asesor_id`) VALUES
-(1, 'Sergio', 'Mercado', 'Salazar', '', '1143411235', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '1143411235', 0, 0, 1663020000, 'Andres Perez', 3, 4),
-(2, 'Dager', 'Lopez', 'Estrada', '', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, 0, '', '4444444444', 0, 0, 0, '', 8, 0),
-(3, 'Oscar', 'Garces', 'Gomez', '', '7777777777', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '7777777777', 1697580000, 0, 0, 'Diana Lilena Velasquez ', 11, 1),
-(4, 'ffff', 'ffffff', 'fffff', '', '121239912', 'INGENIERÍA INFORMÁTICA', '', 9, 0, '', '121239912', 100000000, 100000000, 100000000, '', 13, 0),
-(5, 'Daniel', 'Yepes', 'Garcia', '', '1209345555', 'CONTADURÍA PÚBLICA', '030', 7, 0, '', '1209345555', 100000000, 100000000, 100000000, '', 17, 0),
-(6, 'Juan', 'Fernandez', 'Valdez', '', '1432543234', 'COCINA INTERNACIONAL', '020', 7, 0, '', '1432543234', 100000000, 100000000, 100000000, '', 18, 0),
-(7, 'Maria', 'Bettin', 'Larios', '', '1244344347', 'CONTADURÍA PÚBLICA', '030', 8, 0, '', '1244344347', 100000000, 100000000, 100000000, '', 19, 0);
+INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `tipo_di`, `cedula`, `programa`, `programa_id`, `semestre`, `telefono`, `email`, `usuario`, `asesor`, `usuario_id`, `grupo_id`) VALUES
+(1, 'Sergio', 'Mercado', 'Salazar', '', '1143411235', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '1143411235', 'Andres Perez', 3, 1),
+(2, 'Dager', 'Lopez', 'Estrada', '', '4444444444', 'CONTADURÍA PÚBLICA', '030', 7, 0, '', '4444444444', '', 8, 0),
+(3, 'Oscar', 'Garces', 'Gomez', '', '7777777777', 'INGENIERÍA INFORMÁTICA', '010', 9, 0, '', '7777777777', 'Diana Lilena Velasquez ', 11, 0),
+(4, 'ffff', 'ffffff', 'fffff', '', '121239912', 'INGENIERÍA INFORMÁTICA', '', 9, 0, '', '121239912', '', 13, 1),
+(5, 'Daniel', 'Yepes', 'Garcia', '', '1209345555', 'CONTADURÍA PÚBLICA', '030', 7, 0, '', '1209345555', '', 17, 0),
+(6, 'Juan', 'Fernandez', 'Valdez', '', '1432543234', 'COCINA INTERNACIONAL', '020', 7, 0, '', '1432543234', '', 18, 0),
+(7, 'Maria', 'Bettin', 'Larios', '', '1244344347', 'CONTADURÍA PÚBLICA', '030', 8, 0, '', '1244344347', '', 19, 0);
 
 -- --------------------------------------------------------
 
@@ -227,6 +227,9 @@ CREATE TABLE `grupo` (
   `nombre_integrante3` varchar(100) NOT NULL,
   `di_integrante3` int(20) NOT NULL,
   `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `time_propuesta` int(11) NOT NULL,
+  `time_anteproyecto` int(11) NOT NULL,
+  `time_proyecto` int(11) NOT NULL,
   `nombre_asesor` varchar(100) NOT NULL,
   `asesor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -235,8 +238,8 @@ CREATE TABLE `grupo` (
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`id`, `project_name`, `programa`, `semestre`, `periodo`, `n_integrantes`, `nombre_integrante1`, `di_integrante1`, `nombre_integrante2`, `di_integrante2`, `nombre_integrante3`, `di_integrante3`, `fecha_creado`, `nombre_asesor`, `asesor_id`) VALUES
-(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'INGENIERÍA INFORMÁTICA', 9, '2022-2', 2, 'Sergio Mercado', 0, 'Oscar Garces', 0, '', 0, '2022-10-21 23:11:22', 'Justo Alfaro', 7);
+INSERT INTO `grupo` (`id`, `project_name`, `programa`, `semestre`, `periodo`, `n_integrantes`, `nombre_integrante1`, `di_integrante1`, `nombre_integrante2`, `di_integrante2`, `nombre_integrante3`, `di_integrante3`, `fecha_creado`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `nombre_asesor`, `asesor_id`) VALUES
+(1, '', 'INGENIERÍA INFORMÁTICA', 9, '2022 - 2', 2, 'Sergio Mercado', 1143411235, 'ffff ffffff', 121239912, ' ', 0, '2022-10-25 20:56:07', 0, 0, 0, 'Andres Perez', 4);
 
 -- --------------------------------------------------------
 
@@ -265,30 +268,6 @@ INSERT INTO `linea_investigacion` (`id`, `linea`, `objetivos`, `sublinea`, `prog
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `peticion`
---
-
-CREATE TABLE `peticion` (
-  `id` int(11) NOT NULL,
-  `asunto` varchar(50) NOT NULL,
-  `contenido` varchar(300) NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `nombre_usuario` varchar(100) NOT NULL,
-  `apellido_usuario` varchar(100) NOT NULL,
-  `rol` varchar(50) NOT NULL,
-  `rol_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `peticion`
---
-
-INSERT INTO `peticion` (`id`, `asunto`, `contenido`, `fecha`, `nombre_usuario`, `apellido_usuario`, `rol`, `rol_id`) VALUES
-(1, 'lore ipsum', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsa, excepturi iure assumenda tempora nisi accusamus blanditiis nobis fuga ut vitae laboriosam, quas veritatis eos suscipit ullam atque porro. ', '2022-10-11 12:30:13', 'Sergio', 'Mercado', 'Estudiante', 3);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `post`
 --
 
@@ -308,6 +287,30 @@ CREATE TABLE `post` (
 
 INSERT INTO `post` (`id`, `contenido`, `fecha`, `programa_id`, `nombre_usuario`, `usuario`, `docente_id`) VALUES
 (3, '<h3>Bienvenidos a este curso</h3>\r\n                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam accusantium quam quidem, quasi eos\r\n                        eveniet id tempore laudantium quos, ut, ducimus alias aperiam enim et at. Nam veniam ipsam\r\n                        facere, voluptatibus hic exercitationem dolore sapiente ducimus doloremque amet, rem consectetur\r\n      ', '2022-09-29 17:20:12', 10, 'Andres Perez', '0987654321', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pqr`
+--
+
+CREATE TABLE `pqr` (
+  `id` int(11) NOT NULL,
+  `asunto` varchar(50) NOT NULL,
+  `contenido` varchar(300) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `nombre_usuario` varchar(100) NOT NULL,
+  `apellido_usuario` varchar(100) NOT NULL,
+  `rol` varchar(50) NOT NULL,
+  `rol_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pqr`
+--
+
+INSERT INTO `pqr` (`id`, `asunto`, `contenido`, `fecha`, `nombre_usuario`, `apellido_usuario`, `rol`, `rol_id`) VALUES
+(1, 'lore ipsum', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ipsa, excepturi iure assumenda tempora nisi accusamus blanditiis nobis fuga ut vitae laboriosam, quas veritatis eos suscipit ullam atque porro. ', '2022-10-11 12:30:13', 'Sergio', 'Mercado', 'Estudiante', 3);
 
 -- --------------------------------------------------------
 
@@ -360,16 +363,17 @@ CREATE TABLE `propuesta` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `estado` varchar(40) NOT NULL,
   `remitente` varchar(40) NOT NULL,
-  `estudiante_id` int(5) NOT NULL
+  `estudiante_id` int(5) NOT NULL,
+  `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `propuesta`
 --
 
-INSERT INTO `propuesta` (`id`, `titulo`, `linea`, `integrantes`, `tutor`, `lider`, `programa`, `programa_id`, `semestre`, `descripcion`, `miembro1`, `miembro2`, `miembro3`, `fecha`, `estado`, `remitente`, `estudiante_id`) VALUES
-(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Desarrollo de aplicaciones web', 2, 'Andres Perez', 'Sergio Mercado', 'INGENIERÍA INFORMÁTICA', '010', 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eleifend leo. Etiam pharetra odio quis magna condimentum convallis. In hac habitasse platea dictumst. Cras et erat odio. ', 'Sergio Mercado', 'Martin Rodriguez', '', '2022-08-25 05:43:48', 'EN REVISION', '1143411235', 1),
-(2, 'Aplicación móvil para el sector de ventas de la ciudad de Cartagena', 'Aplicativo hibrido', 1, 'Andres Perez', 'Oscar garces', 'INGENIERÍA INFORMÁTICA', '010', 9, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti natus dignissimos autem expedita praesentium, aliquid nemo placeat amet. Ducimus at ipsum explicabo consequuntur magnam vitae quod nihil neque omnis.', 'Oscar garces', '', '', '2022-10-18 02:52:51', '', '7777777777', 3);
+INSERT INTO `propuesta` (`id`, `titulo`, `linea`, `integrantes`, `tutor`, `lider`, `programa`, `programa_id`, `semestre`, `descripcion`, `miembro1`, `miembro2`, `miembro3`, `fecha`, `estado`, `remitente`, `estudiante_id`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Desarrollo de aplicaciones web', 2, 'Andres Perez', 'Sergio Mercado', 'INGENIERÍA INFORMÁTICA', '010', 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eleifend leo. Etiam pharetra odio quis magna condimentum convallis. In hac habitasse platea dictumst. Cras et erat odio. ', 'Sergio Mercado', 'Martin Rodriguez', '', '2022-10-25 21:39:50', 'EN REVISION', '1143411235', 1, 1),
+(2, 'Aplicación móvil para el sector de ventas de la ciudad de Cartagena', 'Aplicativo hibrido', 1, 'Andres Perez', 'Oscar garces', 'INGENIERÍA INFORMÁTICA', '010', 9, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut deleniti natus dignissimos autem expedita praesentium, aliquid nemo placeat amet. Ducimus at ipsum explicabo consequuntur magnam vitae quod nihil neque omnis.', 'Oscar garces', '', '', '2022-10-18 02:52:51', '', '7777777777', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -395,16 +399,17 @@ CREATE TABLE `proyecto_grado` (
   `jurado1` varchar(100) NOT NULL,
   `jurado2` varchar(100) NOT NULL,
   `jurado3` varchar(100) NOT NULL,
-  `estudiante_id` int(4) NOT NULL
+  `estudiante_id` int(4) NOT NULL,
+  `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `proyecto_grado`
 --
 
-INSERT INTO `proyecto_grado` (`id`, `titulo`, `nombre`, `documento`, `programa`, `programa_id`, `semestre`, `fecha`, `remitente`, `estado`, `calificacion`, `observaciones`, `asesor_id`, `asesor`, `jurado1`, `jurado2`, `jurado3`, `estudiante_id`) VALUES
-(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Proyecto-grado-libros.pdf', '../../files/proyectos_de_grado/05-09-22-01-09-07-documento.pdf', 'INGENIERÍA INFORMÁTICA', '010', 9, '2022-05-08 18:30:31', '1143411235', 'APROBADO', '4.3', 'Implementar normas APA', 1, 'Diana Lilena Velasquez ', 'Andres Perez', 'Diana Lilena Velasquez ', 'Nestor Suat', 1),
-(2, 'Sistema de gestión de contabilidad para procesos de compra', 'proyecto_contabilidad.pdf', '../files/proyectos_de_grado/14-06-22-00-06-15-Guia_proyecto_inv_ing (1).pdf', 'INGENIERÍA INFORMÁTICA', '010', 8, '2022-06-14 00:49:11', '1143411235', 'en revisión', '', '', 1, 'Diana Lilena Velasquez ', '', '', '', 1);
+INSERT INTO `proyecto_grado` (`id`, `titulo`, `nombre`, `documento`, `programa`, `programa_id`, `semestre`, `fecha`, `remitente`, `estado`, `calificacion`, `observaciones`, `asesor_id`, `asesor`, `jurado1`, `jurado2`, `jurado3`, `estudiante_id`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para el ordenamiento de libros', 'Proyecto-grado-libros.pdf', '../../files/proyectos_de_grado/05-09-22-01-09-07-documento.pdf', 'INGENIERÍA INFORMÁTICA', '010', 9, '2022-05-08 18:30:31', '1143411235', 'APROBADO', '4.3', 'Implementar normas APA', 1, 'Diana Lilena Velasquez ', 'Andres Perez', 'Diana Lilena Velasquez ', 'Nestor Suat', 1, 1),
+(2, 'Sistema de gestión de contabilidad para procesos de compra', 'proyecto_contabilidad.pdf', '../files/proyectos_de_grado/14-06-22-00-06-15-Guia_proyecto_inv_ing (1).pdf', 'INGENIERÍA INFORMÁTICA', '010', 8, '2022-06-14 00:49:11', '1143411235', 'en revisión', '', '', 1, 'Diana Lilena Velasquez ', '', '', '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -529,17 +534,17 @@ ALTER TABLE `linea_investigacion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `peticion`
---
-ALTER TABLE `peticion`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_anuncios_docente1_idx` (`docente_id`);
+
+--
+-- Indices de la tabla `pqr`
+--
+ALTER TABLE `pqr`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `programa`
@@ -618,7 +623,7 @@ ALTER TABLE `estudiante`
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `linea_investigacion`
@@ -627,16 +632,16 @@ ALTER TABLE `linea_investigacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `peticion`
---
-ALTER TABLE `peticion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pqr`
+--
+ALTER TABLE `pqr`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `programa`
@@ -648,7 +653,7 @@ ALTER TABLE `programa`
 -- AUTO_INCREMENT de la tabla `propuesta`
 --
 ALTER TABLE `propuesta`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto_grado`

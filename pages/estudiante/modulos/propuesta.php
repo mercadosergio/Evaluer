@@ -97,12 +97,13 @@ date_default_timezone_set("America/Bogota");
 
         <div class="envio-f">
             <form action="" method="POST" id="envio">
+                <input type="hidden" name="id_grupo" value="<?php echo $userE['grupo_id'] ?>">
                 <div class="seccion-informacion">
                     <div class="layoutx2">
                         <?php
                         $res = new Metodos();
                         $fecha = date("Y-m-d H:i:s");
-                        $getTime = $res->restrictPropuesta();
+                        $getTime = $res->restrictPropuesta($userE['grupo_id']);
                         ?>
 
                         <input type="hidden" name="fecha" value="<?php echo $fecha; ?>">

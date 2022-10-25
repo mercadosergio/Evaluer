@@ -18,6 +18,9 @@ include("../../../model/Estudiante.php");
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
+$estudiante = new Student();
+$myGroup = $estudiante->GroupByDi($userE['cedula']);
+
 date_default_timezone_set("America/Bogota");
 include("../../../controller/AsignarTeam.php");
 ?>
@@ -84,61 +87,127 @@ include("../../../controller/AsignarTeam.php");
         </div>
     </nav>
     <div class="format">
-        <form action="" class="form" method="POST">
-            <h3 class="text-center">Equipo de trabajo</h3>
-            <!-- Progress bar -->
-            <div class="progressbar">
-                <div class="progress" id="progress"></div>
-                <div class="progress-step progress-step-active" data-title="Introducción"></div>
-                <div class="progress-step" data-title="Número de integrantes"></div>
-                <div class="progress-step" data-title="Información"></div>
-            </div>
+        <?php
+        if ($myGroup->num_rows > 0) {
+        ?>
+            <div class="info">
+                <div class="title">
+                    <h3>Mi grupo</h3>
+                    
+                </div>
+                <?php
+                $row = mysqli_fetch_array($myGroup);
+                if ($row['di_integrante1'] != 0) {
+                ?>
 
-            <!-- Steps -->
-            <div class="form-step form-step-active">
-                <div class="content">
-                    <div class="intro">
-                        <img src="../../../img/team1.png" alt="">
-                        Registre su grupo de trabajo para este curso de investigación y proyectos
-                    </div>
-                </div>
-                <div class="">
-                    <a href="#" class="btn btn-next width-50 ml-auto">Siguiente<i class="bi bi-arrow-right"></i></a>
-                </div>
-            </div>
-            <!-- Step 2 -->
-            <div class="form-step">
-                <div class="content">
-                    <div class="container-selector">
-                        <label>Número de integrantes:</label>
-                        <div id="contenedorInput" class="selector">
-                            <select id="listaCantidad" name="numIntegrantes[]">
-                                <option selected value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <i class="fa-solid fa-users"></i>
+                <h3>Integrante #1</h3>
+                    <div>
+                        <div class="ref">
+                            <label>Nombre:</label>
+                            <p><?php echo $row['nombre_integrante1'] ?></p>
+                        </div>
+                        <div class="ref">
+                            <label>Documento de identidad:</label>
+                            <p><?php echo $row['di_integrante1'] ?></p>
                         </div>
                     </div>
-                </div>
-                <div class="btns-group">
-                    <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
-                    <a href="#" class="btn btn-next">Siguiente<i class="bi bi-arrow-right"></i></a>
-                </div>
+                <?php
+                }
+                if ($row['di_integrante2'] != 0) {
+                ?>
+                <h3>Integrante #2</h3>
+                    <div>
+                        <div class="ref">
+                            <label>Nombre:</label>
+                            <p><?php echo $row['nombre_integrante2'] ?></p>
+                        </div>
+                        <div class="ref">
+                            <label>Documento de identidad:</label>
+                            <p><?php echo $row['di_integrante2'] ?></p>
+                        </div>
+                    </div>
+                <?php
+                }
+                if ($row['di_integrante3'] != 0) {
+                ?>
+                <h3>Integrante #3</h3>
+                    <div>
+                        <div class="ref">
+                            <label>Nombre:</label>
+                            <p><?php echo $row['nombre_integrante3'] ?></p>
+                        </div>
+                        <div class="ref">
+                            <label>Documento de identidad:</label>
+                            <p><?php echo $row['di_integrante3'] ?></p>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+
             </div>
-            <!-- Step 3 -->
-            <div class="form-step">
-                <input type="text" hidden value="<?php echo $userE['programa'] ?>" name="programa">
-                <input type="text" hidden value="<?php echo $userE['semestre'] ?>" name="semestre">
-                <div class="content">
-                    <div id="ciclo"></div>
+        <?php
+        } else {
+
+        ?>
+            <form action="" class="form" method="POST">
+                <h3 class="text-center">Grupo de trabajo</h3>
+                <!-- Progress bar -->
+                <div class="progressbar">
+                    <div class="progress" id="progress"></div>
+                    <div class="progress-step progress-step-active" data-title="Introducción"></div>
+                    <div class="progress-step" data-title="Número de integrantes"></div>
+                    <div class="progress-step" data-title="Información"></div>
                 </div>
-                <div class="btns-group">
-                    <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
-                    <button type="submit" class="btn" name="save">Aceptar</button>
+
+                <!-- Steps -->
+                <div class="form-step form-step-active">
+                    <div class="content">
+                        <div class="intro">
+                            <img src="../../../img/team1.png" alt="">
+                            Registre su grupo de trabajo para este curso de investigación y proyectos
+                        </div>
+                    </div>
+                    <div class="">
+                        <a href="#" class="btn btn-next width-50 ml-auto">Siguiente<i class="bi bi-arrow-right"></i></a>
+                    </div>
                 </div>
-            </div>
-        </form>
+                <!-- Step 2 -->
+                <div class="form-step">
+                    <div class="content">
+                        <div class="container-selector">
+                            <label>Número de integrantes:</label>
+                            <div id="contenedorInput" class="selector">
+                                <select id="listaCantidad" name="numIntegrantes[]">
+                                    <option selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns-group">
+                        <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
+                        <a href="#" class="btn btn-next">Siguiente<i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="form-step">
+                    <input type="text" hidden value="<?php echo $userE['programa'] ?>" name="programa">
+                    <input type="text" hidden value="<?php echo $userE['semestre'] ?>" name="semestre">
+                    <div class="content">
+                        <div id="ciclo"></div>
+                    </div>
+                    <div class="btns-group">
+                        <a href="#" class="btn btn-prev"><i class="bi bi-arrow-left"></i></i>Atrás</a>
+                        <button type="submit" class="btn" name="save">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        <?php
+        }
+        ?>
         <div hidden class="contenido">
             <button id="activate">Inscribir mi grupo</button>
 

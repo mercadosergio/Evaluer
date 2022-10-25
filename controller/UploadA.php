@@ -8,6 +8,7 @@ if (isset($_POST['enviar'])) {
 	$usuario = $_POST['user'];
 	$programa_id = $_POST['programa_id'];
 	$programa = $_POST['programa_n'];
+	$id_grupo = $_POST['id_grupo'];
 
 	$nombre_final =  date("d-m-y") . "-" . date("H-m-s") . "-" . $nombre;
 	$ruta = "../../files/anteproyectos/" . $nombre_final;
@@ -26,7 +27,7 @@ if (isset($_POST['enviar'])) {
 		if (move_uploaded_file($save_file, '../../files/anteproyectos/' . $nombre_final)) {
 
 			$objStudent = new Student();
-			$objStudent->EnviarAnteproyecto($nombre, $ruta, $comentario, $usuario, $fecha, $programa_id, $programa);
+			$objStudent->EnviarAnteproyecto($nombre, $ruta, $comentario, $usuario, $fecha, $programa_id, $programa, $id_grupo);
 ?>
 			<div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
 				Entregable enviado con éxito

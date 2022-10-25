@@ -43,6 +43,11 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
+    margin: auto 0;
+}
+
+label {
+    margin: auto 0;
 }
 
 h1,
@@ -52,6 +57,7 @@ h4,
 h5,
 h6 {
     letter-spacing: -1px;
+    margin: auto 0;
 }
 
 h1 {
@@ -217,7 +223,48 @@ select {
 .contenedor-estudiante {
     margin: 15px 0;
     border-top: 1px solid #ccc;
-    padding: 15px 0;
+    padding: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.35rem;
+    background: #fff;
+    padding: 20px 40px;
+}
+
+.info>div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.title {
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center;
+}
+
+.info .ref {
+    margin: 0;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.info .ref label {
+    margin: auto;
+    margin-left: 0;
+}
+
+.info .ref p {
+    float: right;
+    font-size: 16px;
 }
 
 
@@ -242,7 +289,6 @@ body {
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
 }
 
 input,
@@ -330,13 +376,12 @@ select {
 /* Form */
 
 .form {
-    /* width: clamp(320px, 30%, 430px); */
     width: 70%;
     margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 0.35rem;
-    padding: 1.5rem;
     background: #fff;
+    padding: 1.5rem;
 }
 
 .form-step {

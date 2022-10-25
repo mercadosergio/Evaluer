@@ -9,8 +9,13 @@ $userE = mysqli_fetch_array($getMyRole);
 
 
 $res = new Metodos();
+$estudiante = new Student();
+
+$getMyRole = $usuario->getStudentProfile();
+$userE = mysqli_fetch_array($getMyRole);
+
 $fecha = date("Y-m-d H:i:s");
-$getTime = $res->restrictPropuesta();
+$getTime = $res->restrictPropuesta($userE['grupo_id']);
 
 $num_integrantes = $_POST['numero'];
 $programa = $userE['programa'];

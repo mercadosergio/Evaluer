@@ -85,6 +85,8 @@ include("../../../controller/upload_proyecto.php");
     </nav>
 
     <form action="" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id_grupo" value="<?php echo $userE['grupo_id'] ?>">
+
         <div class="format">
             <div class="cont-titulo">
                 <h3 class="titulo1">Enviar proyecto de grado</h3>
@@ -105,7 +107,7 @@ include("../../../controller/upload_proyecto.php");
                             date_default_timezone_set('America/Bogota');
 
                             $fecha = date("Y-m-d H:i:s");
-                            $getTime = $res->restrictProyecto();
+                            $getTime = $res->restrictProyecto($userE['grupo_id']);
                             ?>
                             <div class="mb-3">
                                 <input type="text" hidden name="programa_id" value="<?php echo $userE['programa_id'] ?>">
@@ -133,9 +135,9 @@ include("../../../controller/upload_proyecto.php");
                             <div class="datos">
                                 <a href="<?php echo $archivados['documento'] ?>" download="<?php echo $archivados['nombre'] ?>"><?php echo $archivados['nombre'] ?></a>
                                 <label>Fecha: <?php
-                                    $originalDate = $archivados['fecha'];
-                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
-                                    ?></label>
+                                                $originalDate = $archivados['fecha'];
+                                                echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                                ?></label>
                             </div>
                             <div class="evaluacion">
                                 <label for="">Estado: <?php echo $archivados['estado'] ?></label>
