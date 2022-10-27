@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background: #fff;
+    background: #f5f5f5;
 }
 
 * {
@@ -123,9 +123,8 @@ strong {
 }
 
 .format .seccion-informacion {
-    background: whitesmoke;
+    background: #ffffff;
     margin-bottom: 30px;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     padding-top: 30px;
     border: 1px var(--primary) solid;
     border-radius: 5px;
@@ -243,7 +242,7 @@ select option:hover {
 }
 
 .miembros {
-    background: #f5f5f5;
+    background: #ffffff;
     padding: 30px 70px;
     border: 1px var(--primary) solid;
     border-radius: 5px;
@@ -270,7 +269,6 @@ select option:hover {
     border: 1px var(--primary) solid;
     display: block;
     border-radius: 5px;
-    /* max-width: 500px; */
 }
 
 .details>label {
@@ -375,7 +373,7 @@ select option:hover {
 
 /* Desktop $ laptop L */
 
-@media screen and (min-width: 1440px) {
+@media screen and (max-width: 2000px) {
     body {
         padding: 40px;
         padding-top: 120px;

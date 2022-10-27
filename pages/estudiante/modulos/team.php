@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -11,7 +13,7 @@ include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
 
 $usuario = new User();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 include("../../../model/Estudiante.php");
@@ -35,15 +37,15 @@ include("../../../controller/AsignarTeam.php");
     <meta name="author" content="">
 
     <title>Equipo de trabajo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="../../../css/team.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
     <link rel="stylesheet" href="../../../css/header.css">
-    <link rel="stylesheet" href="../../../font/fontawesome-free-6.1.1-web/css/all.css">
+
     <script src="../../../js/jquery-3.3.1.min.js"></script>
     <script src="../../../js/jquery-1.12.1.min.js"></script>
     <script src="../../../js/jquery-ui.js"></script>
@@ -75,6 +77,7 @@ include("../../../controller/AsignarTeam.php");
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="pqrE.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -89,59 +92,55 @@ include("../../../controller/AsignarTeam.php");
     <div class="format">
         <?php
         if ($myGroup->num_rows > 0) {
+            $row = mysqli_fetch_array($myGroup);
         ?>
             <div class="info">
                 <div class="title">
-                    <h3>Mi grupo</h3>
-                    
+                    <h3><i class="bi bi-people-fill"></i>Mi grupo</h3>
                 </div>
-                <?php
-                $row = mysqli_fetch_array($myGroup);
-                if ($row['di_integrante1'] != 0) {
-                ?>
+                <div class="adicional">
+                    <div>
+                        <label for="">Programa: </label>
+                        <p><?php echo $row['programa'] ?></p>
+                    </div>
+                    <div>
+                        <label for="">Semestre: </label>
+                        <p><?php echo $row['semestre'] ?></p>
+                    </div>
+                    <div>
+                        <label for="">Periodo: </label>
+                        <p><?php echo $row['periodo'] ?></p>
+                    </div>
 
-                <h3>Integrante #1</h3>
                     <div>
-                        <div class="ref">
-                            <label>Nombre:</label>
-                            <p><?php echo $row['nombre_integrante1'] ?></p>
-                        </div>
-                        <div class="ref">
-                            <label>Documento de identidad:</label>
-                            <p><?php echo $row['di_integrante1'] ?></p>
-                        </div>
+                        <label for="">Nombre del asesor: </label>
+                        <p><?php echo $row['nombre_asesor'] ?></p>
                     </div>
+                </div>
+                <h3>Integrantes</h3>
                 <?php
-                }
-                if ($row['di_integrante2'] != 0) {
+                $lista = $usuario->listar("SELECT * FROM estudiante WHERE grupo_id = " . $userE['grupo_id']);
+                $i = 0;
+                foreach ($lista as $int) {
+                    if ($row['di_integrante1'] != 0) {
                 ?>
-                <h3>Integrante #2</h3>
-                    <div>
-                        <div class="ref">
-                            <label>Nombre:</label>
-                            <p><?php echo $row['nombre_integrante2'] ?></p>
+                        <div>
+                            <div class="ref">
+                                <i class="fa-solid fa-<?php echo $i += 1; ?>"></i>
+                                <label>Nombre:</label>
+                                <p><?php echo $int['nombre'] ?></p>
+                            </div>
+                            <div class="ref">
+                                <label>Apellidos:</label>
+                                <p><?php echo $int['p_apellido'] . " " . $int['s_apellido'] ?></p>
+                            </div>
+                            <div class="ref">
+                                <label>Documento de identidad:</label>
+                                <p><?php echo $int['cedula'] ?></p>
+                            </div>
                         </div>
-                        <div class="ref">
-                            <label>Documento de identidad:</label>
-                            <p><?php echo $row['di_integrante2'] ?></p>
-                        </div>
-                    </div>
                 <?php
-                }
-                if ($row['di_integrante3'] != 0) {
-                ?>
-                <h3>Integrante #3</h3>
-                    <div>
-                        <div class="ref">
-                            <label>Nombre:</label>
-                            <p><?php echo $row['nombre_integrante3'] ?></p>
-                        </div>
-                        <div class="ref">
-                            <label>Documento de identidad:</label>
-                            <p><?php echo $row['di_integrante3'] ?></p>
-                        </div>
-                    </div>
-                <?php
+                    }
                 }
                 ?>
 
@@ -207,27 +206,8 @@ include("../../../controller/AsignarTeam.php");
             </form>
         <?php
         }
-        ?>
-        <div hidden class="contenido">
-            <button id="activate">Inscribir mi grupo</button>
 
-            <div class="formulario" id="formulario">
-                <form action="" method="POST">
-                    <div class="">
-                        <p>Documento de identidad:</p>
-                        <input type="text" name="dni1">
-                    </div>
-                    <div class="">
-                        <p>Documento de identidad:</p>
-                        <input type="text" name="dni1">
-                    </div>
-                    <div class="">
-                        <p>Documento de identidad:</p>
-                        <input type="text" name="dni1">
-                    </div>
-                </form>
-            </div>
-        </div>
+        ?>
     </div>
 
     <script type="text/javascript">

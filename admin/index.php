@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -9,7 +11,7 @@ if ($sesion == null || $sesion = '') {
 }
 include("../model/UserModel.php");
 $usuario = new User();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 ?>
 

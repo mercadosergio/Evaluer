@@ -2,7 +2,7 @@
 session_start();
 include_once("../model/Metodos.php");
 include("../model/UserModel.php");
-include("../model/Estudiante.php.php");
+include("../model/Estudiante.php");
 $usuario = new User();
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);

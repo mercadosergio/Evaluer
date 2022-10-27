@@ -37,7 +37,6 @@
         font-size: 18px;
         font-weight: 300;
         line-height: 1.5;
-        color: #5b5b5b;
     }
     
     h1,
@@ -134,8 +133,7 @@
         margin: auto;
         background: #fff;
         display: block;
-        padding: 50px;
-        padding-top: 30px;
+        padding: 30px 50px;
     }
     
     .settings {
@@ -147,14 +145,13 @@
     
     .btn-set {
         background: var(--primary);
-        padding: 7px;
+        padding: 15px 20px;
         color: #fff;
         border: none;
-        border-radius: 7px;
+        border-radius: 3px;
         margin: 10px auto;
         font-size: 18px;
         text-align: center;
-        width: 140px;
     }
     
     .settings img {
@@ -165,11 +162,11 @@
     }
     
     .container-input {
-        text-align: center;
+        /* text-align: center;
         padding: 50px 0;
         border-radius: 6px;
         width: 30%;
-        margin-bottom: 20px;
+        margin-bottom: 20px; */
     }
     
     .inputfile {
@@ -268,22 +265,20 @@
     }
     
     .contenedor-soporte .campo {
-        padding: 3px;
+        /* padding: 3px;
         border: var(--primary) 1px solid;
-        border-radius: 5px;
+        border-radius: 5px; */
     }
     
-    .contenedor-soporte .btn-g {
-        display: block;
-        background: var(--primary);
-        padding: 7px;
-        color: #fff;
-        border: none;
-        border-radius: 7px;
-        margin-top: 7px;
-        font-size: 18px;
-        text-align: center;
-        width: 250px;
+    .contenedor-soporte .campo {
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+    }
+    
+    .card {
+        display: flex;
+        flex-direction: column;
     }
     
     .bloque {
@@ -301,4 +296,20 @@
     .bloque input {
         width: 55%;
         float: right;
+    }
+    
+    .button-pass {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .button-pass button {
+        background: var(--primary);
+        padding: 15px 30px;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        margin-top: 7px;
+        font-size: 18px;
+        text-align: center;
     }

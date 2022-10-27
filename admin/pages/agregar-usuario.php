@@ -1,18 +1,19 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
-
 include_once '../../model/Metodos.php';
 include("../../model/UserModel.php");
 
 $usuario = new User();
 $admin = new Metodos();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 include '../../controller/AddUserController.php';
 date_default_timezone_set("America/Bogota");
@@ -59,7 +60,7 @@ date_default_timezone_set("America/Bogota");
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
-                        <?php echo $userP['nombre']; ?>
+                        <?php echo $userP['nombre'] . $sesion; ?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
@@ -99,7 +100,7 @@ date_default_timezone_set("America/Bogota");
                     <label for="">Primer apellido:</label>
                     <input type="text" name="p_apellido" class="form-control" placeholder="">
                 </div>
-                <div class="campo-segundo-apellido ">
+                <div class="campo-segundo-apellido">
                     <label for="">Segundo apellido:</label>
                     <input type="text" name="s_apellido" class="form-control" placeholder="">
                 </div>
@@ -110,13 +111,13 @@ date_default_timezone_set("America/Bogota");
 
                 <div class="programa">
                     <label>Programa académico:</label>
-                    <select name="programa_id[]" class="programa-s form-select">
+                    <select name="programa[]" class="programa-s form-select">
                         <option selected value="1">Seleccione...</option>
                         <?php
                         $sql = "SELECT * FROM programa";
                         $datos = $usuario->listar($sql);
                         foreach ($datos as $key) {
-                            echo '<option value="' . $key['identificador'] . '">' . $key['nombre'] . '</option>';
+                            echo '<option value="' . $key['nombre'] . '">' . $key['nombre'] . '</option>';
                         }
                         ?>
                     </select>
@@ -127,7 +128,11 @@ date_default_timezone_set("America/Bogota");
                 </div>
                 <div class="campo-email">
                     <label for="">Email:</label>
-                    <input type="text" name="email" class="form-control" placeholder="Email">
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="campo-telefono">
+                    <label for="">Teléfono:</label>
+                    <input type="text" name="telefono" class="form-control">
                 </div>
                 <div class="container-button">
                     <button type="submit" name="agregar" class="btn-agregar">Registrar</button>

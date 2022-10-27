@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -15,11 +17,18 @@ $usuario = new User();
 $res = new Metodos();
 $estudiante = new Student();
 
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
+
+$findP = $estudiante->getMyPropuesta($userE['grupo_id']);
+$findA = $estudiante->getMyAnteproyecto($userE['grupo_id']);
+
+if ($userE['grupo_id'] <= 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
+    header("location: ../index.php");
+}
 
 include("../../../controller/upload_proyecto.php");
 ?>
@@ -64,7 +73,7 @@ include("../../../controller/upload_proyecto.php");
                 </li>
             </ul>
 
-            <ul class="log">
+            <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img style="width: 40px; height: 40px; border-radius: 50%;" src="../../../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>" alt="">
@@ -72,6 +81,7 @@ include("../../../controller/upload_proyecto.php");
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="pqrE.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">

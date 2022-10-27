@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -15,11 +17,17 @@ $usuario = new User();
 $res = new Metodos();
 $estudiante = new Student();
 
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
+
+$findP = $estudiante->getMyPropuesta($userE['grupo_id']);
+
+if ($userE['grupo_id'] <= 0 || $findP->num_rows < 1) {
+    header("location: ../index.php");
+}
 
 include '../../../controller/UploadA.php';
 ?>
@@ -72,6 +80,7 @@ include '../../../controller/UploadA.php';
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="pqrE.php">Solicitud de PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">

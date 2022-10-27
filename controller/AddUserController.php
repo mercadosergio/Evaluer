@@ -6,52 +6,55 @@ if (isset($_POST['agregar'])) {
     $p_apellido = $_POST['p_apellido'];
     $s_apellido = $_POST['s_apellido'];
     $cedula = $_POST['cedula'];
-    $programa_id = $_POST['programa_id'];
+    $programa = $_POST['programa'];
     $semestre = $_POST['semestre'];
     $email = $_POST['email'];
+    $telefono = $_POST['telefono'];
 
     $contraseña = $_POST['cedula'];
     $pass_cifrado = password_hash($contraseña, PASSWORD_DEFAULT);
 
-    if ($programa_id == 1) {
+    for ($j = 0; $j < count($programa); $j++) {
+        if ($programa[$j] == 1) {
 ?>
-        <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
+            <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
         left: 50%;
         transform: translate(-50%, 0%);">
-            Seleccione un programa académico
-        </div>
-        <script>
-            setTimeout(function() {
-                $('#fail').fadeOut('fast');
-            }, 2000); // <-- time in milliseconds
-        </script>
-    <?php
-    } else {
-        $user = new User();
-        for ($i = 0; $i < count($id_rol); $i++) {
-            
-            $user->createUser($nombre, $email, $cedula, $pass_cifrado, $id_rol[$i]);
-            for ($j = 0; $j < count($programa_id); $j++) {
+                Seleccione un programa académico
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#fail').fadeOut('fast');
+                }, 2000); // <-- time in milliseconds
+            </script>
+        <?php
+        } else {
+            // $user = new User();
+            for ($i = 0; $i < count($id_rol); $i++) {
+
+                $usuario->createUser($nombre, $cedula, $pass_cifrado, $id_rol[$i]);
                 if ($id_rol[$i] == 2) {
-                    $user->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $cedula);
+                    $usuario->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $cedula, $email, $telefono);
                 } else if ($id_rol[$i] == 3) {
-                    $user->agregarEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $semestre, $cedula);
+                    $usuario->createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $semestre, $cedula, $email, $telefono);
                 } else if ($id_rol[$i] == 4) {
-                    $user->createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$j], $cedula);
+                    $usuario->createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $cedula, $email, $telefono);
                 }
             }
-        }
-        // include("../index.php");
-    ?>
-        <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
-            Usuario registrado con éxito
-        </div>
-        <script>
-            setTimeout(function() {
-                $('#success').fadeOut('fast');
-            }, 2000); // <-- time in milliseconds
-        </script>
+
+            // include("control-usuarios.php");
+            header("location: control-usuarios.php")
+        ?>
+            <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
+                Usuario registrado con éxito
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#success').fadeOut('fast');
+                }, 2000); // <-- time in milliseconds
+            </script>
 <?php
+        }
     }
 }
 ?>

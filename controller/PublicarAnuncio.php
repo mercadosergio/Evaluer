@@ -3,7 +3,7 @@
 if (isset($_POST['submit'])) {
     $contenido = $_POST['txt-content'];
     $fecha = $_POST['datetime'];
-    $programa = $_POST['programa_id'];
+    $programa = $_POST['programa'];
     $nombre = $_POST['nombre'];
     $id_docente = $_POST['docente_id'];
 

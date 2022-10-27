@@ -1,6 +1,7 @@
 <?php
-
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 
@@ -76,7 +77,7 @@ $userP = mysqli_fetch_array($getProfile);
     </div>
     <div class="contenedor-soporte shadow mb-5 bg-body rounded">
         <h3>Perfil</h3>
-        <form action="" name="envio_archivo" method="POST" enctype="multipart/form-data">
+        <form action="" name="envio_archivo" method="POST" enctype="multipart/form-data" autocomplete="off">
             <div class="settings card p-3">
                 <div class="photo">
                     <img src="../files/photos/<?php echo $userP['foto'] == null ? 'default.png' :  $userP['foto']; ?>">
@@ -107,7 +108,9 @@ $userP = mysqli_fetch_array($getProfile);
                     <label>Confirmar nueva contraseña:</label>
                     <input class="campo" type="password" value="" name="clave2">
                 </div>
-                <button class="btn-g" type="submit" name="cambiar">Cambiar contraseña</button>
+                <div class="button-pass">
+                    <button class="btn-g" type="submit" name="cambiar">Aceptar</button>
+                </div>
             </div>
         </form>
     </div>

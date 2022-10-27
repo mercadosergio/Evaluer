@@ -237,17 +237,39 @@ select {
     padding: 20px 40px;
 }
 
-.info>div {
+.info .adicional {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin: 20px 0;
+    grid-template-columns: repeat(4, 1fr);
+    background: whitesmoke;
+    border-radius: 0.35rem;
+    padding: 20px;
+}
+
+.info>div:not(div[class="title"]):not(.adicional) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+    margin: 10px 0;
+    background: whitesmoke;
+    border-radius: 0.35rem;
+    padding: 20px;
 }
 
 .title {
+    border: none;
     margin: 0 !important;
     display: flex !important;
     justify-content: center;
+    padding: 20px;
+}
+
+.title i {
+    font-size: 27px;
+    color: #000;
+}
+
+.bi-1-circle-fill::before {
+    content: "\f796" !important;
 }
 
 .info .ref {
@@ -257,14 +279,24 @@ select {
     align-items: center;
 }
 
+.info .fa-solid {
+    color: var(--primary-color);
+    font-size: 20px !important;
+}
+
 .info .ref label {
     margin: auto;
     margin-left: 0;
+    font-weight: bold;
 }
 
 .info .ref p {
     float: right;
     font-size: 16px;
+}
+
+.adicional label {
+    font-weight: bold;
 }
 
 

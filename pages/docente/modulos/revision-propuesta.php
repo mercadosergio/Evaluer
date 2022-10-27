@@ -1,19 +1,19 @@
 <?php
-
-
-include("../../../model/Asesor.php");
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
     header("location: ../../../index.php");
     die();
 }
+include("../../../model/Asesor.php");
 include_once("../../../model/Metodos.php");
 include("../../../model/UserModel.php");
 $usuario = new User();
 $funcion = new Metodos();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 include "../../../controller/RatePropuesta.php";
@@ -62,6 +62,7 @@ include "../../../controller/RatePropuesta.php";
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="pqrA.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">

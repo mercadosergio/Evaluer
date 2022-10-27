@@ -11,6 +11,7 @@
         --hover: #0477c4;
         --color-detalle: #fee700;
         --color-detalle-hover: #ffef42;
+        --primary-color: rgb(11, 78, 179);
     }
     
     .full-screen {
@@ -185,7 +186,7 @@
     }
     
     details[open]>summary {
-        background: var(--primary);
+        background: var(--primary-color);
         color: #eee;
     }
     
@@ -277,7 +278,7 @@
     
     .enlace p {
         font-family: "Maven Pro", sans-serif;
-        background: var(--primary);
+        background: var(--primary-color);
         color: var(--color-detalle);
         width: 100%;
     }

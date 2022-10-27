@@ -1,6 +1,7 @@
 <?php
-
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -12,7 +13,8 @@ include("../../../model/UserModel.php");
 include("../../../model/Coordinador.php");
 $usuario = new User();
 $funcion = new Metodos();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
+
 $userP = mysqli_fetch_array($getProfile);
 
 $getMyself = $usuario->getCoordinatorProfile();
@@ -73,6 +75,8 @@ $myRole = mysqli_fetch_array($getMyself);
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="pqrC.php">Solicitud PQR</a></li>
+
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">

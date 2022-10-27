@@ -3,6 +3,7 @@
 session_start();
 include_once("../model/Metodos.php");
 include("../model/UserModel.php");
+include("../model/Estudiante.php");
 $usuario = new User();
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
@@ -15,7 +16,6 @@ $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
 $fecha = date("Y-m-d H:i:s");
-$getTime = $res->restrictPropuesta($userE['grupo_id']);
 
 $num_integrantes = $_POST['numero'];
 $programa = $userE['programa'];
@@ -33,6 +33,7 @@ if ($result) {
 }
 
 for ($i = 1; $i < $begin_num; $i++) {
+
 ?>
     <div class="contenedor-estudiante">
         <label>Integrante #<?php echo $i ?>:</label>
@@ -40,7 +41,7 @@ for ($i = 1; $i < $begin_num; $i++) {
             <div>
                 <label>Documento de identidad:</label>
                 <div id="contenedorInput" class="campos">
-                    <input class="" type="text" class="campotexto" id="dni_estudiante<?php echo  $i ?>" name="dni_int<?php echo  $i ?>">
+                    <input class="" type="text" class="campotexto" id="dni_estudiante<?php echo $i ?>" name="dni_int<?php echo $i ?>">
                     <i class="fa-solid fa-user-pen"></i>
                 </div>
             </div>

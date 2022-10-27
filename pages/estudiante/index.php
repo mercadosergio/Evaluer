@@ -1,10 +1,12 @@
 <?php
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
-    header("location: ../index.php");
+    header("location: ../../index.php");
     die();
 }
 
@@ -14,7 +16,7 @@ include("../../model/Estudiante.php");
 
 $usuario = new User();
 $est = new Student();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 $getMyrole = $usuario->getStudentProfile();
@@ -99,6 +101,7 @@ date_default_timezone_set('America/Bogota');
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
+                            <li><a class="dropdown-item" href="modulos/pqrE.php">Solicitud PQR</a></li>
                             <li><a class="dropdown-item" href="../../support/account.php">Cambiar contraseña</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -209,33 +212,38 @@ date_default_timezone_set('America/Bogota');
             <div class="treeview">
                 <div class="tree-view">
                     <details open="open">
-                        <summary>Guia de investigación</summary>
+                        <summary>General</summary>
+                        <div class="folder">
+                            <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
+                            <p><i class="fa-solid fa-book" style="margin-right: 3px;"></i><a target="_blank" href="../../guide/Manual-de-usuario.pdf">Manual de usuario</a></p>
+                        </div>
+                    </details>
+                    <details open="open">
+                        <summary>Guía de investigación</summary>
                         <div class="folder">
                             <details open="open">
                                 <summary>Académico</summary>
                                 <div class="folder">
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="">Propuesta de grado</a>
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="">Anteproyecto</a>
-                                    </p>
-                                    <p>
-                                        <i class="fas fa-file-alt"></i>
-                                        <a href="../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                                    </p>
+                                    <?php
+                                    if ($myGroup->num_rows > 0) {
+                                        $get = $usuario->listar("SELECT * FROM material_academico WHERE asesor_id =" . $row['asesor_id']);
+                                        foreach ($get as $key) {
+                                    ?>
+                                            <p>
+                                                <i class="fas fa-file-alt"></i>
+                                                <a href="<?php echo $key['ruta'] ?>" target="_blank"><?php echo $key['nombre'] ?></a>
+                                            </p>
+
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
+
                             </details>
                         </div>
                     </details>
-                    <details open="open">
-                        <summary>General</summary>
-                        <div class="folder">
-                            <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
-                        </div>
-                    </details>
+
                 </div>
             </div>
 
@@ -278,7 +286,7 @@ date_default_timezone_set('America/Bogota');
     </script>
     <script src="../../utilities/loading/load.js"></script>
 
-    <script src="../../font/9390efa2c5.js"></script>
+    <script src="../../font/d029bf1c92.js"></script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">

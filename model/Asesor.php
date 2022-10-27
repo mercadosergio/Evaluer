@@ -34,7 +34,7 @@ class Asesor extends DataBase
 
     public function publicarAnuncio($contenido, $fecha, $programa, $nombre, $usuario, $id)
     {
-        $this->con->query("INSERT INTO post(contenido,fecha,programa_id,nombre_usuario,usuario,docente_id) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario', $id)");
+        $this->con->query("INSERT INTO post(contenido,fecha,programa,nombre_usuario,usuario,docente_id) VALUES ('$contenido','$fecha','$programa','$nombre','$usuario', $id)");
     }
 
     public function deleteAnuncio()

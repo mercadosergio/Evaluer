@@ -60,47 +60,44 @@ class User extends DataBase
         ejecuta cuando el administrador digite los datos requeridos para crear un usuario
         con datos y credenciales de sesión.
     */
-    public function createUser($nombre, $email, $usuario, $contraseña, $rol_id)
+    public function createUser($nombre, $usuario, $contraseña, $rol_id)
     {
-        $this->con->query("INSERT INTO usuario(nombre,email,usuario,contraseña,rol_id)
-        VALUES ('$nombre','$email','$usuario','$contraseña','$rol_id')");
+        $this->con->query("INSERT INTO usuario(nombre,usuario,contraseña,rol_id)
+        VALUES ('$nombre','$usuario','$contraseña','$rol_id')");
     }
 
     /*
         Función para agregar un usuario de tipo estudiante a la base de datos, este posee atributos y datos
         que le permiten interactuar con el sistema de entregas en el campo de investigación.
     */
-    public function agregarEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre, $usuario)
+    public function createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa_id, semestre,usuario, time_propuesta, time_anteproyecto, time_proyecto, usuario_id,programa)
-         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id',$semestre,'$usuario',100000000,100000000,100000000, u.id, p.nombre
-         FROM usuario u
-         JOIN programa p
-         ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
+        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa, semestre,usuario, usuario_id,email,telefono,grupo_id)
+         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa',$semestre,'$usuario', id, '$email','$telefono',1
+         FROM usuario
+         WHERE usuario = '$usuario'");
     }
     /*
      
     */
-    public function createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
+    public function createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO coordinador(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
-         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario', u.id, p.nombre
-         FROM usuario u
-         JOIN programa p
-         ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
+        $this->con->query("INSERT INTO coordinador(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
+         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa','$usuario', id, '$email','$telefono'
+         FROM usuario
+         WHERE usuario = '$usuario'");
     }
     /*
         Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
         datos que le permiten interactuar con el rol docente o asesor de seguimiento para el cumplimiento de las
         metas realizadas.
     */
-    public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $usuario)
+    public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO asesor(nombres, p_apellido, s_apellido, cedula, programa_id, usuario, usuario_id, programa)
-                            SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa_id','$usuario', u.id, p.nombre
-                            FROM usuario u
-                            JOIN programa p
-                            ON u.usuario = '$usuario' AND p.identificador = '$programa_id'");
+        $this->con->query("INSERT INTO asesor(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
+                            SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa','$usuario', id, '$email','$telefono'
+                            FROM usuario
+                            WHERE usuario = '$usuario'");
     }
 
 
@@ -213,9 +210,9 @@ class User extends DataBase
         Metodos para obtener datos de los usuario y roles que iniciaron sesión
     */
 
-    public function getProfileUser()
+    public function getProfileUser($session)
     {
-        $result = $this->con->query("SELECT * FROM usuario WHERE usuario = " . $_SESSION['usuario']);
+        $result = $this->con->query("SELECT * FROM usuario WHERE usuario = " . $session);
         return $result;
     }
     public function getDocenteProfile()

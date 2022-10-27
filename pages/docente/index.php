@@ -1,7 +1,7 @@
 <?php
-
-
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 $sesion = $_SESSION['usuario'];
 
 if ($sesion == null || $sesion = '') {
@@ -13,7 +13,7 @@ include("../../model/UserModel.php");
 include("../../model/Asesor.php");
 
 $usuario = new User();
-$getProfile = $usuario->getProfileUser();
+$getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
 $getAsesor = $usuario->getDocenteProfile();
@@ -68,6 +68,8 @@ include("../../controller/PublicarAnuncio.php");
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="modulos/pqrA.php">Solicitud de PQR</a></li>
+                        <li><a class="dropdown-item" href="modulos/material.php">Material académico</a></li>
                         <li><a class="dropdown-item" href="../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -131,7 +133,7 @@ include("../../controller/PublicarAnuncio.php");
                             <textarea require name="txt-content" class="ckeditor" id="ckeditor"></textarea>
                         </div>
                         <input hidden type="text" name="nombre" value="<?php echo $userD['nombres'] . ' ' . $userD['p_apellido']; ?>">
-                        <input hidden type="text" name="programa_id" value="<?php echo $userD['programa_id'] ?>">
+                        <input hidden type="text" name="programa" value="<?php echo $userD['programa'] ?>">
                         <input hidden type="text" name="docente_id" value="<?php echo $userD['id'] ?>">
                         <input hidden type="datetime" name="datetime" value="<?php
                                                                                 date_default_timezone_set('America/Bogota');

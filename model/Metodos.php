@@ -12,7 +12,8 @@ class Metodos extends DataBase
     public function listar($sql)
     {
         $result = $this->con->query($sql);
-        if($result){}
+        if ($result) {
+        }
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
@@ -78,7 +79,7 @@ class Metodos extends DataBase
         $profile = $this->getProfileAsesor();
         $registro = mysqli_fetch_array($profile);
 
-        $result = $this->con->query("SELECT * FROM propuesta WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha");
+        $result = $this->con->query("SELECT * FROM propuesta WHERE programa='" . $registro['programa'] . "' ORDER BY fecha");
         return $result;
     }
 
@@ -87,7 +88,7 @@ class Metodos extends DataBase
         $profile = $this->getProfileAsesor();
         $registro = mysqli_fetch_array($profile);
 
-        $result = $this->con->query("SELECT * FROM anteproyecto WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha");
+        $result = $this->con->query("SELECT * FROM anteproyecto WHERE programa='" . $registro['programa'] . "' ORDER BY fecha");
         return $result;
     }
 
@@ -96,7 +97,7 @@ class Metodos extends DataBase
         $profile = $this->getProfileAsesor();
         $registro = mysqli_fetch_array($profile);
 
-        $result = $this->con->query("SELECT * FROM proyecto_grado WHERE programa_id=" . $registro['programa_id'] . " ORDER BY fecha");
+        $result = $this->con->query("SELECT * FROM proyecto_grado WHERE programa='" . $registro['programa'] . "' ORDER BY fecha");
         return $result;
     }
     public function getProyecto($id)
@@ -115,5 +116,15 @@ class Metodos extends DataBase
         } else {
             return false;
         }
+    }
+
+    public function publicarMaterial($asesor_id, $nombre, $ruta)
+    {
+        $this->con->query("INSERT INTO material_academico(nombre,ruta,asesor_id) VALUES ('$nombre', '$ruta','$asesor_id')");
+    }
+    public function getMaterial($id)
+    {
+        $result = $this->con->query("SELECT * FROM material_academico WHERE asesor_id = $id");
+        return  $result;
     }
 }

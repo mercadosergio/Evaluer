@@ -1,5 +1,4 @@
 <?php
-
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -17,11 +16,12 @@ $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
+$getAsesor = $usuario->getDocenteProfile();
+$userD = mysqli_fetch_array($getAsesor);
+
 include("../../../model/Asesor.php");
 $docente = new Asesor();
 
-include("../../../controller/evaluate-anteproyecto.php");
-$idAnteproyecto = $_GET['id'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -33,7 +33,7 @@ $idAnteproyecto = $_GET['id'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Revisión de Anteproyecto</title>
+    <title>Revsión del Proyecto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../../../utilities/loading/carga.css">
@@ -41,7 +41,7 @@ $idAnteproyecto = $_GET['id'];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../../../css/actividad-proyecto.css">
+    <link rel="stylesheet" href="../../../css/material.css">
     <link rel="stylesheet" href="../../../css/header.css">
     <link rel="stylesheet" href="../../../css/scrollbar.css">
 </head>
@@ -84,61 +84,49 @@ $idAnteproyecto = $_GET['id'];
 
     <div class="format-3">
         <div class="cont-titulo">
-            <h3>Información del anteproyecto</h3>
+            <h3>Materiales académicos</h3>
+        </div>
+        <div class="box">
+            <i class="fa fa-search"></i>
+            <input type="search" id="search" placeholder="Buscar..." />
         </div>
         <?php
-        $getAnteproyecto = $docente->getAnteproyecto($idAnteproyecto);
-        $findData = mysqli_fetch_array($getAnteproyecto);
-        ?>
-        <div class="data">
-            <div class="row_"><label for="">Titulo: </label>
-                <p><?php echo $findData['titulo'] ?></p>
-            </div>
-            <div class="row_"><label for="">Fecha de envío: </label>
-                <p><?php
-                    $originalDate = $findData['fecha'];
-                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
-                    ?></p>
-            </div>
-            <div class="row_"><label for="">Archivo: </label>
-                <a class="file_container" href="<?php echo $findData['documento'] ?>" target="_blank"><i class="fas fa-file-alt"></i>
-                    <p><?php echo " " . $findData['nombre'] ?></p>
-                </a>
-            </div>
-            <div class="row_"><label for="">Comentarios del estudiante: </label>
-                <p><?php echo $findData['comentarios'] ?></p>
-            </div>
-        </div>
 
-        <div class="cont-titulo">
-            <h3>Acciones</h3>
+        $resultado = $funcion->getMaterial($userD['id']);
+        if ($resultado->num_rows > 0) {
+            while ($key = mysqli_fetch_array($resultado)) {
+        ?>
+                <div class="card_">
+                    <a href="../<?php echo $key['ruta'] ?>" target="_blank">
+                        <i class="fas fa-file-alt"></i>
+                        <p><?php echo $key['nombre'] ?></p>
+                    </a>
+                </div>
+        <?php }
+        } else {
+            echo "<div class='adv'><p>No hay material por el momento.</p></div>";
+        }
+        ?>
+        <div class="formulario">
+            <h3>Publicar material</h3>
+            <?php
+            include("../../../controller/PublicarMaterial.php");
+            ?>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="campos">
+                    <label for="">Nombre:</label>
+                    <input type="text" name="titulo">
+                    <input type="text" hidden name="asesor_id" value="<?php echo $userD['id'] ?>">
+                </div>
+                <div class="campos">
+                    <label for="">Archivo:</label>
+                    <input class="form-control" type="file" id="formFile" name="archivo">
+                </div>
+                <div class="btn-div">
+                    <button type="submit" name="save">Guardar</button>
+                </div>
+            </form>
         </div>
-        <form method="POST">
-            <div class="acciones">
-                <div class="">
-                    <label for="">Observaciones:</label>
-                    <textarea class="form-control" name="" id="" cols="" rows=""><?php echo $findData['observaciones'] ?></textarea>
-                </div>
-                <div class="control">
-                    <label for="">Estado:</label>
-                    <select class="form-select" name="estado[]" id="">
-                        <option selected value="<?php echo $findData['estado'] ?>"><?php echo $findData['estado'] ?></option>
-                        <option value="--">SELECCIONE...</option>
-                        <option value="APROBADO">APROBADO</option>
-                        <option value="REPROBADO">REPROBADO</option>
-                        <option value="EN REVISION">EN REVISIÓN</option>
-                        <option value="APLAZADO">APLAZADO</option>
-                    </select>
-                </div>
-                <div class="control">
-                    <label for="">Calificación:</label>
-                    <input class="form-control number" type="number" value="<?php echo $findData['calificacion'] ?>">
-                </div>
-                <div class="button-container">
-                    <button type="submit" class="btn" name="enviar">Guardar</button>
-                </div>
-            </div>
-        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
