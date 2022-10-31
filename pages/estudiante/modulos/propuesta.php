@@ -21,7 +21,9 @@ $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
 $estudiante = new Student();
+$myGroup = $estudiante->GroupByDi($userE['cedula']);
 
+$row = mysqli_fetch_array($myGroup);
 if ($userE['grupo_id'] <= 0) {
     header("location: ../index.php");
 }
@@ -243,7 +245,7 @@ date_default_timezone_set("America/Bogota");
                 <label><i class="fas fa-bell"></i> Notificaciones</label>
 
                 <?php
-                $listar = "SELECT * FROM propuesta WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+                $listar = "SELECT * FROM propuesta WHERE grupo_id =" . $userE['grupo_id'] . " ORDER BY fecha";
                 $prop = $res->listar($listar);
                 if ($prop >= 1) {
                     if (time() < $getTime) {

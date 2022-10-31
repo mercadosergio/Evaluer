@@ -235,6 +235,11 @@ include("../../../controller/upload_proyecto.php");
     <?php
     }
     ?>
+     <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>
     <script src="../../../js/jquery-3.3.1.min.js"></script>

@@ -3,20 +3,111 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $sesion = $_SESSION['usuario'];
-
+error_reporting(0);
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
 }
-
+include_once '../../model/UserModel.php';
 include_once '../../model/Metodos.php';
-include("../../model/UserModel.php");
-
 $usuario = new User();
-$admin = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
+
+$admin = new Metodos();
+
 include("../../controller/EditUser.php");
+
+if (isset($_POST['importar'])) {
+
+    $role = $_POST['role'];
+    $file_type = $_FILES['file_send']['type'];
+    $file_size = $_FILES['file_send']['size'];
+    $filetmp = $_FILES['file_send']['tmp_name'];
+    $lineas = file($filetmp);
+
+    $i = 0;
+
+    foreach ($lineas as $linea) {
+        $cantidad_registros = count($lineas);
+        $cantidad_regist_agregados =  ($cantidad_registros - 1);
+
+        if ($i != 0) {
+
+            $datos = explode(";", $linea);
+
+            $nombre                = !empty($datos[0])  ? ($datos[0]) : '';
+            $p_apellido                = !empty($datos[1])  ? ($datos[1]) : '';
+            $s_apellido               = !empty($datos[2])  ? ($datos[2]) : '';
+            $cedula            = !empty($datos[3])  ? ($datos[3]) : '';
+            $programa            = !empty($datos[4])  ? ($datos[4]) : '';
+
+            $admin = new User();
+            if (!empty($cedula)) {
+                $check_duplicado = $admin->consultar("SELECT cedula FROM estudiante WHERE cedula='" . ($cedula) . "' ");
+                $cant_duplicado = $check_duplicado->num_rows;
+            }
+
+            //No existe Registros Duplicados
+            for ($j = 0; $j < count($role); $j++) {
+                if ($cant_duplicado == 0) {
+
+                    $admin->createUser($nombre, $cedula, password_hash($cedula, PASSWORD_DEFAULT), $role[$j], $cedula);
+                    if ($role[$j] == 1) {
+?>
+                        <div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
+                            Debe seleccionar un rol
+                        </div>
+                        <script>
+                            setTimeout(function() {
+                                $('#fail').fadeOut('fast');
+                            }, 2000); // <-- time in milliseconds
+                        </script>
+    <?php
+                    } else if ($role[$j] == 2) {
+                    } else if ($role[$j] == 3) {
+                        $semestre                = !empty($datos[5])  ? ($datos[5]) : '';
+                        $telefono              = !empty($datos[6])  ? ($datos[6]) : '';
+                        $email              = !empty($datos[7])  ? ($datos[7]) : '';
+                        $admin->createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre, $cedula, $email, $telefono);
+                    } else if ($role[$j] == 4) {
+                    }
+                }
+                /**Caso Contrario actualizo el o los Registros ya existentes*/
+                else {
+                    // $admin->editUser($nombre, $cedula, $cedula);
+                    if ($role[$j] == 2) {
+                    } else if ($role[$j] == 3) {
+                        $semestre = !empty($datos[5]) ? ($datos[5]) : '';
+                        $telefono = !empty($datos[6]) ? ($datos[6]) : '';
+                        $email = !empty($datos[7]) ? ($datos[7]) : '';
+                        // $admin->editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre);
+                    } else if ($role[$j] == 4) {
+                    }
+                }
+            }
+        }
+
+        $i++;
+    }
+    include("index.php");
+
+    ?>
+    <div class="saving" id="loader">
+        <div class="lds-facebook loader" id="loader">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        Importando...
+    </div>
+    <script>
+        setTimeout(function() {
+            $('#loader').fadeOut('fast');
+        }, 2500); // <-- time in milliseconds
+    </script>
+<?php
+}
 ?>
 
 <!doctype html>
@@ -46,6 +137,8 @@ include("../../controller/EditUser.php");
     <div id="contenedor_carga">
         <div id="carga"></div>
     </div>
+
+
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../img/aunar.png" class="aunar_logo">
@@ -76,7 +169,6 @@ include("../../controller/EditUser.php");
                 </li>
             </ul>
         </div>
-
     </nav>
 
 
@@ -245,9 +337,31 @@ include("../../controller/EditUser.php");
             </div>
         </div>
     </div>
-
-
-
+    <div class="importarCsv">
+        <button class="" id="btn-activar">Importar usuarios</button>
+        <div class="form-file" id="form-file">
+            <form class="form-import" id="formulario-import" method="POST" enctype="multipart/form-data">
+                <p>Para importar usuarios desde un archivo de hoja de cálculo, debe guardarlo como <code>.csv</code> y cargar el archivo.</p>
+                <div>
+                    <label for="">Seleccione un rol</label>
+                    <select name="role[]" id="role">
+                        <option selected value="1">Seleccione...</option>
+                        <option value="2">Coordinador</option>
+                        <option value="3">Estudiante</option>
+                        <option value="4">Asesor</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">Seleccione un archivo</label>
+                    <input class="form-control" type="file" name="file_send" id="excel" accept="">
+                </div>
+                <div class="cont-button">
+                    <button type="submit" id="btn-aceptar" name="importar">Aceptar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- .csv/.xls/.xlsx -->
     <!-- Modal component -->
     <div class="modal fade modal-edit" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form method="POST">
@@ -413,7 +527,49 @@ include("../../controller/EditUser.php");
             });
         }
     </script>
+    <script>
+        $(document).ready(() => {
+            $('#form-file').hide();
 
+            $('#btn-activar').click(function() {
+                $('#form-file').show();
+                $('#btn-activar').hide();
+            });
+            $('#btn-aceptar').click(function() {
+                $('#form-file').hide();
+                $('#btn-activar').show();
+            });
+        });
+    </script>
+    <script>
+        // $('#btn-aceptar').click(function() {
+        //     var form = $('#formulario-import').serialize();
+        //     var rol = $('#role').value
+        //     console.log(form);
+        //     $.ajax({
+        //             type: 'POST',
+        //             url: '../../controller/ImportarUsuarios.php',
+        //             data: form,
+        //         })
+        //         .done(function() {
+        //             console.log("success");
+        //         })
+        //         .fail(function() {
+        //             console.log("error");
+        //         })
+        //         .always(function() {
+        //             console.log("complete");
+        //         })
+
+        // });
+    </script>
+    <script>
+        if (window.history.replaceState) {
+            console.log("probando...");
+
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <script src="../../utilities/loading/load.js"></script>
     <script src="../../font/d029bf1c92.js"></script>
 

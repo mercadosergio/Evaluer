@@ -94,7 +94,7 @@ include("../../controller/PublicarAnuncio.php");
                         <div>
                             <h3>Propuesta de grado</h3>
                             <div>
-                                <i class="icono fas fa-search"></i>
+                                <img src="../../img/propuesta-asesor.png" alt="">
                             </div>
 
                         </div>
@@ -105,7 +105,8 @@ include("../../controller/PublicarAnuncio.php");
                         <div>
                             <h3>Anteproyectos</h3>
                             <div>
-                                <i class="fas fa-book-open"></i>
+                            <img src="../../img/lista-de-verificacion.png" alt="">
+
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,8 @@ include("../../controller/PublicarAnuncio.php");
                         <div>
                             <h3>Proyectos de grado</h3>
                             <div>
-                                <i class="fas fa-user-tie"></i>
+                            <img src="../../img/lista-de-verificacion.png" alt="">
+
                             </div>
                         </div>
                     </div>

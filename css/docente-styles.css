@@ -231,6 +231,10 @@ img {
     transition: all 400ms ease;
 }
 
+.seleccion img {
+    width: 100px;
+}
+
 .docente-profile .fila a .seleccion div {
     display: block;
     width: 100%;

@@ -13,14 +13,13 @@ if (isset($_POST['login'])) {
         </div>
 
         <?php
-      
+
     } else {
-       
+
         $user = new User;
         if ($user->getUser($usuario, $contraseña)) {
             session_start();
             $_SESSION['usuario'] = $usuario;
-            $_SESSION['programa_id'] = $pro;
         } else {
             header('index.php');
         ?>

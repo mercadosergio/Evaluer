@@ -348,6 +348,10 @@
             margin: 0;
             width: 100%;
         }
+        .enlace img {
+            width: 100px;
+            margin: 10px auto;
+        }
         .treeview {
             margin-top: 20px;
             background: linear-gradient(to bottom, #fff, #fff, transparent);

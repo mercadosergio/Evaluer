@@ -29,10 +29,10 @@ if (isset($_POST['agregar'])) {
             </script>
         <?php
         } else {
-            // $user = new User();
+
             for ($i = 0; $i < count($id_rol); $i++) {
 
-                $usuario->createUser($nombre, $cedula, $pass_cifrado, $id_rol[$i]);
+                $usuario->createUser($nombre, $cedula, $pass_cifrado, $id_rol[$i], $cedula);
                 if ($id_rol[$i] == 2) {
                     $usuario->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $cedula, $email, $telefono);
                 } else if ($id_rol[$i] == 3) {

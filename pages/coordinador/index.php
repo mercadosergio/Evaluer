@@ -77,7 +77,7 @@ $userP = mysqli_fetch_array($getProfile);
         </div>
 
     </nav>
-
+    
     <div class="coordinador-profile">
         <div class="cont-titulo">
             <i class="bi bi-columns-gap"></i>
@@ -88,19 +88,19 @@ $userP = mysqli_fetch_array($getProfile);
             <a href="modulos/gestion-inv.php">
                 <div class="shadow">
                     <h3>Gestión investigativa</h3>
-                    <img src="../../img/asignar.png" alt="">
+                    <img src="../../img/investigacion.png" alt="">
                 </div>
             </a>
             <a href="modulos/asignar-asesor.php">
                 <div class="shadow">
                     <h3>Asignar asesor</h3>
-                    <img src="../../img/asignar.png" alt="">
+                    <img src="../../img/discusion.png" alt="">
                 </div>
             </a>
             <a href="modulos/lista-proyectos.php">
                 <div class="shadow">
                     <h3>Asignar Jurado</h3>
-                    <img src="../../img/proyecto-coordinador.png" alt="">
+                    <img src="../../img/jurado.png" alt="">
                 </div>
             </a>
         </div>

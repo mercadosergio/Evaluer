@@ -160,7 +160,7 @@ date_default_timezone_set('America/Bogota');
                 <div class="layout">
                     <a href="../../pages/estudiante/modulos/team.php">
                         <div class="enlace">
-                            <img src="../../img/propuesta-e.png" alt="">
+                            <img src="../../img/grupo.png" alt="">
                             <p>Información de grupo</p>
                         </div>
                     </a>
@@ -172,7 +172,7 @@ date_default_timezone_set('America/Bogota');
                                 echo '<div class="salto"></div>';
                             }
                             ?>
-                            <img src="../../img/propuesta-e.png" alt="">
+                            <img src="../../img/formulario-de-firma.png" alt="">
                             <p>Propuesta de grado</p>
                         </div>
                     </a>
@@ -180,11 +180,11 @@ date_default_timezone_set('America/Bogota');
 
 
                     ?>
-                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findP->num_rows < 1) ? 'deshabilitar' : '' ?>">
+                    <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findP->num_rows < 1) ? 'eshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
                             if ($userE['grupo_id'] == 0 || $findP->num_rows < 1) {
-                                echo '<div class="salto"></div>';
+                                echo '<div class="alto"></div>';
                             }
                             ?>
                             <img src="../../img/anteproyecto.png" alt="">
@@ -195,11 +195,11 @@ date_default_timezone_set('America/Bogota');
                     $myProfileStudent = $usuario->getStudentProfile();
                     $estP = mysqli_fetch_array($myProfileStudent);
                     ?>
-                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findA->num_rows < 1) ? 'deshabilitar' : '' ?>">
+                    <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findA->num_rows < 1) ? 'eshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
                             if ($userE['grupo_id'] == 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
-                                echo '<div class="salto"></div>';
+                                echo '<div class="alto"></div>';
                             }
                             ?>
                             <img src="../../img/proyectof.png" alt="">

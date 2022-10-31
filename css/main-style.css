@@ -374,7 +374,7 @@ input:focus {
     }
     .develop {
         display: grid;
-        grid-template-areas: "des des""programer1 programer2";
+        grid-template-areas: "des des" "programer1 programer2";
     }
     .des {
         grid-area: des;

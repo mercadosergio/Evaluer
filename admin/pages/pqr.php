@@ -106,7 +106,11 @@ $userP = mysqli_fetch_array($getProfile);
         }
         ?>
     </div>
-
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
     <script src="../../js/jquery-3.3.1.min.js"></script>
 
     <script src="../../utilities/loading/load.js"></script>

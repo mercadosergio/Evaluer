@@ -55,15 +55,32 @@ class User extends DataBase
         $result = $this->con->query($sql);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+
+    public function consultar($sql)
+    {
+        $result = $this->con->query($sql);
+        return $result;
+    }
+
+    public function verificarRegistros($sql)
+    {
+        $result = $this->con->query($sql);
+        return  $result->num_rows;
+    }
+
     /*
         Función para agregar un usuario a la base de datos de evaluer, acción que se
         ejecuta cuando el administrador digite los datos requeridos para crear un usuario
         con datos y credenciales de sesión.
     */
-    public function createUser($nombre, $usuario, $contraseña, $rol_id)
+    public function createUser($nombre, $usuario, $contraseña, $rol_id, $cedula)
     {
-        $this->con->query("INSERT INTO usuario(nombre,usuario,contraseña,rol_id)
-        VALUES ('$nombre','$usuario','$contraseña','$rol_id')");
+        $verify = $this->verificarRegistros("SELECT * FROM usuario WHERE cedula = '$cedula'");
+
+        if ($verify <= 0) {
+            $this->con->query("INSERT INTO usuario(nombre,usuario,contraseña,rol_id,cedula)
+            VALUES ('$nombre','$usuario','$contraseña','$rol_id', '$cedula')");
+        }
     }
 
     /*
@@ -72,20 +89,24 @@ class User extends DataBase
     */
     public function createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa, semestre,usuario, usuario_id,email,telefono,grupo_id)
-         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa',$semestre,'$usuario', id, '$email','$telefono',1
-         FROM usuario
-         WHERE usuario = '$usuario'");
+        $verify = $this->verificarRegistros("SELECT * FROM estudiante WHERE cedula = '$cedula'");
+        if ($verify <= 0) {
+            $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa, semestre,usuario,email,telefono)
+         VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa',$semestre,'$usuario', '$email','$telefono')");
+
+            $this->con->query("UPDATE estudiante e JOIN usuario u SET e.usuario_id = u.id WHERE e.cedula = u.cedula");
+        }
     }
     /*
      
     */
     public function createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO coordinador(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
-         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa','$usuario', id, '$email','$telefono'
-         FROM usuario
-         WHERE usuario = '$usuario'");
+        $verify = $this->verificarRegistros("SELECT * FROM coordinador WHERE cedula = '$cedula'");
+        if ($verify <= 0) {
+            $this->con->query("INSERT INTO coordinador(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
+         SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa','$usuario', id, '$email','$telefono' FROM usuario WHERE usuario = '$usuario'");
+        }
     }
     /*
         Función para agregar un usuario de tipo asesor de investigación a la base de datos, este posee atributos y
@@ -94,29 +115,27 @@ class User extends DataBase
     */
     public function createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa, $usuario, $email, $telefono)
     {
-        $this->con->query("INSERT INTO asesor(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
+        $verify = $this->verificarRegistros("SELECT * FROM asesor WHERE cedula = '$cedula'");
+        if ($verify <= 0) {
+            $this->con->query("INSERT INTO asesor(nombres, p_apellido, s_apellido, cedula, programa, usuario, usuario_id,email,telefono)
                             SELECT '$nombre','$p_apellido','$s_apellido','$cedula','$programa','$usuario', id, '$email','$telefono'
                             FROM usuario
                             WHERE usuario = '$usuario'");
+        }
     }
 
-
-
-    public function editUser($nombre,  $usuario, $id)
+    public function editUser($nombre,  $usuario, $cedula)
     {
-        $sql = "UPDATE usuario SET nombre='$nombre', usuario='$usuario' WHERE id = '$id'";
+        $sql = "UPDATE usuario SET nombre='$nombre', usuario='$usuario', cedula ='$cedula' WHERE cedula = '$cedula'";
         $this->con->query($sql);
     }
 
-    public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id, $semestre)
-    {
-        $sql = "UPDATE estudiante e SET e.nombre='$nombre', e.p_apellido='$p_apellido', e.s_apellido='$s_apellido', e.cedula='$cedula',
-        e.programa_id='$programa_id', e.semestre='$semestre', e.usuario='$cedula' WHERE e.id = '$id'";
-        $this->con->query($sql);
 
-        $this->con->query("UPDATE estudiante e JOIN programa p
-                            ON p.identificador = '$programa_id'
-                            SET e.programa = p.nombre");
+    public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
+    {
+
+        $sql = $this->con->query("UPDATE estudiante e SET e.nombre='$nombre', e.p_apellido='$p_apellido', e.s_apellido='$s_apellido', e.cedula='$cedula',
+        e.programa='$programa', e.semestre='$semestre', e.usuario='$cedula' WHERE e.id = '$id'");
 
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
@@ -138,6 +157,13 @@ class User extends DataBase
         </script>";
         }
         mysqli_close($this->con);
+        // include("../admin/index.php");
+    }
+
+    public function editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
+    {
+        $this->con->query("UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
+        programa='$programa', semestre='$semestre', usuario='$cedula' WHERE cedula='$cedula'");
     }
 
     public function editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)

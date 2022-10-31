@@ -205,7 +205,11 @@ $myRole = mysqli_fetch_array($getMyself);
             // document.sub.submit();
         }
     </script>
-
+ <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 
     <script src="../../../utilities/loading/load.js"></script>
     <script src="../../../font/9390efa2c5.js"></script>

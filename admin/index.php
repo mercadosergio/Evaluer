@@ -9,12 +9,11 @@ if ($sesion == null || $sesion = '') {
     header("location: ../index.php");
     die();
 }
-include("../model/UserModel.php");
+include_once '../model/UserModel.php';
 $usuario = new User();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 ?>
-
 <!doctype html>
 <html lang="en">
 

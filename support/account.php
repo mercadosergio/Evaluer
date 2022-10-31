@@ -11,7 +11,7 @@ if ($sesion == null || $sesion = '') {
 }
 include("../model/UserModel.php");
 $obj = new User();
-$getProfile = $obj->getProfileUser();
+$getProfile = $obj->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 ?>
 <!doctype html>
@@ -43,7 +43,17 @@ $userP = mysqli_fetch_array($getProfile);
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../img/aunar.png" class="aunar_logo">
-        <a style="cursor: pointer;" class="navbar-brand" onclick="history.back()"><img class="logo" src="../img/logo_p.png"></a>
+        <a style="cursor: pointer;" class="navbar-brand" href="<?php
+                                                                if ($userP['rol_id'] == 1) {
+                                                                    echo "../admin/index.php";
+                                                                } else if ($userP['rol_id'] == 2) {
+                                                                    echo "../pages/coordinador/index.php";
+                                                                } else if ($userP['rol_id'] == 3) {
+                                                                    echo "../pages/estudiante/index.php";
+                                                                } else if ($userP['rol_id'] == 4) {
+                                                                    echo "../pages/docente/index.php";
+                                                                }
+                                                                ?>"><img class="logo" src="../img/logo_p.png"></a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <h3>AJUSTES DEL PERFIL</h3>

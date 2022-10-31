@@ -16,7 +16,7 @@ if (isset($_POST['modificar'])) {
 
     $user = new User();
 
-    $user->editUser($nombre, $usuario, $idUser);
+    $user->editUser($nombre, $usuario, $cedula);
 
     for ($i = 0; $i < count($programa_id); $i++) {
         if ($rol == 3) {
