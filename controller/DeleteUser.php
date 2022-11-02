@@ -5,17 +5,17 @@ if (isset($_POST['deleteU'])) {
     $id = $_POST['del_id'];
     $usuario = $_POST['del_user'];
     $role = $_POST['del_role'];
-    $user = new User();
+    $admin = new User();
 
 
-    $user->deleteUser($usuario);
     if ($role == 2) {
-        $user->deleteCoordinador($id);
+        $admin->deleteCoordinador($id);
     } else if ($role == 3) {
-        $user->deleteEstudiante($id);
+        $admin->deleteEstudiante($id);
     } else if ($role == 4) {
-        $user->deleteAsesor($id);
+        $admin->deleteAsesor($id);
     }
+    $admin->deleteUser($usuario);
 
 ?>
     <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
@@ -27,6 +27,7 @@ if (isset($_POST['deleteU'])) {
         }, 2000); // <-- time in milliseconds
     </script>
 <?php
-   include_once 'control-usuarios.php';
+
 }
+
 ?>

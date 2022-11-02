@@ -56,13 +56,11 @@ h6 {
 }
 
 h1 {
-    color: #212121;
     font-size: 2.8em;
     margin: 24px 0;
 }
 
 h2 {
-    color: #353535;
     font-size: 2.4em;
     font-weight: bold;
 }
@@ -447,6 +445,7 @@ details:not([open]) .folder {
     justify-content: center;
     margin: auto;
     height: 150px;
+    width: 100%;
 }
 
 .aviso p {
@@ -484,6 +483,10 @@ details:not([open]) .folder {
         margin: 5px 0;
     }
     .seccion-anteproyecto {
+        display: flex;
+        flex-direction: column;
+    }
+    .Formulario {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
     }

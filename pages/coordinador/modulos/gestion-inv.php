@@ -83,28 +83,32 @@ $myRole = mysqli_fetch_array($getMyself);
         <div class="cont-titulo">
             <h3>Linea de investigación</h3>
         </div>
-
-        <div class="componente">
-            <div class="campo">
-                <p>Linea de investigación:</p>
-                <input type="text">
+        <?php
+        require "../../../controller/AgregarLineaInv.php";
+        ?>
+        <form action="" method="POST">
+            <div class="componente">
+                <div class="campo">
+                    <p>Linea de investigación:</p>
+                    <input type="text" name="linea">
+                </div>
+                <div class="campo">
+                    <p>Sublínea:</p>
+                    <input type="text" name="sublinea">
+                </div>
+                <div class="campo">
+                    <p>Objetivos:</p>
+                    <textarea id="" cols="" rows="" name="objetivos"></textarea>
+                </div>
+                <div class="campo">
+                    <p>Programa:</p>
+                    <input readonly type="text" value="<?php echo $myRole['programa']; ?>" name="programa">
+                </div>
+                <div class="action">
+                    <button type="submit" name="save">Agregar</button>
+                </div>
             </div>
-            <div class="campo">
-                <p>Sublínea:</p>
-                <input type="text">
-            </div>
-            <div class="campo">
-                <p>Objetivos:</p>
-                <textarea name="" id="" cols="" rows=""></textarea>
-            </div>
-            <div class="campo">
-                <p>Programa:</p>
-                <input readonly type="text" value="<?php echo $myRole['programa']; ?>">
-            </div>
-            <div class="action">
-                <button>Agregar</button>
-            </div>
-        </div>
+        </form>
     </div>
     <script src="../../../js/jquery-3.5.1.js"></script>
     <script>

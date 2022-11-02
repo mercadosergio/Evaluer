@@ -16,6 +16,9 @@ $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
+$getProfileA = $usuario->getDocenteProfile($_SESSION['usuario']);
+$userA = mysqli_fetch_array($getProfileA);
+
 include "../../../controller/RatePropuesta.php";
 ?>
 <!doctype html>
@@ -81,10 +84,14 @@ include "../../../controller/RatePropuesta.php";
             <form action="" method="POST">
                 <?php
                 include '../../../controller/HabilitarPropuesta.php';
+                $mostrar = $funcion->listarPropuestas($userA['id']);
+                $x = mysqli_fetch_array($mostrar);
                 ?>
                 <input type="text" hidden value="<?php echo $_SESSION['usuario']; ?>" name="userr">
-                <button name="begin" type="submit" class="btn btn-success"><i class="bi bi-plus-lg"></i>Habilitar
-                    entregas</button>
+                <input type="date" name="fecha" id="" value="<?php ?>">
+                <input type="time" name="hora" id="" value="<?php ?>">
+                <button name="begin" type="submit" class=""><i class="bi bi-plus-lg"></i>Habilitar
+                    actividad</button>
             </form>
         </fieldset>
         <div class="lista-propuestas">
@@ -120,7 +127,7 @@ include "../../../controller/RatePropuesta.php";
                     </thead>
                     <tbody id="contenido_tabla">
                         <?php
-                        $mostrar = $funcion->listarPropuestas();
+
 
                         foreach ($mostrar as $value) {
                             $id_registro = $value['id'];
@@ -129,7 +136,7 @@ include "../../../controller/RatePropuesta.php";
                                 <td><?php echo $value['id'] ?></td>
                                 <td style="max-width: 600px;"><?php echo $value['titulo'] ?></td>
                                 <td hidden><?php echo $value['linea'] ?></td>
-                                <td><?php echo $value['integrantes'] ?></td>
+                                <td><?php echo $value['n_integrantes'] ?></td>
                                 <td hidden><?php echo $value['tutor'] ?></td>
                                 <td hidden><?php echo $value['lider'] ?></td>
                                 <td><?php echo $value['programa'] ?></td>

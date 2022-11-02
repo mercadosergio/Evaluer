@@ -112,18 +112,18 @@ include("../../../controller/evaluate-proyecto.php");
                                 <td><?php echo $value['id']; ?></td>
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
-                                <td><?php
-                                    $originalDate = $value['fecha'];
-                                    echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
-                                    ?></td>
+                                <td style="min-width: 200px;"><?php
+                                                                $originalDate = $value['fecha'];
+                                                                echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
+                                                                ?></td>
                                 <td><?php echo $value['calificacion'] ?></td>
-                                <td><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
+                                <td style="min-width: 150px;"><input type="text" name="estado" hidden value="<?php echo $value['estado'] ?>" style="text-transform:uppercase;">
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
-                                <td style="display: flex; justify-content: center;">
-                                    <input hidden name="getIdProyecto" type="text" value="<?php echo $value['id'] ?>">
+                                <td style="justify-content: center; align-items: center; height: 100%;">
+
                                     <a href="gestion-actividad-proyecto-grado.php?id=<?php echo $value['id'] ?>" class="btn-go"><i class="bi bi-eye-fill"></i></a>
-                                    <input hidden type="submit" name="evaluar" value="Evaluar" class="btn-nota">
+
                                     <a class="download" href="<?php echo $value['documento']; ?>" target="_blank"><i class="fa-solid fa-download"></i></a>
                                 </td>
                             </form>

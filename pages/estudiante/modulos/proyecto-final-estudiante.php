@@ -120,8 +120,7 @@ include("../../../controller/upload_proyecto.php");
                             $getTime = $res->restrictProyecto($userE['grupo_id']);
                             ?>
                             <div class="mb-3">
-                                <input type="text" hidden name="programa_id" value="<?php echo $userE['programa_id'] ?>">
-                                <input type="text" hidden name="programa_n" value="<?php echo $userE['programa'] ?>">
+                                <input type="text" hidden name="programa" value="<?php echo $userE['programa'] ?>">
                                 <input class="form-control" type="file" id="formFile" name="archivo" <?php echo (time() < $getTime) ? "disabled" : ''; ?>>
                             </div>
                         </div>
@@ -135,7 +134,7 @@ include("../../../controller/upload_proyecto.php");
             </div>
             <div class="historial">
                 <?php
-                $listarP = "SELECT * FROM proyecto_grado WHERE remitente =" . $_SESSION['usuario'] . " ORDER BY fecha";
+                $listarP = "SELECT * FROM proyecto_grado WHERE grupo_id =" . $userE['grupo_id'] . " ORDER BY fecha";
                 $data = $res->listar($listarP);
                 foreach ($data as $archivados) {
                 ?>
@@ -235,7 +234,7 @@ include("../../../controller/upload_proyecto.php");
     <?php
     }
     ?>
-     <script>
+    <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }

@@ -9,13 +9,13 @@ if ($sesion == null || $sesion = '') {
     die();
 }
 include_once '../../model/Metodos.php';
-include("../../model/UserModel.php");
+include_once("../../model/UserModel.php");
 
 $usuario = new User();
 $admin = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-include '../../controller/AddUserController.php';
+require '../../controller/AddUserController.php';
 date_default_timezone_set("America/Bogota");
 ?>
 
@@ -74,11 +74,11 @@ date_default_timezone_set("America/Bogota");
             </ul>
         </div>
     </nav>
-    <form method="POST">
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <div class="content shadow p-3 mb-5 bg-white rounded">
             <div class="roles">
                 <h5>Seleccione el rol de usuario:</h5>
-                <select name="role[]" id="role" class="role form-select">
+                <select name="role[]" id="role" class="role">
                     <option class="coo" value="2">Coordinador</option>
                     <option class="other" value="3" selected>Estudiante</option>
                     <option class="other" value="4">Asesor</option>
@@ -92,50 +92,52 @@ date_default_timezone_set("America/Bogota");
                     <h3 class="title" id="stitle">Información del usuario</h3>
                 </div>
 
-                <div class="campo-nombre">
-                    <label for="">Nombres:</label>
-                    <input type="text" name="nombre" class="form-control" placeholder="">
-                </div>
-                <div class="campo-primer-apellido">
-                    <label for="">Primer apellido:</label>
-                    <input type="text" name="p_apellido" class="form-control" placeholder="">
-                </div>
-                <div class="campo-segundo-apellido">
-                    <label for="">Segundo apellido:</label>
-                    <input type="text" name="s_apellido" class="form-control" placeholder="">
-                </div>
-                <div class="campo-cedula ">
-                    <label for="">Documento de identidad:</label>
-                    <input type="text" name="cedula" class="form-control" placeholder="">
-                </div>
+                <div class="layout-form">
+                    <div>
+                        <label for="">Nombres:</label>
+                        <input type="text" name="nombre" class="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="">Primer apellido:</label>
+                        <input type="text" name="p_apellido" class="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="">Segundo apellido:</label>
+                        <input type="text" name="s_apellido" class="" placeholder="">
+                    </div>
+                    <div>
+                        <label for="">Documento de identidad:</label>
+                        <input type="text" name="cedula" class="" placeholder="">
+                    </div>
 
-                <div class="programa">
-                    <label>Programa académico:</label>
-                    <select name="programa[]" class="programa-s form-select">
-                        <option selected value="1">Seleccione...</option>
-                        <?php
-                        $sql = "SELECT * FROM programa";
-                        $datos = $usuario->listar($sql);
-                        foreach ($datos as $key) {
-                            echo '<option value="' . $key['nombre'] . '">' . $key['nombre'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="cammpo-semestre" id="semestre">
-                    <label>Semestre:</label>
-                    <input type="number" min="6" max="9" name="semestre" class="form-control" placeholder="" id="semestre">
-                </div>
-                <div class="campo-email">
-                    <label for="">Email:</label>
-                    <input type="text" name="email" class="form-control">
-                </div>
-                <div class="campo-telefono">
-                    <label for="">Teléfono:</label>
-                    <input type="text" name="telefono" class="form-control">
-                </div>
-                <div class="container-button">
-                    <button type="submit" name="agregar" class="btn-agregar">Registrar</button>
+                    <div>
+                        <label>Programa académico:</label>
+                        <select name="programa[]" class="programa-s">
+                            <option selected value="1">Seleccione...</option>
+                            <?php
+                            $sql = "SELECT * FROM programa";
+                            $datos = $usuario->listar($sql);
+                            foreach ($datos as $key) {
+                                echo '<option value="' . $key['nombre'] . '">' . $key['nombre'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div id="semestre">
+                        <label>Semestre:</label>
+                        <input type="number" min="6" max="9" name="semestre" class="" placeholder="" id="semestre">
+                    </div>
+                    <div>
+                        <label for="">Email:</label>
+                        <input type="text" name="email" class="">
+                    </div>
+                    <div>
+                        <label for="">Teléfono:</label>
+                        <input type="text" name="telefono" class="">
+                    </div>
+                    <div class="container-button">
+                        <button type="submit" name="agregar" class="btn-agregar">Registrar</button>
+                    </div>
                 </div>
             </div>
         </div>

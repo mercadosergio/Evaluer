@@ -283,8 +283,8 @@
     
     .bloque {
         display: flex;
-        overflow: hidden;
         margin: 15px 0;
+        overflow: hidden;
         box-sizing: border-box;
     }
     

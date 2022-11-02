@@ -9,12 +9,17 @@ class Asesor extends DataBase
         parent::__construct();
     }
 
-    public function HabilitarEnvios($usuario)
+    public function identificarme()
     {
-        $myself = $this->con->query("SELECT * FROM asesor WHERE usuario = '$usuario'");
+        $myself = $this->con->query("SELECT * FROM asesor WHERE usuario = '" . $_SESSION['usuario'] . "'");
         $array = mysqli_fetch_array($myself);
+        return $array;
+    }
 
-        $this->con->query("UPDATE estudiante SET time_propuesta = 0 WHERE programa_id = " . $array['programa_id']);
+    public function fechaLimitePropuesta($tiempo_limite)
+    {
+        $myRol = $this->identificarme();
+        $this->con->query("UPDATE grupo SET time_propuesta = 0, time_limit_propuesta = $tiempo_limite WHERE asesor_id = " . $myRol['id']);
     }
 
     public function EvaluarPropuesta($estado, $id)

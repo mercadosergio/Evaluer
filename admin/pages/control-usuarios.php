@@ -3,7 +3,7 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $sesion = $_SESSION['usuario'];
-error_reporting(0);
+// error_reporting(0);
 if ($sesion == null || $sesion = '') {
     header("location: ../../index.php");
     die();
@@ -16,7 +16,6 @@ $userP = mysqli_fetch_array($getProfile);
 
 $admin = new Metodos();
 
-include("../../controller/EditUser.php");
 
 if (isset($_POST['importar'])) {
 
@@ -108,6 +107,9 @@ if (isset($_POST['importar'])) {
     </script>
 <?php
 }
+
+include "../../controller/EditUser.php";
+include "../../controller/DeleteUser.php";
 ?>
 
 <!doctype html>
@@ -193,10 +195,10 @@ if (isset($_POST['importar'])) {
                 <table class="tabla-est table table-bordered">
                     <thead>
                         <th>#</th>
+                        <th>Documento de identidad</th>
                         <th>Nombre</th>
                         <th>Primer apellido</th>
                         <th>Segundo apellido</th>
-                        <th>Documento de identidad</th>
                         <th>Programa</th>
                         <th>Semestre</th>
                         <th>Acción</th>
@@ -210,15 +212,16 @@ if (isset($_POST['importar'])) {
                         ?>
                             <tr class="valores">
                                 <td><?php echo $key['id'] ?></td>
+                                <td><?php echo $key['cedula'] ?></td>
                                 <td><?php echo $key['nombre'] ?></td>
                                 <td><?php echo $key['p_apellido'] ?></td>
                                 <td><?php echo $key['s_apellido'] ?></td>
-                                <td><?php echo $key['cedula'] ?></td>
                                 <td><?php echo $key['programa'] ?></td>
                                 <td><?php echo $key['semestre'] ?></td>
                                 <td hidden><?php echo $key['usuario_id'] ?></td>
                                 <td hidden><?php echo 3 ?></td>
                                 <td hidden><?php echo $key['usuario'] ?></td>
+                                <td hidden><?php echo $key['email'] ?></td>
                                 <td class="botones_tabla">
                                     <!-- Botón de editar -->
                                     <button type="button" class="editbtn btn-editar edit_s" data-bs-toggle="modal" data-bs-target="#editModal">
@@ -243,10 +246,10 @@ if (isset($_POST['importar'])) {
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Documento de identidad</th>
                             <th>Nombres</th>
                             <th>Primer apellido</th>
                             <th>Segundo apellido</th>
-                            <th>Documento de identidad</th>
                             <th>Programa</th>
                             <th>Acción</th>
                         </tr>
@@ -261,16 +264,17 @@ if (isset($_POST['importar'])) {
                         ?>
                             <tr>
                                 <td><?php echo $asesor['id'] ?></td>
+                                <td><?php echo $asesor['cedula'] ?></td>
                                 <td><?php echo $asesor['nombres'] ?></td>
                                 <td><?php echo $asesor['p_apellido'] ?></td>
                                 <td><?php echo $asesor['s_apellido'] ?></td>
-                                <td><?php echo $asesor['cedula'] ?></td>
                                 <td><?php echo $asesor['programa'] ?></td>
                                 <td hidden><?php echo $asesor['usuario_id'] ?></td>
                                 <td hidden><?php echo 4 ?></td>
                                 <td hidden><?php echo $asesor['usuario'] ?></td>
+                                <td hidden><?php echo $asesor['email'] ?></td>
                                 <td class="botones_tabla">
-                                    <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
+                                    <button type="button" class="editbtnH btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
                                         <i class="fa-solid fa-user-pen"></i>
                                     </button>
                                     </a>
@@ -290,10 +294,10 @@ if (isset($_POST['importar'])) {
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Documento de identidad</th>
                             <th>Nombres</th>
                             <th>Primer apellido</th>
                             <th>Segundo apellido</th>
-                            <th>Documento de identidad</th>
                             <th>Programa</th>
                             <th>Acción</th>
                         </tr>
@@ -308,16 +312,17 @@ if (isset($_POST['importar'])) {
                         ?>
                             <tr>
                                 <td><?php echo $principal['id'] ?></td>
+                                <td><?php echo $principal['cedula'] ?></td>
                                 <td><?php echo $principal['nombres'] ?></td>
                                 <td><?php echo $principal['p_apellido'] ?></td>
                                 <td><?php echo $principal['s_apellido'] ?></td>
-                                <td><?php echo $principal['cedula'] ?></td>
                                 <td><?php echo $principal['programa'] ?></td>
                                 <td hidden><?php echo $principal['usuario_id'] ?></td>
                                 <td hidden><?php echo 2 ?></td>
                                 <td hidden><?php echo $principal['usuario'] ?></td>
+                                <td hidden><?php echo $principal['email'] ?></td>
                                 <td class="botones_tabla">
-                                    <button type="button" class="editbtn btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
+                                    <button type="button" class="editbtnH btn-editar edit_a" data-bs-toggle="modal" data-bs-target="#editModal">
                                         <i class="fa-solid fa-user-pen"></i>
                                     </button>
                                     <input type="text" name="user" hidden readonly value="<?php echo $principal['usuario'] ?>">
@@ -364,7 +369,7 @@ if (isset($_POST['importar'])) {
     <!-- .csv/.xls/.xlsx -->
     <!-- Modal component -->
     <div class="modal fade modal-edit" id="editModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form method="POST">
+        <form method="POST" action="">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -389,7 +394,7 @@ if (isset($_POST['importar'])) {
 
                         <label class="lbl-programa">Programa:</label>
 
-                        <select name="programa_id[]" class="programa form-select">
+                        <select name="programa[]" class="programa form-select">
                             <option class="programa_selected" selected value=""></option>
                             <option value="1">Seleccione...</option>
                             <?php
@@ -397,7 +402,7 @@ if (isset($_POST['importar'])) {
                             $options = $usuario->listar($non_selected);
 
                             foreach ($options as $pro) {
-                                echo '<option value="' . $pro['identificador'] . '">' . $pro['nombre'] . '</option>';
+                                echo '<option value="' . $pro['nombre'] . '">' . $pro['nombre'] . '</option>';
                             }
                             ?>
                         </select>
@@ -416,16 +421,14 @@ if (isset($_POST['importar'])) {
 
 
     <!-- Modal confim -->
-    <?php
-    include("../../controller/DeleteUser.php");
-    ?>
+
     <div class="modal fade modal-delete" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="POST">
+                <form method="POST" action="">
                     <div class="modal-body">
                         <div class="confirmación">
                             <p class="delete-title">Eliminar usuario</p>
@@ -465,14 +468,32 @@ if (isset($_POST['importar'])) {
                 return $(this).text();
             });
             $('.id').val(datos[0]);
-            $('.nombre').val(datos[1]);
-            $('.p-apellido').val(datos[2]);
-            $('.s-apellido').val(datos[3]);
-            $('.cedula').val(datos[4]);
+            $('.cedula').val(datos[1]);
+            $('.nombre').val(datos[2]);
+            $('.p-apellido').val(datos[3]);
+            $('.s-apellido').val(datos[4]);
+            $('.programa_selected').val(datos[5]);
             $('.programa_selected').html(datos[5]);
             $('.semestre').val(datos[6]);
             $('.id_user').val(datos[7]);
             $('.rol').val(datos[8]);
+            $('.email').val(datos[10]);
+        });
+        $('.editbtnH').on('click', function() {
+            $tr = $(this).closest('tr');
+            var datos = $tr.children('td').map(function() {
+                return $(this).text();
+            });
+            $('.id').val(datos[0]);
+            $('.cedula').val(datos[1]);
+            $('.nombre').val(datos[2]);
+            $('.p-apellido').val(datos[3]);
+            $('.s-apellido').val(datos[4]);
+            $('.programa_selected').val(datos[5]);
+            $('.programa_selected').html(datos[5]);
+            $('.id_user').val(datos[6]);
+            $('.rol').val(datos[7]);
+            $('.email').val(datos[9]);
         });
         $('.edit_a').on('click', function() {
             document.getElementById("semestre").style = "display: none";
@@ -493,7 +514,7 @@ if (isset($_POST['importar'])) {
             $('.id_del').val(datos[0]);
             $('.user_del').val(datos[9]);
             $('.role_u').val(datos[8]);
-            $('.nombre_user').html(datos[1] + " " + datos[2]);
+            $('.nombre_user').html(datos[2] + " " + datos[3]);
         });
         $('.deleteEvaluator').on('click', function() {
             $tr = $(this).closest('tr');
@@ -503,7 +524,7 @@ if (isset($_POST['importar'])) {
             $('.id_del').val(datos[0]);
             $('.user_del').val(datos[8]);
             $('.role_u').val(datos[7]);
-            $('.nombre_user').html(datos[1] + " " + datos[2]);
+            $('.nombre_user').html(datos[2] + " " + datos[3]);
 
         });
     </script>
@@ -541,28 +562,7 @@ if (isset($_POST['importar'])) {
             });
         });
     </script>
-    <script>
-        // $('#btn-aceptar').click(function() {
-        //     var form = $('#formulario-import').serialize();
-        //     var rol = $('#role').value
-        //     console.log(form);
-        //     $.ajax({
-        //             type: 'POST',
-        //             url: '../../controller/ImportarUsuarios.php',
-        //             data: form,
-        //         })
-        //         .done(function() {
-        //             console.log("success");
-        //         })
-        //         .fail(function() {
-        //             console.log("error");
-        //         })
-        //         .always(function() {
-        //             console.log("complete");
-        //         })
 
-        // });
-    </script>
     <script>
         if (window.history.replaceState) {
             console.log("probando...");

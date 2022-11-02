@@ -1,8 +1,11 @@
 <?php
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 date_default_timezone_set("America/Bogota");
+error_reporting(0);
 
-if (isset($_POST['save'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $numE = $_POST['numIntegrantes'];
     $year = date("Y");
     $programa = $_POST['programa'];
@@ -72,6 +75,7 @@ if (isset($_POST['save'])) {
                 }, 2000); // <-- time in milliseconds
             </script>
 <?php
+            header("location: ../index.php");
         }
     }
 }

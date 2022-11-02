@@ -20,9 +20,10 @@ class Coordinator extends DataBase
     public function AssignJudge($jurado1, $jurado2, $jurado3, $id)
     {
         $this->con->query("UPDATE proyecto_grado SET jurado1 = '$jurado1', jurado2 = '$jurado2', jurado3 = '$jurado3' WHERE id = $id");
+    }
 
-        $this->con->query("UPDATE proyecto_grado e JOIN asesor d
-        ON e.asesor_id = d.id
-        SET e.asesor = concat(d.nombres,' ',d.p_apellido)");
+    public function addLineaInvestigacion($linea, $sublinea, $objetivos, $programa)
+    {
+        $this->con->query("INSERT INTO linea_investigacion(linea,sublinea,objetivos,programa) VALUES ('$linea','$sublinea','$objetivos','$programa')");
     }
 }

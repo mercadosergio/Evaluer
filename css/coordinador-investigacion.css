@@ -133,15 +133,18 @@ strong {
     margin-left: 0;
 }
 
-.componente div input,
-.componente div textarea {
-    float: right;
-    margin: auto 0;
+input,
+select,
+textarea {
+    display: block;
     width: 70%;
-    outline: none;
-    border: var(--primary) solid 1px;
-    border-radius: 5px;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    float: right;
     resize: none;
+    outline: none;
+    margin: auto 0;
 }
 
 .action {

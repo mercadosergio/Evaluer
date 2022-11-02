@@ -7,7 +7,7 @@ if (isset($_POST['modificar'])) {
     $p_apellido = $_POST['p_apellido'];
     $s_apellido = $_POST['s_apellido'];
     $cedula = $_POST['cedula'];
-    $programa_id = $_POST['programa_id'];
+    $programa = $_POST['programa'];
     $semestre = $_POST['semestre'];
     $usuario = $_POST['cedula'];
     $idUser = $_POST['usuario_id'];
@@ -18,13 +18,13 @@ if (isset($_POST['modificar'])) {
 
     $user->editUser($nombre, $usuario, $cedula);
 
-    for ($i = 0; $i < count($programa_id); $i++) {
+    for ($i = 0; $i < count($programa); $i++) {
         if ($rol == 3) {
-            $user->editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$i], $semestre);
+            $user->editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa[$i], $semestre);
         } else if ($rol == 2) {
-            $user->editCoordinador($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$i]);
+            $user->editCoordinador($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa[$i]);
         } else {
-            $user->editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id[$i]);
+            $user->editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa[$i]);
         }
     }
 }

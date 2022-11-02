@@ -20,6 +20,8 @@ $userP = mysqli_fetch_array($getProfile);
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
+
+
 $estudiante = new Student();
 $myGroup = $estudiante->GroupByDi($userE['cedula']);
 
@@ -27,6 +29,8 @@ $row = mysqli_fetch_array($myGroup);
 if ($userE['grupo_id'] <= 0) {
     header("location: ../index.php");
 }
+$res = new Metodos();
+$getTime = $res->restrictPropuesta($userE['grupo_id']);
 
 include("../../../controller/DeletePropuesta.php");
 include("../../../controller/SendPropuesta.php");
@@ -104,189 +108,212 @@ date_default_timezone_set("America/Bogota");
     </nav>
     <div class="back">
         <div class="format">
-
-            <div class="envio-f">
-                <form action="" method="POST" id="envio">
-                    <input type="hidden" name="id_grupo" value="<?php echo $userE['grupo_id'] ?>">
-                    <div class="seccion-informacion">
-                        <div class="layoutx2">
-                            <?php
-                            $res = new Metodos();
-                            $fecha = date("Y-m-d H:i:s");
-                            $getTime = $res->restrictPropuesta($userE['grupo_id']);
-                            ?>
-
-                            <input type="hidden" name="fecha" value="<?php echo $fecha; ?>">
-                            <div class="cabecera">
-                                <div class="subtitulo">
-                                    <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
-                                </div>
-                                <p class="info">
-                                    Diligencie la información correspondiente a su propuesta de grado, con los datos
-                                    requeridos
-                                    para registrar su idea investigativa.
-                                </p>
-                            </div>
-
-                            <div class="titulo">
-                                <label class="lbl-titulo">Título del proyecto:</label>
-                                <div id="contenedorInput">
-                                    <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
-                                    <i class="fa-solid fa-font"></i>
-                                </div>
-                            </div>
-
-                            <div class="linea">
-                                <label class="lbl-linea">Linea de investigación:</label>
-                                <div id="contenedorInput">
-                                    <select <?php echo (time() < $getTime) ? "disabled" : ''; ?> name="linea">
-                                        <option selected value="123">Seleccione...</option>
-                                        <?php
-                                        $programa = $userE['programa'];
-                                        $getLine = $res->listar("SELECT * FROM linea_investigacion WHERE programa = '$programa'");
-                                        foreach ($getLine as $lista) {
-                                        ?>
-                                            <option value="<?php echo $lista['sublinea']; ?>">
-                                                <?php echo $lista['linea'] . " - " . $lista['sublinea']; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                    <i class="fa-solid fa-diagram-project"></i>
-                                </div>
-                            </div>
-
-                            <div class="asesor">
-                                <label class="lbl-asesor">Nombre del asesor:</label>
-                                <?php
-                                $myself = $userE['nombre'] . " " . $userE['p_apellido'];
-                                $group = $estudiante->getMyGroup($myself);
-                                $valor = mysqli_fetch_array($group);
-                                ?>
-                                <div id="contenedorInput">
-                                    <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" readonly id="disable" value="<?php echo $valor['nombre_asesor'] ?>" class="campotexto" name="tutor">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                </div>
-                            </div>
-
-                            <div class="lider">
-                                <label class="lbl-lider">Nombre completo del lider:</label>
-                                <div id="contenedorInput">
-                                    <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
-                                    <i class="fa-solid fa-user-pen"></i>
-                                </div>
-                            </div>
-
-                            <div class="programa">
-                                <label class="lbl-programa">Programa:</label>
-                                <div id="contenedorInput">
-                                    <select class="" name="id_programa[]">
-                                        <option selected value="<?php echo $valor['programa'] ?>">
-                                            <?php echo $valor['programa'] ?></option>
-                                    </select>
-                                    <i class="fa-solid fa-list-ol"></i>
-                                </div>
-                            </div>
-                            <div class="semestre">
-                                <label class="lbl-semsetre">Semestre:</label>
-                                <div id="contenedorInput">
-                                    <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $valor['semestre']; ?>">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                </div>
-                            </div>
-                            <div class="descripcion">
-                                <label>Descripción:</label>
-                                <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
-                                <i class="fa-solid fa-rectangle-list"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="miembros">
-
-                        <h3><i class="bi bi-people-fill"></i> Equipo</h3>
-                        <?php
-                        $lista = $usuario->listar("SELECT * FROM estudiante WHERE grupo_id = " . $userE['grupo_id']);
-                        $i = 0;
-                        foreach ($lista as $int) {
-                        ?>
-                            <div class="component-miembro">
-                                <div>
-                                    <label class="sub">Documento de identidad:</label>
-                                    <div id="contenedorInput">
-                                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['cedula']; ?>" class="campotexto" readonly id="dni_estudiante<?php echo  $i + 2 ?>" name="dni_int<?php echo  $i + 2 ?>">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="sub">Nombre:</label>
-                                    <div id="contenedorInput">
-                                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['nombre']; ?>" class="campotexto" readonly id="nombres_estudiante<?php echo  $i + 2 ?>" name="nombres_miembro<?php echo  $i + 2 ?>">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="sub">Apellido:</label>
-                                    <div id="contenedorInput">
-                                        <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['p_apellido']; ?>" class="campotexto" readonly id="apellidos_estudiante<?php echo  $i + 2 ?>" name="apellidos_miembro<?php echo  $i + 2 ?>">
-                                        <i class="fa-solid fa-user-pen"></i>
-                                    </div>
-                                </div>
-                            </div><?php } ?>
-                    </div>
-                    <div id="interacion"></div>
-                    <div class="contenedor-btn">
-                        <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
-                        <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
-                    </div>
-                </form>
+            <div class="Title">
+                <h3 class="Title-h3">Propuesta</h3>
             </div>
-        </div>
-
-        <form method="GET">
-            <div class="details">
-                <label><i class="fas fa-bell"></i> Notificaciones</label>
-
+            <div class="envio-f">
                 <?php
                 $listar = "SELECT * FROM propuesta WHERE grupo_id =" . $userE['grupo_id'] . " ORDER BY fecha";
-                $prop = $res->listar($listar);
-                if ($prop >= 1) {
-                    if (time() < $getTime) {
+                $prop = $usuario->consultar($listar);
+                $myPropuesta = mysqli_fetch_array($prop);
+                if ($row['time_limit_propuesta'] < 0 || $row['time_limit_propuesta'] > 0) {
+                    $tiempo_valido = $row['time_limit_propuesta'];
+                } else {
+                    $tiempo_valido = strtotime("+365 days, 12:00am", time());
+                }
+
+                if ($prop->num_rows == 0) {
+                    $fecha = date("Y-m-d H:i:s");
+                    if ($tiempo_valido < time()) {
                 ?>
-                        <div class="noti">
-                            <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> Su propuesta ha sido enviada
-                            </div>
+                        <div class="CardBlock">
+                            <p class="CardBlock-p">
+                                <strong>Disponible hasta: </strong> <?php echo date("d/m/Y g:i a", $row['time_limit_propuesta'])  ?>
+                            </p>
                         </div>
                     <?php
-                    }
-                    foreach ($prop as $propuesta_state) {
+                    } else {
                     ?>
-                        <div class="notif">
-                            <form method="POST">
-                                <input hidden type="text" name="remitente" value="<?php echo $propuesta_state['remitente']; ?>">
-                                <div> <label><?php echo $propuesta_state['titulo'] ?></label> </div>
-                                <div class="action-edit">
-                                    <a href=""><i class="edit fas fa-edit"></i></a>
+                        <form action="" method="POST" id="envio">
+                            <div class="seccion-informacion">
+
+                                <div class="layoutx2">
+
+
+                                    <div class="cabecera">
+                                        <div class="subtitulo">
+                                            <h3 class=""><i class="fas fa-network-wired"></i> Datos generales de la propuesta</h3>
+                                        </div>
+                                        <p class="info">
+                                            Diligencie la información correspondiente a su propuesta de grado, con los datos
+                                            requeridos
+                                            para registrar su idea investigativa.
+                                        </p>
+                                    </div>
+
+                                    <input type="hidden" name="id_grupo" value="<?php echo $userE['grupo_id'] ?>">
+                                    <input type="hidden" name="fecha" value="<?php echo $fecha; ?>">
+                                    <div class="titulo">
+                                        <label class="lbl-titulo">Título del proyecto:</label>
+                                        <div id="contenedorInput">
+                                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="titulo">
+                                            <i class="fa-solid fa-font"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="linea">
+                                        <label class="lbl-linea">Linea de investigación:</label>
+                                        <div id="contenedorInput">
+                                            <select <?php echo (time() < $getTime) ? "disabled" : ''; ?> name="linea">
+                                                <option selected value="123">Seleccione...</option>
+                                                <?php
+                                                $programa = $userE['programa'];
+                                                $getLine = $res->listar("SELECT * FROM linea_investigacion WHERE programa = '$programa'");
+                                                foreach ($getLine as $lista) {
+                                                ?>
+                                                    <option value="<?php echo $lista['sublinea']; ?>">
+                                                        <?php echo $lista['linea'] . " - " . $lista['sublinea']; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <i class="fa-solid fa-diagram-project"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="asesor">
+                                        <label class="lbl-asesor">Nombre del asesor:</label>
+                                        <?php
+                                        $myself = $userE['nombre'] . " " . $userE['p_apellido'];
+                                        $group = $estudiante->getMyGroup($myself);
+                                        $valor = mysqli_fetch_array($group);
+                                        ?>
+                                        <div id="contenedorInput">
+                                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" readonly id="disable" value="<?php echo $valor['nombre_asesor'] ?>" class="campotexto" name="tutor">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="lider">
+                                        <label class="lbl-lider">Nombre completo del lider:</label>
+                                        <div id="contenedorInput">
+                                            <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" class="campotexto" name="lider">
+                                            <i class="fa-solid fa-user-pen"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="programa">
+                                        <label class="lbl-programa">Programa:</label>
+                                        <div id="contenedorInput">
+                                            <select class="" name="programa[]">
+                                                <option selected value="<?php echo $valor['programa'] ?>">
+                                                    <?php echo $valor['programa'] ?></option>
+                                            </select>
+                                            <i class="fa-solid fa-list-ol"></i>
+                                        </div>
+                                    </div>
+                                    <div class="semestre">
+                                        <label class="lbl-semsetre">Semestre:</label>
+                                        <div id="contenedorInput">
+                                            <input class="" readonly type="number" max="9" min="1" class="camponumero" id="disable" name="semestre" value="<?php echo $valor['semestre']; ?>">
+                                            <i class="fa-solid fa-layer-group"></i>
+                                        </div>
+                                    </div>
+                                    <div class="descripcion">
+                                        <label>Descripción:</label>
+                                        <textarea <?php echo (time() < $getTime) ? "disabled" : ''; ?> cols="30" rows="6" name="description"></textarea>
+                                        <i class="fa-solid fa-rectangle-list"></i>
+                                    </div>
                                 </div>
-                                <div class="action-delete">
-                                    <button type="submit" name="del"><i class="trash fas fa-trash-alt"></i></button>
-                                </div>
-                                <div>
-                                    <p class="<?php echo $propuesta_state['estado'] === 'aprobada' ? 'aprobada' : 'reprobada'; ?>">
-                                        Estado: <?php echo $propuesta_state['estado']; ?></p>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="miembros">
+
+                                <h3><i class="bi bi-people-fill"></i> Equipo</h3>
+                                <?php
+                                $lista = $usuario->listar("SELECT * FROM estudiante WHERE grupo_id = " . $userE['grupo_id']);
+                                $i = 1;
+                                foreach ($lista as $int) {
+                                ?>
+                                    <div class="component-miembro">
+                                        <div>
+                                            <label class="sub">Documento de identidad:</label>
+                                            <div id="contenedorInput">
+                                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['cedula']; ?>" class="campotexto" readonly name="dni_int<?php echo  $i ?>">
+                                                <i class="fa-solid fa-user-pen"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="sub">Nombre:</label>
+                                            <div id="contenedorInput">
+                                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['nombre']; ?>" class="campotexto" readonly name="nombres_miembro<?php echo  $i ?>">
+                                                <i class="fa-solid fa-user-pen"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="sub">Apellido:</label>
+                                            <div id="contenedorInput">
+                                                <input class="" <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="text" value="<?php echo $int['p_apellido']; ?>" class="campotexto" readonly name="apellidos_miembro<?php echo  $i ?>">
+                                                <i class="fa-solid fa-user-pen"></i>
+                                            </div>
+                                        </div>
+                                    </div><?php
+                                            $i++;
+                                        }
+                                            ?>
+                            </div>
+                            <div id="interacion"></div>
+                            <div class="contenedor-btn">
+                                <input type="datetime" name="enviar" hidden value="<?php echo $fecha; ?>">
+                                <button <?php echo (time() < $getTime) ? "disabled" : ''; ?> type="submit" name="send" class="btn-enviar mb-4">Enviar</button>
+                            </div>
+                        </form>
                     <?php
                     }
                 } else {
                     ?>
-                    <div class="nothing">
-                        <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i> No hay notificaciones por el
-                            momento</div>
+                    <div class="CardBlock">
+
+                        <div class="enviado">
+                            <div>
+                                <p><?php echo $myPropuesta['titulo']; ?></p>
+                            </div>
+                            <div class="state_propuesta">
+                                <p class="">
+                                    <strong>Estado:</strong>
+                                </p>
+                                <h3><?php echo $myPropuesta['estado']; ?></h3>
+                            </div>
+                        </div>
+                        <div class="enviado__details">
+                            <p class="CardBlock-p">
+                                <strong>Disponible hasta: </strong> <?php echo date("d/m/Y g:i a", $row['time_limit_propuesta'])  ?>
+                            </p>
+
+                        </div>
+
+                    </div>
+                <?php
+
+                }
+
+                ?>
+            </div>
+        </div>
+
+        <div class="details">
+            <form method="GET">
+                <label><i class="fas fa-bell"></i> Información</label>
+                <?php
+                if ($row['time_limit_propuesta'] != 0) {
+                ?>
+                    <div class="noti">
+                        <div><i style="font-size: 20px;" class="bi bi-info-circle-fill"></i>
+                            <p><strong>Disponible hasta: </strong> <?php echo date("d/m/Y g:i a", $row['time_limit_propuesta'])  ?></p>
+                        </div>
                     </div>
                 <?php
                 }
                 ?>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -402,6 +429,11 @@ date_default_timezone_set("America/Bogota");
                 }
             });
         });
+    </script>
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
     <script src="../../../utilities/loading/load.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">

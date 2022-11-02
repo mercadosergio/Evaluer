@@ -22,15 +22,15 @@ class User extends DataBase
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
                 if ($array['rol_id'] == 1) { //Administrador
-                    header("location: admin/index.php");
+                    header("location: admin/");
                 } else if ($array['rol_id'] == 2) { //Coordinador
-                    header("location: pages/coordinador/index.php");
+                    header("location: pages/coordinador/");
                 } else if ($array['rol_id'] == 3) { //Estudiante
-                    header("location: pages/estudiante/index.php");
+                    header("location: pages/estudiante/");
                 } else if ($array['rol_id'] == 4) { //Docente
-                    header("location: pages/docente/index.php");
+                    header("location: pages/docente/");
                 } else {
-                    header("index.php");
+                    header("index");
                 }
             } else {
                 echo '<div id="alerta" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;
@@ -157,7 +157,6 @@ class User extends DataBase
         </script>";
         }
         mysqli_close($this->con);
-        // include("../admin/index.php");
     }
 
     public function editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
@@ -238,22 +237,22 @@ class User extends DataBase
 
     public function getProfileUser($session)
     {
-        $result = $this->con->query("SELECT * FROM usuario WHERE usuario = " . $session);
+        $result = $this->con->query("SELECT * FROM usuario WHERE usuario = '" . $session . "'");
         return $result;
     }
     public function getDocenteProfile()
     {
-        $resultado = $this->con->query("SELECT * FROM asesor WHERE usuario = " . $_SESSION['usuario']);
+        $resultado = $this->con->query("SELECT * FROM asesor WHERE usuario = '" . $_SESSION['usuario'] . "'");
         return $resultado;
     }
     public function getStudentProfile()
     {
-        $resultado = $this->con->query("SELECT * FROM estudiante WHERE usuario = " . $_SESSION['usuario']);
+        $resultado = $this->con->query("SELECT * FROM estudiante WHERE usuario = '" . $_SESSION['usuario'] . "'");
         return $resultado;
     }
     public function getCoordinatorProfile()
     {
-        $resultado = $this->con->query("SELECT * FROM coordinador WHERE usuario = " . $_SESSION['usuario']);
+        $resultado = $this->con->query("SELECT * FROM coordinador WHERE usuario = '" . $_SESSION['usuario'] . "'");
         return $resultado;
     }
 

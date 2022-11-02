@@ -15,4 +15,9 @@ class DataBase
             return "Error en conexión de bd";
         }
     }
+
+    public function consultar($query){
+        $result = $this->con->query($query);
+        return $result;
+    }
 }

@@ -74,12 +74,12 @@ class Metodos extends DataBase
     /*
     Funciones de soporte para el rol visualizador o evaluador
     */
-    public function listarPropuestas()
+    public function listarPropuestas($asesor_id)
     {
-        $profile = $this->getProfileAsesor();
-        $registro = mysqli_fetch_array($profile);
+        $group = parent::consultar("SELECT * FROM grupo WHERE asesor_id = '$asesor_id'");
+        $registro = mysqli_fetch_array($group);
 
-        $result = $this->con->query("SELECT * FROM propuesta WHERE programa='" . $registro['programa'] . "' ORDER BY fecha");
+        $result = $this->con->query("SELECT * FROM propuesta WHERE grupo_id='" . $registro['id'] . "' ORDER BY fecha");
         return $result;
     }
 

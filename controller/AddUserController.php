@@ -1,6 +1,10 @@
 <?php
 
-if (isset($_POST['agregar'])) {
+if (!isset($_SESSION)) {
+    session_start();
+}
+error_reporting(0);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_rol = $_POST['role'];
     $nombre = $_POST['nombre'];
     $p_apellido = $_POST['p_apellido'];
@@ -31,7 +35,8 @@ if (isset($_POST['agregar'])) {
         } else {
 
             for ($i = 0; $i < count($id_rol); $i++) {
-
+                include_once("../model/UserModel.php");
+                $usuario = new User();
                 $usuario->createUser($nombre, $cedula, $pass_cifrado, $id_rol[$i], $cedula);
                 if ($id_rol[$i] == 2) {
                     $usuario->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $cedula, $email, $telefono);
@@ -41,9 +46,6 @@ if (isset($_POST['agregar'])) {
                     $usuario->createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa[$j], $cedula, $email, $telefono);
                 }
             }
-
-            // include("control-usuarios.php");
-            header("location: control-usuarios.php")
         ?>
             <div id="success" class="alert alert-success" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%; left: 50%; transform: translate(-50%, 0%);">
                 Usuario registrado con éxito
@@ -56,5 +58,6 @@ if (isset($_POST['agregar'])) {
 <?php
         }
     }
+    include "../admin/pages/agregar-usuario.php";
 }
 ?>

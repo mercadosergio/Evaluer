@@ -112,26 +112,19 @@ include("../../../controller/evaluate-anteproyecto.php");
                         <tr>
                             <form action="" method="POST">
                                 <td><?php echo $value['id']; ?></td>
-                                <td><a href="<?php echo $value['documento']; ?>" target="_blank"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
+                                <td style="min-width: 300px;"><a href="<?php echo $value['documento']; ?>" target="_blank"><i class="fas fa-file-alt"></i> <?php echo $value['nombre']; ?></a></td>
                                 <td><?php echo $value['titulo']; ?></td>
                                 <td hidden><?php echo $value['programa']; ?></td>
-                                <td><?php
+                                <td style="min-width: 200px;"><?php
                                     $originalDate = $value['fecha'];
                                     echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate));
                                     ?></td>
                                 <td><?php echo $value['calificacion'] ?></td>
-                                <td>
+                                <td style="min-width: 150px;">
                                     <label for="" class="<?php echo $value['estado'] ?> valoracion"><?php echo $value['estado'] ?></label>
                                 </td>
                                 <td>
                                     <a href="gestion-actividad-anteproyecto.php?id=<?php echo $value['id'] ?>" class="btn see"><i class="bi bi-eye-fill"></i></a>
-                                </td>
-                                <td hidden>
-                                    <script>
-                                        // $("#tabla").click(function() {
-                                        //     $("#resultados").submit();
-                                        // });
-                                    </script>
                                 </td>
                             </form>
                         </tr>
@@ -143,13 +136,6 @@ include("../../../controller/evaluate-anteproyecto.php");
         </div>
     </div>
     <script>
-        // const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-        // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-        $(function() {
-            $('[data-bs-toggle="popover"]').popover();
-        });
-    </script>
-    <script>
         $(document).ready(function() {
             $("#search").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -160,25 +146,6 @@ include("../../../controller/evaluate-anteproyecto.php");
         });
     </script>
 
-    <script>
-        // var nota = document.getElementById('notaI');
-        // if (nota.disabled = true) {
-        //     document.getElementById('celdaNota').addEventListener('click', function(e) {
-        //         console.log('Vamos a habilitar el input text');
-        //         nota.disabled = false;
-        //     });
-        // } else if (nota.disabled = false) {
-        //     document.getElementById('calificarN').addEventListener('click', function(e) {
-        //         console.log('Vamos a deshabilitar el input text');
-        //         nota.disabled = true;
-        //     });
-        // }
-    </script>
-    <script>
-        // const popover = new bootstrap.Popover('.example-popover', {
-        //     container: 'body'
-        // })
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
 

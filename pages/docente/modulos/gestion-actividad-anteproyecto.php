@@ -114,10 +114,11 @@ $idAnteproyecto = $_GET['id'];
             <h3>Acciones</h3>
         </div>
         <form method="POST">
+            <input type="text" hidden name="id_anteproyecto" value="<?php echo $idAnteproyecto ?>">
             <div class="acciones">
                 <div class="">
                     <label for="">Observaciones:</label>
-                    <textarea class="form-control" name="" id="" cols="" rows=""><?php echo $findData['observaciones'] ?></textarea>
+                    <textarea class="form-control" name="observacion" id="" cols="" rows=""><?php echo $findData['observaciones'] ?></textarea>
                 </div>
                 <div class="control">
                     <label for="">Estado:</label>
@@ -132,10 +133,10 @@ $idAnteproyecto = $_GET['id'];
                 </div>
                 <div class="control">
                     <label for="">Calificación:</label>
-                    <input class="form-control number" type="number" value="<?php echo $findData['calificacion'] ?>">
+                    <input class="form-control number" name="nota" type="text" value="<?php echo $findData['calificacion'] ?>">
                 </div>
                 <div class="button-container">
-                    <button type="submit" class="btn" name="enviar">Guardar</button>
+                    <button type="submit" class="btn" name="enviar">Aceptar</button>
                 </div>
             </div>
         </form>

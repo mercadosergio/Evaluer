@@ -129,7 +129,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql1 = "SELECT * FROM asesor WHERE programa_id = " . $myRole['programa_id'];
+                            $sql1 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
                             $jurado1 = $funcion->listar($sql1);
 
                             foreach ($jurado1 as $d) {
@@ -151,7 +151,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql2 = "SELECT * FROM asesor WHERE programa_id = " . $myRole['programa_id'];
+                            $sql2 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
                             $jurado2 = $funcion->listar($sql2);
 
                             foreach ($jurado2 as $d) {
@@ -173,7 +173,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql3 = "SELECT * FROM asesor WHERE programa_id = " . $myRole['programa_id'];
+                            $sql3 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
                             $jurado3 = $funcion->listar($sql3);
 
                             foreach ($jurado3 as $d) {

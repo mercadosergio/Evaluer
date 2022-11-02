@@ -24,7 +24,7 @@ $estudiante = new Student();
 $myGroup = $estudiante->GroupByDi($userE['cedula']);
 
 date_default_timezone_set("America/Bogota");
-include("../../../controller/AsignarTeam.php");
+require("../../../controller/AsignarTeam.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -91,7 +91,7 @@ include("../../../controller/AsignarTeam.php");
     </nav>
     <div class="format">
         <?php
-        if ($myGroup->num_rows > 0) {
+        if ($myGroup->num_rows > 0 && $userE['grupo_id'] != 1) {
             $row = mysqli_fetch_array($myGroup);
         ?>
             <div class="info">
@@ -149,7 +149,7 @@ include("../../../controller/AsignarTeam.php");
         } else {
 
         ?>
-            <form action="" class="form" method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="form" method="POST">
                 <h3 class="text-center">Grupo de trabajo</h3>
                 <!-- Progress bar -->
                 <div class="progressbar">
