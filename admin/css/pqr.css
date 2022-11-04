@@ -146,5 +146,9 @@ h2 {
 .adv p {
     font-size: 17px;
     margin: 70px auto;
-    color: #910303;
+    color: #000;
+}
+
+.card_ {
+    margin: 10px auto;
 }

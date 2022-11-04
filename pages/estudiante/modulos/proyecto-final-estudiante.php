@@ -88,7 +88,7 @@ include("../../../controller/upload_proyecto.php");
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="pqrE.php">Solicitud PQR</a></li>
+                        <li><a class="dropdown-item" href="../../../support/pqrE.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -165,41 +165,7 @@ include("../../../controller/upload_proyecto.php");
                 }
                 ?>
             </div>
-            <div class="tree-view">
-                <details open="open">
-                    <summary>Guia de investigación</summary>
 
-                    <div class="folder">
-                        <details open="open">
-                            <summary>Académico</summary>
-                            <div class="folder">
-                                <p>
-                                    <i class="fas fa-file-alt"></i>
-                                    <a href="">Propuesta de grado</a>
-                                </p>
-                                <p>
-                                    <i class="fas fa-file-alt"></i>
-                                    <a href="">Anteproyecto</a>
-                                </p>
-                                <p>
-                                    <i class="fas fa-file-alt"></i>
-                                    <a href="../../../guide/guia_ing.pdf" download="Guia_proyecto_inv_ing.pdf">Proyecto de grado</a>
-                                </p>
-                            </div>
-                        </details>
-                        <details>
-                            <summary>img</summary>
-                            <div class="folder">
-                                <p>banner.png</p>
-                                <p>foo.png</p>
-                            </div>
-                        </details>
-                    </div>
-                </details>
-                <div class="folder">
-                    <p><i class="bi bi-bell-fill" style="margin-right: 3px;"></i><a href="">Anuncios</a></p>
-                </div>
-            </div>
         </div>
     </form>
     <script>

@@ -1,21 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
 body {
     font-family: "Maven Pro", sans-serif;
-    background-color: whitesmoke;
-    padding-top: 150px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-* {
-    font-family: "Maven Pro", sans-serif;
+    background: #f5f5f5;
+    padding-top: 140px;
 }
 
 :root {
     --primary: #0269ad;
     --hover: #0477c4;
     --color-detalle: #fee700;
-    --color-detalle-hover: #e4d103;
+    --color-detalle-hover: #ffef42;
 }
 
 .full-screen {
@@ -25,12 +19,10 @@ body {
 ul {
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
-div {
-    padding-left: 0;
-    padding-right: 0;
+ul li {
+    list-style: none;
 }
 
 a {
@@ -43,7 +35,6 @@ p {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
-    color: #5b5b5b;
 }
 
 h1,
@@ -56,13 +47,11 @@ h6 {
 }
 
 h1 {
-    color: #212121;
     font-size: 2.8em;
     margin: 24px 0;
 }
 
 h2 {
-    color: #353535;
     font-size: 2.4em;
     font-weight: bold;
 }
@@ -78,6 +67,31 @@ strong {
     display: block;
 }
 
+.color-mode {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.color-mode-icon {
+    position: relative;
+    right: 6px;
+}
+
+.color-mode-icon:after {
+    font-family: 'unicons';
+    content: '\ea9f';
+    font-size: 30px;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.color-mode-icon.active:after {
+    font-family: 'unicons';
+    content: '\eb65';
+    font-size: 30px;
+    color: #ffffff;
+}
+
 .division {
     height: 100%;
     background: white;
@@ -85,19 +99,14 @@ strong {
 }
 
 .navbar-nav li {
-    margin-right: 20px;
     border-top: var(--primary) 3px solid;
-    border-bottom: var(--primary) 3px solid;
-}
-
-.nav-link span {
-    color: white;
-    font-size: 20px;
-    width: auto;
+    margin-right: 20px;
 }
 
 .principal {
     width: auto;
+    border-top: var(--primary) 3px solid;
+    border-bottom: var(--color-detalle) 3px solid;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -116,87 +125,62 @@ strong {
     overflow: hidden;
 }
 
-.anteproyecto {
-    padding-top: 30px;
+.format {
+    width: 90%;
+    margin: auto;
 }
 
 .cont-titulo {
-    width: 100%;
     border: #bebebe 1px solid;
     background: #fff;
     border-radius: 5px;
-    vertical-align: middle;
     display: flex;
-    align-items: ctablaer;
+    align-items: center;
 }
 
 .cont-titulo h3 {
     font-size: 20px;
     margin: 15px;
-    font-weight: normal !important;
 }
 
-.filtro {
+.contenido {
+    margin: 10px 0;
+    background: #fff;
+    border: #bebebe 1px solid;
+    border-radius: 5px;
     display: flex;
-    padding: 10px;
-    padding-left: 0;
+    flex-direction: column;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    padding: 20px 40px;
 }
 
-.filtro label {
-    font-size: 20px;
-}
-
-select {
-    margin-right: 10px;
-    border-radius: 7px;
-}
-
-.index {
-    margin: auto;
-}
-
-table {
+form>div {
     margin: 20px 0;
 }
 
-.tabla {
-    min-width: 100%;
+input,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    overflow: auto;
+}
+
+button {
+    font-family: 'Maven', sans-serif;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background: var(--primary);
+    border-radius: 3px;
     border: none;
-    text-align: left;
-}
-
-td {
-    background: white !important;
-}
-
-table thead {
-    background: var(--primary) !important;
-    color: #fff;
-}
-
-.tabla .data:hover {
-    border: 2px #000 solid !important;
-}
-
-.tabla tr:nth-child(even) {
-    background: #ddd;
-}
-
-table td {
-    vertical-align: middle;
-}
-
-@media screen and (max-width: 2000px) {
-    .tabla th,
-    .tabla td {
-        padding: 7px;
-        padding-left: 8px;
-    }
-}
-
-@media screen and (max-width: 1400px) {
-    .tabla th,
-    .tabla td {
-        font-size: 15px;
-    }
+    margin: auto;
 }

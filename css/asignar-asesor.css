@@ -1,295 +1,278 @@
-@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
-body {
-    font-family: "Maven Pro", sans-serif;
-    background-color: whitesmoke;
-    padding-top: 150px;
-}
-
-:root {
-    --primary: #0269ad;
-    --hover: #0477c4;
-    --color-detalle: #fee700;
-    --color-detalle-hover: #e4d103;
-}
-
-.full-screen {
-    padding: 8rem 0;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-ul li {
-    list-style: none;
-}
-
-a {
-    font-weight: normal;
-    text-decoration: none !important;
-    transition: all 0.4s ease;
-}
-
-p {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.5;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    letter-spacing: -1px;
-}
-
-h1 {
-    color: #212121;
-    font-size: 2.8em;
-    margin: 24px 0;
-}
-
-h2 {
-    color: #353535;
-    font-size: 2.4em;
-    font-weight: bold;
-}
-
-b,
-strong {
-    font-weight: bold;
-}
-
-.copyright-text {
-    font-size: 16px;
-    font-weight: normal;
-    display: block;
-}
-
-.division {
-    height: 100%;
-    background: white;
-    display: flex;
-}
-
-.navbar-nav li {
-    margin-right: 20px;
-    border-top: var(--primary) 3px solid;
-    border-bottom: var(--primary) 3px solid;
-}
-
-.nav-link span {
-    color: white;
-    font-size: 20px;
-    width: auto;
-}
-
-.principal {
-    width: auto;
-    /* border-bottom: var(--color-detalle) 3px solid; */
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.fecha {
-    width: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.principal a,
-.fecha {
-    width: auto;
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-}
-
-
-/* MENU DESPLEGABLE DE USUARIO */
-
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
-ol {
-    margin: auto 0;
-}
-
-
-/* END MENU DESPLEGABLE.......................................... */
-
-.cont-titulo {
-    width: 100%;
-    border: #bebebe 1px solid;
-    background: #fff;
-    border-radius: 5px;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-}
-
-.cont-titulo h3 {
-    font-size: 20px;
-    margin: 15px;
-}
-
-.main_section {
-    width: 95%;
-    margin: auto;
-}
-
-.title {
-    font-size: 24px;
-    padding: 5px;
-    background: #fee700;
-    border: 1px solid var(--primary);
-    border-radius: 5px;
-    text-align: center;
-    width: 300px;
-}
-
-
-/* FILTRO DE BUSQUEDA.............................*/
-
-.box {
-    width: 300px;
-    height: 40px;
-    background: white;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border: #bebebe 1px solid;
-    margin: 10px 0;
-}
-
-.box>i {
-    font-size: 15px;
-    color: #777;
-}
-
-.box>input {
-    flex: 1;
-    height: 40px;
-    border: none;
-    outline: none;
-    font-size: 15px;
-    padding-left: 10px;
-}
-
-.tabla {
-    margin: auto;
-    margin-bottom: 30px;
-    width: 100%;
-    background: #fff;
-}
-
-.tabla thead {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 10px 10px 0 0;
-}
-
-.tabla tr {
-    border-radius: 10px;
-}
-
-.tabla th,
-.tabla td {
-    /* padding: 7px;
-    padding-left: 8px; */
-    font-size: 16px;
-    vertical-align: middle;
-}
-
-.tabla tr td select {
-    padding: 3px;
-    outline: none;
-    padding: 3px;
-    width: 100%;
-}
-
-select option {
-    border: var(--primary) 1px solid;
-}
-
-.tabla .botones_tabla {
-    display: flex;
-}
-
-.tabla .asignar {
-    background: #00aa09;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-}
-
-.bi-circle-fill {
-    color: #00aa09;
-}
-
-
-/* Guardando... */
-
-.saving {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.589);
-    color: #fff;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 40px;
-}
-
-.lds-facebook {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-}
-
-.lds-facebook div {
-    display: inline-block;
-    position: absolute;
-    left: 8px;
-    width: 16px;
-    background: #fff;
-    animation: lds-facebook 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-}
-
-.lds-facebook div:nth-child(1) {
-    left: 8px;
-    animation-delay: -0.24s;
-}
-
-.lds-facebook div:nth-child(2) {
-    left: 32px;
-    animation-delay: -0.12s;
-}
-
-.lds-facebook div:nth-child(3) {
-    left: 56px;
-    animation-delay: 0;
-}
-
-@keyframes lds-facebook {
-    0% {
-        top: 8px;
-        height: 64px;
+    @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+    body {
+        font-family: "Maven Pro", sans-serif;
+        background-color: whitesmoke;
+        padding-top: 150px;
     }
-    50%,
-    100% {
-        top: 24px;
-        height: 32px;
+    
+     :root {
+        --primary: #0269ad;
+        --hover: #0477c4;
+        --color-detalle: #fee700;
+        --color-detalle-hover: #e4d103;
     }
-}
+    
+    .full-screen {
+        padding: 8rem 0;
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+    a {
+        font-weight: normal;
+        text-decoration: none !important;
+        transition: all 0.4s ease;
+    }
+    
+    p {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.5;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        letter-spacing: -1px;
+    }
+    
+    h1 {
+        color: #212121;
+        font-size: 2.8em;
+        margin: 24px 0;
+    }
+    
+    h2 {
+        color: #353535;
+        font-size: 2.4em;
+        font-weight: bold;
+    }
+    
+    b,
+    strong {
+        font-weight: bold;
+    }
+    
+    .copyright-text {
+        font-size: 16px;
+        font-weight: normal;
+        display: block;
+    }
+    
+    .division {
+        height: 100%;
+        background: white;
+        display: flex;
+    }
+    
+    .navbar-nav li {
+        margin-right: 20px;
+        border-top: var(--primary) 3px solid;
+        border-bottom: var(--primary) 3px solid;
+    }
+    
+    .nav-link span {
+        color: white;
+        font-size: 20px;
+        width: auto;
+    }
+    
+    .principal {
+        width: auto;
+        /* border-bottom: var(--color-detalle) 3px solid; */
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .fecha {
+        width: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .principal a,
+    .fecha {
+        width: auto;
+        font-weight: bold;
+        font-size: 16px;
+        overflow: hidden;
+    }
+    /* MENU DESPLEGABLE DE USUARIO */
+    
+    * {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    ol {
+        margin: auto 0;
+    }
+    /* END MENU DESPLEGABLE.......................................... */
+    
+    .cont-titulo {
+        width: 100%;
+        border: #bebebe 1px solid;
+        background: #fff;
+        border-radius: 5px;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+    }
+    
+    .cont-titulo h3 {
+        font-size: 20px;
+        margin: 15px;
+    }
+    
+    .main_section {
+        width: 95%;
+        margin: auto;
+    }
+    
+    .title {
+        font-size: 24px;
+        padding: 5px;
+        background: #fee700;
+        border: 1px solid var(--primary);
+        border-radius: 5px;
+        text-align: center;
+        width: 300px;
+    }
+    /* FILTRO DE BUSQUEDA.............................*/
+    
+    .box {
+        width: 300px;
+        height: 40px;
+        background: white;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border: #bebebe 1px solid;
+        margin: 10px 0;
+    }
+    
+    .box>i {
+        font-size: 15px;
+        color: #777;
+    }
+    
+    .box>input {
+        flex: 1;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        padding-left: 10px;
+    }
+    
+    select option {
+        border: var(--primary) 1px solid;
+    }
+    
+    .tabla .botones_tabla {
+        display: flex;
+    }
+    /* Guardando... */
+    
+    .saving {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.589);
+        color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px 40px;
+    }
+    
+    .lds-facebook {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: auto;
+    }
+    
+    .lds-facebook div {
+        display: inline-block;
+        position: absolute;
+        left: 8px;
+        width: 16px;
+        background: #fff;
+        animation: lds-facebook 1s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+    
+    .lds-facebook div:nth-child(1) {
+        left: 8px;
+        animation-delay: -0.24s;
+    }
+    
+    .lds-facebook div:nth-child(2) {
+        left: 32px;
+        animation-delay: -0.12s;
+    }
+    
+    .lds-facebook div:nth-child(3) {
+        left: 56px;
+        animation-delay: 0;
+    }
+    
+    @keyframes lds-facebook {
+        0% {
+            top: 8px;
+            height: 64px;
+        }
+        50%,
+        100% {
+            top: 24px;
+            height: 32px;
+        }
+    }
+    
+    @media screen and (max-width: 2000px) {
+        .tabla {
+            margin: auto;
+            margin-bottom: 30px;
+            width: 100%;
+            background: #fff;
+        }
+        .tabla thead {
+            background: var(--primary);
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        .tabla tr {
+            border-radius: 10px;
+        }
+        .tabla th,
+        .tabla td {
+            font-size: 16px;
+            vertical-align: middle;
+        }
+        .tabla tr td select {
+            padding: 3px;
+            outline: none;
+            padding: 3px;
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 1400px) {
+        .tabla th,
+        .tabla td {
+            font-size: 15px;
+        }
+    }

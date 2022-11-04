@@ -20,6 +20,7 @@ if ($userP['rol_id'] != 1) {
     header("location: ../../index.php");
     die();
 }
+include "../../controller/AddProgram.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,7 +90,7 @@ if ($userP['rol_id'] != 1) {
                     <th>Código snies</th>
                     <th>Duración (semestres)</th>
                     <th>Modalidad</th>
-                    <th>Acciones</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -104,10 +105,7 @@ if ($userP['rol_id'] != 1) {
                         <td><?php echo $value['codigo_snies'] ?></td>
                         <td><?php echo $value['duracion'] ?></td>
                         <td><?php echo $value['modalidad'] ?></td>
-                        <td>
-                            <button class="edit"><i class="bi bi-pencil-fill"></i></button>
-                            <button class="delete"><i class="bi bi-trash-fill"></i></button>
-                        </td>
+
                     </tr>
                 <?php
                 }
@@ -117,28 +115,33 @@ if ($userP['rol_id'] != 1) {
         <button class="btn-agregar">Agregar</button>
 
     </div>
-    <div class="fondo">
+    <div class="container">
         <div class="cont-titulo">
             <h3>Agregar programas académicos</h3>
         </div>
-        <div class="add">
-            <button class="btn btn-primary">Agregar programa</button>
+        <form method="POST">
+            <div class="add">
+                <div class="campo mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Programa académico:</label>
+                    <input type="text" name="nombre" class="" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="campo mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Código SNIES:</label>
+                    <input type="number" name="snies" class="" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="campo mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Duración (Semestres):</label>
+                    <input type="number" name="duracion" class="" id="exampleFormControlInput1" placeholder="">
+                </div>
+                <div class="campo mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Modalidad:</label>
+                    <input type="text" name="modalidad" class="" id="exampleFormControlInput1" placeholder="">
+                </div>
 
-            <div>
-                <form method="POST">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Programa académico:</label>
-                        <input type="text" name="nombre_programa" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Código:</label>
-                        <input type="text" style="width:200px;" name="codigo" class="form-control" id="exampleFormControlInput1" placeholder="">
-                    </div>
+                <button type="submit" class="" name="add">Agregar</button>
 
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </form>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

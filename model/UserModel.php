@@ -360,4 +360,19 @@ class User extends DataBase
             return "Hace " . $tiempo[0] . " años";
         }
     }
+    public function createPqr($asunto, $contenido, $fecha, $nombre, $apellidos, $rol_id, $usuario_id)
+    {
+        $this->con->query("INSERT INTO pqr(asunto, contenido, fecha, nombre_usuario, apellido_usuario, rol_id, usuario_id) 
+        VALUES ('$asunto', '$contenido', '$fecha', '$nombre', '$apellidos', $rol_id, $usuario_id)");
+
+        $this->con->query("UPDATE pqr q JOIN rol ro 
+        ON q.rol_id = ro.id
+        SET q.rol = ro.rol_usuario");
+    }
+
+    public function addProgram($nombre, $snies, $duracion, $modalidad)
+    {
+        $this->con->query("INSERT INTO programa(nombre,codigo_snies,duracion,modalidad) 
+    VALUES ('$nombre', $snies, $duracion, '$modalidad')");
+    }
 }

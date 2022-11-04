@@ -1,191 +1,252 @@
-@import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
-body {
-    font-family: "Maven Pro", sans-serif;
-    padding-top: 110px;
-    background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-:root {
-    --primary: #0269ad;
-    --hover: #0477c4;
-    --color-detalle: #fee700;
-    --color-detalle-hover: #e4d103;
-}
-
-.full-screen {
-    padding: 8rem 0;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-ul li {
-    list-style: none;
-}
-
-a {
-    font-weight: normal;
-    text-decoration: none !important;
-    transition: all 0.4s ease;
-}
-
-p {
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.5;
-    color: #5b5b5b;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    letter-spacing: -1px;
-}
-
-h1 {
-    color: #212121;
-    font-size: 2.8em;
-    margin: 24px 0;
-}
-
-h2 {
-    color: #353535;
-    font-size: 2.4em;
-    font-weight: bold;
-}
-
-b,
-strong {
-    font-weight: bold;
-}
-
-.copyright-text {
-    font-size: 16px;
-    font-weight: normal;
-    display: block;
-}
-
-.division {
-    height: 100%;
-    background: white;
-    display: flex;
-}
-
-.navbar-nav li {
-    border-top: var(--primary) 3px solid;
-    margin-right: 20px;
-}
-
-.nav-link span {
-    color: white;
-    font-size: 20px;
-    width: auto;
-}
-
-.principal {
-    width: auto;
-    border-top: var(--primary) 3px solid;
-    border-bottom: var(--color-detalle) 3px solid;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.fecha {
-    width: auto;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-.principal a,
-.fecha {
-    width: auto;
-    font-weight: bold;
-    font-size: 16px;
-    overflow: hidden;
-}
-
-
-/* END MENU DESPLEGABLE.......................................... */
-
-.cont-titulo {
-    width: 50%;
-    margin: auto;
-    margin-bottom: 30px;
-    border-bottom: #bebebe 2px solid;
-    border-radius: 5px;
-    vertical-align: middle;
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    justify-content: center;
-}
-
-.cont-titulo h3 {
-    font-size: 24px;
-    margin: auto 5px;
-}
-
-.cont-titulo i {
-    font-size: 20px;
-}
-
-.coordinador-profile {
-    margin-top: 30px;
-    width: 100%;
-}
-
-.coordinador-profile>h3 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 30px;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-content: center;
-    margin: auto;
-    width: 60%;
-    justify-items: center;
-}
-
-.layout a {
-    height: 250px;
-    width: 290px;
-    display: flex;
-    justify-content: center;
-}
-
-.layout a div {
-    display: flex;
-    flex-direction: column;
-    background: var(--primary);
-    height: 250px;
-    width: 290px;
-    border-radius: 10px;
-    padding: 30px 0;
-    margin: auto;
-}
-
-.layout a div h3 {
-    text-align: center;
-    background: var(--color-detalle);
-    color: var(--primary);
-    padding: 4px;
-    width: 100%;
-    top: 20px;
-    font-size: 25px;
-}
-
-.layout a div img {
-    margin: auto;
-    text-align: center;
-}
+    @import url("https://fonts.googleapis.com/css?family=Maven+Pro:400,700");
+    body {
+        font-family: "Maven Pro", sans-serif;
+        padding-top: 110px;
+        background: linear-gradient(to right, rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9), rgba(245, 245, 245, 0.9)), url("../img/campus-aunar-2.png");
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+     :root {
+        --primary: #0269ad;
+        --hover: #0477c4;
+        --color-detalle: #fee700;
+        --color-detalle-hover: #e4d103;
+    }
+    
+    .full-screen {
+        padding: 8rem 0;
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul li {
+        list-style: none;
+    }
+    
+    a {
+        font-weight: normal;
+        text-decoration: none !important;
+        transition: all 0.4s ease;
+    }
+    
+    p {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 1.5;
+        color: #5b5b5b;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        letter-spacing: -1px;
+    }
+    
+    h1 {
+        color: #212121;
+        font-size: 2.8em;
+        margin: 24px 0;
+    }
+    
+    h2 {
+        color: #353535;
+        font-size: 2.4em;
+        font-weight: bold;
+    }
+    
+    b,
+    strong {
+        font-weight: bold;
+    }
+    
+    .copyright-text {
+        font-size: 16px;
+        font-weight: normal;
+        display: block;
+    }
+    
+    .division {
+        height: 100%;
+        background: white;
+        display: flex;
+    }
+    
+    .navbar-nav li {
+        border-top: var(--primary) 3px solid;
+        margin-right: 20px;
+    }
+    
+    .nav-link span {
+        color: white;
+        font-size: 20px;
+        width: auto;
+    }
+    
+    .principal {
+        width: auto;
+        border-top: var(--primary) 3px solid;
+        border-bottom: var(--color-detalle) 3px solid;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .fecha {
+        width: auto;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .principal a,
+    .fecha {
+        width: auto;
+        font-weight: bold;
+        font-size: 16px;
+        overflow: hidden;
+    }
+    /* END MENU DESPLEGABLE.......................................... */
+    
+    .cont-titulo {
+        width: 50%;
+        margin: auto;
+        margin-bottom: 30px;
+        border-bottom: #bebebe 2px solid;
+        border-radius: 5px;
+        vertical-align: middle;
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        justify-content: center;
+    }
+    
+    .cont-titulo h3 {
+        font-size: 24px;
+        margin: auto 5px;
+    }
+    
+    .cont-titulo i {
+        font-size: 20px;
+    }
+    
+    .coordinador-profile {
+        margin-top: 30px;
+        width: 100%;
+    }
+    
+    .coordinador-profile>h3 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 30px;
+    }
+    
+    .layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        place-content: center;
+        margin: auto;
+        width: 60%;
+        justify-items: center;
+    }
+    
+    .layout a {
+        height: 250px;
+        width: 290px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .layout a div {
+        display: flex;
+        flex-direction: column;
+        background: var(--primary);
+        height: 250px;
+        width: 290px;
+        border-radius: 10px;
+        padding: 30px 0;
+        margin: auto;
+    }
+    
+    .layout a div h3 {
+        text-align: center;
+        background: var(--color-detalle);
+        color: var(--primary);
+        padding: 4px;
+        width: 100%;
+        top: 20px;
+        font-size: 25px;
+    }
+    
+    .layout a div img {
+        margin: auto;
+        text-align: center;
+    }
+    
+    @media screen and (max-width: 2000px) {
+        .layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            place-content: center;
+            margin: auto;
+            width: 60%;
+            justify-items: center;
+        }
+        .layout a {
+            height: 250px;
+            width: 290px;
+            display: flex;
+            justify-content: center;
+        }
+        .layout a div {
+            display: flex;
+            flex-direction: column;
+            background: var(--primary);
+            height: 250px;
+            width: 290px;
+            border-radius: 10px;
+            padding: 30px 0;
+            margin: auto;
+        }
+        .layout a div h3 {
+            text-align: center;
+            background: var(--color-detalle);
+            color: var(--primary);
+            padding: 4px;
+            width: 100%;
+            top: 20px;
+            font-size: 25px;
+        }
+        .layout a div img {
+            margin: auto;
+            text-align: center;
+        }
+    }
+    
+    @media screen and (max-width: 1400px) {
+        .layout {
+            gap: 20px;
+        }
+        .layout a {
+            height: 220px;
+            width: 260px;
+            display: flex;
+            justify-content: center;
+        }
+        .layout a div img {
+            width: 100px;
+        }
+        .layout a div {
+            height: 220px;
+            width: 260px;
+        }
+        .layout a div h3 {
+            font-size: 22px;
+        }
+    }

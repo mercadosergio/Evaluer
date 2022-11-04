@@ -224,14 +224,6 @@ input:focus {
     border-bottom: #013658 2px solid;
 }
 
-.contenedor-campus h3 {
-    padding: 3rem;
-    width: 100%;
-    text-align: center;
-    color: #013658;
-    font-size: 40px;
-}
-
 .second-section {
     margin: 0;
     padding: 0;
@@ -310,7 +302,6 @@ input:focus {
         padding-left: 70px;
         background-repeat: no-repeat;
         width: 45%;
-        height: 100%;
         color: #ffffff;
     }
     .container-title h1 {
@@ -322,6 +313,13 @@ input:focus {
         font-size: 30px;
         color: rgb(212, 209, 209);
         text-align: left;
+    }
+    .contenedor-campus h3 {
+        padding: 3rem;
+        width: 100%;
+        text-align: center;
+        color: #013658;
+        font-size: 40px;
     }
     footer {
         background: #0269ad;
@@ -351,13 +349,14 @@ input:focus {
         border: var(--primary) 1px solid;
         text-align: center;
         width: 140px;
+        height: 184px;
     }
     footer p {
         color: #fff;
     }
     .develop {
         display: grid;
-        grid-template-areas: "des des""programer1 programer2";
+        grid-template-areas: "des des" "programer1 programer2";
     }
     .des {
         grid-area: des;
@@ -418,6 +417,10 @@ input:focus {
     }
     .login input {
         font-size: 15px;
+    }
+    .contenedor-campus h3 {
+        padding: 1rem;
+        font-size: 30px;
     }
 }
 

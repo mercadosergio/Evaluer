@@ -71,7 +71,7 @@ $idProyecto = $_GET['id'];
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="pqrA.php">Solicitud PQR</a></li>
+                        <li><a class="dropdown-item" href="../../../support/pqrE.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">

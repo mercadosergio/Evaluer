@@ -68,7 +68,7 @@ if ($userP['rol_id'] != 2) {
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="modulos/pqrC.php">Solicitud PQR</a></li>
+                        <li><a class="dropdown-item" href="../../support/pqrE.php">Solicitud PQR</a></li>
                         <li><a class="dropdown-item" href="../../support/account.php">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -80,7 +80,7 @@ if ($userP['rol_id'] != 2) {
         </div>
 
     </nav>
-    
+
     <div class="coordinador-profile">
         <div class="cont-titulo">
             <i class="bi bi-columns-gap"></i>

@@ -101,7 +101,7 @@ if ($userP['rol_id'] != 1) {
                     <p><?php echo $key['contenido'] ?></p>
                     <p class="date"><?php $originalDate = $key['fecha'];
                                     echo date("d/m/Y", strtotime($originalDate)) . " " . date("g:i a", strtotime($originalDate)); ?></p>
-                    <a href="">Ver más</a>
+
                 </div>
         <?php
             } else {

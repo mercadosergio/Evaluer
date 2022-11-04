@@ -11,7 +11,6 @@ if ($sesion == null || $sesion = '') {
 
 include_once("../model/Metodos.php");
 include("../model/UserModel.php");
-include_once("../model/Estudiante.php");
 
 $usuario = new User();
 $res = new Metodos();
@@ -19,7 +18,8 @@ $res = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
-include("../controller/upload_proyecto.php");
+include "../controller/SendPQR.php";
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -31,12 +31,12 @@ include("../controller/upload_proyecto.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Actividad Proyecto de Grado</title>
+    <title>PQR</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../utilities/loading/carga.css">
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" href="../css/proyecto-estudiante.css">
+    <link rel="stylesheet" href="../css/envio-pqr.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/scrollbar.css">
 </head>
@@ -62,7 +62,7 @@ include("../controller/upload_proyecto.php");
                                                                 ?>"><img class="logo" src="../img/logo_p.png"></a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <h3>AJUSTES DEL PERFIL</h3>
+            <h3>SOLICITUD PQR</h3>
 
             <ul class="navbar-nav mx-auto">
 
@@ -87,11 +87,50 @@ include("../controller/upload_proyecto.php");
 
     </nav>
 
-    <div class="format">
-        <div class="contenido">
-
+    <main class="format">
+        <div class="cont-titulo">
+            <h3>Enviar PQR</h3>
         </div>
-    </div>
+        <div class="contenido">
+            <form method="POST">
+                <div>
+                    <label for="">Asunto:</label>
+                    <input type="text" value="" name="asunto">
+                </div>
+                <div>
+                    <label for="">Descripción:</label>
+                    <textarea name="description" id="" cols="" rows=""></textarea>
+                </div>
+                <?php
+                if ($userP['rol_id'] == 2) {
+                    $u = $usuario->consultar("SELECT * FROM coordinador WHERE usuario_id=" . $userP['id']);
+                    $me = mysqli_fetch_array($u);
+                    echo "<input type='hidden' name='nombre' value='" . $me['nombres'] . "'>";
+                    echo "<input type='hidden' name='apellido1' value='" . $me['p_apellido'] . "'>";
+                    echo "<input type='hidden' name='apellido2' value='" . $me['s_apellido'] . "'>";
+                } else if ($userP['rol_id'] == 3) {
+                    $u = $usuario->consultar("SELECT * FROM estudiante WHERE usuario_id=" . $userP['id']);
+                    $me = mysqli_fetch_array($u);
+                    echo "<input type='hidden' name='nombre' value='" . $me['nombre'] . "'>";
+                    echo "<input type='hidden' name='apellido1' value='" . $me['p_apellido'] . "'>";
+                    echo "<input type='hidden' name='apellido2' value='" . $me['s_apellido'] . "'>";
+                } else if ($userP['rol_id'] == 4) {
+                    $u = $usuario->consultar("SELECT * FROM asesor WHERE usuario_id=" . $userP['id']);
+                    $me = mysqli_fetch_array($u);
+                    echo "<input type='hidden' name='nombre' value='" . $me['nombres'] . "'>";
+                    echo "<input type='hidden' name='apellido1' value='" . $me['p_apellido'] . "'>";
+                    echo "<input type='hidden' name='apellido2' value='" . $me['s_apellido'] . "'>";
+                }
+                ?>
+                <input type="hidden" value="<?= $userP['rol_id'] ?>" name="rol_id">
+                <input type="hidden" value="<?= $userP['id'] ?>" name="id_usuario">
+
+                <div>
+                    <button type="submit" name="send">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </main>
     <script src="../utilities/loading/load.js"></script>
     <script src="../font/9390efa2c5.js"></script>
     <script src="../js/jquery-3.3.1.min.js"></script>

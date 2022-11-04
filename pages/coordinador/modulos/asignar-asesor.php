@@ -78,7 +78,7 @@ $myRole = mysqli_fetch_array($getMyself);
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="pqrC">Solicitud PQR</a></li>
+                        <li><a class="dropdown-item" href="../../../support/pqrE.php">Solicitud PQR</a></li>
 
                         <li><a class="dropdown-item" href="../../../support/account">Cambiar contraseña</a></li>
                         <li>
