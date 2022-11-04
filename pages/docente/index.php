@@ -15,7 +15,10 @@ include("../../model/Asesor.php");
 $usuario = new User();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 4) {
+    header("location: ../../index.php");
+    die();
+}
 $getAsesor = $usuario->getDocenteProfile();
 $userD = mysqli_fetch_array($getAsesor);
 

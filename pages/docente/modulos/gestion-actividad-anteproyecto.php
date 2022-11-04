@@ -16,7 +16,10 @@ $usuario = new User();
 $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 4) {
+    header("location: ../../../index.php");
+    die();
+}
 include("../../../model/Asesor.php");
 $docente = new Asesor();
 
@@ -105,7 +108,7 @@ $idAnteproyecto = $_GET['id'];
                     <p><?php echo " " . $findData['nombre'] ?></p>
                 </a>
             </div>
-            <div class="row_"><label for="">Comentarios del estudiante: </label>
+            <div class="row_"><label for="">Comentarios del grupo: </label>
                 <p><?php echo $findData['comentarios'] ?></p>
             </div>
         </div>

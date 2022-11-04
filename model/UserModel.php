@@ -124,12 +124,22 @@ class User extends DataBase
         }
     }
 
-    public function editUser($nombre,  $usuario, $cedula)
+    public function editUser($nombre,  $usuario, $cedula, $id_user)
+    {
+        $sql = "UPDATE usuario SET nombre='$nombre', usuario ='$usuario', cedula ='$cedula' WHERE id = '$id_user'";
+        $this->con->query($sql);
+    }
+    public function editUserByCedula($nombre,  $usuario, $cedula)
     {
         $sql = "UPDATE usuario SET nombre='$nombre', usuario='$usuario', cedula ='$cedula' WHERE cedula = '$cedula'";
         $this->con->query($sql);
     }
 
+    public function editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
+    {
+        $this->con->query("UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
+        programa='$programa', semestre='$semestre', usuario='$cedula' WHERE cedula='$cedula'");
+    }
 
     public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
     {
@@ -159,23 +169,12 @@ class User extends DataBase
         mysqli_close($this->con);
     }
 
-    public function editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
+    public function editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa)
     {
-        $this->con->query("UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
-        programa='$programa', semestre='$semestre', usuario='$cedula' WHERE cedula='$cedula'");
-    }
 
-    public function editAsesor($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)
-    {
-        $sql = "UPDATE asesor d JOIN programa p
-                SET d.nombre='$nombre', d.p_apellido='$p_apellido', d.s_apellido='$s_apellido', d.cedula='$cedula',
-                    d.programa_id='$programa_id', d.usuario='$cedula'
-                    WHERE d.id = $id";
-        $this->con->query($sql);
+        $sql = $this->con->query("UPDATE asesor d SET d.nombre='$nombre', d.p_apellido='$p_apellido', d.s_apellido='$s_apellido', d.cedula='$cedula', d.programa='$programa', d.usuario='$cedula'
+        WHERE d.id = $id");
 
-        $this->con->query("UPDATE asesor d JOIN programa p
-        p.identificador = '$programa_id'
-        SET d.programa = p.nombre");
 
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">
@@ -198,17 +197,13 @@ class User extends DataBase
         }
         mysqli_close($this->con);
     }
-    public function editCoordinador($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa_id)
+    public function editCoordinador($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa)
     {
-        $sql = "UPDATE coordinador c JOIN programa p
+        $sql = $this->con->query("UPDATE coordinador
                 SET c.nombre='$nombre', c.p_apellido='$p_apellido', c.s_apellido='$s_apellido', c.cedula='$cedula',
-                    c.programa_id='$programa_id', c.usuario='$cedula'
-                    WHERE c.id = $id";
-        $this->con->query($sql);
+                    c.programa='$programa', c.usuario='$cedula'
+                    WHERE c.id = $id");
 
-        $this->con->query("UPDATE coordinador c JOIN programa p
-        p.identificador = '$programa_id'
-        SET c.programa = p.nombre");
 
         if (!$sql) {
             echo '<div id="fail" class="alert alert-danger" role="alert" style="z-index: 9999999999999999; position:absolute; top:2%;left: 50%;transform: translate(-50%, 0%);">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2022 a las 01:36:21
+-- Tiempo de generación: 04-11-2022 a las 03:52:17
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -106,6 +106,14 @@ CREATE TABLE `anteproyecto` (
   `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `anteproyecto`
+--
+
+INSERT INTO `anteproyecto` (`id`, `titulo`, `nombre`, `documento`, `comentarios`, `programa`, `fecha`, `estado`, `calificacion`, `observaciones`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para contabilidad de Bancolombia', 'ANTEPROYECTO-AUNAR.pdf', '../../files/anteproyectos/01-11-22-00-11-23-ANTEPROYECTO-AUNAR.pdf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at tellus non turpis pharetra tempor. Proin auctor nisl in ligula consectetur, non laoreet augue faucibus. ', 'INGENIERÍA INFORMÁTICA', '2022-11-01 00:49:06', 'APROBADO', 4.2, 'N/A', 2),
+(2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum lorem. Nulla tellus neque, commodo id nibh et, luctus rutrum massa. Suspendisse iaculis mauris vel arcu hendrerit, quis fermentum ex tempor.', 'ANTEPROYECTO-AUNAR.pdf', '../../files/anteproyectos/01-11-22-18-11-38-ANTEPROYECTO-AUNAR.pdf', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum lorem. Nulla tellus neque, commodo id nibh et, luctus rutrum massa. Suspendisse iaculis mauris vel arcu hendrerit, quis fermentum ex tempor.', 'INGENIERÍA INFORMÁTICA', '2022-11-01 18:13:23', 'EN REVISION', 0, '', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -132,7 +140,9 @@ CREATE TABLE `asesor` (
 INSERT INTO `asesor` (`id`, `nombres`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `email`, `telefono`, `usuario`, `usuario_id`) VALUES
 (1, 'Andres', 'Pérez', 'García', '0987654321', 'INGENIERÍA INFORMÁTICA', 'andres@gmail.com', 2147483647, '0987654321', 12),
 (2, 'Carlos', 'Gomez', 'Pereira', '3333333334', 'CONTADURÍA PÚBLICA', 'carlos@gmail.com', 2147483647, '3333333334', 13),
-(3, 'Justo', 'Alfaro', 'Vega', '4543663321', 'INGENIERÍA INFORMÁTICA', 'justoalfaro@gmail.com', 2147483647, '4543663321', 14);
+(3, 'Justo', 'Alfaro', 'Vega', '4543663321', 'INGENIERÍA INFORMÁTICA', 'justoalfaro@gmail.com', 2147483647, '4543663321', 14),
+(4, 'Heyder', 'Medrano', 'ddddd', '2309129090', 'INGENIERÍA INFORMÁTICA', '', 0, '2309129090', 23),
+(5, 'Alejandro', 'Martinez', 'Sanchez', '2333223332', 'COCINA INTERNACIONAL', 'jms@gmail.com', 2147483647, '2333223332', 24);
 
 -- --------------------------------------------------------
 
@@ -160,7 +170,8 @@ CREATE TABLE `coordinador` (
 INSERT INTO `coordinador` (`id`, `nombres`, `p_apellido`, `s_apellido`, `cedula`, `programa`, `email`, `telefono`, `usuario`, `usuario_id`) VALUES
 (1, 'Mauricio', 'Castro', 'Nuñez', '8888888888', 'INGENIERÍA INFORMÁTICA', 'mauricioc@gmail.com', 2147483647, '8888888888', 3),
 (2, 'Manuel', 'Gomez', 'Madera', '1432498292', 'CONTADURÍA PÚBLICA', 'manuelgm@gmail.com', 2147483647, '1432498292', 4),
-(3, 'Jorge', 'Perez', 'Madera', '5555555554', 'COCINA INTERNACIONAL', 'jorgeq@gmail.com', 2147483647, '5555555554', 5);
+(3, 'Jorge', 'Perez', 'Madera', '5555555554', 'COCINA INTERNACIONAL', 'jorgeq@gmail.com', 2147483647, '5555555554', 5),
+(4, 'Marcos', 'Funes', 'Torres', '2928272625', 'DECORACIÓN DE INTERIORES', 'dasdsa', 0, '2928272625', 26);
 
 -- --------------------------------------------------------
 
@@ -191,11 +202,14 @@ CREATE TABLE `estudiante` (
 INSERT INTO `estudiante` (`id`, `nombre`, `p_apellido`, `s_apellido`, `tipo_di`, `cedula`, `programa`, `semestre`, `telefono`, `email`, `usuario`, `usuario_id`, `grupo_id`) VALUES
 (1, 'Sergio', 'Mercado', 'Salazar', '', '1143411234', 'INGENIERÍA INFORMÁTICA', 9, '2147483647', 'mercadosergio@gmail.com', '1143411234', 2, 2),
 (2, 'Oscar', 'Garces', 'Gomez', '', '1777777777', 'INGENIERÍA INFORMÁTICA', 9, '2147483647', 'oscargg@gmail.com', '1777777777', 6, 2),
-(3, 'Juan', 'Llanos', 'Gaviria', '', '1010101010', 'CONTADURÍA PÚBLICA', 8, '3101923456', 'juanl1@gmail.com', '1010101010', 7, 1),
+(3, 'Juan', 'Llanos', 'Gaviria', '', '1010101010', 'CONTADURÍA PÚBLICA', 8, '3101923456', 'juanl1@gmail.com', '1010101010', 7, 4),
 (4, 'Victor', 'Padilla', 'Zuñiga', '', '1878787878', 'INGENIERÍA INFORMÁTICA', 7, '3019478565', '', '1878787878', 8, 1),
-(5, 'Daniel', 'Yepes', 'Garcia', '', '1209345555', 'CONTADURÍA PÚBLICA', 7, '3211234567', 'daniel@gmail.com', '1209345555', 9, 1),
-(6, 'Maria', 'Bettin', 'Larios', '', '1244344347', 'CONTADURÍA PÚBLICA', 8, '3041234567', 'mariabet@gmail.com', '1244344347', 10, 1),
-(7, 'Juan', 'Fernandez', 'Valdes', '', '1432543234', 'COCINA INTERNACIONAL', 6, '', '', '1432543234', 11, 1);
+(6, 'Maria', 'Bettin', 'Larios', '', '1244344347', 'CONTADURÍA PÚBLICA', 8, '3041234567', 'mariabet@gmail.com', '1244344347', 10, 4),
+(7, 'Juan', 'Fernandez', 'Valdes', '', '1432543234', 'COCINA INTERNACIONAL', 6, '', '', '1432543234', 11, 5),
+(8, 'Jesus', 'Garcia', 'Ramos', '', '1239874444', 'INGENIERÍA INFORMÁTICA', 9, '3210000000', 'jesus@gmail.com', '1239874444', 15, 3),
+(9, 'Laura', 'Hernandez', 'Fuentes', '', '9090909090', 'INGENIERÍA INFORMÁTICA', 9, '3218888888', 'lauram@gmail.com', '9090909090', 16, 3),
+(10, 'asdsadsadsa', 'dasdasda', 'dsadasdsa', '', 'dasd', 'CONTADURÍA PÚBLICA', 7, 'dsadsadsad', 'sadsadsadasd', 'dasd', 27, NULL),
+(11, 'asdsadsadasdsa', 'dsadsad', 'sadsadasdsadsa', '', 'dsadsadasd', 'DECORACIÓN DE INTERIORES', 9, 'adsadsadasd', 'sadsadsads', 'dsadsadasd', 28, NULL);
 
 -- --------------------------------------------------------
 
@@ -211,15 +225,16 @@ CREATE TABLE `grupo` (
   `periodo` varchar(11) NOT NULL,
   `n_integrantes` int(2) NOT NULL,
   `nombre_integrante1` varchar(100) NOT NULL,
-  `di_integrante1` bigint(20) NOT NULL,
+  `di_integrante1` varchar(20) NOT NULL,
   `nombre_integrante2` varchar(100) NOT NULL,
-  `di_integrante2` bigint(20) NOT NULL,
+  `di_integrante2` varchar(20) NOT NULL,
   `nombre_integrante3` varchar(100) NOT NULL,
-  `di_integrante3` bigint(20) NOT NULL,
+  `di_integrante3` varchar(20) NOT NULL,
   `fecha_creado` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `time_propuesta` int(11) NOT NULL,
   `time_anteproyecto` int(11) NOT NULL,
   `time_proyecto` int(11) NOT NULL,
+  `time_limit_propuesta` int(11) NOT NULL,
   `nombre_asesor` varchar(100) NOT NULL,
   `asesor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -228,9 +243,13 @@ CREATE TABLE `grupo` (
 -- Volcado de datos para la tabla `grupo`
 --
 
-INSERT INTO `grupo` (`id`, `project_name`, `programa`, `semestre`, `periodo`, `n_integrantes`, `nombre_integrante1`, `di_integrante1`, `nombre_integrante2`, `di_integrante2`, `nombre_integrante3`, `di_integrante3`, `fecha_creado`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `nombre_asesor`, `asesor_id`) VALUES
-(1, '', '', 0, '', 0, '', 0, '', 0, '', 0, '2022-10-27 05:06:31', 0, 0, 0, '', 0),
-(2, '', 'INGENIERÍA INFORMÁTICA', 9, '2022 - 2', 2, 'Sergio Mercado', 1143411234, 'Oscar Garces', 1777777777, ' ', 0, '2022-10-28 23:12:53', 1, 1, 1, 'Andres Pérez', 1);
+INSERT INTO `grupo` (`id`, `project_name`, `programa`, `semestre`, `periodo`, `n_integrantes`, `nombre_integrante1`, `di_integrante1`, `nombre_integrante2`, `di_integrante2`, `nombre_integrante3`, `di_integrante3`, `fecha_creado`, `time_propuesta`, `time_anteproyecto`, `time_proyecto`, `time_limit_propuesta`, `nombre_asesor`, `asesor_id`) VALUES
+(1, '', '', 0, '', 0, '', '0', '', '0', '', '0', '2022-10-27 05:06:31', 0, 0, 0, 0, '', 0),
+(2, '', 'INGENIERÍA INFORMÁTICA', 9, '2022 - 2', 2, 'Sergio Mercado', '1143411234', 'Oscar Garces', '1777777777', ' ', '0', '2022-11-03 03:16:10', 0, 1668553200, 1668553200, 1669929660, 'Andres Pérez', 1),
+(3, '', 'INGENIERÍA INFORMÁTICA', 9, '2022 - 2', 2, 'Jesus Garcia', '1239874444', 'Laura Hernandez', '9090909090', ' ', '0', '2022-11-03 03:18:12', 0, 0, 1668553200, 1669929660, 'Andres Pérez', 1),
+(4, '', 'CONTADURÍA PÚBLICA', 8, '2022 - 2', 2, 'Juan Llanos', '1010101010', 'Maria Bettin', '1244344347', ' ', '0', '2022-11-03 03:17:40', 1000000000, 0, 1000000000, 0, '', 0),
+(5, '', 'COCINA INTERNACIONAL', 6, '2022 - 2', 1, 'Juan Fernandez', '1432543234', ' ', '0', ' ', '0', '2022-11-01 22:50:07', 1000000000, 1000000000, 1000000000, 0, '', 0),
+(8, '', 'INGENIERÍA INFORMÁTICA', 8, '2022 - 2', 1, 'asdasdasd asdsadasd', 'asdasdasdas', ' ', 'N/A2', ' ', 'N/A3', '2022-11-01 23:56:02', 1000000000, 1000000000, 1000000000, 0, 'Justo Alfaro', 3);
 
 -- --------------------------------------------------------
 
@@ -245,7 +264,7 @@ CREATE TABLE `linea_investigacion` (
   `sublinea` varchar(200) NOT NULL,
   `programa` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `coordinador_id` int(11) NOT NULL
+  `coordinador_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -280,11 +299,18 @@ CREATE TABLE `post` (
   `id` int(20) NOT NULL,
   `contenido` varchar(400) NOT NULL,
   `fecha` varchar(20) NOT NULL,
-  `programa_id` int(20) NOT NULL,
+  `programa` varchar(100) NOT NULL,
   `nombre_usuario` varchar(70) NOT NULL,
   `usuario` varchar(200) NOT NULL,
   `docente_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `post`
+--
+
+INSERT INTO `post` (`id`, `contenido`, `fecha`, `programa`, `nombre_usuario`, `usuario`, `docente_id`) VALUES
+(1, '<h3>Lorem ipsum dolor sit amet</h3>\r\n\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sodales consectetur nisi ac sodales. Sed congue lobortis vestibulum. Vestibulum et arcu convallis, consectetur leo ac, euismod lorem. Etiam aliquam auctor cursus. Proin posuere enim vel fringilla elementum. Vestibulum scelerisque viverra gravida.</p>\r\n', '2022-11-03 20:02:33', 'INGENIERÍA INFORMÁTICA', 'Andres Pérez', '0987654321', 1);
 
 -- --------------------------------------------------------
 
@@ -343,6 +369,7 @@ CREATE TABLE `propuesta` (
   `programa` varchar(70) NOT NULL,
   `semestre` int(2) NOT NULL,
   `descripcion` varchar(500) NOT NULL,
+  `n_integrantes` int(5) NOT NULL,
   `miembro1` varchar(200) NOT NULL,
   `miembro2` varchar(200) DEFAULT NULL,
   `miembro3` varchar(200) DEFAULT NULL,
@@ -350,6 +377,14 @@ CREATE TABLE `propuesta` (
   `estado` varchar(40) NOT NULL,
   `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `propuesta`
+--
+
+INSERT INTO `propuesta` (`id`, `titulo`, `linea`, `tutor`, `lider`, `programa`, `semestre`, `descripcion`, `n_integrantes`, `miembro1`, `miembro2`, `miembro3`, `fecha`, `estado`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para contabilidad de Bancolombia', 'Análisis, diseño y desarrollo de aplicaciones Web', 'Andres Pérez', 'Sergio Mercado', 'INGENIERÍA INFORMÁTICA', 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at tellus non turpis pharetra tempor. Proin auctor nisl in ligula consectetur, non laoreet augue faucibus. Nam consequat lobortis orci, at efficitur ligula. Sed gravida erat lacus. Cras non nibh viverra, fermentum nisi vitae, vestibulum nunc. Sed ac vulputate nibh. Morbi sed purus vulputate, sollicitudin diam vitae, scelerisque arcu. Aenean congue ac mauris a luctus. Etiam quis congue ante, eu euismod sem.', 2, 'Sergio Mercado', 'Oscar Garces', ' ', '2022-11-04 01:45:16', 'APROBADA', 2),
+(2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum lorem. Nulla tellus neque, commodo id nibh et, luctus rutrum massa. Suspendisse iaculis mauris vel arcu hendrerit, quis fermentum ex tempor.', 'Análisis, diseño y desarrollo de aplicaciones Web', 'Andres Pérez', 'Jesus Garcia', 'INGENIERÍA INFORMÁTICA', 9, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum lorem. Nulla tellus neque, commodo id nibh et, luctus rutrum massa. Suspendisse iaculis mauris vel arcu hendrerit, quis fermentum ex tempor.', 0, 'Jesus Garcia', 'Laura Hernandez', ' ', '2022-11-01 17:12:48', '', 3);
 
 -- --------------------------------------------------------
 
@@ -374,6 +409,14 @@ CREATE TABLE `proyecto_grado` (
   `jurado3` varchar(100) NOT NULL,
   `grupo_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proyecto_grado`
+--
+
+INSERT INTO `proyecto_grado` (`id`, `titulo`, `nombre`, `documento`, `programa`, `semestre`, `fecha`, `estado`, `calificacion`, `observaciones`, `asesor`, `jurado1`, `jurado2`, `jurado3`, `grupo_id`) VALUES
+(1, 'Desarrollo de una plataforma web para contabilidad de Bancolombia', 'PROYECTO-AUNAR.pdf', '../../files/proyectos_de_grado/01-11-22-01-11-25-PROYECTO-AUNAR.pdf', 'INGENIERÍA INFORMÁTICA', 9, '2022-10-31 19:04:20', 'APROBADO', '4.0', 'N/A', '', 'Andres Pérez', 'Justo Alfaro', 'Heyder Medrano', 2),
+(2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel fermentum lorem. Nulla tellus neque, commodo id nibh et, luctus rutrum massa. Suspendisse iaculis mauris vel arcu hendrerit, quis fermentum ex tempor.', 'PROYECTO-AUNAR.pdf', '../../files/proyectos_de_grado/01-11-22-18-11-26-PROYECTO-AUNAR.pdf', 'INGENIERÍA INFORMÁTICA', 9, '2022-11-01 12:14:14', '', '', '', '', 'Andres Pérez', 'Justo Alfaro', 'Heyder Medrano', 3);
 
 -- --------------------------------------------------------
 
@@ -427,12 +470,18 @@ INSERT INTO `usuario` (`id`, `nombre`, `cedula`, `usuario`, `contraseña`, `time
 (6, 'Oscar', '1777777777', '1777777777', '$2y$10$lBHf4cdYldBD7ex821bEQujEB2jk6U6Cl2sEZRDs8mhJQhZEngt6K', 0, '', 3),
 (7, 'Juan', '1010101010', '1010101010', '$2y$10$kwEdBMtX3rcOp9NDQcpWqekAaB1aImYaOmw6Ioz7UYdQX7GiO9qfq', 0, '', 3),
 (8, 'Victor', '1878787878', '1878787878', '$2y$10$7eJjBiuluzfXuchb/jdpPORwCpcPuN..mFyHPEL1yzjqiCWiv8u3m', 0, '', 3),
-(9, 'Daniel', '1209345555', '1209345555', '$2y$10$iEOCGfWUPsMoomTN0Z1zO.oSY7eslNJbM.at4ZXHPFbNhg8e35RT.', 0, '', 3),
 (10, 'Maria', '1244344347', '1244344347', '$2y$10$M5o9pObBnimAHJuXSMYcIus3eHmBXH26Rd21pnzfwU09r/DvCKsiW', 0, '', 3),
 (11, 'Juan', '1432543234', '1432543234', '$2y$10$2LUSOpRSKMtUnyyUZQJ4cu.D5sbkm33OaQB1W3gMUBIrFpWZ4r5Ca', 0, '', 3),
 (12, 'Andres', '0987654321', '0987654321', '$2y$10$Rk9A8BAw9yJxuVZwFskth.KB5nCf23UDl793hNE2NDll6hFPE6/HG', 0, '', 4),
 (13, 'Carlos', '3333333334', '3333333334', '$2y$10$H0j1Pvf4YXAQdD7.WtZ0UezTIlDTXGz816rJfzbgC1sHKQOwmdTP2', 0, '', 4),
-(14, 'Justo', '4543663321', '4543663321', '$2y$10$yjezU6U1iYibP2JbcBlXwe5zccWL8sg2UVvlDySEPLC/q4zRbEOwC', 0, '', 4);
+(14, 'Justo', '4543663321', '4543663321', '$2y$10$yjezU6U1iYibP2JbcBlXwe5zccWL8sg2UVvlDySEPLC/q4zRbEOwC', 0, '', 4),
+(15, 'Jesus', '1239874444', '1239874444', '$2y$10$aPLCaQyTUNPl7mrgDdydYexXaI8lc2wzf5AalzYeowst7gw0swySW', 0, '', 3),
+(16, 'Laura', '9090909090', '9090909090', '$2y$10$IHN3w6MuJEHOtTl1I3kSqufWOm583w.Z3s4LTlopPtta0qPKYTOma', 0, '', 3),
+(23, 'Heyder', '2309129090', '2309129090', '$2y$10$SqlLytF3bjxlaAZXI8YPResB22Gcmvj6V/xDz7.fThq0sUBmhmosC', 0, '', 4),
+(24, 'Alejandro', '2333223332', '2333223332', '$2y$10$XdjLOjcIXVX.UtSTvGs.aOwERhPnfpK7S6HMFsJnJGib38JQ4kLAC', 0, '', 4),
+(26, 'Marcos', '2928272625', '2928272625', '$2y$10$Sz0ibO8VLaFOhiPVEw62suW3fKbJpC/Iu3N3sbMbjH2ABnlNx3uU6', 0, '', 2),
+(27, 'asdsadsadsa', 'dasd', 'dasd', '$2y$10$jNbpvHOLyIm0pambAFfDGeoxwaLc/use37J2gimn.eFaH3dh420pe', 0, '', 3),
+(28, 'asdsadsadasdsa', 'dsadsadasd', 'dsadsadasd', '$2y$10$r3ZpLnMp8m5EoFn0OCB3Tup.0fId56FtUQd9t4scudCPAh8Xf/Juq', 0, '', 3);
 
 --
 -- Índices para tablas volcadas
@@ -556,31 +605,31 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de la tabla `anteproyecto`
 --
 ALTER TABLE `anteproyecto`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `coordinador`
 --
 ALTER TABLE `coordinador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `linea_investigacion`
@@ -598,7 +647,7 @@ ALTER TABLE `material_academico`
 -- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `pqr`
@@ -616,19 +665,19 @@ ALTER TABLE `programa`
 -- AUTO_INCREMENT de la tabla `propuesta`
 --
 ALTER TABLE `propuesta`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto_grado`
 --
 ALTER TABLE `proyecto_grado`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

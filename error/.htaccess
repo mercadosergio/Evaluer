@@ -1,0 +1,2 @@
+ErrorDocument 404 
+http://localhost/evaluer/error/error404.php

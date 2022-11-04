@@ -12,6 +12,5 @@ if (isset($_POST['begin'])) {
     $asesor = new Asesor();
     $asesor->fechaLimitePropuesta($limite);
 
-    include "../pages/docente/modulos/revision-propuesta.php";
-    // header("Location: ../pages/docente/modulos/revision-propuesta.php");
+    
 }

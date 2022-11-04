@@ -9,14 +9,14 @@ if (isset($_POST['modificar'])) {
     $cedula = $_POST['cedula'];
     $programa = $_POST['programa'];
     $semestre = $_POST['semestre'];
-    $usuario = $_POST['cedula'];
+    $username = $_POST['cedula'];
     $idUser = $_POST['usuario_id'];
 
     $rol = $_POST['rol'];
 
     $user = new User();
 
-    $user->editUser($nombre, $usuario, $cedula);
+    $user->editUser($nombre, $username, $cedula, $idUser);
 
     for ($i = 0; $i < count($programa); $i++) {
         if ($rol == 3) {

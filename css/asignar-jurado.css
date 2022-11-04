@@ -50,13 +50,11 @@ h6 {
 }
 
 h1 {
-    color: #212121;
     font-size: 2.8em;
     margin: 24px 0;
 }
 
 h2 {
-    color: #353535;
     font-size: 2.4em;
     font-weight: bold;
 }
@@ -138,4 +136,11 @@ strong {
 
 .file_container p {
     margin-bottom: 0;
+}
+
+button {
+    padding: 15px 30px;
+    color: #fff;
+    background: var(--primary);
+    border: none;
 }

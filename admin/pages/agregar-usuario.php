@@ -15,6 +15,11 @@ $usuario = new User();
 $admin = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
+
+if ($userP['rol_id'] != 1) {
+    header("location: ../../index.php");
+    die();
+}
 require '../../controller/AddUserController.php';
 date_default_timezone_set("America/Bogota");
 ?>

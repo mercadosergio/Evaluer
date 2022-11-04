@@ -20,10 +20,17 @@ $estudiante = new Student();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
+if ($userP['rol_id'] != 3) {
+    header("location: ../../../index.php");
+    die();
+}
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
-$findP = $estudiante->getMyPropuesta($userE['grupo_id']);
+if ($userE['grupo_id']) {
+
+    $findP = $estudiante->getMyPropuesta($userE['grupo_id']);
+}
 
 if ($userE['grupo_id'] <= 0 || $findP->num_rows < 1) {
     header("location: ../index.php");
@@ -102,7 +109,7 @@ include '../../../controller/UploadA.php';
             ?>
             <div class="form <?php echo (time() < $getTime) ? "non" : ''; ?>">
                 <div class="cont-titulo">
-                    <h3>Enviar anteproyecto</h3>
+                    <h3>Anteproyecto</h3>
                 </div>
                 <?php
                 $findP = $estudiante->getMyPropuesta($userE['grupo_id']);
@@ -115,17 +122,15 @@ include '../../../controller/UploadA.php';
                 }
                 ?>
                 <div class="seccion-anteproyecto">
-                    <?php
-                    if (time() < $getTime) {
-                    ?>
-                        <div class="aviso">
-                            <p>Espacio no disponible hasta la proxima entrega</p>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <div class="Formulario">
 
+                    <div class="Formulario">
+                        <div class="detalles">
+                            <div style="display: flex;">
+                                <p><i class="activity bi bi-person-workspace"></i> Adjuntar entregable de anteproyecto en este espacio.</p>
+                            </div>
+
+                            <label for="">Entregar hasta:</label>
+                        </div>
                         <div class="archivo">
                             <div class="container-input">
                                 <input type="text" hidden name="user" value="<?php echo $_SESSION['usuario'] ?>">
@@ -154,6 +159,15 @@ include '../../../controller/UploadA.php';
                             <button type="submit" <?php echo (time() < $getTime) ? "disabled" : ''; ?> id="enviar" name="enviar" class="btn-enviar">Enviar</button>
                         </div>
                     </div>
+                    <?php
+                    if (time() < $getTime) {
+                    ?>
+                        <div class="aviso">
+                            <p>Espacio no disponible hasta la proxima entrega</p>
+                        </div>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <div class="cont-titulo">

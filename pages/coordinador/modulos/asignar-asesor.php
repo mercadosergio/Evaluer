@@ -16,7 +16,10 @@ $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 2) {
+    header("location: ../../../index.php");
+    die();
+}
 $getMyself = $usuario->getCoordinatorProfile();
 $myRole = mysqli_fetch_array($getMyself);
 
@@ -60,7 +63,7 @@ $myRole = mysqli_fetch_array($getMyself);
     <!-- MENU -->
     <nav class="navbar navbar-expand-sm navbar-light">
         <img src="../../../img/aunar.png" class="aunar_logo">
-        <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
+        <a class="navbar-brand" href="../"><img class="logo" src="../../../img/logo_p.png"></a>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <h3>COORDINADOR</h3>
@@ -75,13 +78,13 @@ $myRole = mysqli_fetch_array($getMyself);
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#">Perfil</a></li>
-                        <li><a class="dropdown-item" href="pqrC.php">Solicitud PQR</a></li>
+                        <li><a class="dropdown-item" href="pqrC">Solicitud PQR</a></li>
 
-                        <li><a class="dropdown-item" href="../../../support/account.php">Cambiar contraseña</a></li>
+                        <li><a class="dropdown-item" href="../../../support/account">Cambiar contraseña</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="../../../controller/Logout.php">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="../../../controller/Logout">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -205,7 +208,7 @@ $myRole = mysqli_fetch_array($getMyself);
             // document.sub.submit();
         }
     </script>
- <script>
+    <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }

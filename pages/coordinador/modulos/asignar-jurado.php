@@ -19,7 +19,10 @@ $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 2) {
+    header("location: ../../../index.php");
+    die();
+}
 $getMyself = $usuario->getCoordinatorProfile();
 $myRole = mysqli_fetch_array($getMyself);
 
@@ -129,7 +132,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql1 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
+                            $sql1 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa'] . "'";
                             $jurado1 = $funcion->listar($sql1);
 
                             foreach ($jurado1 as $d) {
@@ -151,7 +154,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql2 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
+                            $sql2 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa'] . "'";
                             $jurado2 = $funcion->listar($sql2);
 
                             foreach ($jurado2 as $d) {
@@ -173,7 +176,7 @@ $idProyecto = $_GET['id'];
                             ?>
                             <option value="0">Seleccione...</option>
                             <?php
-                            $sql3 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa']."'";
+                            $sql3 = "SELECT * FROM asesor WHERE programa = '" . $myRole['programa'] . "'";
                             $jurado3 = $funcion->listar($sql3);
 
                             foreach ($jurado3 as $d) {
@@ -182,7 +185,7 @@ $idProyecto = $_GET['id'];
                             ?>
                         </select>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Asignar</button>
+                    <button type="submit" name="submit" class="">Asignar</button>
                 </form>
             </div>
         </div>

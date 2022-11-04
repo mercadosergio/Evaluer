@@ -18,7 +18,10 @@ $usuario = new User();
 $est = new Student();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 3) {
+    header("location: ../../index.php");
+    die();
+}
 $getMyrole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyrole);
 
@@ -55,7 +58,6 @@ date_default_timezone_set('America/Bogota');
     <link rel="stylesheet" href="../../css/header.css">
     <link rel="stylesheet" href="../../css/scrollbar.css">
 </head>
-
 
 <body>
     <div class="fondo">
@@ -179,8 +181,10 @@ date_default_timezone_set('America/Bogota');
                             if ($myGroup->num_rows <= 0) {
                                 echo '<div class="salto"></div>';
                             }
-                            if ($row['asesor_id'] <= 0) {
-                                echo '<div class="salto"><p>Espere a ser asignado a un asesor</p></div>';
+                            if ($myGroup->num_rows >= 1) {
+                                if ($row['asesor_id'] <= 0) {
+                                    echo '<div class="salto"><p>Espere a ser asignado a un asesor</p></div>';
+                                }
                             }
                             ?>
                             <img src="../../img/formulario-de-firma.png" alt="">
@@ -191,8 +195,10 @@ date_default_timezone_set('America/Bogota');
                     <a href="../../pages/estudiante/modulos/anteproyecto-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findP->num_rows < 1) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
-                            if ($userE['grupo_id'] == 0 || $findP->num_rows < 1) {
-                                echo '<div class="salto"></div>';
+                            if ($myGroup->num_rows >= 1) {
+                                if ($userE['grupo_id'] == 0 || $findP->num_rows < 1) {
+                                    echo '<div class="salto"></div>';
+                                }
                             }
                             ?>
                             <img src="../../img/anteproyecto.png" alt="">
@@ -206,8 +212,10 @@ date_default_timezone_set('America/Bogota');
                     <a href="../../pages/estudiante/modulos/proyecto-final-estudiante.php" class="<?php echo ($userE['grupo_id'] == 0 || $findA->num_rows < 1) ? 'deshabilitar' : '' ?>">
                         <div class="enlace">
                             <?php
-                            if ($userE['grupo_id'] == 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
-                                echo '<div class="salto"></div>';
+                            if ($myGroup->num_rows >= 1) {
+                                if ($userE['grupo_id'] == 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
+                                    echo '<div class="salto"></div>';
+                                }
                             }
                             ?>
                             <img src="../../img/proyectof.png" alt="">

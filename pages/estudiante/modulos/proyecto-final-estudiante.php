@@ -19,12 +19,19 @@ $estudiante = new Student();
 
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 3) {
+    header("location: ../../../index.php");
+    die();
+}
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);
 
+
 $findP = $estudiante->getMyPropuesta($userE['grupo_id']);
+
 $findA = $estudiante->getMyAnteproyecto($userE['grupo_id']);
+
+
 
 if ($userE['grupo_id'] <= 0 || $findP->num_rows < 1 || $findA->num_rows < 1) {
     header("location: ../index.php");
@@ -99,16 +106,16 @@ include("../../../controller/upload_proyecto.php");
 
         <div class="format">
             <div class="cont-titulo">
-                <h3 class="titulo1">Enviar proyecto de grado</h3>
+                <h3 class="titulo1">Proyecto de grado</h3>
             </div>
             <div class="seccion-proyecto">
                 <div>
                     <div class="detalles">
                         <div style="display: flex;">
-                            <p><i class="activity bi bi-person-workspace"></i> Adjuntar el entregable del proyecto de grado en este espacio.</p>
+                            <p><i class="activity bi bi-person-workspace"></i> Adjuntar entregable del proyecto de grado en este espacio.</p>
                         </div>
-                        <label for="">Descripción:</label>
-                        <label for="">Fecha de entrega:</label>
+
+                        <label for="">Entregar hasta:</label>
                     </div>
                     <div class="archivo">
                         <div class="container-input">

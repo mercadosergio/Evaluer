@@ -16,6 +16,11 @@ $usuario = new User();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
 
+if ($userP['rol_id'] != 3) {
+    header("location: ../../../index.php");
+    die();
+}
+
 include("../../../model/Estudiante.php");
 $getMyRole = $usuario->getStudentProfile();
 $userE = mysqli_fetch_array($getMyRole);

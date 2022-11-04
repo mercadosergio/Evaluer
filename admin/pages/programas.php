@@ -16,6 +16,10 @@ $data = new User();
 $admin = new Metodos();
 $getProfile = $data->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
+if ($userP['rol_id'] != 1) {
+    header("location: ../../index.php");
+    die();
+}
 ?>
 <!doctype html>
 <html lang="en">

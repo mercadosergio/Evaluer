@@ -15,7 +15,10 @@ $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 2) {
+    header("location: ../../../index.php");
+    die();
+}
 $getMyself = $usuario->getCoordinatorProfile();
 $myRole = mysqli_fetch_array($getMyself);
 

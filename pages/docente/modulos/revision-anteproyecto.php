@@ -16,7 +16,10 @@ $usuario = new User();
 $funcion = new Metodos();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 4) {
+    header("location: ../../../index.php");
+    die();
+}
 include("../../../model/Asesor.php");
 include("../../../controller/evaluate-anteproyecto.php");
 ?>

@@ -13,7 +13,10 @@ include_once '../../model/Metodos.php';
 $usuario = new User();
 $getProfile = $usuario->getProfileUser($_SESSION['usuario']);
 $userP = mysqli_fetch_array($getProfile);
-
+if ($userP['rol_id'] != 1) {
+    header("location: ../../index.php");
+    die();
+}
 $admin = new Metodos();
 
 
@@ -435,9 +438,9 @@ include "../../controller/DeleteUser.php";
                             <p class="nombre_user"></p>
                             <p>¿Está seguro de realizar esta acción?</p>
 
-                            <input name="del_id" type="hidden" class="id_del" value="">
-                            <input name="del_user" type="hidden" class="user_del" value="">
-                            <input name="del_role" type="hidden" class="role_u" value="">
+                            <input name="del_id" type="text" class="id_del" value="">
+                            <input name="del_user" type="text" class="user_del" value="">
+                            <input name="del_role" type="text" class="role_u" value="">
                         </div>
 
                         <div class="actions">

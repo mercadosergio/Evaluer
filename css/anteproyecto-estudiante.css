@@ -149,6 +149,31 @@ form {
     width: 100%;
 }
 
+.seccion-anteproyecto>div {
+    margin: auto;
+}
+
+.detalles {
+    grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detalles>div {
+    margin: auto;
+}
+
+.seccion-anteproyecto .activity {
+    font-size: 40px;
+    margin-right: 10px;
+    color: var(--primary);
+}
+
+.seccion-anteproyecto .detalles label {
+    margin: auto;
+}
+
 .seccion-anteproyecto .archivo {
     padding: 15px;
     display: block;
@@ -444,7 +469,7 @@ details:not([open]) .folder {
     align-items: center;
     justify-content: center;
     margin: auto;
-    height: 150px;
+    /* height: 150px; */
     width: 100%;
 }
 
@@ -512,9 +537,6 @@ details:not([open]) .folder {
     .fechaD {
         margin-right: 50px !important;
     }
-    .tree-view {
-        width: 20%;
-    }
 }
 
 @media screen and (max-width: 1400px) {
@@ -540,9 +562,6 @@ details:not([open]) .folder {
     .icon-file {
         grid-row: 1/4;
     }
-    .tree-view {
-        width: 30%;
-    }
 }
 
 @media screen and (max-width: 768px) {
@@ -559,9 +578,6 @@ details:not([open]) .folder {
     }
     .historial {
         width: 100%;
-    }
-    .tree-view {
-        display: none;
     }
     .detalle_entrega .datos {
         display: grid;
