@@ -67,6 +67,7 @@ if (isset($_POST['importar'])) {
                         </script>
     <?php
                     } else if ($role[$j] == 2) {
+                        
                     } else if ($role[$j] == 3) {
                         $semestre                = !empty($datos[5])  ? ($datos[5]) : '';
                         $telefono              = !empty($datos[6])  ? ($datos[6]) : '';
@@ -77,13 +78,13 @@ if (isset($_POST['importar'])) {
                 }
                 /**Caso Contrario actualizo el o los Registros ya existentes*/
                 else {
-                    // $admin->editUser($nombre, $cedula, $cedula);
+                    $admin->editUserByCedula($nombre, $cedula, $cedula);
                     if ($role[$j] == 2) {
                     } else if ($role[$j] == 3) {
                         $semestre = !empty($datos[5]) ? ($datos[5]) : '';
                         $telefono = !empty($datos[6]) ? ($datos[6]) : '';
                         $email = !empty($datos[7]) ? ($datos[7]) : '';
-                        // $admin->editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre);
+                        $admin->editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre);
                     } else if ($role[$j] == 4) {
                     }
                 }
