@@ -22,13 +22,13 @@ class User extends DataBase
             if ($array) {
                 // Condición para iniciar sesión con los diferentes roles de la plataforma
                 if ($array['rol_id'] == 1) { //Administrador
-                    header("location: admin/");
+                    header("location: admin");
                 } else if ($array['rol_id'] == 2) { //Coordinador
-                    header("location: pages/coordinador/");
+                    header("location: pages/coordinador");
                 } else if ($array['rol_id'] == 3) { //Estudiante
-                    header("location: pages/estudiante/");
+                    header("location: pages/estudiante");
                 } else if ($array['rol_id'] == 4) { //Docente
-                    header("location: pages/docente/");
+                    header("location: pages/docente");
                 } else {
                     header("index");
                 }
