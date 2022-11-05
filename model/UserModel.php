@@ -91,7 +91,7 @@ class User extends DataBase
     {
         $verify = $this->verificarRegistros("SELECT * FROM estudiante WHERE cedula = '$cedula'");
         if ($verify <= 0) {
-            $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa, semestre,usuario,email,telefono)
+            $this->con->query("INSERT INTO estudiante(nombre, p_apellido, s_apellido, cedula, programa, semestre, usuario, email,telefono)
          VALUES ('$nombre','$p_apellido','$s_apellido','$cedula','$programa',$semestre,'$usuario', '$email','$telefono')");
 
             $this->con->query("UPDATE estudiante e JOIN usuario u SET e.usuario_id = u.id WHERE e.cedula = u.cedula");
