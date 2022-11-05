@@ -140,6 +140,16 @@ class User extends DataBase
         $this->con->query("UPDATE estudiante SET nombre='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
         programa='$programa', semestre='$semestre', usuario='$cedula' WHERE cedula='$cedula'");
     }
+    public function editarImportCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa)
+    {
+        $this->con->query("UPDATE coordinador SET nombres='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
+        programa='$programa', usuario='$cedula' WHERE cedula='$cedula'");
+    }
+    public function editarImportAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa)
+    {
+        $this->con->query("UPDATE asesor SET nombres='$nombre', p_apellido='$p_apellido', s_apellido='$s_apellido', cedula='$cedula',
+        programa='$programa', usuario='$cedula' WHERE cedula='$cedula'");
+    }
 
     public function editEstudiante($id, $nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre)
     {

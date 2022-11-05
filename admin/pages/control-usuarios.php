@@ -67,25 +67,36 @@ if (isset($_POST['importar'])) {
                         </script>
     <?php
                     } else if ($role[$j] == 2) {
-                        
+                        $telefono              = !empty($datos[5])  ? ($datos[5]) : '';
+                        $email              = !empty($datos[6])  ? ($datos[6]) : '';
+                        $admin->createCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa, $cedula, $email, $telefono);
                     } else if ($role[$j] == 3) {
                         $semestre                = !empty($datos[5])  ? ($datos[5]) : '';
                         $telefono              = !empty($datos[6])  ? ($datos[6]) : '';
                         $email              = !empty($datos[7])  ? ($datos[7]) : '';
                         $admin->createEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre, $cedula, $email, $telefono);
                     } else if ($role[$j] == 4) {
+                        $telefono              = !empty($datos[5])  ? ($datos[5]) : '';
+                        $email              = !empty($datos[6])  ? ($datos[6]) : '';
+                        $admin->createAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa, $cedula, $email, $telefono);
                     }
                 }
                 /**Caso Contrario actualizo el o los Registros ya existentes*/
                 else {
                     $admin->editUserByCedula($nombre, $cedula, $cedula);
                     if ($role[$j] == 2) {
+                        $telefono              = !empty($datos[5])  ? ($datos[5]) : '';
+                        $email              = !empty($datos[6])  ? ($datos[6]) : '';
+                        $admin->editarImportCoordinador($nombre, $p_apellido, $s_apellido, $cedula, $programa);
                     } else if ($role[$j] == 3) {
                         $semestre = !empty($datos[5]) ? ($datos[5]) : '';
                         $telefono = !empty($datos[6]) ? ($datos[6]) : '';
                         $email = !empty($datos[7]) ? ($datos[7]) : '';
                         $admin->editarImportEstudiante($nombre, $p_apellido, $s_apellido, $cedula, $programa, $semestre);
                     } else if ($role[$j] == 4) {
+                        $telefono              = !empty($datos[5])  ? ($datos[5]) : '';
+                        $email              = !empty($datos[6])  ? ($datos[6]) : '';
+                        $admin->editarImportAsesor($nombre, $p_apellido, $s_apellido, $cedula, $programa);
                     }
                 }
             }
