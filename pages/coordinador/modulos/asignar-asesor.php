@@ -47,15 +47,7 @@ $myRole = mysqli_fetch_array($getMyself);
 </head>
 
 <body>
-    <!-- Guardando... -->
-    <!-- <div class="saving">
-        <div class="lds-facebook loader" id="loader">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        Guardando...
-    </div> -->
+  
     <!-- Pantalla de carga -->
     <div id="contenedor_carga">
         <div id="carga"></div>
