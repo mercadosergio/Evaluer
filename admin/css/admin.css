@@ -111,7 +111,10 @@ strong {
 }
 
 #sidemenu {
-    background-color: #89b3eb;
+    background: linear-gradient(to right, rgba(137, 180, 235, 0.9), rgba(137, 180, 235, 0.9)), url("../../img/campus-aunar-2.png");
+    background-size: cover;
+    background-position: center;
+    /* background-color: #89b3eb; */
     color: black;
     position: fixed;
     height: 100%;

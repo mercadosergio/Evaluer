@@ -66,9 +66,7 @@ $idProyecto = $_GET['id'];
         <a class="navbar-brand" href="../index.php"><img class="logo" src="../../../img/logo_p.png"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <h3>COORDINADOR</h3>
-            <ul class="navbar-nav mx-auto">
-
-            </ul>
+            <ul class="navbar-nav mx-auto"> </ul>
             <ul class="">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
