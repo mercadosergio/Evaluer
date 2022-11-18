@@ -39,6 +39,7 @@ if ($userP['rol_id'] != 1) {
     <!-- MAIN STYLE -->
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/scrollbar.css">
 </head>
 
 
@@ -152,7 +153,38 @@ if ($userP['rol_id'] != 1) {
             <i class="bi bi-columns-gap"></i>
             <h3>Módulos de administración</h3>
         </div>
-
+        <div class="stats-layout">
+            <div class="status doc shadow">
+                <h3>Asesores</h3>
+                <i class="bi bi-bar-chart-fill"></i>
+                <p>
+                    <?php
+                    $a = $usuario->consultar("SELECT * FROM asesor");
+                    echo $a->num_rows;
+                    ?>
+                </p>
+            </div>
+            <div class="status coo shadow">
+                <h3>Coordinadores</h3>
+                <i class="bi bi-bar-chart-fill"></i>
+                <p>
+                    <?php
+                    $a = $usuario->consultar("SELECT * FROM coordinador");
+                    echo $a->num_rows;
+                    ?>
+                </p>
+            </div>
+            <div class="status stu shadow">
+                <h3>Estudiantes</h3>
+                <i class="bi bi-bar-chart-fill"></i>
+                <p>
+                    <?php
+                    $a = $usuario->consultar("SELECT * FROM estudiante");
+                    echo $a->num_rows;
+                    ?>
+                </p>
+            </div>
+        </div>
         <div class="layout">
             <a href="pages/agregar-usuario.php">
                 <div class="module shadow">
