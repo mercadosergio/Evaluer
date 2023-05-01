@@ -1,5 +1,5 @@
 # About Evaluer
-<img src="https://raw.githubusercontent.com/Sergio1-Git/Evaluer/main/img/logo-transparente.png?token=GHSAT0AAAAAACBGG7IWGEAMLUW4R7H3PGCAZCQGKAQ">
+<img src="https://evaluer.000webhostapp.com/img/logo-transparente.png">
 Sistema web para el control y seguimiento de proyectos de investigación de la Corporación Universitaria Autónoma de Nariño.
 
 ### Instrucciones
